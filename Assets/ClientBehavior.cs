@@ -9,12 +9,15 @@ public class ClientBehaviour : MonoBehaviour
     NetworkDriver m_Driver;
     NetworkConnection m_Connection;
 
-    public ThirdPersonMovement thirdPersonMovement;
-    private bool isConnected = false;
-    readonly string playerId = "Player1";
+    private GameManager gameManager;
+
+
+
+    public bool isConnected = false;
 
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
         m_Driver = NetworkDriver.Create();
         m_Connection = default;
         var endpoint = NetworkEndpoint.LoopbackIpv4.WithPort(5000);
@@ -28,29 +31,17 @@ public class ClientBehaviour : MonoBehaviour
 
     void Update()
     {
-        if (!m_Driver.IsCreated)
-        {
-            Debug.Log("Network driver not created");
-            return;
-        }
+        CheckConnection();
         m_Driver.ScheduleUpdate().Complete();
-        if (!m_Connection.IsCreated)
-        {
-            Debug.Log("Connection not created or lost");
-            return;
-        }
+
+
         NetworkEvent.Type cmd;
         while ((cmd = m_Connection.PopEvent(m_Driver, out DataStreamReader stream)) != NetworkEvent.Type.Empty)
         {
             if (cmd == NetworkEvent.Type.Connect && !isConnected)
             {
                 isConnected = true;
-                m_Driver.BeginSend(m_Connection, out var writer);
-                var connectMessage = CreateConnectMessage(playerId);
-                DebugHelper.LogBytes(connectMessage);
-                writer.WriteBytes(connectMessage);
-                m_Driver.EndSend(writer);
-                connectMessage.Dispose();
+
             }
             else if (cmd == NetworkEvent.Type.Data)
             {
@@ -63,14 +54,50 @@ public class ClientBehaviour : MonoBehaviour
             }
         }
     }
+
+    void CheckConnection()
+    {
+        if (!m_Driver.IsCreated)
+        {
+            Debug.Log("Network driver not created");
+            return;
+        }
+        if (!m_Connection.IsCreated)
+        {
+            Debug.Log("Connection not created or lost");
+            return;
+        }
+    }
+
+    public void SendConnectEvent(string playerId)
+    {
+        m_Driver.BeginSend(m_Connection, out var writer);
+        var connectMessage = CreateConnectMessage(playerId);
+        DebugHelper.LogBytes(connectMessage);
+        writer.WriteBytes(connectMessage);
+        m_Driver.EndSend(writer);
+        connectMessage.Dispose();
+    }
+
+
     public void SendMovement(Vector2 movement)
     {
         m_Driver.BeginSend(m_Connection, out var writer);
-        var movementMessage = CreateMovementMessage(playerId, movement);
-        DebugHelper.LogBytes(movementMessage);
+        var movementMessage = CreateMovementMessage(gameManager.ownPlayerId, movement);
+        // DebugHelper.LogBytes(movementMessage);
         writer.WriteBytes(movementMessage);
         m_Driver.EndSend(writer);
         movementMessage.Dispose();
+    }
+
+    public void SendRotation(float rotation)
+    {
+        m_Driver.BeginSend(m_Connection, out var writer);
+        var rotationMessage = CreateRotationMessage(gameManager.ownPlayerId, rotation);
+        // DebugHelper.LogBytes(movementMessage);
+        writer.WriteBytes(rotationMessage);
+        m_Driver.EndSend(writer);
+        rotationMessage.Dispose();
     }
 
     void ProcessData(ref DataStreamReader stream)
@@ -82,11 +109,11 @@ public class ClientBehaviour : MonoBehaviour
             switch (packetType)
             {
                 case 1: // Location Update
-                    ProcessLocation(ref reader);
+                    ProcessLocationUpdate(ref reader);
                     break;
                 case 0: // Spawn Update
-                    ProcessLocation(ref reader);
-                    var connectConfirmMessage = CreateConnectConfirmMessage(playerId);
+                    ProcessSpawnUpdate(ref reader);
+                    var connectConfirmMessage = CreateConnectConfirmMessage(gameManager.ownPlayerId);
                     m_Driver.BeginSend(m_Connection, out var writer);
                     writer.WriteBytes(connectConfirmMessage);
                     m_Driver.EndSend(writer);
@@ -96,7 +123,7 @@ public class ClientBehaviour : MonoBehaviour
         }
     }
 
-    void ProcessLocation(ref DataStreamReader reader)
+    void ProcessLocationUpdate(ref DataStreamReader reader)
     {
         ulong playerNum = reader.ReadULong();
         for (ulong i = 0; i < playerNum; i++)
@@ -109,17 +136,52 @@ public class ClientBehaviour : MonoBehaviour
 
             float x = reader.ReadFloat();
             float y = reader.ReadFloat();
+            float newRotation = reader.ReadFloat();
 
-            thirdPersonMovement.HandleMovement(new Vector2(x, y));
+            Vector2 newPosition = new(x, y);
+
+            gameManager.UpdatePlayerPosition(playerId, newPosition);
+            gameManager.UpdatePlayerRotation(playerId, newRotation);
+        }
+    }
+
+    void ProcessSpawnUpdate(ref DataStreamReader reader)
+    {
+        ulong playerNum = reader.ReadULong();
+        for (ulong i = 0; i < playerNum; i++)
+        {
+            NativeArray<byte> stringBytes = new(16, Allocator.Temp);
+            reader.ReadBytes(stringBytes);  // Ensure this method exists or is correctly implemented
+
+            string playerId = Encoding.UTF8.GetString(stringBytes.ToArray()).TrimEnd('\0');
+            stringBytes.Dispose();
+
+            float x = reader.ReadFloat();
+            float y = reader.ReadFloat();
+            float newRotation = reader.ReadFloat();
+
+            Vector2 spawnLocation = new(x, y);
+
+            gameManager.SpawnPlayer(playerId, spawnLocation, newRotation);
         }
     }
 
     NativeArray<byte> CreateMovementMessage(string playerId, Vector2 movement)
     {
-        byte eventType = 2;  // Different type for movement message
+        byte eventType = 2;  // EventIn Type 2 for Move
         byte[] data = new byte[8];
         Buffer.BlockCopy(BitConverter.GetBytes(movement.x), 0, data, 0, 4);
         Buffer.BlockCopy(BitConverter.GetBytes(movement.y), 0, data, 4, 4);
+
+        NativeArray<byte> messagePacket = AddEventHeader(eventType, playerId, data);
+        return messagePacket;
+    }
+
+    NativeArray<byte> CreateRotationMessage(string playerId, float rotation)
+    {
+        byte eventType = 3;  // EventIn Type 3 for Rotation
+        byte[] data = new byte[4];
+        Buffer.BlockCopy(BitConverter.GetBytes(rotation), 0, data, 0, 4);
 
         NativeArray<byte> messagePacket = AddEventHeader(eventType, playerId, data);
         return messagePacket;
@@ -173,7 +235,7 @@ public class ClientBehaviour : MonoBehaviour
         }
 
         playerIdBytes.Dispose();
-        DebugHelper.LogBytes(messagePacket);
+        // DebugHelper.LogBytes(messagePacket);
         return messagePacket;
     }
 }
