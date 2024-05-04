@@ -19,20 +19,14 @@ public class Player : MonoBehaviour
     private void Start()
     {
         lastRotation = transform.rotation.eulerAngles.y;
-        gameManager = FindObjectOfType<GameManager>();
+        gameManager = GameManager.Instance;
 
     }
 
     private void Update()
     {
-        Debug.Log($"ownplayerid: {gameManager.ownPlayerId}");
-        Debug.Log($"playerId: {playerId}");
-        Debug.Log($"transform.rotation.y: {transform.rotation.eulerAngles.y}");
-        Debug.Log($"lastRotation: {lastRotation}");
-
         if (gameManager.ownPlayerId == playerId && Mathf.Abs(transform.rotation.eulerAngles.y - lastRotation) > 1.0)
         {
-            Debug.Log("Player Rotated");
             gameManager.SendRotationToServer(transform.rotation.eulerAngles.y);
             lastRotation = transform.rotation.eulerAngles.y;
         }

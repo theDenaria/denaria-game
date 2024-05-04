@@ -1,17 +1,19 @@
+using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using Cinemachine;
 using TMPro;
+
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    public GameObject playerPrefab; // Assign this in the Inspector
+    public GameObject playerPrefab;
 
     private Camera mainCamera;
-    public CinemachineFreeLook cinemachineFreeLook; // Assign this in the Inspector
+    private CinemachineFreeLook cinemachineFreeLook;
 
     [SerializeField] private ClientBehaviour clientBehaviour;
 
@@ -20,7 +22,6 @@ public class GameManager : MonoBehaviour
     private Dictionary<string, Player> players = new Dictionary<string, Player>();
 
     public TMP_InputField playerIdInput;
-    public Canvas connectCanvas;
 
     public string ownPlayerId;
 
@@ -41,7 +42,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        mainCamera = Camera.main;
+
     }
 
     void Update()
@@ -53,6 +54,8 @@ public class GameManager : MonoBehaviour
         }
 
     }
+
+
 
     // IEnumerator UpdatePosition(Vector3 start, Vector3 end, float duration)
     // {
@@ -69,8 +72,15 @@ public class GameManager : MonoBehaviour
     public void ConnectButtonClicked()
     {
         Debug.Log($"Connect button pressed by {playerIdInput.text}");
-        clientBehaviour.SendConnectEvent(playerIdInput.text);
+
         ownPlayerId = playerIdInput.text;
+        LoadSceneAsync("GameScene");
+    }
+
+    public void DisconnectButtonClicked()
+    {
+        Debug.Log($"DisconnectButton button pressed");
+        clientBehaviour.Disconnect();
     }
 
     public void SpawnPlayer(string playerId, Vector2 spawnLocation, float yRotation)
@@ -89,13 +99,13 @@ public class GameManager : MonoBehaviour
         {
             isSpawned = true;
             SetupCamera(newPlayerObj);
-            connectCanvas.gameObject.SetActive(false);
         }
 
     }
 
     void SetupCamera(GameObject player)
     {
+        cinemachineFreeLook = FindObjectOfType<CinemachineFreeLook>();
         // Set the Cinemachine camera's follow and look at targets
         cinemachineFreeLook.Follow = player.transform;
         cinemachineFreeLook.LookAt = player.transform;
@@ -185,6 +195,28 @@ public class GameManager : MonoBehaviour
                 Debug.LogError("Player ID not found: " + playerId);
             }
         }
+
+    }
+
+    public void LoadSceneAsync(string sceneName)
+    {
+        StartCoroutine(LoadSceneAsyncCoroutine(sceneName));
+    }
+
+    private IEnumerator LoadSceneAsyncCoroutine(string sceneName)
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
+
+        // Optional: A loading screen could be activated here
+        while (!asyncLoad.isDone)
+        {
+            // Update loading screen progress
+            float progress = Mathf.Clamp01(asyncLoad.progress / 0.9f); // Normalized progress in percent
+            Debug.Log("Loading progress: " + (progress * 100) + "%");
+            yield return null;
+        }
+        mainCamera = Camera.main;
+        clientBehaviour.SendConnectEvent(playerIdInput.text);
 
     }
 }

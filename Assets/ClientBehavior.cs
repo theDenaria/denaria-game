@@ -6,18 +6,30 @@ using System;
 
 public class ClientBehaviour : MonoBehaviour
 {
+
+    public static ClientBehaviour Instance { get; private set; }
     NetworkDriver m_Driver;
     NetworkConnection m_Connection;
 
     private GameManager gameManager;
-
-
-
     public bool isConnected = false;
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Start()
     {
-        gameManager = FindObjectOfType<GameManager>();
+        gameManager = GameManager.Instance;
         m_Driver = NetworkDriver.Create();
         m_Connection = default;
         var endpoint = NetworkEndpoint.LoopbackIpv4.WithPort(5000);
@@ -77,6 +89,19 @@ public class ClientBehaviour : MonoBehaviour
         writer.WriteBytes(connectMessage);
         m_Driver.EndSend(writer);
         connectMessage.Dispose();
+    }
+
+    public void Disconnect()
+    {
+        // m_Driver.BeginSend(m_Connection, out var writer);
+        // var connectMessage = CreateConnectMessage(playerId);
+        // DebugHelper.LogBytes(connectMessage);
+        // writer.WriteBytes(connectMessage);
+        // m_Driver.EndSend(writer);
+        // connectMessage.Dispose();
+        m_Driver.Disconnect(m_Connection);
+        // m_Connection.Close(m_Driver);
+        // m_Connection.Disconnect(m_Driver);
     }
 
 
