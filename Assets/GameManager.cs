@@ -1,31 +1,26 @@
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 using Cinemachine;
-using TMPro;
-
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    public GameObject playerPrefab;
+    private SystemManager systemManager;
+    private ClientBehaviour clientBehaviour;
+    private PlayerInputHandler playerInputHandler;
+    public GameObject pauseMenuCanvas;
 
     private Camera mainCamera;
     private CinemachineFreeLook cinemachineFreeLook;
 
-    [SerializeField] private ClientBehaviour clientBehaviour;
-
-    [SerializeField] private PlayerInputHandler inputHandler;
-
-    private Dictionary<string, Player> players = new Dictionary<string, Player>();
-
-    public TMP_InputField playerIdInput;
+    public GameObject playerPrefab;
+    private Dictionary<string, Player> players = new();
 
     public string ownPlayerId;
 
     public bool isSpawned = false;
+    private bool isMenuOpen = false;
 
     void Awake()
     {
@@ -38,49 +33,114 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        playerInputHandler = PlayerInputHandler.Instance;
+        systemManager = SystemManager.Instance;
+        clientBehaviour = ClientBehaviour.Instance;
+        systemManager.InitGameManager();
     }
 
     void Start()
     {
-
+        clientBehaviour.Connect();
+        mainCamera = Camera.main;
+        ownPlayerId = systemManager.ownPlayerId;
     }
 
+    // Update is called once per frame
     void Update()
     {
-        if (isSpawned)
+        if (isSpawned && !isMenuOpen)
         {
             HandleRotation();
             SendInputToServer();
         }
-
+        if (!isSpawned)
+        {
+            clientBehaviour.SendPlayerConnectMessage();
+        }
     }
 
-
-
-    // IEnumerator UpdatePosition(Vector3 start, Vector3 end, float duration)
-    // {
-    //     float elapsed = 0;
-    //     while (elapsed < duration)
-    //     {
-    //         playerTransform.position = Vector3.Lerp(start, end, elapsed / duration);
-    //         elapsed += Time.deltaTime;
-    //         yield return null;
-    //     }
-    //     playerTransform.position = end; // Ensure the final position is set precisely
-    // }
-
-    public void ConnectButtonClicked()
+    void HandleRotation()
     {
-        Debug.Log($"Connect button pressed by {playerIdInput.text}");
+        // Capture the Y-axis rotation of the camera.
+        float yRotation = mainCamera.transform.eulerAngles.y;
 
-        ownPlayerId = playerIdInput.text;
-        LoadSceneAsync("GameScene");
+        if (players.ContainsKey(ownPlayerId))
+        {
+            players[ownPlayerId].transform.rotation = Quaternion.Euler(0f, yRotation, 0f);
+        }
+        else
+        {
+            Debug.LogError("Player ID not found: " + ownPlayerId);
+        }
     }
 
+    void SendInputToServer()
+    {
+        if (playerInputHandler == null)
+        {
+            Debug.LogError("PlayerInputHandler not found in the scene!");
+            return;
+        }
+        if (playerInputHandler.MoveInput != Vector2.zero)
+        {
+            Vector2 inputDirection = new Vector2(playerInputHandler.MoveInput.x, playerInputHandler.MoveInput.y);
+            var rotatedMove = GetRotatedInput(inputDirection.normalized);
+            clientBehaviour.SendMovement(rotatedMove);
+        }
+    }
+
+    public void SendRotationToServer(float rotation)
+    {
+        clientBehaviour.SendRotation(rotation);
+    }
+
+    public void UpdatePlayerPosition(string playerId, Vector2 newPosition)
+    {
+        if (players.ContainsKey(playerId))
+        {
+            var newPositionn = new Vector3(newPosition.x, players[playerId].transform.position.y, newPosition.y);
+            players[playerId].transform.position = Vector3.Lerp(transform.position, newPositionn, 5000.0f);
+        }
+        else
+        {
+            Debug.LogError("Player ID not found: " + playerId);
+        }
+    }
+
+    public void UpdatePlayerRotation(string playerId, float newRotation)
+    {
+        if (playerId != ownPlayerId)
+        {
+            if (players.ContainsKey(playerId))
+            {
+                players[playerId].transform.rotation = Quaternion.Euler(0f, newRotation, 0f);
+
+            }
+            else
+            {
+                Debug.LogError("Player ID not found: " + playerId);
+            }
+        }
+
+    }
+
+    Vector2 GetRotatedInput(Vector2 normalizedInput)
+    {
+        float angleDegrees = players[ownPlayerId].transform.eulerAngles.y;
+        float angleRadians = angleDegrees * Mathf.Deg2Rad; // Convert degrees to radians
+        float cosAngle = Mathf.Cos(angleRadians);
+        float sinAngle = Mathf.Sin(angleRadians);
+
+        float rotatedX = normalizedInput.x * cosAngle + normalizedInput.y * sinAngle;
+        float rotatedY = -normalizedInput.x * sinAngle + normalizedInput.y * cosAngle;
+
+        return new Vector2(rotatedX, rotatedY);
+    }
+    //
     public void DisconnectButtonClicked()
     {
-        Debug.Log($"DisconnectButton button pressed");
-        clientBehaviour.Disconnect();
+        systemManager.Disconnect();
     }
 
     public void SpawnPlayer(string playerId, Vector2 spawnLocation, float yRotation)
@@ -103,6 +163,14 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void HandleDisconnectedPlayer(string playerId)
+    {
+        // Instantiate the player at the desired position with default rotation
+        if (!players.ContainsKey(playerId)) return;
+        Destroy(players[playerId].gameObject);
+        players.Remove(playerId);
+    }
+
     void SetupCamera(GameObject player)
     {
         cinemachineFreeLook = FindObjectOfType<CinemachineFreeLook>();
@@ -114,109 +182,38 @@ public class GameManager : MonoBehaviour
         Camera.main.GetComponent<CinemachineBrain>().enabled = true;
     }
 
-    void SendInputToServer()
+    private void OnEnable()
     {
-        if (inputHandler == null)
-        {
-            Debug.LogError("PlayerInputHandler not found in the scene!");
-            return;
-        }
-
-        if (inputHandler.MoveInput != Vector2.zero)
-        {
-            Vector2 inputDirection = new Vector2(inputHandler.MoveInput.x, inputHandler.MoveInput.y);
-
-            var rotatedMove = GetRotatedInput(inputDirection.normalized);
-
-            clientBehaviour.SendMovement(rotatedMove);
-        }
+        // Ensure the action is enabled
+        playerInputHandler.escMenuAction.Enable();
+        playerInputHandler.escMenuAction.performed += _ => ToggleMenu();
     }
 
-    Vector2 GetRotatedInput(Vector2 normalizedInput)
+    private void OnDisable()
     {
-        float angleDegrees = players[ownPlayerId].transform.eulerAngles.y;
-        float angleRadians = angleDegrees * Mathf.Deg2Rad; // Convert degrees to radians
-        float cosAngle = Mathf.Cos(angleRadians);
-        float sinAngle = Mathf.Sin(angleRadians);
-
-        float rotatedX = normalizedInput.x * cosAngle + normalizedInput.y * sinAngle;
-        float rotatedY = -normalizedInput.x * sinAngle + normalizedInput.y * cosAngle;
-
-        return new Vector2(rotatedX, rotatedY);
+        // Clean up to avoid memory leaks
+        playerInputHandler.escMenuAction.performed -= _ => ToggleMenu();
+        playerInputHandler.escMenuAction.Disable();
     }
 
-    public void SendRotationToServer(float rotation)
+    private void ToggleMenu()
     {
-        clientBehaviour.SendRotation(rotation);
-    }
+        isMenuOpen = !isMenuOpen;
+        pauseMenuCanvas.SetActive(isMenuOpen);
 
-    public void UpdatePlayerPosition(string playerId, Vector2 newPosition)
-    {
-        if (players.ContainsKey(playerId))
-        {
-            var newPositionn = new Vector3(newPosition.x, players[playerId].transform.position.y, newPosition.y);
-            // players[playerId].transform.position = newPositionn;
-
-            players[playerId].transform.position = Vector3.Lerp(transform.position, newPositionn, 5000.0f);
-        }
-        else
-        {
-            Debug.LogError("Player ID not found: " + playerId);
-        }
-    }
-
-    void HandleRotation()
-    {
-        // Capture the Y-axis rotation of the camera.
-        float yRotation = mainCamera.transform.eulerAngles.y;
-
-        if (players.ContainsKey(ownPlayerId))
-        {
-            players[ownPlayerId].transform.rotation = Quaternion.Euler(0f, yRotation, 0f);
-
-        }
-        else
-        {
-            Debug.LogError("Player ID not found: " + ownPlayerId);
-        }
-    }
-
-    public void UpdatePlayerRotation(string playerId, float newRotation)
-    {
-        if (playerId != ownPlayerId)
-        {
-            if (players.ContainsKey(playerId))
-            {
-                players[playerId].transform.rotation = Quaternion.Euler(0f, newRotation, 0f);
-
-            }
-            else
-            {
-                Debug.LogError("Player ID not found: " + playerId);
-            }
-        }
-
-    }
-
-    public void LoadSceneAsync(string sceneName)
-    {
-        StartCoroutine(LoadSceneAsyncCoroutine(sceneName));
-    }
-
-    private IEnumerator LoadSceneAsyncCoroutine(string sceneName)
-    {
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
-
-        // Optional: A loading screen could be activated here
-        while (!asyncLoad.isDone)
-        {
-            // Update loading screen progress
-            float progress = Mathf.Clamp01(asyncLoad.progress / 0.9f); // Normalized progress in percent
-            Debug.Log("Loading progress: " + (progress * 100) + "%");
-            yield return null;
-        }
-        mainCamera = Camera.main;
-        clientBehaviour.SendConnectEvent(playerIdInput.text);
-
+        // Control the time scale of the game based on menu state
+        Time.timeScale = isMenuOpen ? 0 : 1;
     }
 }
+
+// IEnumerator UpdatePosition(Vector3 start, Vector3 end, float duration)
+// {
+//     float elapsed = 0;
+//     while (elapsed < duration)
+//     {
+//         playerTransform.position = Vector3.Lerp(start, end, elapsed / duration);
+//         elapsed += Time.deltaTime;
+//         yield return null;
+//     }
+//     playerTransform.position = end; // Ensure the final position is set precisely
+// }

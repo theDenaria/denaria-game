@@ -6,13 +6,23 @@ using System;
 
 public class ClientBehaviour : MonoBehaviour
 {
-
     public static ClientBehaviour Instance { get; private set; }
     NetworkDriver m_Driver;
     NetworkConnection m_Connection;
-
-    private GameManager gameManager;
+    private SystemManager systemManager;
+    private GameManager gameManager = null;
     public bool isConnected = false;
+    NetworkPipeline reliablePipeline;
+    NetworkEndpoint endpoint = NetworkEndpoint.LoopbackIpv4.WithPort(5000);
+
+    public enum SendOpCode : byte
+    {
+        Connect = 0,
+    }
+
+    public enum ReceiveOpcode : byte
+    {
+    }
 
     void Awake()
     {
@@ -29,11 +39,26 @@ public class ClientBehaviour : MonoBehaviour
 
     void Start()
     {
-        gameManager = GameManager.Instance;
+        systemManager = SystemManager.Instance;
         m_Driver = NetworkDriver.Create();
+        reliablePipeline = m_Driver.CreatePipeline(typeof(ReliableSequencedPipelineStage));
         m_Connection = default;
-        var endpoint = NetworkEndpoint.LoopbackIpv4.WithPort(5000);
+    }
+
+    public void Connect()
+    {
         m_Connection = m_Driver.Connect(endpoint);
+    }
+
+    public void Disconnect()
+    {
+        isConnected = false;
+        m_Connection.Disconnect(m_Driver);
+    }
+
+    public void InitGameManager()
+    {
+        gameManager = GameManager.Instance;
     }
 
     void OnDestroy()
@@ -46,18 +71,23 @@ public class ClientBehaviour : MonoBehaviour
         CheckConnection();
         m_Driver.ScheduleUpdate().Complete();
 
-
         NetworkEvent.Type cmd;
-        while ((cmd = m_Connection.PopEvent(m_Driver, out DataStreamReader stream)) != NetworkEvent.Type.Empty)
+        while ((cmd = m_Connection.PopEvent(m_Driver, out DataStreamReader stream, out var receivePipeline)) != NetworkEvent.Type.Empty)
         {
             if (cmd == NetworkEvent.Type.Connect && !isConnected)
             {
                 isConnected = true;
-
             }
             else if (cmd == NetworkEvent.Type.Data)
             {
-                ProcessData(ref stream);
+                if (receivePipeline.Equals(reliablePipeline))
+                {
+                    ProcessReliableData(ref stream);
+                }
+                else
+                {
+                    ProcessUnreliableData(ref stream);
+                }
             }
             else if (cmd == NetworkEvent.Type.Disconnect)
             {
@@ -76,74 +106,98 @@ public class ClientBehaviour : MonoBehaviour
         }
         if (!m_Connection.IsCreated)
         {
-            Debug.Log("Connection not created or lost");
             return;
         }
     }
 
-    public void SendConnectEvent(string playerId)
+    public void SendPlayerConnectMessage()
     {
-        m_Driver.BeginSend(m_Connection, out var writer);
-        var connectMessage = CreateConnectMessage(playerId);
-        DebugHelper.LogBytes(connectMessage);
-        writer.WriteBytes(connectMessage);
-        m_Driver.EndSend(writer);
-        connectMessage.Dispose();
+        NativeArray<byte>[] messages = new NativeArray<byte>[1];
+        messages[0] = CreatePlayerConnectMessage();
+        SendMessages(ref messages);
     }
-
-    public void Disconnect()
-    {
-        // m_Driver.BeginSend(m_Connection, out var writer);
-        // var connectMessage = CreateConnectMessage(playerId);
-        // DebugHelper.LogBytes(connectMessage);
-        // writer.WriteBytes(connectMessage);
-        // m_Driver.EndSend(writer);
-        // connectMessage.Dispose();
-        m_Driver.Disconnect(m_Connection);
-        // m_Connection.Close(m_Driver);
-        // m_Connection.Disconnect(m_Driver);
-    }
-
 
     public void SendMovement(Vector2 movement)
     {
-        m_Driver.BeginSend(m_Connection, out var writer);
-        var movementMessage = CreateMovementMessage(gameManager.ownPlayerId, movement);
-        // DebugHelper.LogBytes(movementMessage);
-        writer.WriteBytes(movementMessage);
-        m_Driver.EndSend(writer);
-        movementMessage.Dispose();
+        NativeArray<byte>[] messages = new NativeArray<byte>[1];
+        messages[0] = CreateMovementMessage(movement);
+        SendMessages(ref messages);
     }
 
     public void SendRotation(float rotation)
     {
-        m_Driver.BeginSend(m_Connection, out var writer);
-        var rotationMessage = CreateRotationMessage(gameManager.ownPlayerId, rotation);
-        // DebugHelper.LogBytes(movementMessage);
-        writer.WriteBytes(rotationMessage);
-        m_Driver.EndSend(writer);
-        rotationMessage.Dispose();
+        NativeArray<byte>[] messages = new NativeArray<byte>[1];
+        messages[0] = CreateRotationMessage(rotation);
+        SendMessages(ref messages);
     }
 
-    void ProcessData(ref DataStreamReader stream)
+    void ProcessReliableData(ref DataStreamReader stream)
+    {
+        byte[] data = new byte[stream.Length];
+        for (int i = 0; i < stream.Length; i++)
+        {
+            data[i] = stream.ReadByte();
+        }
+
+        NativeArray<byte> copiedData = new(data, Allocator.Temp);
+        var reader = new DataStreamReader(copiedData);
+
+        while (reader.GetBytesRead() < reader.Length)
+        {
+            ushort messagesLength = reader.ReadUShort();
+            for (ushort i = 0; i < messagesLength; i++)
+            {
+                ulong messageId = reader.ReadULong();
+                ulong messageLength = reader.ReadUShort();
+
+                NativeArray<byte> messageBytes = new((int)messageLength, Allocator.Temp);
+                reader.ReadBytes(messageBytes);
+                DataStreamReader messageStream = new(messageBytes);
+
+                byte messageType = messageStream.ReadByte();
+                switch (messageType)
+                {
+                    case 1: // Location Update
+                        Debug.Log("WARNING! Location message sent in unreliable channel!");
+                        break;
+                    case 0: // Spawn Update
+                        ProcessSpawnUpdate(ref messageStream);
+                        break;
+                    case 10:
+                        ProcessDisconnectUpdate(ref messageStream);
+                        break;
+                }
+            }
+        }
+    }
+
+    void ProcessUnreliableData(ref DataStreamReader stream)
     {
         var reader = stream;
         while (reader.GetBytesRead() < reader.Length)
         {
-            byte packetType = reader.ReadByte();
-            switch (packetType)
+            ushort messagesLength = reader.ReadUShort();
+            for (ushort i = 0; i < messagesLength; i++)
             {
-                case 1: // Location Update
-                    ProcessLocationUpdate(ref reader);
-                    break;
-                case 0: // Spawn Update
-                    ProcessSpawnUpdate(ref reader);
-                    var connectConfirmMessage = CreateConnectConfirmMessage(gameManager.ownPlayerId);
-                    m_Driver.BeginSend(m_Connection, out var writer);
-                    writer.WriteBytes(connectConfirmMessage);
-                    m_Driver.EndSend(writer);
-                    connectConfirmMessage.Dispose();
-                    break;
+                ulong messageLength = reader.ReadUShort();
+                NativeArray<byte> messageBytes = new((int)messageLength, Allocator.Temp);
+                reader.ReadBytes(messageBytes);
+                DataStreamReader messageStream = new(messageBytes);
+                messageBytes.Dispose();
+
+                byte messageType = messageStream.ReadByte();
+                switch (messageType)
+                {
+                    case 1: // Location Update
+                        ProcessLocationUpdate(ref messageStream);
+                        break;
+                    case 0: // Spawn Update
+                        Debug.Log("WARNING! Spawn message sent in unreliable channel!");
+                        break;
+                    case 10: // Disconnect
+                        Debug.Log("WARNING! Disconnect message sent in unreliable channel!");
+                        break;
+                }
             }
         }
     }
@@ -184,69 +238,66 @@ public class ClientBehaviour : MonoBehaviour
             float x = reader.ReadFloat();
             float y = reader.ReadFloat();
             float newRotation = reader.ReadFloat();
-
             Vector2 spawnLocation = new(x, y);
-
             gameManager.SpawnPlayer(playerId, spawnLocation, newRotation);
         }
     }
 
-    NativeArray<byte> CreateMovementMessage(string playerId, Vector2 movement)
+    void ProcessDisconnectUpdate(ref DataStreamReader reader)
+    {
+        if (!gameManager) return;
+        ulong playerNum = reader.ReadULong();
+        for (ulong i = 0; i < playerNum; i++)
+        {
+            NativeArray<byte> stringBytes = new(16, Allocator.Temp);
+            reader.ReadBytes(stringBytes);  // Ensure this method exists or is correctly implemented
+
+            string playerId = Encoding.UTF8.GetString(stringBytes.ToArray()).TrimEnd('\0');
+            stringBytes.Dispose();
+
+            gameManager.HandleDisconnectedPlayer(playerId);
+        }
+    }
+
+    NativeArray<byte> CreateMovementMessage(Vector2 movement)
     {
         byte eventType = 2;  // EventIn Type 2 for Move
         byte[] data = new byte[8];
         Buffer.BlockCopy(BitConverter.GetBytes(movement.x), 0, data, 0, 4);
         Buffer.BlockCopy(BitConverter.GetBytes(movement.y), 0, data, 4, 4);
 
-        NativeArray<byte> messagePacket = AddEventHeader(eventType, playerId, data);
+        NativeArray<byte> messagePacket = AddEventHeader(eventType, data);
         return messagePacket;
     }
 
-    NativeArray<byte> CreateRotationMessage(string playerId, float rotation)
+    NativeArray<byte> CreateRotationMessage(float rotation)
     {
         byte eventType = 3;  // EventIn Type 3 for Rotation
         byte[] data = new byte[4];
         Buffer.BlockCopy(BitConverter.GetBytes(rotation), 0, data, 0, 4);
 
-        NativeArray<byte> messagePacket = AddEventHeader(eventType, playerId, data);
+        NativeArray<byte> messagePacket = AddEventHeader(eventType, data);
         return messagePacket;
     }
 
-    NativeArray<byte> CreateConnectMessage(string playerId)
+    NativeArray<byte> CreatePlayerConnectMessage()
     {
-        byte eventType = 0;
+        byte messageType = (byte)SendOpCode.Connect;
 
-        string connectMessage = "Player1 Connecting!!!";
-        byte[] data = Encoding.UTF8.GetBytes(connectMessage);
+        byte[] tempBytes = Encoding.UTF8.GetBytes(gameManager.ownPlayerId);
+        byte[] playerIdBytes = new byte[16];
 
-        var messagePacket = AddEventHeader(eventType, playerId, data);
+        Buffer.BlockCopy(tempBytes, 0, playerIdBytes, 0, tempBytes.Length);
+
+        var messagePacket = AddEventHeader(messageType, playerIdBytes);
         return messagePacket;
     }
 
-    NativeArray<byte> CreateConnectConfirmMessage(string playerId)
+
+    NativeArray<byte> AddEventHeader(byte opCode, byte[] data)
     {
-        byte eventType = 1;
-        string connectMessage = "Player1 Confirmed Connect!!!";
-        byte[] data = Encoding.UTF8.GetBytes(connectMessage);
-        var messagePacket = AddEventHeader(eventType, playerId, data);
-        return messagePacket;
-    }
-
-    NativeArray<byte> AddEventHeader(byte eventType, string playerId, byte[] data)
-    {
-        byte[] tempBytes = Encoding.UTF8.GetBytes(playerId);
-
-        NativeArray<byte> playerIdBytes = new(16, Allocator.Temp);
-        int bytesToCopy = Mathf.Min(tempBytes.Length, 16);
-        for (int i = 0; i < bytesToCopy; i++)
-        {
-            playerIdBytes[i] = tempBytes[i];
-        }
-        NativeArray<byte> messagePacket = new(1 + 16 + data.Length, Allocator.Persistent);
-        messagePacket[0] = eventType;
-
-        NativeArray<byte>.Copy(playerIdBytes, 0, messagePacket, 1, playerIdBytes.Length);
-
+        NativeArray<byte> messagePacket = new(1 + data.Length, Allocator.Persistent);
+        messagePacket[0] = opCode;
         if (data.Length > 0)
         {
             NativeArray<byte> nativeData = new(data.Length, Allocator.Temp);
@@ -255,15 +306,43 @@ public class ClientBehaviour : MonoBehaviour
                 nativeData[i] = data[i];
             }
 
-            NativeArray<byte>.Copy(nativeData, 0, messagePacket, 16 + 1, nativeData.Length);
+            NativeArray<byte>.Copy(nativeData, 0, messagePacket, 1, nativeData.Length);
             nativeData.Dispose();
         }
-
-        playerIdBytes.Dispose();
-        // DebugHelper.LogBytes(messagePacket);
         return messagePacket;
     }
+
+    void SendMessages(ref NativeArray<byte>[] messages, NetworkPipeline pipeline = default)
+    {
+        if (pipeline == default)
+        {
+            m_Driver.BeginSend(m_Connection, out var writer);
+            writer.WriteUShort((ushort)messages.Length);
+            foreach (var message in messages)
+            {
+                writer.WriteUShort((ushort)message.Length);
+                writer.WriteBytes(message);
+                message.Dispose();
+            }
+            m_Driver.EndSend(writer);
+        }
+        else
+        {
+            m_Driver.BeginSend(pipeline, m_Connection, out var writer);
+            writer.WriteUShort((ushort)messages.Length);
+            foreach (var message in messages)
+            {
+                writer.WriteULong(0);
+                writer.WriteUShort((ushort)message.Length);
+                writer.WriteBytes(message);
+                message.Dispose();
+            }
+            m_Driver.EndSend(writer);
+        }
+    }
 }
+
+
 
 public class DebugHelper : MonoBehaviour
 {

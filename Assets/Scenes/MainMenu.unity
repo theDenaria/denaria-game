@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4465788, g: 0.49641287, b: 0.5748173, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311932, g: 0.38073996, b: 0.3587271, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -272,7 +272,7 @@ GameObject:
   - component: {fileID: 204460232}
   - component: {fileID: 204460231}
   m_Layer: 5
-  m_Name: MenuCanvas
+  m_Name: MainMenuCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -464,7 +464,7 @@ GameObject:
   - component: {fileID: 451151367}
   - component: {fileID: 451151366}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: SystemManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -482,12 +482,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 096b9bc6b3f7b48c6a237b874dd6aec4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 1785664186700807807, guid: b4afc32fa591b4ed79ea30a93aefe80b, type: 3}
   clientBehaviour: {fileID: 608809427}
-  inputHandler: {fileID: 2113896427}
   playerIdInput: {fileID: 1786496146}
   ownPlayerId: 
-  isSpawned: 0
 --- !u!4 &451151367
 Transform:
   m_ObjectHideFlags: 0
@@ -1238,7 +1235,7 @@ GameObject:
   - component: {fileID: 2028040345}
   m_Layer: 5
   m_Name: ConnectButton
-  m_TagString: Untagged
+  m_TagString: ConnectButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1308,7 +1305,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 451151366}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: SystemManager, Assembly-CSharp
         m_MethodName: ConnectButtonClicked
         m_Mode: 1
         m_Arguments:
@@ -1387,10 +1384,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerControls: {fileID: -944628639613478452, guid: 7f67c8e2d88a84074afbf19023b630ad, type: 3}
-  actionMapName: Player
+  playerActionMapName: Player
+  uiActionMapName: UI
   move: Move
   jump: Jump
   sprint: Sprint
+  escMenu: EscMenu
+  escMenuAction:
+    m_Name: Esc Menu
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 0f6ca97c-38a3-4f0f-ab1c-aed097a3c70a
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
 --- !u!4 &2113896428
 Transform:
   m_ObjectHideFlags: 0

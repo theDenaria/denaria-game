@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,7 +7,8 @@ public class PlayerInputHandler : MonoBehaviour
     [SerializeField] private InputActionAsset playerControls;
 
     [Header("Action Map References")]
-    [SerializeField] private string actionMapName = "Player";
+    [SerializeField] private string playerActionMapName = "Player";
+    [SerializeField] private string uiActionMapName = "UI";
 
     [Header("Action Name References")]
     [SerializeField] private string move = "Move";
@@ -18,16 +16,22 @@ public class PlayerInputHandler : MonoBehaviour
     [SerializeField] private string jump = "Jump";
     [SerializeField] private string sprint = "Sprint";
 
+    [SerializeField] private string escMenu = "EscMenu";
+
 
     private InputAction moveAction;
     // private InputAction lookAction;
     private InputAction jumpAction;
     private InputAction sprintAction;
 
+    public InputAction escMenuAction;
+
     public Vector2 MoveInput { get; private set; }
     // public Vector2 LookInput { get; private set; }
     public bool JumpTriggered { get; private set; }
     public float SprintValue { get; private set; }
+
+    public bool EscMenuTriggered { get; private set; }
 
     public static PlayerInputHandler Instance { get; private set; }
 
@@ -43,10 +47,12 @@ public class PlayerInputHandler : MonoBehaviour
             Destroy(gameObject);
         }
 
-        moveAction = playerControls.FindActionMap(actionMapName).FindAction(move);
+        moveAction = playerControls.FindActionMap(playerActionMapName).FindAction(move);
         // lookAction = playerControls.FindActionMap(actionMapName).FindAction(look);
-        jumpAction = playerControls.FindActionMap(actionMapName).FindAction(jump);
-        sprintAction = playerControls.FindActionMap(actionMapName).FindAction(sprint);
+        jumpAction = playerControls.FindActionMap(playerActionMapName).FindAction(jump);
+        sprintAction = playerControls.FindActionMap(playerActionMapName).FindAction(sprint);
+
+        escMenuAction = playerControls.FindActionMap(uiActionMapName).FindAction(escMenu);
 
         RegisterInputActions();
     }
@@ -76,9 +82,12 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void OnDisable()
     {
-        moveAction.Disable();
-        // lookAction.Disable();
-        jumpAction.Disable();
-        sprintAction.Disable();
+        if (Instance == this)
+        {
+            moveAction.Disable();
+            // lookAction.Disable();
+            jumpAction.Disable();
+            sprintAction.Disable();
+        }
     }
 }

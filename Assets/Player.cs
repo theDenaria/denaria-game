@@ -1,15 +1,7 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-// using System.Diagnostics;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // private CharacterController characterController;
-    // private Camera mainCamera;
-    // private float verticalRotation;
-
     private GameManager gameManager;
 
     public string playerId;
