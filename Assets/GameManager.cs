@@ -99,12 +99,11 @@ public class GameManager : MonoBehaviour
     {
         if (players.ContainsKey(playerId))
         {
-            var newPositionn = new Vector3(newPosition.x, newPosition.y, newPosition.z);
-            players[playerId].transform.position = Vector3.Lerp(transform.position, newPositionn, 5000.0f);
+            players[playerId].transform.position = Vector3.Lerp(transform.position, newPosition, 5000.0f);
         }
         else
         {
-            SpawnPlayer(playerId, new Vector2(5.0f, 5.0f), newRotation.y);
+            SpawnPlayer(playerId, newPosition, 0.0f);
         }
     }
 
@@ -119,7 +118,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                SpawnPlayer(playerId, new Vector2(5.0f, 5.0f), newRotation.y);
+                SpawnPlayer(playerId, new Vector3(5.0f, 5.0f, 5.0f), newRotation.y);
             }
         }
 
@@ -143,12 +142,12 @@ public class GameManager : MonoBehaviour
         systemManager.Disconnect();
     }
 
-    public void SpawnPlayer(string playerId, Vector2 spawnLocation, float yRotation)
+    public void SpawnPlayer(string playerId, Vector3 spawnLocation, float yRotation)
     {
         // Instantiate the player at the desired position with default rotation
         if (players.ContainsKey(playerId)) return;
 
-        GameObject newPlayerObj = Instantiate(playerPrefab, new Vector3(spawnLocation.x, 5.2f, spawnLocation.y), Quaternion.Euler(0f, yRotation, 0f));
+        GameObject newPlayerObj = Instantiate(playerPrefab, spawnLocation, Quaternion.Euler(0f, yRotation, 0f));
 
         Player newPlayer = newPlayerObj.GetComponent<Player>();
         newPlayer.SetPlayerId(playerId);

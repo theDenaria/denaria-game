@@ -160,9 +160,6 @@ public class ClientBehaviour : MonoBehaviour
                     case 1: // Location Update
                         Debug.Log("WARNING! Location message sent in unreliable channel!");
                         break;
-                    case 0: // Spawn Update
-                        ProcessSpawnUpdate(ref messageStream);
-                        break;
                     case 10:
                         ProcessDisconnectUpdate(ref messageStream);
                         break;
@@ -244,25 +241,6 @@ public class ClientBehaviour : MonoBehaviour
             Vector3 newRotation = new(x, y, z);
 
             gameManager.UpdatePlayerRotation(playerId, newRotation);
-        }
-    }
-
-    void ProcessSpawnUpdate(ref DataStreamReader reader)
-    {
-        ulong playerNum = reader.ReadULong();
-        for (ulong i = 0; i < playerNum; i++)
-        {
-            NativeArray<byte> stringBytes = new(16, Allocator.Temp);
-            reader.ReadBytes(stringBytes);  // Ensure this method exists or is correctly implemented
-
-            string playerId = Encoding.UTF8.GetString(stringBytes.ToArray()).TrimEnd('\0');
-            stringBytes.Dispose();
-
-            float x = reader.ReadFloat();
-            float y = reader.ReadFloat();
-            float newRotation = reader.ReadFloat();
-            Vector2 spawnLocation = new(x, y);
-            gameManager.SpawnPlayer(playerId, spawnLocation, newRotation);
         }
     }
 
