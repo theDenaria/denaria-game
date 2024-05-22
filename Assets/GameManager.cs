@@ -95,31 +95,31 @@ public class GameManager : MonoBehaviour
         clientBehaviour.SendRotation(rotation);
     }
 
-    public void UpdatePlayerPosition(string playerId, Vector2 newPosition)
+    public void UpdatePlayerPosition(string playerId, Vector3 newPosition)
     {
         if (players.ContainsKey(playerId))
         {
-            var newPositionn = new Vector3(newPosition.x, players[playerId].transform.position.y, newPosition.y);
+            var newPositionn = new Vector3(newPosition.x, newPosition.y, newPosition.z);
             players[playerId].transform.position = Vector3.Lerp(transform.position, newPositionn, 5000.0f);
         }
         else
         {
-            Debug.LogError("Player ID not found: " + playerId);
+            SpawnPlayer(playerId, new Vector2(5.0f, 5.0f), newRotation.y);
         }
     }
 
-    public void UpdatePlayerRotation(string playerId, float newRotation)
+    public void UpdatePlayerRotation(string playerId, Vector3 newRotation)
     {
         if (playerId != ownPlayerId)
         {
             if (players.ContainsKey(playerId))
             {
-                players[playerId].transform.rotation = Quaternion.Euler(0f, newRotation, 0f);
+                players[playerId].transform.rotation = Quaternion.Euler(newRotation.x, newRotation.y, newRotation.z);
 
             }
             else
             {
-                Debug.LogError("Player ID not found: " + playerId);
+                SpawnPlayer(playerId, new Vector2(5.0f, 5.0f), newRotation.y);
             }
         }
 
@@ -200,6 +200,8 @@ public class GameManager : MonoBehaviour
     {
         isMenuOpen = !isMenuOpen;
         pauseMenuCanvas.SetActive(isMenuOpen);
+
+        cinemachineFreeLook.enabled = !isMenuOpen;
 
         // Control the time scale of the game based on menu state
         Time.timeScale = isMenuOpen ? 0 : 1;

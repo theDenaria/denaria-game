@@ -188,8 +188,11 @@ public class ClientBehaviour : MonoBehaviour
                 byte messageType = messageStream.ReadByte();
                 switch (messageType)
                 {
-                    case 1: // Location Update
-                        ProcessLocationUpdate(ref messageStream);
+                    case 1: // Position Update
+                        ProcessPositionMessage(ref messageStream);
+                        break;
+                    case 2: // Location Update
+                        ProcessRotationMessage(ref messageStream);
                         break;
                     case 0: // Spawn Update
                         Debug.Log("WARNING! Spawn message sent in unreliable channel!");
@@ -202,7 +205,7 @@ public class ClientBehaviour : MonoBehaviour
         }
     }
 
-    void ProcessLocationUpdate(ref DataStreamReader reader)
+    void ProcessPositionMessage(ref DataStreamReader reader)
     {
         ulong playerNum = reader.ReadULong();
         for (ulong i = 0; i < playerNum; i++)
@@ -215,11 +218,31 @@ public class ClientBehaviour : MonoBehaviour
 
             float x = reader.ReadFloat();
             float y = reader.ReadFloat();
-            float newRotation = reader.ReadFloat();
+            float z = reader.ReadFloat();
 
-            Vector2 newPosition = new(x, y);
+            Vector3 newPosition = new(x, y, z);
 
             gameManager.UpdatePlayerPosition(playerId, newPosition);
+        }
+    }
+
+    void ProcessRotationMessage(ref DataStreamReader reader)
+    {
+        ulong playerNum = reader.ReadULong();
+        for (ulong i = 0; i < playerNum; i++)
+        {
+            NativeArray<byte> stringBytes = new(16, Allocator.Temp);
+            reader.ReadBytes(stringBytes);  // Ensure this method exists or is correctly implemented
+
+            string playerId = Encoding.UTF8.GetString(stringBytes.ToArray()).TrimEnd('\0');
+            stringBytes.Dispose();
+
+            float x = reader.ReadFloat();
+            float y = reader.ReadFloat();
+            float z = reader.ReadFloat();
+
+            Vector3 newRotation = new(x, y, z);
+
             gameManager.UpdatePlayerRotation(playerId, newRotation);
         }
     }
