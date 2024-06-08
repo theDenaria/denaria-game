@@ -12,7 +12,8 @@ public class GameManager : MonoBehaviour
     public GameObject pauseMenuCanvas;
 
     private Camera mainCamera;
-    private CinemachineFreeLook cinemachineFreeLook;
+
+    private CinemachineVirtualCamera cinemachineVirtualCamera;
 
     public GameObject playerPrefab;
     private Dictionary<string, Player> players = new();
@@ -20,7 +21,9 @@ public class GameManager : MonoBehaviour
     public string ownPlayerId;
 
     public bool isSpawned = false;
-    private bool isMenuOpen = false;
+    public bool isMenuOpen = false;
+
+    public GameObject bloodEffectPrefab;
 
     void Awake()
     {
@@ -49,106 +52,87 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isSpawned && !isMenuOpen)
-        {
-            HandleRotation();
-            SendInputToServer();
-        }
         if (!isSpawned)
         {
             clientBehaviour.SendPlayerConnectMessage();
         }
     }
 
-    void HandleRotation()
-    {
-        // Capture the Y-axis rotation of the camera.
-        float yRotation = mainCamera.transform.eulerAngles.y;
 
-        if (players.ContainsKey(ownPlayerId))
-        {
-            players[ownPlayerId].transform.rotation = Quaternion.Euler(0f, yRotation, 0f);
-        }
-        else
-        {
-            Debug.LogError("Player ID not found: " + ownPlayerId);
-        }
-    }
-
-    void SendInputToServer()
-    {
-        if (playerInputHandler == null)
-        {
-            Debug.LogError("PlayerInputHandler not found in the scene!");
-            return;
-        }
-        if (playerInputHandler.MoveInput != Vector2.zero)
-        {
-            Vector2 inputDirection = new Vector2(playerInputHandler.MoveInput.x, playerInputHandler.MoveInput.y);
-            var rotatedMove = GetRotatedInput(inputDirection.normalized);
-            clientBehaviour.SendMovement(rotatedMove);
-        }
-    }
-
-    public void SendRotationToServer(float rotation)
-    {
-        clientBehaviour.SendRotation(rotation);
-    }
-
-    public void UpdatePlayerPosition(string playerId, Vector2 newPosition)
+    public void UpdatePlayerPosition(string playerId, Vector3 newPosition)
     {
         if (players.ContainsKey(playerId))
         {
-            var newPositionn = new Vector3(newPosition.x, players[playerId].transform.position.y, newPosition.y);
-            players[playerId].transform.position = Vector3.Lerp(transform.position, newPositionn, 5000.0f);
+            players[playerId].transform.position = Vector3.Lerp(transform.position, newPosition, 5000.0f);
         }
         else
         {
-            Debug.LogError("Player ID not found: " + playerId);
+            SpawnPlayer(playerId, newPosition, 0.0f);
         }
     }
 
-    public void UpdatePlayerRotation(string playerId, float newRotation)
+    public void UpdatePlayerRotation(string playerId, Vector4 newRotation)
     {
         if (playerId != ownPlayerId)
         {
             if (players.ContainsKey(playerId))
             {
-                players[playerId].transform.rotation = Quaternion.Euler(0f, newRotation, 0f);
+                // Create quaternion from axis and angle
+                Quaternion rotation = new(newRotation.x, newRotation.y, newRotation.z, newRotation.w);
+                // Apply the quaternion directly to the player's transform
+                players[playerId].transform.rotation = rotation;
 
             }
             else
             {
-                Debug.LogError("Player ID not found: " + playerId);
+                SpawnPlayer(playerId, new Vector3(5.0f, 5.0f, 5.0f), newRotation.y);
             }
         }
-
     }
 
-    Vector2 GetRotatedInput(Vector2 normalizedInput)
+    public void Fire(string playerId, Vector3 origin, Vector3 direction)
     {
-        float angleDegrees = players[ownPlayerId].transform.eulerAngles.y;
-        float angleRadians = angleDegrees * Mathf.Deg2Rad; // Convert degrees to radians
-        float cosAngle = Mathf.Cos(angleRadians);
-        float sinAngle = Mathf.Sin(angleRadians);
-
-        float rotatedX = normalizedInput.x * cosAngle + normalizedInput.y * sinAngle;
-        float rotatedY = -normalizedInput.x * sinAngle + normalizedInput.y * cosAngle;
-
-        return new Vector2(rotatedX, rotatedY);
+        if (true || playerId != ownPlayerId) // Todo handle
+        {
+            if (players.ContainsKey(playerId))
+            {
+                Shooting shootingScript = players[playerId].GetComponent<Shooting>();
+                shootingScript.Shoot(origin, Quaternion.LookRotation(direction));
+            }
+            else
+            {
+                Debug.Log("No Player");
+            }
+        }
     }
+
+    public void Hit(string playerId, string targetId, Vector3 hitPoint)
+    {
+        if (playerId != ownPlayerId)
+        {
+            if (players.ContainsKey(playerId))
+            {
+                Instantiate(bloodEffectPrefab, hitPoint, Quaternion.identity);
+            }
+            else
+            {
+                Debug.Log("No Player");
+            }
+        }
+    }
+
     //
     public void DisconnectButtonClicked()
     {
         systemManager.Disconnect();
     }
 
-    public void SpawnPlayer(string playerId, Vector2 spawnLocation, float yRotation)
+    public void SpawnPlayer(string playerId, Vector3 spawnLocation, float yRotation)
     {
         // Instantiate the player at the desired position with default rotation
         if (players.ContainsKey(playerId)) return;
 
-        GameObject newPlayerObj = Instantiate(playerPrefab, new Vector3(spawnLocation.x, 5.2f, spawnLocation.y), Quaternion.Euler(0f, yRotation, 0f));
+        GameObject newPlayerObj = Instantiate(playerPrefab, spawnLocation, Quaternion.Euler(0f, yRotation, 0f));
 
         Player newPlayer = newPlayerObj.GetComponent<Player>();
         newPlayer.SetPlayerId(playerId);
@@ -173,10 +157,12 @@ public class GameManager : MonoBehaviour
 
     void SetupCamera(GameObject player)
     {
-        cinemachineFreeLook = FindObjectOfType<CinemachineFreeLook>();
+
+        cinemachineVirtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
         // Set the Cinemachine camera's follow and look at targets
-        cinemachineFreeLook.Follow = player.transform;
-        cinemachineFreeLook.LookAt = player.transform;
+
+        Transform childTransform = player.transform.Find("PlayerLookAt");
+        cinemachineVirtualCamera.Follow = childTransform;
 
         // Optionally, enable the Cinemachine Brain if it was disabled
         Camera.main.GetComponent<CinemachineBrain>().enabled = true;
@@ -200,6 +186,8 @@ public class GameManager : MonoBehaviour
     {
         isMenuOpen = !isMenuOpen;
         pauseMenuCanvas.SetActive(isMenuOpen);
+
+        cinemachineVirtualCamera.enabled = !isMenuOpen;
 
         // Control the time scale of the game based on menu state
         Time.timeScale = isMenuOpen ? 0 : 1;
