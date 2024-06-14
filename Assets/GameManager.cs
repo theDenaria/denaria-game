@@ -58,12 +58,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void RegisterPlayer(string playerId, Player player)
+    {
+        if (!players.ContainsKey(playerId))
+        {
+            players.Add(playerId, player);
+        }
+    }
 
     public void UpdatePlayerPosition(string playerId, Vector3 newPosition)
     {
         if (players.ContainsKey(playerId))
         {
-            players[playerId].transform.position = Vector3.Lerp(transform.position, newPosition, 5000.0f);
+            PlayerInterpolation playerInterpolation = players[playerId].GetComponent<PlayerInterpolation>();
+            playerInterpolation.OnServerStateUpdate(newPosition);
         }
         else
         {
@@ -81,7 +89,6 @@ public class GameManager : MonoBehaviour
                 Quaternion rotation = new(newRotation.x, newRotation.y, newRotation.z, newRotation.w);
                 // Apply the quaternion directly to the player's transform
                 players[playerId].transform.rotation = rotation;
-
             }
             else
             {
@@ -121,7 +128,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //
     public void DisconnectButtonClicked()
     {
         systemManager.Disconnect();
@@ -144,7 +150,6 @@ public class GameManager : MonoBehaviour
             isSpawned = true;
             SetupCamera(newPlayerObj);
         }
-
     }
 
     public void HandleDisconnectedPlayer(string playerId)
@@ -157,7 +162,6 @@ public class GameManager : MonoBehaviour
 
     void SetupCamera(GameObject player)
     {
-
         cinemachineVirtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
         // Set the Cinemachine camera's follow and look at targets
 
@@ -186,7 +190,6 @@ public class GameManager : MonoBehaviour
     {
         isMenuOpen = !isMenuOpen;
         pauseMenuCanvas.SetActive(isMenuOpen);
-
         cinemachineVirtualCamera.enabled = !isMenuOpen;
 
         // Control the time scale of the game based on menu state

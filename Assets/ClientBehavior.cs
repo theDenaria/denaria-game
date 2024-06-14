@@ -3,6 +3,7 @@ using Unity.Networking.Transport;
 using Unity.Collections;
 using System.Text;
 using System;
+using System.Collections.Generic;
 
 public class ClientBehaviour : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class ClientBehaviour : MonoBehaviour
     public bool isConnected = false;
     NetworkPipeline reliablePipeline;
     NetworkEndpoint endpoint = NetworkEndpoint.LoopbackIpv4.WithPort(5000);
+    private Dictionary<string, PlayerInterpolation> playerEntities = new Dictionary<string, PlayerInterpolation>();
 
     public enum SendOpCode : byte
     {
@@ -120,7 +122,6 @@ public class ClientBehaviour : MonoBehaviour
             messages[0] = CreatePlayerConnectMessage();
             SendMessages(ref messages);
         }
-
     }
 
     public void SendMovement(Vector2 movement)
@@ -388,7 +389,6 @@ public class ClientBehaviour : MonoBehaviour
 
                     // Optionally, you can customize the cube's properties, like its scale
                     cube.transform.localScale = new Vector3(size_x, size_y, size_z);
-
                     Renderer cubeRenderer = cube.GetComponent<Renderer>();
                     cubeRenderer.material.color = i == 0 ? Color.blue : Color.green;
                     break;
@@ -405,8 +405,6 @@ public class ClientBehaviour : MonoBehaviour
                     capsuleRenderer.material.color = i == 0 ? Color.blue : Color.green;
                     break;
             }
-
-
         }
     }
 
@@ -473,7 +471,6 @@ public class ClientBehaviour : MonoBehaviour
         return messagePacket;
     }
 
-
     NativeArray<byte> AddEventHeader(byte opCode, byte[] data)
     {
         NativeArray<byte> messagePacket = new(1 + data.Length, Allocator.Temp);
@@ -521,8 +518,6 @@ public class ClientBehaviour : MonoBehaviour
         }
     }
 }
-
-
 
 public class DebugHelper : MonoBehaviour
 {
