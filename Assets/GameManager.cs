@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject bloodEffectPrefab;
 
+    public HUDManager hudManager;
+
     void Awake()
     {
         if (Instance == null)
@@ -120,6 +122,25 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+    public void UpdateHealth(string playerId, float hp)
+    {
+
+        if (players.ContainsKey(playerId))
+        {
+            players[playerId].health = hp;
+            if (playerId == ownPlayerId)
+            {
+                hudManager.UpdateHealth(hp);
+            }
+
+        }
+        else
+        {
+            Debug.Log("No Player");
+        }
+    }
+
 
     //
     public void DisconnectButtonClicked()

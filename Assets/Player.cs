@@ -29,6 +29,8 @@ public class Player : MonoBehaviour
 
     private PlayerAim playerAimScript;
 
+    public float health;
+
     [SerializeField] private Transform barrelPosition;
 
     private void Awake()
@@ -43,6 +45,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        health = 100f;
         lastSentRotation = transform.rotation;
         tickInterval = 1.0f / tickRate;
     }
