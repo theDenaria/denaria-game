@@ -180,9 +180,6 @@ public class ClientBehaviour : MonoBehaviour
                     case 0:
                         ProcessLevelObjects(ref messageStream);
                         break;
-                    case 1: // Location Update
-                        Debug.Log("WARNING! Location message sent in unreliable channel!");
-                        break;
                     case 3: // Fire Update
                         ProcessFireUpdate(ref messageStream);
                         break;
@@ -190,10 +187,16 @@ public class ClientBehaviour : MonoBehaviour
                         ProcessHitUpdate(ref messageStream);
                         break;
                     case 6: // Health Update
-                        Debug.Log("WARNING! Location message sent in unreliable channel!");
+                        ProcessHealthUpdate(ref messageStream);
                         break;
                     case 10:
                         ProcessDisconnectUpdate(ref messageStream);
+                        break;
+                    case 1: // Location Update
+                        Debug.Log("WARNING! Location message sent in unreliable channel!");
+                        break;
+                    case 2: // Location Update
+                        Debug.Log("WARNING! Rotation message sent in unreliable channel!");
                         break;
                 }
             }
@@ -296,8 +299,6 @@ public class ClientBehaviour : MonoBehaviour
         Vector3 origin = new(origin_x, origin_y, origin_z);
         Vector3 direction = new(direction_x, direction_y, direction_z);
 
-        Debug.Log(direction);
-
         gameManager.Fire(playerId, origin, direction);
     }
 
@@ -335,13 +336,9 @@ public class ClientBehaviour : MonoBehaviour
             string playerId = Encoding.UTF8.GetString(stringBytes.ToArray()).TrimEnd('\0');
             stringBytes.Dispose();
 
-            float x = reader.ReadFloat();
-            float y = reader.ReadFloat();
-            float z = reader.ReadFloat();
+            float hp = reader.ReadFloat();
 
-            Vector3 newRotation = new(x, y, z);
-
-            gameManager.UpdatePlayerRotation(playerId, newRotation);
+            gameManager.UpdateHealth(playerId, hp);
         }
     }
 
@@ -404,9 +401,20 @@ public class ClientBehaviour : MonoBehaviour
                     Renderer capsuleRenderer = capsule.GetComponent<Renderer>();
                     capsuleRenderer.material.color = i == 0 ? Color.blue : Color.green;
                     break;
+                case 9: // Cuboid edge
+                    GameObject edge = GameObject.CreatePrimitive(PrimitiveType.Cube);
+
+                    // Set the position and rotation of the spawned cube
+                    edge.transform.position = new Vector3(position_x, position_y, position_z);
+
+                    // Optionally, you can customize the cube's properties, like its scale
+                    edge.transform.localScale = new Vector3(size_x, size_y, size_z);
+
+                    Renderer edgeRenderer = edge.GetComponent<MeshRenderer>();
+                    edgeRenderer.enabled = false;
+                    // edgeRenderer.material.color = i == 0 ? Color.blue : Color.green;
+                    break;
             }
-
-
         }
     }
 
@@ -505,6 +513,7 @@ public class ClientBehaviour : MonoBehaviour
                 message.Dispose();
             }
             m_Driver.EndSend(writer);
+            Debug.Log("Message sent on unreliable channel");
         }
         else
         {
@@ -518,6 +527,7 @@ public class ClientBehaviour : MonoBehaviour
                 message.Dispose();
             }
             m_Driver.EndSend(writer);
+            Debug.Log("Message sent on reliable channel");
         }
     }
 }
