@@ -409,6 +409,19 @@ public class ClientBehaviour : MonoBehaviour
                     Renderer capsuleRenderer = capsule.GetComponent<Renderer>();
                     capsuleRenderer.material.color = Uint8ToColor(color);
                     break;
+                case 9: // Cuboid edge
+                    GameObject edge = GameObject.CreatePrimitive(PrimitiveType.Cube);
+
+                    // Set the position and rotation of the spawned cube
+                    edge.transform.position = new Vector3(position_x, position_y, position_z);
+
+                    // Optionally, you can customize the cube's properties, like its scale
+                    edge.transform.localScale = new Vector3(size_x, size_y, size_z);
+
+                    Renderer edgeRenderer = edge.GetComponent<MeshRenderer>();
+                    edgeRenderer.enabled = false;
+                    // edgeRenderer.material.color = i == 0 ? Color.blue : Color.green;
+                    break;
             }
         }
     }
@@ -507,6 +520,7 @@ public class ClientBehaviour : MonoBehaviour
                 message.Dispose();
             }
             m_Driver.EndSend(writer);
+            Debug.Log("Message sent on unreliable channel");
         }
         else
         {
@@ -520,6 +534,7 @@ public class ClientBehaviour : MonoBehaviour
                 message.Dispose();
             }
             m_Driver.EndSend(writer);
+            Debug.Log("Message sent on reliable channel");
         }
     }
     Color Uint8ToColor(byte color)
