@@ -181,9 +181,6 @@ public class ClientBehaviour : MonoBehaviour
                     case 0:
                         ProcessLevelObjects(ref messageStream);
                         break;
-                    case 1: // Location Update
-                        Debug.Log("WARNING! Location message sent in unreliable channel!");
-                        break;
                     case 3: // Fire Update
                         ProcessFireUpdate(ref messageStream);
                         break;
@@ -191,10 +188,16 @@ public class ClientBehaviour : MonoBehaviour
                         ProcessHitUpdate(ref messageStream);
                         break;
                     case 6: // Health Update
-                        Debug.Log("WARNING! Location message sent in unreliable channel!");
+                        ProcessHealthUpdate(ref messageStream);
                         break;
                     case 10:
                         ProcessDisconnectUpdate(ref messageStream);
+                        break;
+                    case 1: // Location Update
+                        Debug.Log("WARNING! Location message sent in unreliable channel!");
+                        break;
+                    case 2: // Location Update
+                        Debug.Log("WARNING! Rotation message sent in unreliable channel!");
                         break;
                 }
             }
@@ -297,8 +300,6 @@ public class ClientBehaviour : MonoBehaviour
         Vector3 origin = new(origin_x, origin_y, origin_z);
         Vector3 direction = new(direction_x, direction_y, direction_z);
 
-        Debug.Log(direction);
-
         gameManager.Fire(playerId, origin, direction);
     }
 
@@ -336,13 +337,9 @@ public class ClientBehaviour : MonoBehaviour
             string playerId = Encoding.UTF8.GetString(stringBytes.ToArray()).TrimEnd('\0');
             stringBytes.Dispose();
 
-            float x = reader.ReadFloat();
-            float y = reader.ReadFloat();
-            float z = reader.ReadFloat();
+            float hp = reader.ReadFloat();
 
-            Vector3 newRotation = new(x, y, z);
-
-            gameManager.UpdatePlayerRotation(playerId, newRotation);
+            gameManager.UpdateHealth(playerId, hp);
         }
     }
 
@@ -368,6 +365,7 @@ public class ClientBehaviour : MonoBehaviour
         for (ulong i = 0; i < objectsNum; i++)
         {
             byte type = reader.ReadByte();
+            byte color = reader.ReadByte();
 
             float position_x = reader.ReadFloat();
             float position_y = reader.ReadFloat();
@@ -390,7 +388,14 @@ public class ClientBehaviour : MonoBehaviour
                     // Optionally, you can customize the cube's properties, like its scale
                     cube.transform.localScale = new Vector3(size_x, size_y, size_z);
                     Renderer cubeRenderer = cube.GetComponent<Renderer>();
-                    cubeRenderer.material.color = i == 0 ? Color.blue : Color.green;
+                    if (color == 0)
+                    {
+                        cubeRenderer.enabled = false;
+                    }
+                    else
+                    {
+                        cubeRenderer.material.color = Uint8ToColor(color);
+                    }
                     break;
                 case 2: // Capsule
                     GameObject capsule = GameObject.CreatePrimitive(PrimitiveType.Capsule);
@@ -402,7 +407,7 @@ public class ClientBehaviour : MonoBehaviour
                     capsule.transform.localScale = new Vector3(size_x, size_y, size_z);
 
                     Renderer capsuleRenderer = capsule.GetComponent<Renderer>();
-                    capsuleRenderer.material.color = i == 0 ? Color.blue : Color.green;
+                    capsuleRenderer.material.color = Uint8ToColor(color);
                     break;
             }
         }
@@ -516,6 +521,27 @@ public class ClientBehaviour : MonoBehaviour
             }
             m_Driver.EndSend(writer);
         }
+    }
+    Color Uint8ToColor(byte color)
+    {
+        switch (color)
+        {
+            case 1:
+                return Color.red;
+            case 2:
+                return Color.green;
+            case 3:
+                return Color.blue;
+            case 4:
+                return Color.white;
+            case 5:
+                return Color.black;
+            case 6:
+                return Color.gray;
+            default:
+                break;
+        }
+        return default;
     }
 }
 

@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject bloodEffectPrefab;
 
+    public HUDManager hudManager;
+
     void Awake()
     {
         if (Instance == null)
@@ -128,6 +130,26 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void UpdateHealth(string playerId, float hp)
+    {
+
+        if (players.ContainsKey(playerId))
+        {
+            players[playerId].health = hp;
+            if (playerId == ownPlayerId)
+            {
+                hudManager.UpdateHealth(hp);
+            }
+
+        }
+        else
+        {
+            Debug.Log("No Player");
+        }
+    }
+
+
+    //
     public void DisconnectButtonClicked()
     {
         systemManager.Disconnect();
@@ -196,15 +218,3 @@ public class GameManager : MonoBehaviour
         Time.timeScale = isMenuOpen ? 0 : 1;
     }
 }
-
-// IEnumerator UpdatePosition(Vector3 start, Vector3 end, float duration)
-// {
-//     float elapsed = 0;
-//     while (elapsed < duration)
-//     {
-//         playerTransform.position = Vector3.Lerp(start, end, elapsed / duration);
-//         elapsed += Time.deltaTime;
-//         yield return null;
-//     }
-//     playerTransform.position = end; // Ensure the final position is set precisely
-// }
