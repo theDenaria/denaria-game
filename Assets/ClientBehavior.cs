@@ -3,6 +3,7 @@ using Unity.Networking.Transport;
 using Unity.Collections;
 using System.Text;
 using System;
+using System.Collections.Generic;
 
 public class ClientBehaviour : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class ClientBehaviour : MonoBehaviour
     public bool isConnected = false;
     NetworkPipeline reliablePipeline;
     NetworkEndpoint endpoint = NetworkEndpoint.LoopbackIpv4.WithPort(5000);
+    private Dictionary<string, PlayerInterpolation> playerEntities = new Dictionary<string, PlayerInterpolation>();
 
     public enum SendOpCode : byte
     {
@@ -120,7 +122,6 @@ public class ClientBehaviour : MonoBehaviour
             messages[0] = CreatePlayerConnectMessage();
             SendMessages(ref messages);
         }
-
     }
 
     public void SendMovement(Vector2 movement)
@@ -364,6 +365,7 @@ public class ClientBehaviour : MonoBehaviour
         for (ulong i = 0; i < objectsNum; i++)
         {
             byte type = reader.ReadByte();
+            byte color = reader.ReadByte();
 
             float position_x = reader.ReadFloat();
             float position_y = reader.ReadFloat();
@@ -385,9 +387,15 @@ public class ClientBehaviour : MonoBehaviour
 
                     // Optionally, you can customize the cube's properties, like its scale
                     cube.transform.localScale = new Vector3(size_x, size_y, size_z);
-
                     Renderer cubeRenderer = cube.GetComponent<Renderer>();
-                    cubeRenderer.material.color = i == 0 ? Color.blue : Color.green;
+                    if (color == 0)
+                    {
+                        cubeRenderer.enabled = false;
+                    }
+                    else
+                    {
+                        cubeRenderer.material.color = Uint8ToColor(color);
+                    }
                     break;
                 case 2: // Capsule
                     GameObject capsule = GameObject.CreatePrimitive(PrimitiveType.Capsule);
@@ -399,20 +407,7 @@ public class ClientBehaviour : MonoBehaviour
                     capsule.transform.localScale = new Vector3(size_x, size_y, size_z);
 
                     Renderer capsuleRenderer = capsule.GetComponent<Renderer>();
-                    capsuleRenderer.material.color = i == 0 ? Color.blue : Color.green;
-                    break;
-                case 9: // Cuboid edge
-                    GameObject edge = GameObject.CreatePrimitive(PrimitiveType.Cube);
-
-                    // Set the position and rotation of the spawned cube
-                    edge.transform.position = new Vector3(position_x, position_y, position_z);
-
-                    // Optionally, you can customize the cube's properties, like its scale
-                    edge.transform.localScale = new Vector3(size_x, size_y, size_z);
-
-                    Renderer edgeRenderer = edge.GetComponent<MeshRenderer>();
-                    edgeRenderer.enabled = false;
-                    // edgeRenderer.material.color = i == 0 ? Color.blue : Color.green;
+                    capsuleRenderer.material.color = Uint8ToColor(color);
                     break;
             }
         }
@@ -481,7 +476,6 @@ public class ClientBehaviour : MonoBehaviour
         return messagePacket;
     }
 
-
     NativeArray<byte> AddEventHeader(byte opCode, byte[] data)
     {
         NativeArray<byte> messagePacket = new(1 + data.Length, Allocator.Temp);
@@ -530,9 +524,28 @@ public class ClientBehaviour : MonoBehaviour
             Debug.Log("Message sent on reliable channel");
         }
     }
+    Color Uint8ToColor(byte color)
+    {
+        switch (color)
+        {
+            case 1:
+                return Color.red;
+            case 2:
+                return Color.green;
+            case 3:
+                return Color.blue;
+            case 4:
+                return Color.white;
+            case 5:
+                return Color.black;
+            case 6:
+                return Color.gray;
+            default:
+                break;
+        }
+        return default;
+    }
 }
-
-
 
 public class DebugHelper : MonoBehaviour
 {
@@ -546,3 +559,5 @@ public class DebugHelper : MonoBehaviour
         Debug.Log(sb.ToString().TrimEnd(',', ' ')); // Remove the last comma and space
     }
 }
+
+
