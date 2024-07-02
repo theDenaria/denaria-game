@@ -26,19 +26,16 @@ public class PlayerInterpolation : MonoBehaviour
             t = Mathf.Clamp(t, 0f, 1f);
             Vector3 interpolatedPosition = Vector3.Lerp(previousState.position, latestState.position, t);
             transform.position = Vector3.Lerp(transform.position, interpolatedPosition, smoothingFactor);
-            Debug.Log($"Interpolating position: {transform.position}");
         }
         else if (stateBuffer.Count == 1)
         {
             transform.position = Vector3.Lerp(transform.position, stateBuffer[0].position, smoothingFactor);
-            Debug.Log($"Single state position update: {transform.position}");
         }
     }
 
     public void OnServerStateUpdate(Vector3 position)
     {
-        State newState = new State { position = position, timestamp = Time.time };
+        State newState = new() { position = position, timestamp = Time.time };
         stateBuffer.Add(newState);
-        Debug.Log($"New state received: {position}");
     }
 }
