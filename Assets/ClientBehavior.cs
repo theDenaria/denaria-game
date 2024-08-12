@@ -120,7 +120,7 @@ public class ClientBehaviour : MonoBehaviour
         {
             NativeArray<byte>[] messages = new NativeArray<byte>[1];
             messages[0] = CreatePlayerConnectMessage();
-            SendMessages(ref messages);
+            SendMessages(messages);
         }
     }
 
@@ -128,28 +128,29 @@ public class ClientBehaviour : MonoBehaviour
     {
         NativeArray<byte>[] messages = new NativeArray<byte>[1];
         messages[0] = CreateMovementMessage(movement);
-        SendMessages(ref messages);
+        Debug.Log("Sending movement");
+        SendMessages(messages);
     }
 
     public void SendRotation(Vector4 axisAngles)
     {
         NativeArray<byte>[] messages = new NativeArray<byte>[1];
         messages[0] = CreateRotationMessage(axisAngles);
-        SendMessages(ref messages);
+        SendMessages(messages);
     }
 
     public void SendJump()
     {
         NativeArray<byte>[] messages = new NativeArray<byte>[1];
         messages[0] = CreateJumpMessage();
-        SendMessages(ref messages);
+        SendMessages(messages);
     }
 
     public void SendFire(Vector3 cam_origin, Vector3 direction, Vector3 barrel_origin)
     {
         NativeArray<byte>[] messages = new NativeArray<byte>[1];
         messages[0] = CreateFireMessage(cam_origin, direction, barrel_origin);
-        SendMessages(ref messages);
+        SendMessages(messages);
     }
 
     void ProcessReliableData(ref DataStreamReader stream)
@@ -494,7 +495,7 @@ public class ClientBehaviour : MonoBehaviour
         return messagePacket;
     }
 
-    void SendMessages(ref NativeArray<byte>[] messages, NetworkPipeline pipeline = default)
+    void SendMessages(NativeArray<byte>[] messages, NetworkPipeline pipeline = default)
     {
         if (pipeline == default)
         {
