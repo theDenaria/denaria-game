@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.Networking;
 
+
 public class LevelObjectsCollider : MonoBehaviour
 {
     [System.Serializable]
@@ -41,38 +42,9 @@ public class LevelObjectsCollider : MonoBehaviour
         return $"{{ \"x\": {quaternion.x}, \"y\": {quaternion.y}, \"z\": {quaternion.z}, \"w\": {quaternion.w}}}";
     }
 
-    [System.Serializable]
-    public struct MeshData
-    {
-        public List<Vector3> vertices;
-        public List<int> triangles;
-    }
-
-    [System.Serializable]
-    public struct CubeData
-    {
-        public float x;
-        public float y;
-        public float z;
-    }
-
-    [System.Serializable]
-    public struct SphereData
-    {
-        public float radius;
-    }
-
-    [System.Serializable]
-    public struct CapsuleData
-    {
-        public float radius;
-        public float height;
-        public int direction;
-    }
-
 
     public bool sendToLevelServer = false;
-
+    // TODO: Move serverUrl to contants
     public string serverUrl = "http://localhost:3000/set-objects";
 
     void Start()
