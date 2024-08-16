@@ -6,46 +6,11 @@ using UnityEngine.Networking;
 
 public class LevelObjectsCollider : MonoBehaviour
 {
-    [System.Serializable]
-    public class ColliderData
-    {
-        public string object_type;
-        public string position;
-        public string scale;
-        public string rotation;
-        public string collider;  // Store as JSON string
-
-        public ColliderData(Vector3 pos, Vector3 sc, Quaternion rot)
-        {
-            object_type = "";
-            position = Vector3ToString(pos);
-            scale = Vector3ToString(sc);
-            rotation = QuaternionToString(rot);
-            collider = null;  // Convert MeshData to JSON string
-        }
-
-        // public void SetMeshData(MeshData mesh)
-        // {
-        //     mesh_data = JsonUtility.ToJson(mesh);
-        // }
-
-
-    }
-
-    public static string Vector3ToString(Vector3 vector)
-    {
-        return $"{{\"x\": {vector.x}, \"y\": {vector.y}, \"z\": {vector.z}}}";
-    }
-
-    private static string QuaternionToString(Quaternion quaternion)
-    {
-        return $"{{ \"x\": {quaternion.x}, \"y\": {quaternion.y}, \"z\": {quaternion.z}, \"w\": {quaternion.w}}}";
-    }
-
-
     public bool sendToLevelServer = false;
     // TODO: Move serverUrl to contants
-    public string serverUrl = "http://localhost:3000/set-objects";
+    public string serverUrl = "http://localhost:3000/";
+
+    public string version = "0_1";
 
     void Start()
     {
@@ -74,7 +39,7 @@ public class LevelObjectsCollider : MonoBehaviour
 
         if (collider != null)
         {
-            ColliderData data = new(parent.position, parent.localScale, parent.rotation);
+            ColliderData data = new(version, parent.position, parent.localScale, parent.rotation);
             if (collider is MeshCollider meshCollider)
             {
                 Mesh mesh = meshCollider.sharedMesh;
@@ -90,7 +55,11 @@ public class LevelObjectsCollider : MonoBehaviour
             else if (collider is BoxCollider boxCollider)
             {
                 data.object_type = "BoxCollider";
-                data.collider = Vector3ToString(boxCollider.size);
+                CubeData boxData;
+                boxData.x = boxCollider.size.x;
+                boxData.y = boxCollider.size.y;
+                boxData.z = boxCollider.size.z;
+                data.collider = JsonUtility.ToJson(boxData);
             }
             else if (collider is SphereCollider sphereCollider)
             {
@@ -121,17 +90,21 @@ public class LevelObjectsCollider : MonoBehaviour
 
     private IEnumerator SendCollidersSequentially(List<ColliderData> colliderDataList)
     {
+        yield return StartCoroutine(SendGetRequest("prepare?version=" + version));
+
         foreach (ColliderData colliderData in colliderDataList)
         {
             string jsonData = JsonUtility.ToJson(colliderData);
-            yield return StartCoroutine(SendPostRequest(jsonData));
+            yield return StartCoroutine(SendPostRequest("set-object", jsonData));
         }
         Debug.Log("All Objects Sent!");
     }
 
-    private IEnumerator SendPostRequest(string jsonData)
+    private IEnumerator SendPostRequest(string route, string jsonData)
     {
-        using UnityWebRequest www = UnityWebRequest.Post(serverUrl, jsonData, "application/json");
+        using UnityWebRequest www = UnityWebRequest.Post(serverUrl + route, jsonData, "application/json");
+        www.certificateHandler = new BypassCertificate();
+        Debug.Log("Request url" + serverUrl + route);
         yield return www.SendWebRequest();
 
         if (www.result != UnityWebRequest.Result.Success)
@@ -145,11 +118,39 @@ public class LevelObjectsCollider : MonoBehaviour
         }
     }
 
+    private IEnumerator SendGetRequest(string route)
+    {
+        using UnityWebRequest www = UnityWebRequest.Get(serverUrl + route);
+        www.certificateHandler = new BypassCertificate();
+        yield return www.SendWebRequest();
+
+        if (www.result != UnityWebRequest.Result.Success)
+        {
+            Debug.LogError(www.error);
+            Debug.LogError(www.url);
+        }
+        else
+        {
+            Debug.Log("GET request successful!");
+            // If you want to handle the response data, you can access it like this:
+            // string responseText = www.downloadHandler.text;
+            // Debug.Log(responseText);
+        }
+    }
+
     // Bypass SSL certificate validation (unsafe, use only in development)
-    private class BypassCertificate : CertificateHandler
+    // private class BypassCertificate : CertificateHandler
+    // {
+    //     protected override bool ValidateCertificate(byte[] certificateData)
+    //     {
+    //         return true;
+    //     }
+    // }
+    public class BypassCertificate : CertificateHandler
     {
         protected override bool ValidateCertificate(byte[] certificateData)
         {
+            // Always accept
             return true;
         }
     }
