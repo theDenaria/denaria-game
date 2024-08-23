@@ -1,0 +1,1 @@
+NestedScriptableObject files had to be put into "Assets/_Project/Utilities/NestedScriptableObject" folder instead of "Assets/_Project/SceneManagementUtilities/Resources" because of the hardcoded path in NestedScriptableObjectListAttribute.GetAllObjectsOfType().
