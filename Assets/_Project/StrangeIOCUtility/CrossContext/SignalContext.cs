@@ -6,7 +6,7 @@ using strange.extensions.command.impl;
 
 namespace _Project.StrangeIOCUtility.CrossContext
 {
-	public class SignalContext : MVCSContext
+	public class SignalContext : MVCSContext //This Context is used to bind the suggested SignalCommandBinder instead of the default EventCommandBinder.
 	{
 
 		public SignalContext(MonoBehaviour view) : base(view)

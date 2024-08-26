@@ -1,5 +1,43 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-1934516747718193594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82ed2a87c8f24455ba363d3dcc9b523b, type: 3}
+  m_Name: _SceneGroupData
+  m_EditorClassIdentifier: 
+  <SceneGroupType>k__BackingField: 8
+  <Scenes>k__BackingField:
+  - SceneName: MainMenu
+  <WillReloadExistingScenes>k__BackingField: 0
+  <WillUseLoadingScreen>k__BackingField: 0
+  <FocusedScene>k__BackingField:
+    SceneName: 
+--- !u!114 &-933299811110669647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82ed2a87c8f24455ba363d3dcc9b523b, type: 3}
+  m_Name: _SceneGroupData
+  m_EditorClassIdentifier: 
+  <SceneGroupType>k__BackingField: 16
+  <Scenes>k__BackingField:
+  - SceneName: GameScene
+  <WillReloadExistingScenes>k__BackingField: 0
+  <WillUseLoadingScreen>k__BackingField: 0
+  <FocusedScene>k__BackingField:
+    SceneName: 
 --- !u!114 &-502459823049462980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12,9 +50,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82ed2a87c8f24455ba363d3dcc9b523b, type: 3}
   m_Name: _SceneGroupData
   m_EditorClassIdentifier: 
-  <SceneGroupType>k__BackingField: 32768
+  <SceneGroupType>k__BackingField: 32772
   <Scenes>k__BackingField:
-  - SceneName: 
+  - SceneName: DefaultLoadingScene
   <WillReloadExistingScenes>k__BackingField: 0
   <WillUseLoadingScreen>k__BackingField: 1
   <FocusedScene>k__BackingField:
@@ -32,9 +70,31 @@ MonoBehaviour:
   m_Name: SceneGroupListData
   m_EditorClassIdentifier: 
   sceneGroupList:
+  - {fileID: 7562179049669809081}
   - {fileID: 7217902816973772706}
   - {fileID: -502459823049462980}
+  - {fileID: -1934516747718193594}
+  - {fileID: -933299811110669647}
 --- !u!114 &7217902816973772706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82ed2a87c8f24455ba363d3dcc9b523b, type: 3}
+  m_Name: _SceneGroupData
+  m_EditorClassIdentifier: 
+  <SceneGroupType>k__BackingField: 2
+  <Scenes>k__BackingField:
+  - SceneName: LoadingScreen
+  <WillReloadExistingScenes>k__BackingField: 0
+  <WillUseLoadingScreen>k__BackingField: 0
+  <FocusedScene>k__BackingField:
+    SceneName: 
+--- !u!114 &7562179049669809081
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -48,7 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <SceneGroupType>k__BackingField: 1
   <Scenes>k__BackingField:
-  - SceneName: 
+  - SceneName: BootScene
   <WillReloadExistingScenes>k__BackingField: 0
   <WillUseLoadingScreen>k__BackingField: 0
   <FocusedScene>k__BackingField:

@@ -15,15 +15,17 @@ using _Project.Login.Services;
 using _Project.Login.Signals;
 using _Project.PlayerProfile.Scripts.Controllers;
 using _Project.PlayerProfile.Scripts.Views;*/
+
+using _Project.LoadingScreen.Scripts.Controllers;
 using _Project.StrangeIOCUtility.CrossContext;
 using strange.extensions.context.api;
 using UnityEngine;
 
 namespace _Project.LoadingScreen.Scripts.Context
 {
-    public class LoadingBarContext : SignalContext
+    public class LoadingSceneContext : SignalContext
 	{
-		public LoadingBarContext(MonoBehaviour view) : base(view)
+		public LoadingSceneContext(MonoBehaviour view) : base(view)
 		{
 
 		}
@@ -32,8 +34,8 @@ namespace _Project.LoadingScreen.Scripts.Context
 		{
 			base.Start();
 			
-			LoadingScreenStartSignal loadingScreenStartSignal = (LoadingScreenStartSignal)injectionBinder.GetInstance<LoadingScreenStartSignal>();
-			loadingScreenStartSignal.Dispatch();
+			LoadingScreenShownSignal loadingScreenShownSignal = injectionBinder.GetInstance<LoadingScreenShownSignal>();
+			loadingScreenShownSignal.Dispatch();
 
 			return this;
 		}
@@ -59,6 +61,9 @@ namespace _Project.LoadingScreen.Scripts.Context
 			commandBinder.Bind<LoadingBarCompletedSignal>().To<LoadingBarCompletedCommand>();
 			commandBinder.Bind<StartLoadingSignal>().To<StartLoadingCommand>().Once();
 			commandBinder.Bind<SwitchSceneAccordingToProgressSignal>().To<SwitchSceneAccordingToProgressCommand>();
+			
+			
+			//To<LoadingBarIsReadyToCompleteCommand>(); tetikle
 		}
 		
 //TODO: Uncomment 21 August

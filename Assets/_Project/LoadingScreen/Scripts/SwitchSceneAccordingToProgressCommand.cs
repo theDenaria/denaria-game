@@ -12,7 +12,7 @@ namespace _Project.LoadingScreen.Scripts
 	{
 		[Inject] public ChangeSceneGroupSignal ChangeSceneGroupSignal { get; set; }
 		//[Inject] public IGameProgressService GameProgressService { get; set; }//TODO: Uncomment 21 August
-		[Inject] public NotifySceneChangeSignal NotifySceneChangeSignal { get; set; }
+		[Inject] public SceneChangedSignal SceneChangedSignal { get; set; }
 
 		public override void Execute()
 		{
@@ -27,17 +27,44 @@ namespace _Project.LoadingScreen.Scripts
 				case GameProgress.None:
 					sceneChangeCommandData = new NotifySceneChangeCommandData(Constants.USER_NAME_SCENE,
 						Constants.CONTINUE_BUTTON, "success");
-					NotifySceneChangeSignal.Dispatch(sceneChangeCommandData);
+					SceneChangedSignal.Dispatch(sceneChangeCommandData);
 
 					ChangeSceneGroupSignal.Dispatch(SceneGroupType.MainMenu, new LoadingOptions());
 					break;
 			}*/
 			sceneChangeCommandData = new NotifySceneChangeCommandData(Constants.LOADING_SCENE,
 				Constants.CONTINUE_BUTTON, "success");
-			NotifySceneChangeSignal.Dispatch(sceneChangeCommandData);
+			SceneChangedSignal.Dispatch(sceneChangeCommandData);
 
 			ChangeSceneGroupSignal.Dispatch(SceneGroupType.MainMenu, new LoadingOptions());
 			
+		}
+
+		void OpenTermsOfServiceScene()
+		{
+			/*////TODO: Uncomment 21 August //Originally was in LoadingBarCompletedCommand
+
+			ITermsOfServiceModel termsOfServiceModel = new TermsOfServiceModel();
+			string termsOfServiceAcceptedString = "termsOfServiceAcceptedString"; //CustomProfileData.ProfileDataDictionary[Constants.PLAYER_TERMS_OF_SERVICE_ACCEPTED];
+			if (termsOfServiceAcceptedString.Equals(Constants.VALUE_IS_NOT_EXISTS))
+			{
+				termsOfServiceModel.IsAccepted = false;
+			}
+			else
+			{
+				termsOfServiceModel =  JSONUtilityZeitnot.TryDeserializeObject<ITermsOfServiceModel>(termsOfServiceAcceptedString);
+			}
+
+			DebugLoggerMuteable.Log("termsOfServiceModel is fetched via LoadingBarCompletedCommand, and it was: " + termsOfServiceModel.IsAccepted);
+
+			if (!termsOfServiceModel.IsAccepted)
+			{
+				OpenTermsOfServicePopup();
+			}
+			else
+			{
+				SwitchSceneAccordingToProgressSignal.Dispatch();
+			}*/
 		}
 	}
 }

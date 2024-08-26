@@ -1,6 +1,9 @@
 using _Project.LoadingScreen.Scripts;
 using _Project.LoggingAndDebugging;
 using _Project.SceneManagementUtilities.Controllers;
+using _Project.SceneManagementUtilities.Models;
+using _Project.SceneManagementUtilities.Services;
+using _Project.SceneManagementUtilities.Signals;
 using UnityEngine;
 /*using _Project.Analytics.Commands;
 using _Project.Analytics.Signals;
@@ -27,18 +30,12 @@ namespace _Project.StrangeIOCUtility.CrossContext
         public BootContext(MonoBehaviour view) : base(view)
         {
         }
-
-        protected override void postBindings()
-        {
-            base.postBindings();
-            
-            StartGameSignal startGameSignal = (StartGameSignal)injectionBinder.GetInstance<StartGameSignal>();
-            startGameSignal.Dispatch();
-        }
-
+        
         protected override void mapBindings()
         {
             base.mapBindings();
+
+            BindSceneManagementInjections();
             
             commandBinder.Bind<StartGameSignal>()
                 .To<SetSceneGroupsCommand>()
@@ -46,8 +43,8 @@ namespace _Project.StrangeIOCUtility.CrossContext
                 .Once()
                 .InSequence();
 
-            injectionBinder.Bind<LoadingScreenStartSignal>().ToSingleton().CrossContext();
-            commandBinder.Bind<LoadingScreenStartSignal>() // Required to proceed after loading screen starts
+            injectionBinder.Bind<LoadingScreenShownSignal>().ToSingleton().CrossContext();
+            commandBinder.Bind<LoadingScreenShownSignal>() // Required to proceed after loading screen starts
                 //.To<LimitDeviceFrameRateCommand>()//TODO: Uncomment after adding classes - 14 August 2024
                 .To<InitializeSRDebuggerCommand>()
                 .To<InitializeInjectedObjectFactoryCommand>()
@@ -71,5 +68,28 @@ namespace _Project.StrangeIOCUtility.CrossContext
                 .To<SetPlayerDataToModelsCommand>() // This directs to loading scene and its completion
                 .InParallel();*/
         }
+        
+        protected override void postBindings()
+        {
+            base.postBindings();
+            
+            StartGameSignal startGameSignal = injectionBinder.GetInstance<StartGameSignal>();
+            startGameSignal.Dispatch();
+        }
+        
+        private void BindSceneManagementInjections()
+        {
+            injectionBinder.Bind<ChangeSceneGroupSignal>().ToSingleton().CrossContext();
+            injectionBinder.Bind<LoadAdditiveSceneGroupSignal>().ToSingleton().CrossContext();
+            injectionBinder.Bind<ISceneChangeService>().To<SceneChangeService>().ToSingleton().CrossContext();
+            injectionBinder.Bind<ISceneGroupModel>().To<SceneGroupListData>().ToSingleton().CrossContext();
+            injectionBinder.Bind<ICurrentSceneModel>().To<CurrentSceneModel>().ToSingleton().CrossContext();
+            injectionBinder.Bind<SceneChangedSignal>().ToSingleton().CrossContext();
+
+            commandBinder.Bind<ChangeSceneGroupSignal>().To<ChangeSceneGroupCommand>();
+            commandBinder.Bind<LoadAdditiveSceneGroupSignal>().To<LoadAdditiveSceneGroupCommand>();
+            commandBinder.Bind<SceneChangedSignal>().To<UpdateCurrentSceneModelCommand>();
+        }
+
     }
 }

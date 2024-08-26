@@ -2,5 +2,5 @@
 
 namespace _Project.LoadingScreen.Scripts
 {
-	public class LoadingScreenStartSignal : Signal { }
+	public class LoadingScreenShownSignal : Signal { }
 }

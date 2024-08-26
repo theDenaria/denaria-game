@@ -2,19 +2,22 @@
 
 namespace _Project.SceneManagementUtilities.Utilities
 {
+    //You can make binary addition.
     [Flags]
     public enum SceneGroupType
     {
         None = 0,
-        Loading = 1,
-        TermsOfService = 2,
-        Teaser = 4,
-        MainMenu = 8,//TODO: Maybe do binary addition. Consists shop, top bar, nav bar.
-        PlayerProfile = 16,
-        PlayerProfileEnterName = 32,
-        PrivacyPolicy = 64,
-        GameSettings = 128,
-        DefaultLoadingScene = 256
+        Boot = 1,
+        Loading = 2,
+        DefaultLoading = 4,
+        MainMenu = 8,
+        ThirdPersonShooterGame = 16,
+        TermsOfService = 32,
+        Teaser = 64,
+        PlayerProfile = 128,
+        PlayerProfileEnterName = 256,
+        PrivacyPolicy = 512,
+        GameSettings = 1028,
     }
 
 }

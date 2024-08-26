@@ -18,6 +18,8 @@ namespace _Project.LoadingScreen.Scripts
 		private float totalProgress = 0;
 		private float currentProgress = 0;
 
+		internal Signal temporaryLoadingBarCompletedSignal = new Signal();
+
 		internal void init()
 		{
 			startLoadingSignal.Dispatch();
@@ -32,8 +34,6 @@ namespace _Project.LoadingScreen.Scripts
 		/// Fake load method, need to delete and replace it later
 		public void StartLoadingBar()
 		{
-			
-
 			StartCoroutine(FakeLoadCoroutine());
 
 			IEnumerator FakeLoadCoroutine()
@@ -70,15 +70,16 @@ namespace _Project.LoadingScreen.Scripts
 					float loadingValue = Mathf.Clamp(timer / randomLoadingTime, 0, 0.9f);
 					loadingSlider.value = loadingValue;
 
-					timer += UnityEngine.Time.deltaTime * loadSpeed;
+					timer += Time.deltaTime * loadSpeed;
 
 					yield return null;
 				}
     
 				loadingTMP.text = "Content is now unpacking...";
-			
-				
+				temporaryLoadingBarCompletedSignal.Dispatch();
+
 			}
+
 		}
 	}
 }

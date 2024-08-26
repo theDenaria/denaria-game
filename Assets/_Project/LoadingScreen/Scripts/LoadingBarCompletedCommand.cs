@@ -25,48 +25,55 @@ namespace _Project.LoadingScreen.Scripts
 		//[Inject] public ICustomProfileData CustomProfileData { get; set; }//TODO: Uncomment 21 August
 		//[Inject] public StartCheckingNetworkConnectionSignal StartCheckingNetworkConnectionSignal { get; set; }//TODO: Uncomment 21 August
 
-		[Inject] public NotifySceneChangeSignal NotifySceneChangeSignal { get; set; }
+		[Inject] public SceneChangedSignal SceneChangedSignal { get; set; }
 		[Inject] public SwitchSceneAccordingToProgressSignal SwitchSceneAccordingToProgressSignal { get; set; }
 
 		public override void Execute()
 		{
+			
+			if (OpenWorkedOnSceneDuringDevelopment()) return;
+
+			OpenNextScene();
+			
+			//StartCheckingNetworkConnectionSignal.Dispatch();
+		}
+
+		private bool OpenWorkedOnSceneDuringDevelopment()
+		{
 #if UNITY_EDITOR
-			if (PlayerPrefs.GetInt("IsTesting" , 0) == 1)
+			if (ShouldOpenWorkedOnScenes())
 			{
-				string[] scenesToTest = PlayerPrefs.GetString("SceneToTest", string.Empty).Split(",");
+				OpenActivelyWorkedOnScenes();
 
-				SetDummyData(scenesToTest);
-				HandleOpenTestScenes(scenesToTest);
-
-				return;
+				return true;
 			}
 #endif
-			ITermsOfServiceModel termsOfServiceModel = new TermsOfServiceModel();
-			string termsOfServiceAcceptedString = "termsOfServiceAcceptedString"; //CustomProfileData.ProfileDataDictionary[Constants.PLAYER_TERMS_OF_SERVICE_ACCEPTED];
-                                                                         ////TODO: Uncomment 21 August
-			if (termsOfServiceAcceptedString.Equals(Constants.VALUE_IS_NOT_EXISTS))
-			{
-				termsOfServiceModel.IsAccepted = false;
-			}
-			else
-			{
-				termsOfServiceModel =  JSONUtilityZeitnot.TryDeserializeObject<ITermsOfServiceModel>(termsOfServiceAcceptedString);
-			}
-			
-			DebugLoggerMuteable.Log("termsOfServiceModel is fetched via LoadingBarCompletedCommand, and it was: " + termsOfServiceModel.IsAccepted);
-			
-			if (!termsOfServiceModel.IsAccepted)
-			{
-				NotifySceneChangeCommandData changeCommandData = new NotifySceneChangeCommandData(Constants.AGREEMENT_SCENE, Constants.SCENE_COMPLETED, "success");
-				NotifySceneChangeSignal.Dispatch(changeCommandData);
-				LoadingBarView.Instantiate(LoadingBarView.termsOfServicePopUp, LoadingBarView.transform.parent);
-			}
-			else
-			{
-				SwitchSceneAccordingToProgressSignal.Dispatch();
-			}
+			return false;
+		}
 
-			//StartCheckingNetworkConnectionSignal.Dispatch();
+		private void OpenNextScene()
+		{
+			SwitchSceneAccordingToProgressSignal.Dispatch();
+		}
+
+		private void OpenTermsOfServicePopup()
+		{
+			NotifySceneChangeCommandData changeCommandData = new NotifySceneChangeCommandData(Constants.AGREEMENT_SCENE, Constants.SCENE_COMPLETED, "success");
+			SceneChangedSignal.Dispatch(changeCommandData);
+			LoadingBarView.Instantiate(LoadingBarView.termsOfServicePopUp, LoadingBarView.transform.parent);
+		}
+
+		private static bool ShouldOpenWorkedOnScenes()
+		{
+			return PlayerPrefs.GetInt("IsTesting" , 0) == 1;
+		}
+
+		private void OpenActivelyWorkedOnScenes()
+		{
+			string[] scenesToTest = PlayerPrefs.GetString("SceneToTest", string.Empty).Split(",");
+
+			SetDummyData(scenesToTest);
+			HandleOpenTestScenes(scenesToTest);
 		}
 
 		private void SetDummyData(string[] scenesToTest)
