@@ -3,6 +3,12 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections;
 
+public enum GameMode
+{
+    NormalGame,
+    RankedGame
+}
+
 public class MatchmakingMenu : MonoBehaviour
 {
     public Toggle normalGameToggle;
@@ -35,21 +41,29 @@ public class MatchmakingMenu : MonoBehaviour
             if (normalGameToggle.isOn)
             {
                 Debug.Log("Starting matchmaking for Normal Game...");
-                StartMatchmaking("NormalGame");
+                StartMatchmaking(GameMode.NormalGame);
             }
             else if (rankedGameToggle.isOn)
             {
                 Debug.Log("Starting matchmaking for Ranked Game...");
-                StartMatchmaking("RankedGame");
+                StartMatchmaking(GameMode.RankedGame);
             }
         }
     }
 
-    private void StartMatchmaking(string gameMode)
+    private void StartMatchmaking(GameMode gameMode)
     {
         Debug.Log("Matchmaking initiated for: " + gameMode);
         isMatchmaking = true;
         UpdatePlayButton("CANCEL");
+
+        switch (gameMode)
+        {
+            case GameMode.NormalGame:
+                break;
+            case GameMode.RankedGame:
+                break;
+        }
 
         // Show the timer and start it
         queueTimerText.gameObject.SetActive(true);
