@@ -6,9 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/_Project/StrangeIOCUtility/CrossContext/BootScene.unity
+    guid: dce82d114b57e4a4ab85f3e44f30f539
+  - enabled: 1
+    path: Assets/_Project/LoadingScreen/LoadingScreen.unity
+    guid: bdc7c08b45460854f954289d532f0d50
+  - enabled: 1
+    path: Assets/_Project/SceneManagementUtilities/Scenes/DefaultLoadingScene.unity
+    guid: d73f0337b38e64418a04a24089662227
+  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
-    guid: ef30445a271aa4e12ada83d34bdd516a
+    guid: 74faacd9018214147b53686db3840979
   - enabled: 1
     path: Assets/Scenes/GameScene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+    guid: 6426d40bde1f74096a56697dafc4f48a
   m_configObjects: {}

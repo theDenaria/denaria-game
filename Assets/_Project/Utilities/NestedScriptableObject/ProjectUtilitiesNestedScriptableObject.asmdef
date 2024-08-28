@@ -1,0 +1,19 @@
+{
+    "name": "ProjectUtilitiesNestedScriptableObject",
+    "rootNamespace": "",
+    "references": [
+        "GUID:cf788fb8847bf4cae949942146165d00",
+        "GUID:36f6e14d3773a754796344e807e13858"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
