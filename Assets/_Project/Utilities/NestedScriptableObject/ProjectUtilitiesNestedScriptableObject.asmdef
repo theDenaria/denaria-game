@@ -2,8 +2,8 @@
     "name": "ProjectUtilitiesNestedScriptableObject",
     "rootNamespace": "",
     "references": [
-        "GUID:cf788fb8847bf4cae949942146165d00",
-        "GUID:36f6e14d3773a754796344e807e13858"
+        "GUID:2ee2565330f7c418fa60c4a0f1aef1b7",
+        "GUID:d3c50527b2d13445db5a903c30fc74d9"
     ],
     "includePlatforms": [
         "Editor"
