@@ -6,14 +6,19 @@ public class ReadyCheckManager : MonoBehaviour
 {
     public GameObject readyCheckPanel;
     public Button readyButton;
-    public RawImage[] playerReadyCircles;
+    public Image[] playerReadyCircles;
 
     public Texture notReadyTexture;
     public Texture readyTexture;
 
-    private bool[] playerReadyStatus = new bool[10];
+    private bool[] playerReadyStatuses = new bool[10];
 
-    private void Start()
+    private void Awake()
+    {
+        Initialize();
+    }
+
+    private void Initialize()
     {
         readyButton.onClick.AddListener(OnReadyButtonClick);
         readyCheckPanel.SetActive(false);
@@ -30,22 +35,22 @@ public class ReadyCheckManager : MonoBehaviour
         readyCheckPanel.SetActive(true);
 
         // Reset all player ready statuses
-        for (int i = 0; i < playerReadyStatus.Length; i++)
+        for (int i = 0; i < playerReadyStatuses.Length; i++)
         {
-            playerReadyStatus[i] = false;
+            playerReadyStatuses[i] = false;
             UpdatePlayerCircle(i, false);
         }
     }
 
     private void OnReadyButtonClick()
     {
-        // TODO
+        //TODO:
         SendReadyStatusToServer();
     }
 
-    public void UpdatePlayerReadyStatus(int playerId, bool isReady)
+    public void UpdatePlayerReadyStatuses(int playerId, bool isReady)
     {
-        playerReadyStatus[playerId] = isReady;
+        playerReadyStatuses[playerId] = isReady;
         UpdatePlayerCircle(playerId, isReady);
     }
 
@@ -64,11 +69,11 @@ public class ReadyCheckManager : MonoBehaviour
 
     private void SendReadyStatusToServer()
     {
-        // TODO
+        //TODO:
     }
 
     public void OnServerUpdateReadyStatus(int playerId, bool isReady)
     {
-        UpdatePlayerReadyStatus(playerId, isReady);
+        UpdatePlayerReadyStatuses(playerId, isReady);
     }
 }
