@@ -12,7 +12,7 @@ namespace _Project.LoadingScreen.Scripts
 	{
 		[Header("References")] public TextMeshProZeitnot loadingTMP;
 		public SliderZeitnot loadingSlider;
-		[FormerlySerializedAs("tersmOfServicePopUp")] public GameObject termsOfServicePopUp;
+		public GameObject termsOfServicePopUp;
 		[field: SerializeField] private TextMeshProZeitnot gameVersionText;
 		internal Signal startLoadingSignal = new Signal();
 		private float totalProgress = 0;

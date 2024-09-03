@@ -1,17 +1,22 @@
-﻿using System;
+﻿#if UNITY_EDITOR
+using UnityEditor.SceneManagement;
+#endif
+//using UnityEngine.SceneManagement;
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using _Project.SceneManagementUtilities;
 using _Project.SceneManagementUtilities.Utilities;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEditor;
-#if UNITY_EDITOR
-using UnityEditor.SceneManagement;
-#endif
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Debug = UnityEngine.Debug;
 
 [InlineEditor]
 [CreateAssetMenu(fileName = "SceneGroupData", menuName = "SceneManagement/SceneGroupData", order = 0)]
@@ -73,5 +78,5 @@ public class SceneGroupData : ScriptableObject
         }
 #endif
     }
-        
+    
 }

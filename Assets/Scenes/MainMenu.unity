@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311932, g: 0.38073996, b: 0.3587271, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -182,8 +181,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Connect
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a6a5317d12bf64d5ca620289db6d72f6, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: a6a5317d12bf64d5ca620289db6d72f6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -294,7 +293,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 63
 --- !u!114 &204460228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -479,7 +478,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 451151365}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 096b9bc6b3f7b48c6a237b874dd6aec4, type: 3}
+  m_Script: {fileID: 11500000, guid: ee6bfb803167c4e7ba340d101e927ac0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   clientBehaviour: {fileID: 608809427}
@@ -526,7 +525,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 608809426}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 224906881caee42d9b2a8ea8ef469801, type: 3}
+  m_Script: {fileID: 11500000, guid: bc01204aaf7914bb0baf8c1f15f228ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isConnected: 0
@@ -604,8 +603,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Main Menu
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a6a5317d12bf64d5ca620289db6d72f6, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: a6a5317d12bf64d5ca620289db6d72f6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -759,8 +758,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Player Id
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a6a5317d12bf64d5ca620289db6d72f6, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: a6a5317d12bf64d5ca620289db6d72f6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1068,8 +1067,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u200B"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a6a5317d12bf64d5ca620289db6d72f6, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: a6a5317d12bf64d5ca620289db6d72f6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1380,21 +1379,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 2113896426}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6051dce7922a24c36975f6657b3b8c43, type: 3}
+  m_Script: {fileID: 11500000, guid: 0f1ac513a1a244fd597ed1acd4847476, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerControls: {fileID: -944628639613478452, guid: 7f67c8e2d88a84074afbf19023b630ad, type: 3}
+  playerControls: {fileID: -944628639613478452, guid: 0eef6f6f71dcb4ba69c35dccec4649c4, type: 3}
   playerActionMapName: Player
   uiActionMapName: UI
   move: Move
+  look: Look
   jump: Jump
+  fire: Fire
   sprint: Sprint
   escMenu: EscMenu
   escMenuAction:
     m_Name: Esc Menu
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 0f6ca97c-38a3-4f0f-ab1c-aed097a3c70a
+    m_Id: ced39733-901b-4685-ab21-4fde2a6ba9a9
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []

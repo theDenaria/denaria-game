@@ -1,10 +1,8 @@
 {
-    "name": "StompyRobot.SROptions",
+    "name": "SceneManagementUtilitiesResources",
     "rootNamespace": "",
     "references": [
-        "GUID:d3c50527b2d13445db5a903c30fc74d9",
-        "GUID:bcc75752368a72b4aba4043ea13b2a1a",
-        "GUID:05dbf8cd246c9274c8a78a65142e5f8a"
+        "GUID:2ee2565330f7c418fa60c4a0f1aef1b7"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
