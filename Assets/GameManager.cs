@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour//onat was here
 {
     public static GameManager Instance { get; private set; }
 
@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        Debug.Log("onat was here");
         if (Instance == null)
         {
             Instance = this;
