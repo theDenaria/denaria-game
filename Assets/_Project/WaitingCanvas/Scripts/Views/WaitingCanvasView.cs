@@ -16,7 +16,6 @@ namespace _Project.WaitingCanvas.Scripts.Views
         [field: SerializeField] private TextMeshProZeitnot MessageText { get; set; }
         [field: SerializeField] private DOTweenAnimation WaitingIndicatorRotationTweenAnimation { get; set; }
         [field: SerializeField] private ParticleSystem WaitingIndicatorParticleSystem { get; set; }
-        [field: SerializeField] private GameObject SpinAnimation { get; set; }
 
         private List<IWaitHandler> ActiveWaitHandlers { get; set; } = new List<IWaitHandler>();
         
@@ -54,24 +53,19 @@ namespace _Project.WaitingCanvas.Scripts.Views
             if (ActiveWaitHandlers.Count < 1)
             {
                 Panel.Hide();
-            
             }
         }
 
         private void ShowWaitingIndicator()
         {
-           // WaitingIndicatorRotationTweenAnimation.DORestart();
-           // WaitingIndicatorParticleSystem.Play(true);
-           SpinAnimation.SetActive(true);
-           
+            WaitingIndicatorRotationTweenAnimation.DORestart();
+            WaitingIndicatorParticleSystem.Play(true);
         }
 
         private void HideWaitingIndicator()
         {
-            //WaitingIndicatorRotationTweenAnimation.DORewind();
-          //  WaitingIndicatorParticleSystem.Stop(true, ParticleSystemStopBehavior.StopEmitting);
-          SpinAnimation.SetActive(false);
-         
+            WaitingIndicatorRotationTweenAnimation.DORewind();
+            WaitingIndicatorParticleSystem.Stop(true, ParticleSystemStopBehavior.StopEmitting);
         }
 
         private void UpdateMessageText()
@@ -79,7 +73,6 @@ namespace _Project.WaitingCanvas.Scripts.Views
             if (ActiveWaitHandlers.Count < 1)
             {
                 MessageText.text = "";
-               
                 return;
             }
             StringBuilder stringBuilder = new StringBuilder();
@@ -91,7 +84,6 @@ namespace _Project.WaitingCanvas.Scripts.Views
                 }
             }
             MessageText.text = stringBuilder.ToString();
-            
         }
 
         private void OnPanelVisibilityChangedEvent(PanelZeitnotVisibilityTypes panelVisibilityType)
