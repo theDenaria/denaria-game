@@ -1,0 +1,24 @@
+{
+    "name": "LoggingAndDebugging",
+    "rootNamespace": "",
+    "references": [
+        "GUID:6e5b7d7f553569c45b5dba8987c88267",
+        "GUID:36f6e14d3773a754796344e807e13858",
+        "GUID:bcc75752368a72b4aba4043ea13b2a1a",
+        "GUID:2ace7ebb826df10459d12b4f3c4a9407",
+        "GUID:9ed423a4021a0c248911f8b5b1277c91",
+        "GUID:d9b9d8ad5f67a9949afb7c7f0bfe4aec",
+        "GUID:67dd2199bbbdc424a84757398efc4821",
+        "GUID:05dbf8cd246c9274c8a78a65142e5f8a",
+        "GUID:9e0cbe247d19c48ff9b3d7631c86bdf7"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
