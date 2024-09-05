@@ -1,5 +1,106 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-5066942601111890822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82ed2a87c8f24455ba363d3dcc9b523b, type: 3}
+  m_Name: _SceneGroupData
+  m_EditorClassIdentifier: 
+  <SceneGroupType>k__BackingField: 2
+  <Scenes>k__BackingField:
+  - SceneName: TermsOfServiceScene
+  <WillReloadExistingScenes>k__BackingField: 0
+  <WillUseLoadingScreen>k__BackingField: 1
+  <FocusedScene>k__BackingField:
+    SceneName: 
+--- !u!114 &-1371803501985471766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82ed2a87c8f24455ba363d3dcc9b523b, type: 3}
+  m_Name: _SceneGroupData
+  m_EditorClassIdentifier: 
+  <SceneGroupType>k__BackingField: 4
+  <Scenes>k__BackingField:
+  - SceneName: TeaserScene
+  <WillReloadExistingScenes>k__BackingField: 0
+  <WillUseLoadingScreen>k__BackingField: 1
+  <FocusedScene>k__BackingField:
+    SceneName: 
+--- !u!114 &-1326846044624160630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82ed2a87c8f24455ba363d3dcc9b523b, type: 3}
+  m_Name: _SceneGroupData
+  m_EditorClassIdentifier: 
+  <SceneGroupType>k__BackingField: 8
+  <Scenes>k__BackingField:
+  - SceneName: HostWelcomeScene
+  <WillReloadExistingScenes>k__BackingField: 0
+  <WillUseLoadingScreen>k__BackingField: 1
+  <FocusedScene>k__BackingField:
+    SceneName: 
+--- !u!114 &-1316486560289890492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82ed2a87c8f24455ba363d3dcc9b523b, type: 3}
+  m_Name: _SceneGroupData
+  m_EditorClassIdentifier: 
+  <SceneGroupType>k__BackingField: 2048
+  <Scenes>k__BackingField:
+  - SceneName: ChatScene
+  <WillReloadExistingScenes>k__BackingField: 0
+  <WillUseLoadingScreen>k__BackingField: 1
+  <FocusedScene>k__BackingField:
+    SceneName: ChatScene
+--- !u!114 &-939276804533189483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82ed2a87c8f24455ba363d3dcc9b523b, type: 3}
+  m_Name: _SceneGroupData
+  m_EditorClassIdentifier: 
+  <SceneGroupType>k__BackingField: 64
+  <Scenes>k__BackingField:
+  - SceneName: CardSwipeAction
+  - SceneName: NavigationBarScene
+  - SceneName: InAppPurchaseScene
+  - SceneName: PremiumStoryShowcaseScene
+  - SceneName: ChatsScene
+  - SceneName: TopBar
+  - SceneName: PlayerProfile
+  <WillReloadExistingScenes>k__BackingField: 0
+  <WillUseLoadingScreen>k__BackingField: 1
+  <FocusedScene>k__BackingField:
+    SceneName: 
 --- !u!114 &-502459823049462980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14,7 +115,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <SceneGroupType>k__BackingField: 32768
   <Scenes>k__BackingField:
-  - SceneName: 
+  - SceneName: DefaultLoadingScene
+  <WillReloadExistingScenes>k__BackingField: 0
+  <WillUseLoadingScreen>k__BackingField: 1
+  <FocusedScene>k__BackingField:
+    SceneName: 
+--- !u!114 &-172982800234715800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82ed2a87c8f24455ba363d3dcc9b523b, type: 3}
+  m_Name: _SceneGroupData
+  m_EditorClassIdentifier: 
+  <SceneGroupType>k__BackingField: 128
+  <Scenes>k__BackingField:
+  - SceneName: DateScreen
   <WillReloadExistingScenes>k__BackingField: 0
   <WillUseLoadingScreen>k__BackingField: 1
   <FocusedScene>k__BackingField:
@@ -33,7 +153,135 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneGroupList:
   - {fileID: 7217902816973772706}
+  - {fileID: -1371803501985471766}
+  - {fileID: -1326846044624160630}
+  - {fileID: 8507098236170840930}
+  - {fileID: 5720561515084929720}
+  - {fileID: -939276804533189483}
+  - {fileID: -172982800234715800}
+  - {fileID: 6362694205506530108}
+  - {fileID: 5639465901819989012}
+  - {fileID: -5066942601111890822}
+  - {fileID: 1332392922640929553}
+  - {fileID: -1316486560289890492}
+  - {fileID: 2505736134434906393}
+  - {fileID: 8426340601811833034}
+  - {fileID: 2552659854023879160}
   - {fileID: -502459823049462980}
+--- !u!114 &1332392922640929553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82ed2a87c8f24455ba363d3dcc9b523b, type: 3}
+  m_Name: _SceneGroupData
+  m_EditorClassIdentifier: 
+  <SceneGroupType>k__BackingField: 1024
+  <Scenes>k__BackingField:
+  - SceneName: PrivacyPolicyScene
+  <WillReloadExistingScenes>k__BackingField: 0
+  <WillUseLoadingScreen>k__BackingField: 1
+  <FocusedScene>k__BackingField:
+    SceneName: 
+--- !u!114 &2505736134434906393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82ed2a87c8f24455ba363d3dcc9b523b, type: 3}
+  m_Name: _SceneGroupData
+  m_EditorClassIdentifier: 
+  <SceneGroupType>k__BackingField: 4096
+  <Scenes>k__BackingField:
+  - SceneName: GameSettingsScene
+  <WillReloadExistingScenes>k__BackingField: 0
+  <WillUseLoadingScreen>k__BackingField: 1
+  <FocusedScene>k__BackingField:
+    SceneName: GameSettingsScene
+--- !u!114 &2552659854023879160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82ed2a87c8f24455ba363d3dcc9b523b, type: 3}
+  m_Name: _SceneGroupData
+  m_EditorClassIdentifier: 
+  <SceneGroupType>k__BackingField: 16384
+  <Scenes>k__BackingField:
+  - SceneName: EpisodeTestConfigScene
+  <WillReloadExistingScenes>k__BackingField: 0
+  <WillUseLoadingScreen>k__BackingField: 1
+  <FocusedScene>k__BackingField:
+    SceneName: EpisodeTestConfigScene
+--- !u!114 &5639465901819989012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82ed2a87c8f24455ba363d3dcc9b523b, type: 3}
+  m_Name: _SceneGroupData
+  m_EditorClassIdentifier: 
+  <SceneGroupType>k__BackingField: 512
+  <Scenes>k__BackingField:
+  - SceneName: EnterNameScene
+  <WillReloadExistingScenes>k__BackingField: 0
+  <WillUseLoadingScreen>k__BackingField: 1
+  <FocusedScene>k__BackingField:
+    SceneName: EnterNameScene
+--- !u!114 &5720561515084929720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82ed2a87c8f24455ba363d3dcc9b523b, type: 3}
+  m_Name: _SceneGroupData
+  m_EditorClassIdentifier: 
+  <SceneGroupType>k__BackingField: 32
+  <Scenes>k__BackingField:
+  - SceneName: GenrePickScene
+  <WillReloadExistingScenes>k__BackingField: 0
+  <WillUseLoadingScreen>k__BackingField: 1
+  <FocusedScene>k__BackingField:
+    SceneName: 
+--- !u!114 &6362694205506530108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82ed2a87c8f24455ba363d3dcc9b523b, type: 3}
+  m_Name: _SceneGroupData
+  m_EditorClassIdentifier: 
+  <SceneGroupType>k__BackingField: 256
+  <Scenes>k__BackingField:
+  - SceneName: PlayerProfile
+  <WillReloadExistingScenes>k__BackingField: 0
+  <WillUseLoadingScreen>k__BackingField: 1
+  <FocusedScene>k__BackingField:
+    SceneName: 
 --- !u!114 &7217902816973772706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48,8 +296,46 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <SceneGroupType>k__BackingField: 1
   <Scenes>k__BackingField:
-  - SceneName: 
+  - SceneName: LoadingScreen
   <WillReloadExistingScenes>k__BackingField: 0
   <WillUseLoadingScreen>k__BackingField: 0
+  <FocusedScene>k__BackingField:
+    SceneName: LoadingScreen
+--- !u!114 &8426340601811833034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82ed2a87c8f24455ba363d3dcc9b523b, type: 3}
+  m_Name: _SceneGroupData
+  m_EditorClassIdentifier: 
+  <SceneGroupType>k__BackingField: 8192
+  <Scenes>k__BackingField:
+  - SceneName: CharacterProfile
+  <WillReloadExistingScenes>k__BackingField: 0
+  <WillUseLoadingScreen>k__BackingField: 1
+  <FocusedScene>k__BackingField:
+    SceneName: 
+--- !u!114 &8507098236170840930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82ed2a87c8f24455ba363d3dcc9b523b, type: 3}
+  m_Name: _SceneGroupData
+  m_EditorClassIdentifier: 
+  <SceneGroupType>k__BackingField: 16
+  <Scenes>k__BackingField:
+  - SceneName: InterestSelectionScreen
+  <WillReloadExistingScenes>k__BackingField: 0
+  <WillUseLoadingScreen>k__BackingField: 1
   <FocusedScene>k__BackingField:
     SceneName: 
