@@ -14589,7 +14589,7 @@ GameObject:
   - component: {fileID: 776522121}
   - component: {fileID: 776522122}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: LevelObjects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15139,7 +15139,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sendToLevelServer: 1
-  serverUrl: http://localhost:3000/set-objects
+  serverUrl: https://165.232.64.185/
+  version: tps_0_1
 --- !u!1001 &780331065
 PrefabInstance:
   m_ObjectHideFlags: 0
