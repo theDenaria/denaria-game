@@ -508,6 +508,7 @@ public class ClientBehaviour : MonoBehaviour
                 message.Dispose();
             }
             m_Driver.EndSend(writer);
+            Debug.Log("Message sent on unreliable channel");
         }
         else
         {
@@ -521,6 +522,7 @@ public class ClientBehaviour : MonoBehaviour
                 message.Dispose();
             }
             m_Driver.EndSend(writer);
+            Debug.Log("Message sent on reliable channel");
         }
     }
     Color Uint8ToColor(byte color)
