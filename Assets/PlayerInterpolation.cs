@@ -15,6 +15,7 @@ public class PlayerInterpolation : MonoBehaviour
 
     void Update()
     {
+        Debug.Log("onat was here after codecks");
         float interpolationTime = Time.time - interpolationBackTime;
         stateBuffer.RemoveAll(state => state.timestamp < interpolationTime);
 
