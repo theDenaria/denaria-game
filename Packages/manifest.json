@@ -1,5 +1,9 @@
 {
   "dependencies": {
+    "com.adrenak.univoice": "3.0.0",
+    "com.adrenak.univoice.airpeernetwork": "3.0.0",
+    "com.adrenak.univoice.audiosourceoutput": "3.0.1",
+    "com.adrenak.univoice.unimicinput": "3.0.0",
     "com.unity.cinemachine": "2.10.0",
     "com.unity.collab-proxy": "2.3.1",
     "com.unity.feature.development": "1.0.1",
@@ -8,9 +12,11 @@
     "com.unity.nuget.newtonsoft-json": "3.2.1",
     "com.unity.textmeshpro": "3.0.6",
     "com.unity.timeline": "1.7.6",
+    "com.unity.toolchain.macos-x86_64-linux-x86_64": "2.0.9",
     "com.unity.transport": "2.1.0",
     "com.unity.ugui": "1.0.0",
     "com.unity.visualscripting": "1.9.4",
+    "com.unity.webrtc": "3.0.0-pre.7",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
@@ -42,5 +48,21 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
-  }
+  },
+  "scopedRegistries": [
+    {
+      "name": "npmjs",
+      "url": "https://registry.npmjs.org",
+      "scopes": [
+        "com.npmjs",
+        "com.adrenak.airpeer",
+        "com.adrenak.univoice",
+        "com.adrenak.univoice.airpeernetwork",
+        "com.adrenak.univoice.unimicinput",
+        "com.adrenak.univoice.audiosourceoutput",
+        "com.adrenak.unimic",
+        "com.adrenak.brw"
+      ]
+    }
+  ]
 }
