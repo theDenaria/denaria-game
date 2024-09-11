@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 using Unity.WebRTC;
 using Unity.Networking.Transport;
@@ -75,12 +77,20 @@ public class VoiceChat : MonoBehaviour
     // These settings get from Unity Object
 
     public string playerName = "Tester";
-    public bool isRoomHost = false; // Debug functions
-    public string roomId = ""; // example: x1y2z3
-    public bool voiceTransmitting = false;
-    public bool voiceReceive = false;
-    public bool enableNotificationSounds = false;
 
+    public bool enableNotificationSounds = true;
+
+    private float voiceActivityThreshold = 0.01f;
+
+    private GameObject playerCardPrefab;  // Reference to the player card prefab
+    private Transform playerCardContainer; // The parent object (container) for player cards
+
+    private string inputFieldRoomId = ""; // example: x1y2z3
+    private Text roomIdText;
+    private GameObject joinRoomWindow;
+
+    private bool voiceTransmitting = false;
+    private bool voiceReceive = false;
     private bool testMessageSent = false;
     private bool introductionMessageSent = false;
 
@@ -102,8 +112,8 @@ public class VoiceChat : MonoBehaviour
     private UniVoiceUniMicInput micInput;
     private UniVoiceAudioSourceOutput.Factory audioOutputFactory;
     private AudioSource notificationAudioSource;
-    public AudioClip userJoinClip;
-    public AudioClip userDropClip;
+    private AudioClip userJoinClip;
+    private AudioClip userDropClip;
 
     // WebRTC
     private RTCPeerConnection localConnection;
@@ -112,15 +122,45 @@ public class VoiceChat : MonoBehaviour
     private Dictionary<string, RTCPeerConnection> remoteConnections = new Dictionary<string, RTCPeerConnection>();
     private Dictionary<string, RTCDataChannel> dataChannels = new Dictionary<string, RTCDataChannel>();
     private Dictionary<string, IAudioOutput> peerOutputs = new Dictionary<string, IAudioOutput>();
+
+    private Dictionary<string, bool> peerVoiceActivity = new Dictionary<string, bool>();
+    private Dictionary<string, GameObject> playerCards = new Dictionary<string, GameObject>();
+
     private bool rtcSetupCompleted = false;
 
     void Start()
     {
+        InitializeUI();
+
         InitializeAudio();
 
         InitializeServerConnection();
 
         InitializeWebRTC();
+    }
+
+    void InitializeUI() {
+        roomIdText = GameObject.Find("RoomIdValueText").GetComponent<Text>();
+        userJoinClip = Resources.Load<AudioClip>("Audio/userJoin");
+        userDropClip = Resources.Load<AudioClip>("Audio/userDrop");
+        joinRoomWindow = GameObject.Find("JoinPanel");
+        joinRoomWindow.SetActive(false);
+
+        playerCardPrefab = Resources.Load<GameObject>("PlayerCardPreset");
+        if (playerCardPrefab == null)
+        {
+            Debug.LogError("Failed to load PlayerCardPrefab from Resources folder");
+        }
+
+        GameObject containerObject = GameObject.Find("PlayersPanel");
+        if (containerObject != null)
+        {
+            playerCardContainer = containerObject.transform;
+        }
+        else
+        {
+            Debug.LogError("Failed to find PlayerCardContainer in the scene");
+        }
     }
 
     void InitializeServerConnection() {
@@ -221,23 +261,179 @@ public class VoiceChat : MonoBehaviour
             }
 
             SendIntroductionCommand();
-            // Debug functions
-            // Send commands once after connection is established
-            if (isConnectionAccepted && !testMessageSent && rtcSetupCompleted)
+            // Create room once after connection is established
+            if (isConnectionAccepted && !testMessageSent && rtcSetupCompleted && introductionMessageSent)
             {
-                if (isRoomHost)
-                {
-                    SendCreateRoomCommand();
-                }
-                else
-                {
-                    SendJoinRoomCommand(roomId);
-                }
+                SendCreateRoomCommand();
             }
         }
         else
         {
             Debug.Log("Connection is not created or is disconnected.");
+        }
+    }
+
+    // UI Functions
+    public void UpdateRoomIdText()
+    {
+        if (roomIdText != null)
+        {
+            roomIdText.text = ownCurrentRoom;
+        }
+    }
+    public void ToggleJoinRoomWindow()
+    {
+        if (joinRoomWindow != null)
+        {
+            joinRoomWindow.SetActive(!joinRoomWindow.activeSelf);
+        }
+    }
+    public void OnRoomIdInputFieldValueChange(string value)
+    {
+        inputFieldRoomId = value;
+    }
+    public void OnJoinRoomButtonClick()
+    {
+        if (inputFieldRoomId != "") {
+            SendJoinRoomCommand(inputFieldRoomId);
+        }
+    }
+    public void OnCopyRoomIdButtonClick()
+    {
+        GUIUtility.systemCopyBuffer = ownCurrentRoom;
+    }
+    public void OnMicToggleChanged(bool value)
+    {
+        voiceTransmitting = value;
+    }
+    public void OnReceiveToggleChanged(bool value)
+    {
+        voiceReceive = value;
+    }
+
+    void CreatePlayerCard(string playerId, string playerName)
+    {
+        // Instantiate a new player card
+        GameObject newCard = Instantiate(playerCardPrefab, playerCardContainer);
+
+        // Set the player's name
+        Transform playerNameTransform = newCard.transform.Find("PlayerName");
+        if (playerNameTransform != null)
+        {
+            TextMeshProUGUI nameText = playerNameTransform.GetComponent<TextMeshProUGUI>();
+            if (nameText != null)
+            {
+                nameText.text = playerName;
+            }
+            else
+            {
+                Debug.LogWarning("TextMeshProUGUI component not found on PlayerName object.");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("PlayerName object not found in the prefab.");
+        }
+
+        // TODO: Find and set the player's avatar (Needs feature upload avatars to server)
+
+
+        // Add a right-click function
+        // newCard.AddComponent<RightClickHandler>().Setup(playerId);
+
+        // Store the player card in the dictionary
+        playerCards[playerId] = newCard;
+
+    }
+    void RemovePlayerCard(string playerId)
+    {
+        if (playerCards.TryGetValue(playerId, out GameObject card))
+        {
+            Destroy(card);
+            playerCards.Remove(playerId);
+        }
+    }
+
+    void UpdateAvatarBorderColor(string playerId, bool voiceActivity)
+    {
+        if (playerCards.TryGetValue(playerId, out GameObject card))
+        {
+            Transform voiceActivityPanel = card.transform.Find("VoiceActivityPanel");
+            if (voiceActivityPanel != null)
+            {
+                Image panelImage = voiceActivityPanel.GetComponent<Image>();
+                if (panelImage != null)
+                {
+                    Color color = panelImage.color;
+                    color.a = voiceActivity ? 0.45f : 0f; // 115/255 ≈ 0.45
+                    panelImage.color = color;
+                }
+                else
+                {
+                    Debug.LogWarning($"Image component not found on VoiceActivityPanel for player {playerId}");
+                }
+            }
+            else
+            {
+                Debug.LogWarning($"VoiceActivityPanel not found for player {playerId}");
+            }
+        }
+        else
+        {
+            Debug.LogWarning($"Player card not found for player {playerId}");
+        }
+    }
+
+    public void ArrangePlayerCards()
+    {
+        int cardCount = playerCards.Count;
+        float xOffset = 150f; // Horizontal spacing between cards
+        float yOffset = 150f; // Vertical offset for more complex arrangements (if needed)
+        int index = 0;
+
+        foreach (KeyValuePair<string, GameObject> entry in playerCards)
+        {
+            GameObject card = entry.Value;
+            Vector2 newPosition = Vector2.zero;
+
+            switch (cardCount)
+            {
+                case 1:
+                    // Single card in the center
+                    newPosition = Vector2.zero;
+                    break;
+
+                case 2:
+                    // Two cards: one to the left, one to the right
+                    newPosition = new Vector2((index == 0 ? -xOffset : xOffset), 0);
+                    break;
+
+                case 3:
+                    // Three cards: one in the center, one to each side
+                    newPosition = new Vector2((index - 1) * xOffset, 0);
+                    break;
+
+                case 4:
+                    // Four cards: two side by side to the left, two side by side to the right
+                    newPosition = new Vector2((index < 2 ? (index * xOffset - xOffset) : ((index - 2) * xOffset + xOffset)), 0);
+                    break;
+
+                case 5:
+                    // Five cards: one in the center, two to each side
+                    newPosition = new Vector2((index == 0 ? 0 : (index <= 2 ? (index - 1) * xOffset : (index - 3) * xOffset)), 0);
+                    break;
+
+                // Add more cases for more cards if necessary
+
+                default:
+                    // For more than 5 cards, use a fallback or more complex arrangement logic
+                    newPosition = new Vector2((index - (cardCount / 2)) * xOffset, -Mathf.Floor(index / 5) * yOffset);
+                    break;
+            }
+
+            // Apply the new position to the card
+            card.GetComponent<RectTransform>().anchoredPosition = newPosition;
+            index++;
         }
     }
 
@@ -293,8 +489,11 @@ public class VoiceChat : MonoBehaviour
                         string create_status = createRoomJsonObject["rSt"].ToString();
                         if (create_status == "ok") {
                             string room_id = createRoomJsonObject["rId"].ToString();
-                            Debug.Log($"Created Room Id: {room_id}");
+                            // Debug.Log($"Created Room Id: {room_id}");
                             ownCurrentRoom = room_id;
+                            UpdateRoomIdText();
+                            ArrangePlayerCards();
+
                         }
                         else {
                             Debug.LogWarning("Failed to create Room.");
@@ -314,12 +513,15 @@ public class VoiceChat : MonoBehaviour
                         string join_status = joinRoomJsonObject["rSt"].ToString();
                         if (join_status == "ok") {
                             string room_id = joinRoomJsonObject["rId"].ToString();
-                            Debug.Log($"Joined Room successfully: {room_id}");
+                            // Debug.Log($"Joined Room successfully: {room_id}");
                             ownCurrentRoom = room_id;
                             roomNewcomer = true;
+                            joinRoomWindow.SetActive(false);
+                            UpdateRoomIdText();
                         }
                         else {
                             Debug.LogWarning("Failed to join Room.");
+                            joinRoomWindow.SetActive(false);
                         }
                     } 
                     else
@@ -342,6 +544,7 @@ public class VoiceChat : MonoBehaviour
                             roommatesData.Clear();
                             ownCurrentRoom = "";
                             Debug.Log($"Left Room successfully: {room_id}");
+                            UpdateRoomIdText();
                         }
                         else {
                             Debug.LogWarning($"Failed to leave Room: {leave_status}");
@@ -358,7 +561,8 @@ public class VoiceChat : MonoBehaviour
                     if (introductionResponseJsonObject.ContainsKey("pId"))
                     {
                         ownPlayerId = introductionResponseJsonObject["pId"].ToString();
-                        Debug.Log($"Player registered: {ownPlayerId}");
+                        // Debug.Log($"Player registered: {ownPlayerId}");
+                        CreatePlayerCard(ownPlayerId, playerName);
                     }
                     else
                     {
@@ -429,6 +633,20 @@ public class VoiceChat : MonoBehaviour
         }
     }
 
+    bool GetVoiceActivity(float[] audioSegment)
+    {
+        float threshold = voiceActivityThreshold;
+        float sum = 0f;
+        for (int i = 0; i < audioSegment.Length; i++)
+        {
+            sum += audioSegment[i] * audioSegment[i];
+        }
+        float amplitude = Mathf.Sqrt(sum / audioSegment.Length);
+
+        bool voiceActivity = amplitude > threshold;
+
+        return voiceActivity;
+    }
 
     // Peer connection management
     private void PeerManager(JObject peerData, bool emptyRoom = false)
@@ -442,9 +660,17 @@ public class VoiceChat : MonoBehaviour
                 {
                     Debug.Log($"Disconnecting {player.Key} - {player.Value}");
                     PeerDisconnection(player.Key);
+                    peerOutputs[player.Key].Dispose();
+                    RemovePlayerCard(player.Key);
                 }
                 roommatesData.Clear();
+                roommatesPeerStatus.Clear();
+                peerOutputs.Clear();
+                dataChannels.Clear();
+                remoteConnections.Clear();
+                storedIceCandidates.Clear();
 
+                ArrangePlayerCards();
             }
             return;
         }
@@ -484,6 +710,7 @@ public class VoiceChat : MonoBehaviour
                 roommatesPeerStatus[player.Key] = "Connecting";
                 peerOutputs[player.Key] = audioOutputFactory.Create(16000, 1, 1600);
                 roommatesData[player.Key] = player.Value;
+                CreatePlayerCard(player.Key, player.Value);
                 if (roomNewcomer)
                 {
                     NewPeerConnection(player.Key);
@@ -507,7 +734,12 @@ public class VoiceChat : MonoBehaviour
                 roommatesPeerStatus.Remove(player.Key);
                 peerOutputs[player.Key].Dispose();
                 peerOutputs.Remove(player.Key);
+                RemovePlayerCard(player.Key);
             }
+        }
+
+        if (hasNewPlayer || hasPlayerLeft) {
+            ArrangePlayerCards();
         }
     }
 
@@ -519,6 +751,20 @@ public class VoiceChat : MonoBehaviour
         // audioOutput?.Feed(segmentIndex, micInput.Frequency, micInput.ChannelCount, segment);     // Test mic loopback to output
 
         if (!voiceTransmitting) {return;}
+
+        // Check self voice activity
+        // Initialize peerVoiceActivity
+        if (!peerVoiceActivity.ContainsKey(ownPlayerId)) {
+            peerVoiceActivity[ownPlayerId] = false;
+
+        }
+        // Get voice activity change
+        bool oldSelfVoiceActivity = peerVoiceActivity[ownPlayerId];
+        bool selfVoiceActivity = GetVoiceActivity(segment);
+        if (selfVoiceActivity != oldSelfVoiceActivity) {
+            peerVoiceActivity[ownPlayerId] = selfVoiceActivity;
+            UpdateAvatarBorderColor(ownPlayerId, selfVoiceActivity);
+        }
 
         // Iterate through peer connections and send segment to peers
         foreach (var kvp in remoteConnections)
@@ -584,6 +830,20 @@ public class VoiceChat : MonoBehaviour
     {
         if (!voiceReceive) {return;}
 
+        // Check peer's voice activity
+        // Initialize peerVoiceActivity
+        if (!peerVoiceActivity.ContainsKey(playerId)) {
+            peerVoiceActivity[playerId] = false;
+
+        }
+        // Get voice activity change
+        bool oldMateVoiceActivity = peerVoiceActivity[playerId];
+        bool mateVoiceActivity = GetVoiceActivity(audioSegment);
+        if (mateVoiceActivity != oldMateVoiceActivity) {
+            peerVoiceActivity[playerId] = mateVoiceActivity;
+            UpdateAvatarBorderColor(playerId, mateVoiceActivity);
+        }
+
         // Find the audio output for this player
         if (peerOutputs.TryGetValue(playerId, out var audioOutput))
         {
@@ -637,7 +897,7 @@ public class VoiceChat : MonoBehaviour
         {
             if (state == RTCIceConnectionState.Completed)
             {
-                Debug.Log($"ICE connection completed for {playerId}");
+                // Debug.Log($"ICE connection completed for {playerId}");
             }
         };
 
@@ -645,7 +905,7 @@ public class VoiceChat : MonoBehaviour
         {
             if (state == RTCIceGatheringState.Complete)
             {
-                Debug.Log($"ICE gathering completed for {playerId}");
+                // Debug.Log($"ICE gathering completed for {playerId}");
                 StartCoroutine(SendStoredIceCandidates(playerId));
             }
         };
@@ -716,7 +976,7 @@ public class VoiceChat : MonoBehaviour
                     storedIceCandidates[playerId] = new List<RTCIceCandidate>();
                 }
                 storedIceCandidates[playerId].Add(e);
-                Debug.Log($"Stored ICE candidate for {playerId}: {e.Candidate}");
+                // Debug.Log($"Stored ICE candidate for {playerId}: {e.Candidate}");
             }
         };
     }
@@ -746,7 +1006,7 @@ public class VoiceChat : MonoBehaviour
 
             // Clear the stored candidates after sending
             storedIceCandidates.Remove(playerId);
-            Debug.Log($"Sent {sentCandidateCount} ICE candidates to {playerId}");
+            // Debug.Log($"Sent {sentCandidateCount} ICE candidates to {playerId}");
         }
     }
 
@@ -785,7 +1045,7 @@ public class VoiceChat : MonoBehaviour
         {
             if (state == RTCIceConnectionState.Connected)
             {
-                Debug.Log($"ICE connection completed for {playerId}");
+                // Debug.Log($"ICE connection completed for {playerId}");
             }
         };
 
@@ -793,7 +1053,7 @@ public class VoiceChat : MonoBehaviour
         {
             if (state == RTCIceGatheringState.Complete)
             {
-                Debug.Log($"ICE gathering completed for {playerId}");
+                // Debug.Log($"ICE gathering completed for {playerId}");
                 StartCoroutine(SendStoredIceCandidates(playerId));
             }
         };
@@ -990,7 +1250,6 @@ public class VoiceChat : MonoBehaviour
         introductionMessageSent = true;
     }
 
-
     void SendCreateRoomCommand()
     {
         if (testMessageSent) { return; }
@@ -1013,9 +1272,6 @@ public class VoiceChat : MonoBehaviour
 
     void SendJoinRoomCommand(string roomId)
     {
-        if (testMessageSent){return;}
-        
-
         if (!connection.IsCreated || connection.GetState(driver) != NetworkConnection.State.Connected)
         {
             // Debug.LogError("Connection not fully established. Cannot send data.");
@@ -1031,7 +1287,6 @@ public class VoiceChat : MonoBehaviour
 
         SendSinglePacketToServer(2, jsonString);
 
-        testMessageSent = true;
     }
 
     void SendQuitRoomCommand(string roomId)
