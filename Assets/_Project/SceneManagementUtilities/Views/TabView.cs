@@ -13,25 +13,11 @@ namespace _Project.SceneManagementUtilities.Views
         [field: SerializeField] private Canvas Canvas { get; set; }
         [field: SerializeField] private NavigationButtonType NavigationButtonType { get; set; }
 
-        internal Signal<bool> onCardSwipeCanvasToggle = new Signal<bool>(); 
-
         public void ToggleCanvas(NavigationButtonType navigationButtonType)
         {
             if (navigationButtonType == NavigationButtonType)
             {
-                if (NavigationButtonType == NavigationButtonType.CardSwipe)
-                {
-                    onCardSwipeCanvasToggle.Dispatch(true);
-                }
                 Canvas.enabled = true;
-            }
-            else
-            {
-                if (NavigationButtonType == NavigationButtonType.CardSwipe)
-                {
-                    onCardSwipeCanvasToggle.Dispatch(false);
-                }
-                Canvas.enabled = false;
             }
         }
         */

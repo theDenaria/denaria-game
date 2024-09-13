@@ -14,17 +14,11 @@ namespace _Project.ShowLoading.Mediators
         {
             ShowLoadingAnimationSignal.AddListener(ShowLoadingAnimation);
             HideLoadingAnimationSignal.AddListener(HideLoadingAnimation);
-            
-            //LoadingPanel.LoadingOnVisibilityChanged += OnLoadingOnVisibilityChanged;//That is NN class
-            //NNBusSystem.OnDatePrinterAwake += HideLoadingAnimation;//TODO: Uncomment and change 21 August
-
         }
         public override void OnRemove()
         {
             ShowLoadingAnimationSignal.AddListener(ShowLoadingAnimation);
             HideLoadingAnimationSignal.RemoveListener(HideLoadingAnimation);
-            //LoadingPanel.LoadingOnVisibilityChanged -= OnLoadingOnVisibilityChanged;//That is NN class
-            //NNBusSystem.OnDatePrinterAwake -= HideLoadingAnimation;//TODO: Uncomment and change 21 August
         }
 
         private void OnLoadingOnVisibilityChanged(bool isVisible)

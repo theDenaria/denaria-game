@@ -111,14 +111,6 @@ using UnityEngine;
         GUIUtility.systemCopyBuffer = PlayerPrefs.GetString(Constants.DEVICE_ID_KEY,SystemInfo.deviceUniqueIdentifier);
     }
 
-#if UNITY_EDITOR
-    [Category("Live Ops")]
-    public void AddTestDayOffsetToCBS()
-    {
-        SRDebuggerBusSystem.CallAddTestDayOffsetToCBS();
-    }
-#endif
-
     [Category("Addressables")]
     public void ClearAssetBundleCache()
     {

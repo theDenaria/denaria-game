@@ -6,21 +6,21 @@ namespace _Project.ShowLoading.Mediators
 {
     public class LoadingView : View
     {
-        [field: SerializeField]private GameObject loadingAnimation { get; set; }
+        //[field: SerializeField]private GameObject loadingAnimation { get; set; }
 
         private void Start()
         {
-            loadingAnimation.SetActive(false);
+            //loadingAnimation.SetActive(false);
         }
 
         public void ShowLoadingAnimation()
         {
-            loadingAnimation.SetActive(true);
+            //loadingAnimation.SetActive(true);
         }
 
         public void HideLoadingAnimation()
         {
-            loadingAnimation.SetActive(false);
+           //loadingAnimation.SetActive(false);
         }
     }
 }

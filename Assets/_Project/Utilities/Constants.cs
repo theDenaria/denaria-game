@@ -13,9 +13,6 @@ namespace _Project.Utilities
 
 		public const string MISCELLANEOUS_CONFIG = "MiscellaneousConfig";
 
-		public const string STORY_ENDED_EPISODE_ID_SUFFIX = "_temporary_story_finished_point";
-		public const string STORY_COOLDOWN_EPISODE_ID_SUFFIX = "_temporary_cooldown_chat_point";
-
 		#region LOGS
 
 		public const string TEST_BRANCH_BUILD = "TEST_BRANCH_BUILD";
@@ -59,10 +56,6 @@ namespace _Project.Utilities
 		public const string PLAYER_PROFILE = "PlayerProfile";
 		//public const string PLAYER_DISPLAY_NAME = "PlayerDisplayName";
 		//public const string PLAYER_AVATAR_INDEX = "PlayerAvatarIndex";
-		//public const string PLAYER_GENRES = "PlayerGenres";
-		
-		public const string PLAYER_ADULT_CONTENT_AGREE = "PlayerAdultContentAgree";
-		public const string PLAYER_APPLE_PRIVACY_AGREE = "PlayerApplePrivacyAgree";
 
 		public const string VALUE_IS_NOT_EXISTS = "ERROR_VALUE_ValueIsNotInstantiatedYet";
 
@@ -79,7 +72,6 @@ namespace _Project.Utilities
 		public const string PRIVACY_POLICY_TEXT_SCENE = "privacy_policy_text";
 		public const string LOADING_SCENE = "loading_screen";
 		public const string MAIN_MENU_SCENE = "main_menu_screen";
-		public const string TEASER_SCENE = "teaser_screen";
 		public const string USER_PROFILE_SCENE = "user_profile_screen";
 		public const string STORE_SCENE = "store_screen";
 		public const string SETTING_SCENE = "setting_screen";
@@ -92,10 +84,7 @@ namespace _Project.Utilities
 		public const string BACK_BUTTON = "back_button";
 		public const string OUT_OF_PROFILE_GEM_BUTTONS = "out_of_profile_gem_buttons";
 		public const string GEMS_BUTTON = "gem_buttons";
-		public const string CLOSE_BUTTON = "close_button";
-		public const string OPEN_BUTTON = "open_button";
 		public const string NAVIGATION_BAR_BUTTON = "navigation_bar_button";
-		public const string REQUEST_RIGHT_SWIPE = "right_swipe";
 		public const string FORCE_UPDATE_NEEDED = "force_update_needed";
 
 		#endregion
@@ -161,12 +150,6 @@ namespace _Project.Utilities
 
 		#endregion
 
-		#region ADULT_CONTENT
-
-		public const string SHOW_ADULT_CONTENT = "ShowAdultContentPopUp";
-
-		#endregion
-
 		#region AppleTracking
 
 		public const string PLAYER_APPLE_TRACKING_AGREE = "PlayerAppleTrackingAgree";
@@ -190,9 +173,7 @@ namespace _Project.Utilities
 		public const int USER_CALLBACK_NOTIFICATION_TIME_IN_MINUTES = 1440;
 		
 		public const string USER_HAS_NOT_ENTERED_GAME_NOTIFICATION_TEXT = "Hey! We missed you so much!";
-
-		public const string OUT_OF_PROFILE_TIME_ENDED_NOTIFICATION_TEXT = "New stuff happening in game! Come and check it out!";
-
+		
 		#endregion
 
 		#region CachedAnalyticEvent

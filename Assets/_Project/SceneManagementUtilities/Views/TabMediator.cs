@@ -11,20 +11,16 @@ namespace _Project.SceneManagementUtilities.Views
     {
         /*
         [Inject] public TabView View { get; set; }
-        [Inject] public ToggleOutOfProfilesCanvasSignal ToggleOutOfProfilesCanvasSignal { get; set; }
-        [Inject] public ControlAndToggleOutOfProfileCanvasSignal ControlAndToggleOutOfProfileCanvasSignal { get; set; }
         [Inject] public TabCanvasRegisteredSignal TabCanvasRegisteredSignal { get; set; }
         public override void OnRegister()
         {
             base.OnRegister();
-            View.onCardSwipeCanvasToggle.AddListener(OnCardSwipeCanvasToggle);
             TabCanvasRegisteredSignal.Dispatch();
         }
 
         public override void OnRemove()
         {
             base.OnRemove();
-            View.onCardSwipeCanvasToggle.RemoveListener(OnCardSwipeCanvasToggle);
         }
         
         [ListensTo(typeof(OnNavigationButtonClickSignal))]
@@ -33,11 +29,6 @@ namespace _Project.SceneManagementUtilities.Views
             View.ToggleCanvas(navigationButtonType);//TODO: Use Signals later
         }
 
-        private void OnCardSwipeCanvasToggle(bool toggle)
-        {
-            if(!toggle) ToggleOutOfProfilesCanvasSignal.Dispatch(toggle);
-            else ControlAndToggleOutOfProfileCanvasSignal.Dispatch();
-        }
         */
     }
 }

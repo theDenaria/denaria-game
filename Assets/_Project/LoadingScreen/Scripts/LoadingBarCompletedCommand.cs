@@ -1,7 +1,5 @@
 ﻿/*using _Project.CBSUtility.Models;
 using _Project.GameLifecycle.Scripts.Signals;
-using _Project.GenrePickScreen.Scripts.Models;
-using _Project.HostWelcomeScreen.Scripts.model;
 using _Project.PlayerProfile.Scripts.Services;*///TODO: Uncomment 21 August
 using _Project.LoadingScreen.Models;
 using _Project.LoggingAndDebugging;
@@ -59,7 +57,6 @@ namespace _Project.LoadingScreen.Scripts
 			{
 				NotifySceneChangeCommandData changeCommandData = new NotifySceneChangeCommandData(Constants.AGREEMENT_SCENE, Constants.SCENE_COMPLETED, "success");
 				NotifySceneChangeSignal.Dispatch(changeCommandData);
-				LoadingBarView.Instantiate(LoadingBarView.termsOfServicePopUp, LoadingBarView.transform.parent);
 			}
 			else
 			{

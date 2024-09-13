@@ -12,13 +12,11 @@ namespace _Project.SceneManagementUtilities
 
         public override void OnRegister()
         {
-            //GenreContinueButtonView.onButtonClickSignal.AddListener(SaveGenres);
             SceneChangeHelperView.init();
         }
 
         public override void OnRemove()
         {
-            //GenreContinueButtonView.onButtonClickSignal.RemoveListener(SaveGenres);
         }
 
         private void Start()
