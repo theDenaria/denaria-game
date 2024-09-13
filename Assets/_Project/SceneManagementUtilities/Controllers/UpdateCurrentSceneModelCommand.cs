@@ -5,7 +5,7 @@ using strange.extensions.command.impl;
 
 namespace _Project.SceneManagementUtilities.Controllers
 {
-    public class NotifySceneChangeCommand : Command
+    public class UpdateCurrentSceneModelCommand : Command
     {
         [Inject] public NotifySceneChangeCommandData NotifySceneChangeCommandData { get; set; }
         [Inject] public ICurrentSceneModel CurrentSceneModel { get; set; }
