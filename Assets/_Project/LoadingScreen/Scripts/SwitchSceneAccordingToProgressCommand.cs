@@ -12,7 +12,7 @@ namespace _Project.LoadingScreen.Scripts
 	{
 		[Inject] public ChangeSceneGroupSignal ChangeSceneGroupSignal { get; set; }
 		//[Inject] public IGameProgressService GameProgressService { get; set; }//TODO: Uncomment 21 August
-		[Inject] public NotifySceneChangeSignal NotifySceneChangeSignal { get; set; }
+		[Inject] public SceneChangedSignal SceneChangedSignal { get; set; }
 
 		public override void Execute()
 		{
@@ -21,7 +21,7 @@ namespace _Project.LoadingScreen.Scripts
 
 		private void ChangeScene()
 		{
-			NotifySceneChangeCommandData sceneChangeCommandData;
+			SceneChangedCommandData sceneChangedCommandData;
 			/*switch (GameProgressService.GetGameProgress())//TODO: Uncomment 21 August
 			{
 				case GameProgress.None:
@@ -32,9 +32,9 @@ namespace _Project.LoadingScreen.Scripts
 					ChangeSceneGroupSignal.Dispatch(SceneGroupType.MainMenu, new LoadingOptions());
 					break;
 			}*/
-			sceneChangeCommandData = new NotifySceneChangeCommandData(Constants.LOADING_SCENE,
+			sceneChangedCommandData = new SceneChangedCommandData(Constants.LOADING_SCENE,
 				Constants.CONTINUE_BUTTON, "success");
-			NotifySceneChangeSignal.Dispatch(sceneChangeCommandData);
+			SceneChangedSignal.Dispatch(sceneChangedCommandData);
 
 			ChangeSceneGroupSignal.Dispatch(SceneGroupType.MainMenu, new LoadingOptions());
 			

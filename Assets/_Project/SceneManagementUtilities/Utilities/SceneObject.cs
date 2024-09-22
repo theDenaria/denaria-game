@@ -41,7 +41,7 @@ namespace _Project.SceneManagementUtilities.Utilities
                 }
             }
     
-            Debug.Log("Scene [" + sceneObjectName + "] cannot be used. Add this scene to the 'Scenes in the Build' in the build settings.");
+            Debug.LogWarning("Scene [" + sceneObjectName + "] cannot be used. Add this scene to the 'Scenes in the Build' in the build settings.");
             return null;
         }
     
