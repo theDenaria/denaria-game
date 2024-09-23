@@ -1,0 +1,1 @@
+Everything we create as a team go inside this folder. So, non-third party files rest here.
