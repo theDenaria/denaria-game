@@ -1,0 +1,14 @@
+namespace _Project.Login.Controllers
+{
+    public class LoginWithMailAndPasswordCommandData
+    {
+        public string Mail { get; set; }
+        public string Password { get; set; }
+
+        LoginWithMailAndPasswordCommandData(string mail, string password)
+        {
+            Mail = mail;
+            Password = password;
+        }
+    }
+}
