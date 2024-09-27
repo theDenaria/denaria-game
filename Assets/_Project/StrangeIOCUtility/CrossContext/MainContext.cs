@@ -1,3 +1,6 @@
+using strange.extensions.context.impl;
+using UnityEngine;
+
 using _Project.LoadingScreen.Scripts;
 using _Project.LoggingAndDebugging;
 using _Project.SceneManagementUtilities.Controllers;
@@ -10,8 +13,11 @@ using _Project.StrangeIOCUtility.Models;
 using _Project.WaitingCanvas.Scripts.Controllers;
 using _Project.WaitingCanvas.Scripts.Signals;
 using _Project.WaitingCanvas.Scripts.Views;
-using strange.extensions.context.impl;
-using UnityEngine;
+using _Project.SettingsManager.Scripts.Controllers;
+using _Project.SettingsManager.Scripts.Models;
+using _Project.SettingsManager.Scripts.Signals;
+using _Project.SettingsManager.Scripts.Views;
+
 
 /*using _Project.ABTesting.Scripts.Commands;
 using _Project.ABTesting.Scripts.Models;
@@ -128,11 +134,11 @@ using _Project.ShowLoading.Signals;*/
 
 namespace _Project.StrangeIOCUtility.CrossContext
 {
-    public class MainContext : SignalContext
+	public class MainContext : SignalContext
 	{
 		public MainContext(MonoBehaviour view) : base(view)
 		{
-			
+
 		}
 
 		protected override void mapBindings()
@@ -156,15 +162,16 @@ namespace _Project.StrangeIOCUtility.CrossContext
 				
 				BindApplicationLifecycleInjections();*/
 				BindSceneManagementInjections();
-                BindWaitingCanvasInjections();
-				
+				BindWaitingCanvasInjections();
+
 				//BindLoginInjections(); //TODO: Uncomment 21 August
 				BindLogReportInjections();
 				BindLoadingInjections();
 				ShowLoadingBindings();
+				SettingsManagerBindings();
 			}
 		}
-		
+
 		/*
 		private void BindForceUpdatePopup()
 		{
@@ -401,7 +408,7 @@ namespace _Project.StrangeIOCUtility.CrossContext
 			commandBinder.Bind<LoadAdditiveSceneGroupSignal>().To<LoadAdditiveSceneGroupCommand>();
 			commandBinder.Bind<NotifySceneChangeSignal>().To<NotifySceneChangeCommand>();
 		}
-		
+
 		private void BindWaitingCanvasInjections()
 		{
 			injectionBinder.Bind<AddWaitHandlerSignal>().ToSingleton().CrossContext();
@@ -410,24 +417,38 @@ namespace _Project.StrangeIOCUtility.CrossContext
 
 			mediationBinder.Bind<WaitingCanvasView>().To<WaitingCanvasMediator>();
 		}
-		
+
 		private void ShowLoadingBindings()
 		{
-            mediationBinder.Bind<LoadingView>().To<LoadingMediator>();
-			injectionBinder.Bind<ShowLoadingAnimationSignal>().ToSingleton().CrossContext();;
-			injectionBinder.Bind<HideLoadingAnimationSignal>().ToSingleton().CrossContext();;
+			mediationBinder.Bind<LoadingView>().To<LoadingMediator>();
+			injectionBinder.Bind<ShowLoadingAnimationSignal>().ToSingleton().CrossContext(); ;
+			injectionBinder.Bind<HideLoadingAnimationSignal>().ToSingleton().CrossContext(); ;
 		}
-		
+
 		private void BindLoadingInjections()
 		{
 			injectionBinder.Bind<CompleteLoadingSignal>().ToSingleton().CrossContext();
 		}
-		
+
 		private void BindLogReportInjections()
 		{
 			injectionBinder.Bind<IFileOperationService>().To<FileOperationService>().ToSingleton().CrossContext();
 			injectionBinder.Bind<INativeShareService>().To<NativeShareService>().ToSingleton().CrossContext();
 			injectionBinder.Bind<ILogRecordService>().To<LogRecordService>().ToSingleton().CrossContext();
-		}		
+		}
+
+		private void SettingsManagerBindings()
+		{
+			injectionBinder.Bind<SettingsModel>().ToSingleton();
+			injectionBinder.Bind<ApplySettingsCommand>().ToSingleton();
+			injectionBinder.Bind<RestoreDefaultSettingsCommand>().ToSingleton();
+
+			mediationBinder.Bind<SettingsView>().ToMediator<SettingsViewMediator>();
+
+			commandBinder.Bind<ApplySettingsSignal>().To<ApplySettingsCommand>();
+			commandBinder.Bind<RestoreDefaultSettingsSignal>().To<RestoreDefaultSettingsCommand>();
+
+			// You can map more commands here for the future
+		}
 	}
 }
