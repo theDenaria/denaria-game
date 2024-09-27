@@ -21,9 +21,9 @@ using UnityEngine;
 
 namespace _Project.LoadingScreen.Scripts.Context
 {
-    public class LoadingBarContext : SignalContext
+    public class LoadingSceneContext : SignalContext
 	{
-		public LoadingBarContext(MonoBehaviour view) : base(view)
+		public LoadingSceneContext(MonoBehaviour view) : base(view)
 		{
 
 		}
@@ -32,8 +32,8 @@ namespace _Project.LoadingScreen.Scripts.Context
 		{
 			base.Start();
 			
-			LoadingScreenStartSignal loadingScreenStartSignal = (LoadingScreenStartSignal)injectionBinder.GetInstance<LoadingScreenStartSignal>();
-			loadingScreenStartSignal.Dispatch();
+			LoadingScreenShownSignal loadingScreenShownSignal = (LoadingScreenShownSignal)injectionBinder.GetInstance<LoadingScreenShownSignal>();
+			loadingScreenShownSignal.Dispatch();
 
 			return this;
 		}

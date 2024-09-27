@@ -14,6 +14,8 @@ namespace _Project.LoadingScreen.Scripts
 
 			View.startLoadingSignal.AddListener(StartLoading);
 			//View.loadingBarCompletedSignal.AddListener(ShowTermsServicePopUp);
+			View.temporaryLoadingBarCompletedSignal.AddListener(ShowTermsServicePopUp);
+
 			View.init();
 		}
 
@@ -23,6 +25,8 @@ namespace _Project.LoadingScreen.Scripts
 
 			View.startLoadingSignal.RemoveListener(StartLoading);
 			//View.loadingBarCompletedSignal.RemoveListener(ShowTermsServicePopUp);
+			View.temporaryLoadingBarCompletedSignal.RemoveListener(ShowTermsServicePopUp);
+
 		}
 
 		private void StartLoading()

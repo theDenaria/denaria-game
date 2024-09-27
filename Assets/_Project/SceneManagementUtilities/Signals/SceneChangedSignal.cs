@@ -2,7 +2,7 @@ using strange.extensions.signal.impl;
 
 namespace _Project.SceneManagementUtilities.Signals
 {
-    public class NotifySceneChangeSignal : Signal<NotifySceneChangeCommandData>
+    public class SceneChangedSignal : Signal<SceneChangedCommandData>
     {
         
     }
