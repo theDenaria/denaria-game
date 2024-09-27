@@ -27,7 +27,7 @@ namespace _Project.SceneManagementUtilities.Services
         
         //This initialization below looks redundant but needed to prevent null reference exception in SetSceneGroupCommand
         public List<SceneGroupData> SceneGroupDataList { get; set; } = new List<SceneGroupData>();
-        public SceneGroupType CurrentSceneGroupType { get; set; } = SceneGroupType.Loading; //Assuming game starts with Loading Screen
+        public SceneGroupType CurrentSceneGroupType { get; set; } = SceneGroupType.Boot; //Assuming game starts with Boot Screen
         public List<SceneGroupType> AdditivelyOpenedSceneGroups { get; set; } = new List<SceneGroupType>();
 		public bool IsLoading { get; set; } = false;
 

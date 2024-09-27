@@ -23,48 +23,31 @@ namespace _Project.LoadingScreen.Scripts
 		//[Inject] public ICustomProfileData CustomProfileData { get; set; }//TODO: Uncomment 21 August
 		//[Inject] public StartCheckingNetworkConnectionSignal StartCheckingNetworkConnectionSignal { get; set; }//TODO: Uncomment 21 August
 
-		[Inject] public NotifySceneChangeSignal NotifySceneChangeSignal { get; set; }
+		[Inject] public SceneChangedSignal SceneChangedSignal { get; set; }
 		[Inject] public SwitchSceneAccordingToProgressSignal SwitchSceneAccordingToProgressSignal { get; set; }
 
 		public override void Execute()
 		{
-#if UNITY_EDITOR
-			if (PlayerPrefs.GetInt("IsTesting" , 0) == 1)
-			{
-				string[] scenesToTest = PlayerPrefs.GetString("SceneToTest", string.Empty).Split(",");
-
-				SetDummyData(scenesToTest);
-				HandleOpenTestScenes(scenesToTest);
-
-				return;
-			}
-#endif
-			ITermsOfServiceModel termsOfServiceModel = new TermsOfServiceModel();
-			string termsOfServiceAcceptedString = "termsOfServiceAcceptedString"; //CustomProfileData.ProfileDataDictionary[Constants.PLAYER_TERMS_OF_SERVICE_ACCEPTED];
-                                                                         ////TODO: Uncomment 21 August
-			if (termsOfServiceAcceptedString.Equals(Constants.VALUE_IS_NOT_EXISTS))
-			{
-				termsOfServiceModel.IsAccepted = false;
-			}
-			else
-			{
-				termsOfServiceModel =  JSONUtilityZeitnot.TryDeserializeObject<ITermsOfServiceModel>(termsOfServiceAcceptedString);
-			}
 			
-			DebugLoggerMuteable.Log("termsOfServiceModel is fetched via LoadingBarCompletedCommand, and it was: " + termsOfServiceModel.IsAccepted);
-			
-			if (!termsOfServiceModel.IsAccepted)
-			{
-				NotifySceneChangeCommandData changeCommandData = new NotifySceneChangeCommandData(Constants.AGREEMENT_SCENE, Constants.SCENE_COMPLETED, "success");
-				NotifySceneChangeSignal.Dispatch(changeCommandData);
-			}
-			else
-			{
-				SwitchSceneAccordingToProgressSignal.Dispatch();
-			}
+			if (OpenWorkedOnSceneDuringDevelopment()) return;
+
+			OpenNextScene();
 
 			//StartCheckingNetworkConnectionSignal.Dispatch();
 		}
+		
+		private bool OpenWorkedOnSceneDuringDevelopment()
+		{
+#if UNITY_EDITOR
+			if (ShouldOpenWorkedOnScenes())
+			{
+				OpenActivelyWorkedOnScenes();
+			    return true;
+		    }
+#endif
+		    return false;
+		}
+
 
 		private void SetDummyData(string[] scenesToTest)
 		{
@@ -96,6 +79,24 @@ namespace _Project.LoadingScreen.Scripts
 					SceneManager.LoadScene(scenesToTest[i], LoadSceneMode.Additive);
 				}
 			}
+		}
+		
+		private void OpenNextScene()
+		{
+			SwitchSceneAccordingToProgressSignal.Dispatch();
+		}
+		
+		private static bool ShouldOpenWorkedOnScenes()
+		{
+			return PlayerPrefs.GetInt("IsTesting" , 0) == 1;
+		}
+
+		private void OpenActivelyWorkedOnScenes()
+		{
+			string[] scenesToTest = PlayerPrefs.GetString("SceneToTest", string.Empty).Split(",");
+
+			SetDummyData(scenesToTest);
+			HandleOpenTestScenes(scenesToTest);
 		}
 	}
 }

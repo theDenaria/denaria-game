@@ -155,7 +155,6 @@ namespace _Project.StrangeIOCUtility.CrossContext
 				BindApplicationMemoryTrackingInjections();
 				
 				BindApplicationLifecycleInjections();*/
-				BindSceneManagementInjections();
                 BindWaitingCanvasInjections();
 				
 				//BindLoginInjections(); //TODO: Uncomment 21 August
@@ -387,20 +386,6 @@ namespace _Project.StrangeIOCUtility.CrossContext
 			
 			commandBinder.Bind<RetryNetworkConnectionSignal>().To<RetryNetworkConnectionCommand>();
 		}*/
-
-		private void BindSceneManagementInjections()
-		{
-			injectionBinder.Bind<ChangeSceneGroupSignal>().ToSingleton().CrossContext();
-			injectionBinder.Bind<LoadAdditiveSceneGroupSignal>().ToSingleton().CrossContext();
-			injectionBinder.Bind<ISceneChangeService>().To<SceneChangeService>().ToSingleton().CrossContext();
-			injectionBinder.Bind<ISceneGroupModel>().To<SceneGroupListData>().ToSingleton().CrossContext();
-			injectionBinder.Bind<ICurrentSceneModel>().To<CurrentSceneModel>().ToSingleton().CrossContext();
-			injectionBinder.Bind<NotifySceneChangeSignal>().ToSingleton().CrossContext();
-
-			commandBinder.Bind<ChangeSceneGroupSignal>().To<ChangeSceneGroupCommand>();
-			commandBinder.Bind<LoadAdditiveSceneGroupSignal>().To<LoadAdditiveSceneGroupCommand>();
-			commandBinder.Bind<NotifySceneChangeSignal>().To<NotifySceneChangeCommand>();
-		}
 		
 		private void BindWaitingCanvasInjections()
 		{

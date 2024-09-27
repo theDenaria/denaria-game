@@ -17,6 +17,8 @@ namespace _Project.LoadingScreen.Scripts
 		private float totalProgress = 0;
 		private float currentProgress = 0;
 
+		internal Signal temporaryLoadingBarCompletedSignal = new Signal();
+
 		internal void init()
 		{
 			startLoadingSignal.Dispatch();
@@ -73,6 +75,8 @@ namespace _Project.LoadingScreen.Scripts
 				}
     
 				loadingTMP.text = "Content is now unpacking...";
+				temporaryLoadingBarCompletedSignal.Dispatch();
+
 			}
 		}
 	}

@@ -19,7 +19,7 @@ namespace _Project.ForceUpdate.Scripts.Controllers
         [Inject] public IMinimumClientVersionNeededService MinimumClientVersionNeededService { get; set; }
         [Inject] public OpenForceUpdatePopupSignal OpenForceUpdatePopupSignal { get; set; }
         
-        [Inject] public NotifySceneChangeSignal NotifySceneChangeSignal { get; set; }
+        [Inject] public SceneChangedSignal SceneChangedSignal { get; set; }
 
         public override async void Execute()
         {
@@ -38,7 +38,7 @@ namespace _Project.ForceUpdate.Scripts.Controllers
                 OpenForceUpdatePopupSignal.Dispatch();
                 UnityEngine.Debug.Log("OpenForceUpdatePopupSignal.Dispatched");
                 
-                NotifySceneChangeSignal.Dispatch(new NotifySceneChangeCommandData(Constants.FORCE_UPDATE_SCENE,Constants.FORCE_UPDATE_NEEDED, "success"));
+                SceneChangedSignal.Dispatch(new SceneChangedCommandData(Constants.FORCE_UPDATE_SCENE,Constants.FORCE_UPDATE_NEEDED, "success"));
 
                 Fail();//So that game does not continue downloading etc. in the background.
             }
