@@ -1,4 +1,5 @@
 using _Project.Login.Controllers;
+using _Project.Login.Scripts.Signals;
 using CBS;
 using CBS.Models;
 
@@ -7,6 +8,7 @@ namespace _Project.Login.Services
     public class LoginService : ILoginService
     {
         private IAuth CBSAuth { get; set; }
+        [Inject] public UserLoginCompletedSignal OnLoginResponseReceivedSignal { private get; set; }
 
         public void LoginWithMailAndPassword(LoginWithMailAndPasswordCommandData loginWithMailAndPasswordCommandData)
         {
@@ -16,10 +18,20 @@ namespace _Project.Login.Services
                 Mail = loginWithMailAndPasswordCommandData.Mail,
                 Password = loginWithMailAndPasswordCommandData.Password
             };
-            CBSAuth.LoginWithMailAndPassword(loginRequest, OnLogin);
+            CBSAuth.LoginWithMailAndPassword(loginRequest, OnLoginResponseReceived);
         }
-        
-        private void OnLogin(CBSLoginResult result)
+
+        public void LoginWithDeviceId(LoginWithDeviceIdCommandData loginWithDeviceIdCommandData)
+        {
+            CBSAuth.LoginWithDevice(OnLoginResponseReceived);
+        }
+
+        public void LoginWithCustomId(LoginWithCustomIdCommandData loginWithMailAndPasswordCommandData)
+        {
+            CBSAuth.LoginWithCustomID(loginWithMailAndPasswordCommandData.CustomId, OnLoginResponseReceived);
+        }
+
+        private void OnLoginResponseReceived(CBSLoginResult result)
         {
             if (result.IsSuccess)
             {
@@ -31,6 +43,8 @@ namespace _Project.Login.Services
             {
                 Debug.Log(result.Error.Message);
             }
+
+            OnLoginResponseReceivedSignal.Dispatch(result);
         }
     }
 }

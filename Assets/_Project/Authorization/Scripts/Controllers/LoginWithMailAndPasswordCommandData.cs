@@ -1,3 +1,5 @@
+using _Project.SceneManagementUtilities;
+
 namespace _Project.Login.Controllers
 {
     public class LoginWithMailAndPasswordCommandData
@@ -5,7 +7,7 @@ namespace _Project.Login.Controllers
         public string Mail { get; set; }
         public string Password { get; set; }
 
-        LoginWithMailAndPasswordCommandData(string mail, string password)
+        public LoginWithMailAndPasswordCommandData(string mail, string password)
         {
             Mail = mail;
             Password = password;
