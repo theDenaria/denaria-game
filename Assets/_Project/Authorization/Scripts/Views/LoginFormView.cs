@@ -15,28 +15,41 @@ namespace _Project.Login.Scripts.Views
 {
     public class LoginFormView : ViewZeitnot
     {
-        private AuthPrefabs AuthUIData { get; set; }
+        //private AuthPrefabs AuthUIData { get; set; }
 
         [SerializeField] internal InputField MailInput;
         [SerializeField] internal InputField PasswordInput;
         [SerializeField] internal InputField CustomIDInput;
+        [field: SerializeField] private GameObject RegisterForm { get; set; }
+        [field: SerializeField] private GameObject ForgotPasswordForm { get; set; }
         [field: SerializeField] private ButtonZeitnot LoginWithMailButton { get; set; }
         [field: SerializeField] private ButtonZeitnot LoginWithDeviceIdButton { get; set; }
         [field: SerializeField] private ButtonZeitnot LoginWithCustomIdButton { get; set; }
+        [field: SerializeField] private ButtonZeitnot RegisterButton { get; set; }
+        [field: SerializeField] private ButtonZeitnot ForgotPasswordButton { get; set; }
         
         private Canvas Canvas { get; set; }
 
         internal Signal onLoginWithMailButtonClick = new Signal();
         internal Signal onLoginWithDeviceIDButtonClick = new Signal();
         internal Signal onLoginWithCustomIdButtonClick = new Signal();
+        internal Signal onRegisterButtonClick = new Signal();
+        internal Signal onForgotPasswordButtonClick = new Signal();
         
         internal void Init()
         {
             LoginWithMailButton.onClick.AddListener(OnLoginWithMailButtonClick);
             LoginWithDeviceIdButton.onClick.AddListener(OnLoginWithDeviceIDButtonClick);
             LoginWithCustomIdButton.onClick.AddListener(OnLoginWithCustomIdButtonClick);
+            RegisterButton.onClick.AddListener(OnRegistration);
+            ForgotPasswordButton.onClick.AddListener(OnForgotPassword);
 
             Canvas = GetComponent<Canvas>();
+        }
+        
+        private void OnEnable()
+        {
+            Init();
         }
 
         private void OnDisable()
@@ -44,6 +57,8 @@ namespace _Project.Login.Scripts.Views
             LoginWithMailButton.onClick.RemoveListener(OnLoginWithMailButtonClick);
             LoginWithDeviceIdButton.onClick.RemoveListener(OnLoginWithDeviceIDButtonClick);
             LoginWithCustomIdButton.onClick.RemoveListener(OnLoginWithCustomIdButtonClick);
+            RegisterButton.onClick.RemoveListener(OnRegistration);
+            ForgotPasswordButton.onClick.RemoveListener(OnForgotPassword);
             
             Clear();
         }
@@ -63,17 +78,46 @@ namespace _Project.Login.Scripts.Views
         
         public void OnRegistration()
         {
-            var registrationPrefab = AuthUIData.RegisterForm;
-            UIView.ShowWindow(registrationPrefab);
+            onRegisterButtonClick.Dispatch();
+            //UIView.ShowWindow(RegisterForm.gameObject);
+            RegisterForm.gameObject.SetActive(true);
             HideWindow();
         }
 
         public void OnForgotPassword()
         {
-            var recoveryPrefab = AuthUIData.RecoveryForm;
-            UIView.ShowWindow(recoveryPrefab);
+            onForgotPasswordButtonClick.Dispatch();
+            //UIView.ShowWindow(ForgotPasswordForm.gameObject);
+            ForgotPasswordForm.gameObject.SetActive(true);
             HideWindow();
         }
+        
+        /*
+        public static GameObject ShowWindow(GameObject uiPrefab)
+        {
+            var objInstanceID = uiPrefab.GetInstanceID();
+            return Instance.ShowOrCreateWindows(objInstanceID, uiPrefab);
+        }
+        
+        public GameObject ShowOrCreateWindows(int id, GameObject prefab)
+        {
+            if (WindowsDictionary.ContainsKey(id))
+            {
+                var window = WindowsDictionary[id];
+                var rect = window.GetComponent<RectTransform>();
+                if (rect != null) rect.SetAsLastSibling();
+                window.SetActive(true);
+                return window;
+            }
+            else
+            {
+                var newWindow = Instantiate(prefab, RootWindow);
+                WindowsDictionary.Add(id, newWindow);
+                var rect = newWindow.GetComponent<RectTransform>();
+                if (rect != null) rect.SetAsLastSibling();
+                return newWindow;
+            }
+        }*/
 
         internal bool IsInputValid()
         {
