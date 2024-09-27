@@ -1,5 +1,7 @@
 using _Project.Login.Controllers;
 using _Project.Login.Scripts.Signals;
+using _Project.SceneManagementUtilities.Signals;
+using _Project.SceneManagementUtilities.Utilities;
 using CBS;
 using CBS.Models;
 
@@ -8,7 +10,8 @@ namespace _Project.Login.Services
     public class LoginService : ILoginService
     {
         private IAuth CBSAuth { get; set; }
-        [Inject] public UserLoginCompletedSignal OnLoginResponseReceivedSignal { private get; set; }
+        [Inject] public UserLoginCompletedSignal UserLoginCompletedSignal { private get; set; }
+        [Inject] public ChangeSceneGroupSignal ChangeSceneGroupSignal { private get; set; }
 
         public void LoginWithMailAndPassword(LoginWithMailAndPasswordCommandData loginWithMailAndPasswordCommandData)
         {
@@ -44,7 +47,9 @@ namespace _Project.Login.Services
                 Debug.Log(result.Error.Message);
             }
 
-            OnLoginResponseReceivedSignal.Dispatch(result);
+            UserLoginCompletedSignal.Dispatch(result);
+            
+            ChangeSceneGroupSignal.Dispatch(SceneGroupType.ThirdPersonShooterGame, new LoadingOptions());
         }
     }
 }
