@@ -19,7 +19,7 @@ namespace _Project.Login.Scripts.Views
             View.onLoginWithMailButtonClick.AddListener(HandleOnLoginWithMailButtonClicked);
             View.onLoginWithDeviceIDButtonClick.AddListener(HandleOnLoginWithDeviceIdButtonClicked);
             View.onLoginWithCustomIdButtonClick.AddListener(HandleOnLoginWithCustomIdButtonClicked);
-            View.Init();
+            // View.Init();
         }
 
         public override void OnRemove()
@@ -36,25 +36,25 @@ namespace _Project.Login.Scripts.Views
             {
                 LoginWithMailAndPasswordCommandData loginWithMailAndPasswordCommandData =
                     new LoginWithMailAndPasswordCommandData(View.MailInput.text, View.PasswordInput.text);
-                
+
                 View.ShowLoadingPopup();
-                
+
                 LoginWithMailAndPasswordSignal.Dispatch(loginWithMailAndPasswordCommandData);
             }
             else
             {
                 View.ShowErrorPopup();
             }
-        }        
+        }
         private void HandleOnLoginWithDeviceIdButtonClicked()
         {
             View.ShowLoadingPopup();
             //Auth.LoginWithDevice(OnUserLogined);
-        }        
+        }
         private void HandleOnLoginWithCustomIdButtonClicked()
         {
             //LoginWithMailAndPasswordSignal.Dispatch();
-            
+
             string customID = View.CustomIDInput.text;
             if (!string.IsNullOrEmpty(customID))
             {
@@ -62,7 +62,7 @@ namespace _Project.Login.Scripts.Views
                 //Auth.LoginWithCustomID(customID, OnUserLogined);
             }
         }
-        
+
         [ListensTo(typeof(UserLoginCompletedSignal))]
         public void OnUserLoginCompleted(CBSLoginResult result)
         {
@@ -78,6 +78,6 @@ namespace _Project.Login.Scripts.Views
                 View.ShowPlayfabErrorPopup(result);
             }
         }
-        
+
     }
 }

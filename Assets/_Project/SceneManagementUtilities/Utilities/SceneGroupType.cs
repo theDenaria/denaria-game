@@ -19,6 +19,7 @@ namespace _Project.SceneManagementUtilities.Utilities
         GameSettings = 1028,
         AvatarSelection = 2056,
         Authorization = 4112,
+        TownSquare = 8224,
     }
 
 }

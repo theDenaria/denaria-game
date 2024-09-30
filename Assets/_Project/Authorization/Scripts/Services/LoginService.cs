@@ -16,7 +16,7 @@ namespace _Project.Login.Services
         public void LoginWithMailAndPassword(LoginWithMailAndPasswordCommandData loginWithMailAndPasswordCommandData)
         {
             CBSAuth = CBSAuthModule.Get<CBSAuthModule>();
-            var loginRequest = new CBSMailLoginRequest 
+            var loginRequest = new CBSMailLoginRequest
             {
                 Mail = loginWithMailAndPasswordCommandData.Mail,
                 Password = loginWithMailAndPasswordCommandData.Password
@@ -41,6 +41,9 @@ namespace _Project.Login.Services
                 var isNew = result.IsNew;
                 var profileID = result.ProfileID;
                 var playfabLoginResult = result.Result;
+                var sessionTicket = playfabLoginResult.SessionTicket;
+                var playfabId = playfabLoginResult.PlayFabId;
+                Debug.Log($"SessionTicket: {sessionTicket}, PlayFabId: {playfabId}");
             }
             else
             {
@@ -48,8 +51,8 @@ namespace _Project.Login.Services
             }
 
             UserLoginCompletedSignal.Dispatch(result);
-            
-            ChangeSceneGroupSignal.Dispatch(SceneGroupType.ThirdPersonShooterGame, new LoadingOptions());
+
+            ChangeSceneGroupSignal.Dispatch(SceneGroupType.TownSquare, new LoadingOptions());
         }
     }
 }
