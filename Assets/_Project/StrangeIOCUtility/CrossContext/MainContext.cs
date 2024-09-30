@@ -13,10 +13,10 @@ using _Project.StrangeIOCUtility.Models;
 using _Project.WaitingCanvas.Scripts.Controllers;
 using _Project.WaitingCanvas.Scripts.Signals;
 using _Project.WaitingCanvas.Scripts.Views;
-using _Project.SettingsManager.Scripts.Controllers;
 using _Project.SettingsManager.Scripts.Models;
 using _Project.SettingsManager.Scripts.Signals;
 using _Project.SettingsManager.Scripts.Views;
+using _Project.SettingsManager;
 
 
 /*using _Project.ABTesting.Scripts.Commands;
@@ -161,11 +161,12 @@ namespace _Project.StrangeIOCUtility.CrossContext
 				BindApplicationMemoryTrackingInjections();
 				
 				BindApplicationLifecycleInjections();*/
-        BindWaitingCanvasInjections();
+				BindWaitingCanvasInjections();
 				//BindLoginInjections(); //TODO: Uncomment 21 August
 				BindLogReportInjections();
 				BindLoadingInjections();
 				ShowLoadingBindings();
+				Debug.Log("SettingsManagerBindings entered 1");
 				SettingsManagerBindings();
 			}
 		}
@@ -422,16 +423,22 @@ namespace _Project.StrangeIOCUtility.CrossContext
 
 		private void SettingsManagerBindings()
 		{
-			injectionBinder.Bind<SettingsModel>().ToSingleton();
 			injectionBinder.Bind<ApplySettingsCommand>().ToSingleton();
 			injectionBinder.Bind<RestoreDefaultSettingsCommand>().ToSingleton();
+			injectionBinder.Bind<ChangeSettingsCommand>().ToSingleton();
 
-			mediationBinder.Bind<SettingsView>().ToMediator<SettingsViewMediator>();
+			injectionBinder.Bind<ISettingsModel>().To<SettingsModel>().ToSingleton().CrossContext();
+
+			mediationBinder.Bind<VideoSettingsView>().ToMediator<VideoSettingsMediator>();
+			mediationBinder.Bind<AudioSettingsView>().ToMediator<AudioSettingsMediator>();
+			mediationBinder.Bind<HotkeySettingsView>().ToMediator<HotkeySettingsMediator>();
+			mediationBinder.Bind<FooterView>().ToMediator<FooterMediator>();
 
 			commandBinder.Bind<ApplySettingsSignal>().To<ApplySettingsCommand>();
 			commandBinder.Bind<RestoreDefaultSettingsSignal>().To<RestoreDefaultSettingsCommand>();
+			commandBinder.Bind<ChangeSettingsSignal>().To<ChangeSettingsCommand>();
 
-			// You can map more commands here for the future
+
 		}
 	}
 }
