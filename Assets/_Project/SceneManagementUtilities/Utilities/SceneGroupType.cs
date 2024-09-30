@@ -17,6 +17,9 @@ namespace _Project.SceneManagementUtilities.Utilities
         PlayerProfileEnterName = 256,
         PrivacyPolicy = 512,
         GameSettings = 1028,
+        AvatarSelection = 2056,
+        Authorization = 4112,
+        TownSquare = 8224,
     }
 
 }
