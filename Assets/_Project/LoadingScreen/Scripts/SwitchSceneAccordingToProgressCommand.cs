@@ -36,7 +36,8 @@ namespace _Project.LoadingScreen.Scripts
 				Constants.CONTINUE_BUTTON, "success");
 			SceneChangedSignal.Dispatch(sceneChangedCommandData);
 
-			ChangeSceneGroupSignal.Dispatch(SceneGroupType.MainMenu, new LoadingOptions());
+			//ChangeSceneGroupSignal.Dispatch(SceneGroupType.MainMenu, new LoadingOptions());
+			ChangeSceneGroupSignal.Dispatch(SceneGroupType.Authorization, new LoadingOptions());
 			
 		}
 	}
