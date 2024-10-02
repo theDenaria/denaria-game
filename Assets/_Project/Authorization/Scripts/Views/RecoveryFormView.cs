@@ -74,10 +74,6 @@ namespace _Project.Login.Scripts.Views
             HideWindow();
         }
         
-        
-        
-        
-        
         private void HideWindow()
         {
             gameObject.SetActive(false);

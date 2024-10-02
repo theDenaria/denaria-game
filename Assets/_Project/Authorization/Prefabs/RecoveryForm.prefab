@@ -1086,12 +1086,19 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 7097580991260747979}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
+    SerializationNodes:
+    - Name: EmailField
+      Entry: 10
+      Data: 0
+  <LoginForm>k__BackingField: {fileID: 0}
+  <RecoverButton>k__BackingField: {fileID: 0}
+  <GoBackButton>k__BackingField: {fileID: 0}
 --- !u!1 &7998849536290910653
 GameObject:
   m_ObjectHideFlags: 0
