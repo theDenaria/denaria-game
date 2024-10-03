@@ -25,8 +25,5 @@ namespace _Project.NetworkManagement.Scripts.Services
         public void SendFire(Vector3 cam_origin, Vector3 direction, Vector3 barrel_origin);
         public void SendUnreliableMessages(NativeArray<byte>[] messages);
         public void SendReliableMessages(NativeArray<byte>[] messages);
-
-        // --- RECEIVE 
-        public void ReceiveMessages();
     }
 }

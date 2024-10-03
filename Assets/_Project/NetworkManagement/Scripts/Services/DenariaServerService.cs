@@ -12,7 +12,7 @@ using _Project.StrangeIOCUtility.Models;
 using System.Collections;
 namespace _Project.NetworkManagement.Scripts.Services
 {
-    public class DenariaServerService
+    public class DenariaServerService : IDenariaServerService
     {
         [Inject] public INetworkManagerModel NetworkManagerModel { get; set; }
         [Inject] public ReceivePositionUpdateSignal ReceivePositionUpdateSignal { get; set; }

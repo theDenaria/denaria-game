@@ -1,3 +1,4 @@
+using _Project.Authorization.Scripts.Controllers;
 using _Project.LoadingScreen.Scripts;
 using _Project.Login.Controllers;
 using _Project.Login.Scripts.Signals;

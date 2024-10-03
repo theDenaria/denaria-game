@@ -1,11 +1,11 @@
+using _Project.NetworkManagement.Scripts.Controllers;
+using _Project.NetworkManagement.Scripts.Signals;
 using _Project.SceneManagementUtilities.Signals;
 using _Project.SceneManagementUtilities.Utilities;
-using strange.extensions.command.impl;
 using CBS.Models;
-using _Project.NetworkManagement.Scripts.Signals;
-using _Project.NetworkManagement.Scripts.Controllers;
+using strange.extensions.command.impl;
 
-namespace _Project.Login.Controllers
+namespace _Project.Authorization.Scripts.Controllers
 {
     public class UserLoginCompletedCommand : Command
     {
