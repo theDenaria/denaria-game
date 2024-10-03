@@ -556,8 +556,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4996511955620764568}
-  - component: {fileID: 9027320572560742783}
-  - component: {fileID: 2147432405271012895}
   - component: {fileID: 622840907959356779}
   - component: {fileID: 8493625117460801133}
   - component: {fileID: 2593075003599395593}
@@ -587,39 +585,6 @@ Transform:
   - {fileID: 7597169270870047888}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9027320572560742783
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7639841990387085010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c34e738714d954b22852d0a7b0bcaf53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerId: 
-  tickRate: 30
-  shoulderTransform: {fileID: 5626136078069800717}
-  health: 0
-  barrelPosition: {fileID: 3101584456582360351}
---- !u!114 &2147432405271012895
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7639841990387085010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cba0669621a6d497380576383c8f7153, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  xAxis: 0
-  yAxis: 0
-  camFollowPos: {fileID: 7756539621811856374}
-  mouseSensitivity: 0.15
 --- !u!114 &622840907959356779
 MonoBehaviour:
   m_ObjectHideFlags: 0

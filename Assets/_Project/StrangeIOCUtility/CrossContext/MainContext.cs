@@ -1,5 +1,9 @@
 using _Project.LoadingScreen.Scripts;
 using _Project.LoggingAndDebugging;
+using _Project.NetworkManagement.Scripts.Controllers;
+using _Project.NetworkManagement.Scripts.Models;
+using _Project.NetworkManagement.Scripts.Services;
+using _Project.NetworkManagement.Scripts.Signals;
 using _Project.SceneManagementUtilities.Controllers;
 using _Project.SceneManagementUtilities.Models;
 using _Project.SceneManagementUtilities.Services;
@@ -10,6 +14,7 @@ using _Project.StrangeIOCUtility.Models;
 using _Project.WaitingCanvas.Scripts.Controllers;
 using _Project.WaitingCanvas.Scripts.Signals;
 using _Project.WaitingCanvas.Scripts.Views;
+using strange.extensions.context.api;
 using strange.extensions.context.impl;
 using UnityEngine;
 
@@ -128,17 +133,18 @@ using _Project.ShowLoading.Signals;*/
 
 namespace _Project.StrangeIOCUtility.CrossContext
 {
-    public class MainContext : SignalContext
+	public class MainContext : SignalContext
 	{
 		public MainContext(MonoBehaviour view) : base(view)
 		{
-			
+
 		}
 
 		protected override void mapBindings()
 		{
 			if (Context.firstContext == this)
 			{
+				Debug.Log("YYY MainContext IS THE FIRST CONTEXT");
 				/*BindRoutineRunnerInjections();
 				BindAnalyticsInjections();
 				BindForceUpdatePopup();
@@ -155,15 +161,17 @@ namespace _Project.StrangeIOCUtility.CrossContext
 				BindApplicationMemoryTrackingInjections();
 				
 				BindApplicationLifecycleInjections();*/
-                BindWaitingCanvasInjections();
-				
+				BindWaitingCanvasInjections();
+
 				//BindLoginInjections(); //TODO: Uncomment 21 August
 				BindLogReportInjections();
 				BindLoadingInjections();
 				ShowLoadingBindings();
+				Debug.Log("YYY NetworkManagementBindings in mapbindings");
+				NetworkManagementBindings();
 			}
 		}
-		
+
 		/*
 		private void BindForceUpdatePopup()
 		{
@@ -386,7 +394,7 @@ namespace _Project.StrangeIOCUtility.CrossContext
 			
 			commandBinder.Bind<RetryNetworkConnectionSignal>().To<RetryNetworkConnectionCommand>();
 		}*/
-		
+
 		private void BindWaitingCanvasInjections()
 		{
 			injectionBinder.Bind<AddWaitHandlerSignal>().ToSingleton().CrossContext();
@@ -395,24 +403,56 @@ namespace _Project.StrangeIOCUtility.CrossContext
 
 			mediationBinder.Bind<WaitingCanvasView>().To<WaitingCanvasMediator>();
 		}
-		
+
 		private void ShowLoadingBindings()
 		{
-            mediationBinder.Bind<LoadingView>().To<LoadingMediator>();
-			injectionBinder.Bind<ShowLoadingAnimationSignal>().ToSingleton().CrossContext();;
-			injectionBinder.Bind<HideLoadingAnimationSignal>().ToSingleton().CrossContext();;
+			mediationBinder.Bind<LoadingView>().To<LoadingMediator>();
+			injectionBinder.Bind<ShowLoadingAnimationSignal>().ToSingleton().CrossContext(); ;
+			injectionBinder.Bind<HideLoadingAnimationSignal>().ToSingleton().CrossContext(); ;
 		}
-		
+
 		private void BindLoadingInjections()
 		{
 			injectionBinder.Bind<CompleteLoadingSignal>().ToSingleton().CrossContext();
 		}
-		
+
 		private void BindLogReportInjections()
 		{
 			injectionBinder.Bind<IFileOperationService>().To<FileOperationService>().ToSingleton().CrossContext();
 			injectionBinder.Bind<INativeShareService>().To<NativeShareService>().ToSingleton().CrossContext();
 			injectionBinder.Bind<ILogRecordService>().To<LogRecordService>().ToSingleton().CrossContext();
-		}		
+		}
+
+		private void NetworkManagementBindings()
+		{
+			// injectionBinder.Bind<ChangeSceneGroupSignal>().CrossContext();
+
+			injectionBinder.Bind<INetworkManagerModel>().To<NetworkManagerModel>().ToSingleton();
+			injectionBinder.Bind<IDenariaServerService>().To<DenariaServerService>().ToSingleton();
+
+			injectionBinder.Bind<ReceivePositionUpdateSignal>().CrossContext();
+			injectionBinder.Bind<ReceiveRotationUpdateSignal>().CrossContext();
+			injectionBinder.Bind<ReceiveHealthUpdateSignal>().CrossContext();
+			injectionBinder.Bind<ReceiveFireSignal>().CrossContext();
+			injectionBinder.Bind<ReceiveHitSignal>().CrossContext();
+			injectionBinder.Bind<ReceiveDisconnectSignal>().CrossContext();
+
+			injectionBinder.Bind<SendMoveSignal>().CrossContext();
+			injectionBinder.Bind<SendLookSignal>().CrossContext();
+			injectionBinder.Bind<SendFireSignal>().CrossContext();
+			injectionBinder.Bind<SendJumpSignal>().CrossContext();
+
+			// Will be dispatched from GameSceneManager
+			commandBinder.Bind<SendMoveSignal>().To<SendMoveCommand>();
+			commandBinder.Bind<SendLookSignal>().To<SendLookCommand>();
+			commandBinder.Bind<SendFireSignal>().To<SendFireCommand>();
+			commandBinder.Bind<SendJumpSignal>().To<SendJumpCommand>();
+
+
+			commandBinder.Bind<ConnectDenariaServerSignal>().To<ConnectDenariaServerCommand>();
+
+
+
+		}
 	}
 }
