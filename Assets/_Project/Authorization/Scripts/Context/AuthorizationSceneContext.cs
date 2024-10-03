@@ -14,14 +14,14 @@ namespace _Project.Login.Scripts.Context
         public AuthorizationSceneContext(MonoBehaviour view) : base(view)
         {
         }
-        
+
         protected override void mapBindings()
         {
             base.mapBindings();
-			
+
             BindAuthorizationScene();
         }
-		
+
 
         private void BindAuthorizationScene()
         {
@@ -31,11 +31,11 @@ namespace _Project.Login.Scripts.Context
             commandBinder.Bind<LoginWithMailAndPasswordSignal>().To<LoginWithMailAndPasswordCommand>();
             commandBinder.Bind<LoginWithDeviceIdSignal>().To<LoginWithDeviceIdCommand>();
             commandBinder.Bind<LoginWithCustomIdSignal>().To<LoginWithCustomIdCommand>();
-            
+
             injectionBinder.Bind<IPasswordRecoveryService>().To<PasswordRecoveryService>().ToSingleton();
             mediationBinder.Bind<RecoveryFormView>().To<RecoveryFormMediator>();
             commandBinder.Bind<RequestPasswordRecoverySignal>().To<RequestPasswordRecoveryCommand>();
-            
+
             injectionBinder.Bind<IRegisterService>().To<RegisterService>().ToSingleton();
             injectionBinder.Bind<RegistrationCompletedSignal>().ToSingleton();
             mediationBinder.Bind<RegistrationFormView>().To<RegistrationFormMediator>();
