@@ -1,3 +1,6 @@
+using strange.extensions.context.impl;
+using UnityEngine;
+
 using _Project.LoadingScreen.Scripts;
 using _Project.LoggingAndDebugging;
 using _Project.NetworkManagement.Scripts.Controllers;
@@ -14,9 +17,11 @@ using _Project.StrangeIOCUtility.Models;
 using _Project.WaitingCanvas.Scripts.Controllers;
 using _Project.WaitingCanvas.Scripts.Signals;
 using _Project.WaitingCanvas.Scripts.Views;
-using strange.extensions.context.api;
-using strange.extensions.context.impl;
-using UnityEngine;
+using _Project.SettingsManager.Scripts.Models;
+using _Project.SettingsManager.Scripts.Signals;
+using _Project.SettingsManager.Scripts.Views;
+using _Project.SettingsManager;
+
 
 /*using _Project.ABTesting.Scripts.Commands;
 using _Project.ABTesting.Scripts.Models;
@@ -162,13 +167,14 @@ namespace _Project.StrangeIOCUtility.CrossContext
 				
 				BindApplicationLifecycleInjections();*/
 				BindWaitingCanvasInjections();
-
 				//BindLoginInjections(); //TODO: Uncomment 21 August
 				BindLogReportInjections();
 				BindLoadingInjections();
 				ShowLoadingBindings();
 				Debug.Log("YYY NetworkManagementBindings in mapbindings");
 				NetworkManagementBindings();
+				Debug.Log("SettingsManagerBindings entered 1");
+				SettingsManagerBindings();
 			}
 		}
 
@@ -394,7 +400,6 @@ namespace _Project.StrangeIOCUtility.CrossContext
 			
 			commandBinder.Bind<RetryNetworkConnectionSignal>().To<RetryNetworkConnectionCommand>();
 		}*/
-
 		private void BindWaitingCanvasInjections()
 		{
 			injectionBinder.Bind<AddWaitHandlerSignal>().ToSingleton().CrossContext();
@@ -451,6 +456,22 @@ namespace _Project.StrangeIOCUtility.CrossContext
 
 			commandBinder.Bind<ConnectDenariaServerSignal>().To<ConnectDenariaServerCommand>();
 
+		private void SettingsManagerBindings()
+		{
+			injectionBinder.Bind<ApplySettingsCommand>().ToSingleton();
+			injectionBinder.Bind<RestoreDefaultSettingsCommand>().ToSingleton();
+			injectionBinder.Bind<ChangeSettingsCommand>().ToSingleton();
+
+			injectionBinder.Bind<ISettingsModel>().To<SettingsModel>().ToSingleton().CrossContext();
+
+			mediationBinder.Bind<VideoSettingsView>().ToMediator<VideoSettingsMediator>();
+			mediationBinder.Bind<AudioSettingsView>().ToMediator<AudioSettingsMediator>();
+			mediationBinder.Bind<HotkeySettingsView>().ToMediator<HotkeySettingsMediator>();
+			mediationBinder.Bind<FooterView>().ToMediator<FooterMediator>();
+
+			commandBinder.Bind<ApplySettingsSignal>().To<ApplySettingsCommand>();
+			commandBinder.Bind<RestoreDefaultSettingsSignal>().To<RestoreDefaultSettingsCommand>();
+			commandBinder.Bind<ChangeSettingsSignal>().To<ChangeSettingsCommand>();
 
 
 		}

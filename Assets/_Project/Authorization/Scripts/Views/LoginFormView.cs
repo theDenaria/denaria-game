@@ -28,8 +28,6 @@ namespace _Project.Login.Scripts.Views
         [field: SerializeField] private ButtonZeitnot RegisterButton { get; set; }
         [field: SerializeField] private ButtonZeitnot ForgotPasswordButton { get; set; }
         
-        private Canvas Canvas { get; set; }
-
         internal Signal onLoginWithMailButtonClick = new Signal();
         internal Signal onLoginWithDeviceIDButtonClick = new Signal();
         internal Signal onLoginWithCustomIdButtonClick = new Signal();
@@ -43,8 +41,6 @@ namespace _Project.Login.Scripts.Views
             LoginWithCustomIdButton.onClick.AddListener(OnLoginWithCustomIdButtonClick);
             RegisterButton.onClick.AddListener(OnRegistration);
             ForgotPasswordButton.onClick.AddListener(OnForgotPassword);
-
-            Canvas = GetComponent<Canvas>();
         }
         
         private void OnEnable()
