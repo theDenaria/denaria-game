@@ -762,6 +762,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4870011536721105598, guid: 63b834a81748d4366a4ea0b9999a810a, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4870011536721105598, guid: 63b834a81748d4366a4ea0b9999a810a, type: 3}
+    - target: {fileID: 4870011536721105598, guid: 63b834a81748d4366a4ea0b9999a810a, type: 3}
+      propertyPath: <LoginForm>k__BackingField
+      value: 
+      objectReference: {fileID: 5701650069195188135}
+    - target: {fileID: 4870011536721105598, guid: 63b834a81748d4366a4ea0b9999a810a, type: 3}
+      propertyPath: <ForgotPasswordForm>k__BackingField
+      value: 
+      objectReference: {fileID: 3377018376717965403}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

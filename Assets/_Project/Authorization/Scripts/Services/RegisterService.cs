@@ -1,4 +1,5 @@
 using _Project.Login.Controllers;
+using _Project.Login.Scripts.Signals;
 using CBS;
 using CBS.Models;
 
@@ -7,6 +8,7 @@ namespace _Project.Login.Services
     public class RegisterService : IRegisterService
     {
         private IAuth CBSAuth { get; set; }
+        [Inject] public RegistrationCompletedSignal RegistrationCompletedSignal { get; set; }
 
         public void RegisterWithMailAndPassword(RegisterWithMailAndPasswordCommandData registerWithMailAndPasswordCommandData)
         {
@@ -21,17 +23,10 @@ namespace _Project.Login.Services
 
             CBSAuth.RegisterWithMailAndPassword(registerRequest, OnRegister);
         }
-
+        
         private void OnRegister(BaseAuthResult result)
         {
-            if (result.IsSuccess)
-            {
-                var profileID = result.ProfileID;
-            }
-            else
-            {
-                Debug.Log(result.Error.Message);
-            }
+            RegistrationCompletedSignal.Dispatch(result);
         }
     }
 }

@@ -6,7 +6,7 @@ namespace _Project.Login.Controllers
         public string Password { get; set; }
         public string DisplayName { get; set; }
 
-        RegisterWithMailAndPasswordCommandData(string mail, string password, string displayName)
+        public RegisterWithMailAndPasswordCommandData(string mail, string password, string displayName)
         {
             Mail = mail;
             Password = password;
