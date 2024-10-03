@@ -14,11 +14,11 @@ namespace _Project.NetworkManagement.Scripts.Services
 {
     public interface IDenariaServerService
     {
-        public void ConnectToDenariaServer();
+        public void ConnectToDenariaServer(string playerId);
         public void DisconnectFromDenariaServer();
-        public IEnumerator StartListeningDenariaServer();
 
         // --- SEND
+        public void SendConnectMessage();
         public void SendMove(Vector2 moveInput);
         public void SendRotation(Vector4 axisAngles);
         public void SendJump();

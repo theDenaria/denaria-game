@@ -150,7 +150,7 @@ namespace _Project.StrangeIOCUtility.CrossContext
 			if (Context.firstContext == this)
 			{
 				Debug.Log("YYY MainContext IS THE FIRST CONTEXT");
-				/*BindRoutineRunnerInjections();
+				/*
 				BindAnalyticsInjections();
 				BindForceUpdatePopup();
 				BindFacebookSDKInjections();
@@ -166,6 +166,7 @@ namespace _Project.StrangeIOCUtility.CrossContext
 				BindApplicationMemoryTrackingInjections();
 				
 				BindApplicationLifecycleInjections();*/
+				BindRoutineRunnerInjections();
 				BindWaitingCanvasInjections();
 				//BindLoginInjections(); //TODO: Uncomment 21 August
 				BindLogReportInjections();
@@ -176,6 +177,11 @@ namespace _Project.StrangeIOCUtility.CrossContext
 				Debug.Log("SettingsManagerBindings entered 1");
 				SettingsManagerBindings();
 			}
+		}
+
+		private void BindRoutineRunnerInjections()
+		{
+			injectionBinder.Bind<IRoutineRunner>().To<RoutineRunner>().CrossContext().ToSingleton();
 		}
 
 		/*
@@ -200,10 +206,7 @@ namespace _Project.StrangeIOCUtility.CrossContext
 #endif
 		}
 
-        private void BindRoutineRunnerInjections()
-        {
-            injectionBinder.Bind<IRoutineRunner>().To<RoutineRunner>().CrossContext().ToSingleton();
-        }
+      
         
 		private void BindLoginInjections()
 		{
@@ -435,6 +438,12 @@ namespace _Project.StrangeIOCUtility.CrossContext
 			injectionBinder.Bind<INetworkManagerModel>().To<NetworkManagerModel>().ToSingleton();
 			injectionBinder.Bind<IDenariaServerService>().To<DenariaServerService>().ToSingleton();
 
+			injectionBinder.Bind<ConnectDenariaServerSignal>().ToSingleton().CrossContext();
+
+			commandBinder.Bind<ConnectDenariaServerSignal>().To<ConnectDenariaServerCommand>();
+			Debug.Log("UUU Injected ConnectDenariaServerSignal and command");
+
+
 			injectionBinder.Bind<ReceivePositionUpdateSignal>().CrossContext();
 			injectionBinder.Bind<ReceiveRotationUpdateSignal>().CrossContext();
 			injectionBinder.Bind<ReceiveHealthUpdateSignal>().CrossContext();
@@ -452,9 +461,7 @@ namespace _Project.StrangeIOCUtility.CrossContext
 			commandBinder.Bind<SendLookSignal>().To<SendLookCommand>();
 			commandBinder.Bind<SendFireSignal>().To<SendFireCommand>();
 			commandBinder.Bind<SendJumpSignal>().To<SendJumpCommand>();
-
-
-			commandBinder.Bind<ConnectDenariaServerSignal>().To<ConnectDenariaServerCommand>();
+		}
 
 		private void SettingsManagerBindings()
 		{

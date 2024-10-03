@@ -29,9 +29,12 @@ namespace _Project.NetworkManagement.Scripts.Services
         private float interval = 1.0f / 30f; // 30 times per second
         private float nextExecutionTime;
 
-        public void ConnectToDenariaServer()
+        public void ConnectToDenariaServer(string playerId)
         {
+            NetworkManagerModel.PlayerId = playerId;
             NetworkManagerModel.ConnectToDenariaServer();
+            StartListeningDenariaServer();
+            SendConnectMessage();
         }
 
         public void DisconnectFromDenariaServer()
@@ -39,8 +42,16 @@ namespace _Project.NetworkManagement.Scripts.Services
             NetworkManagerModel.DisconnectFromDenariaServer();
         }
 
-        public IEnumerator StartListeningDenariaServer()
+        private void StartListeningDenariaServer()
         {
+            RoutineRunner.StartCoroutine(StartListeningDenariaServerCoroutine());
+        }
+
+        // Run on every tick (1/30 seconds for DenariaServer)
+        private IEnumerator StartListeningDenariaServerCoroutine()
+        {
+            Debug.Log("UUU StartListeningDenariaServer");
+            _isListeningDenariaServer = true;
             while (_isListeningDenariaServer)
             {
                 nextExecutionTime = Time.realtimeSinceStartup + interval;
@@ -56,6 +67,13 @@ namespace _Project.NetworkManagement.Scripts.Services
         }
 
         // --- SEND
+
+        public void SendConnectMessage()
+        {
+            NativeArray<byte>[] messages = new NativeArray<byte>[1];
+            messages[0] = CreatePlayerConnectMessage();
+            SendUnreliableMessages(messages);
+        }
 
         public void SendMove(Vector2 moveInput)
         {
@@ -114,8 +132,8 @@ namespace _Project.NetworkManagement.Scripts.Services
 
         // --- RECEIVE 
 
-        // Run on every tick (1/30 seconds for DenariaServer)
-        public void ReceiveMessages()
+
+        private void ReceiveMessages()
         {
             NetworkManagerModel.NetworkDriver.ScheduleUpdate().Complete();
 
