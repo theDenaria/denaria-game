@@ -26,22 +26,26 @@ namespace _Project.GameSceneManager.Scripts.Context
 
         private void BindGameSceneManager()
         {
+            injectionBinder.Bind<IPlayerIdMapModel>().To<PlayerIdMapModel>().ToSingleton();
 
             injectionBinder.Bind<PlayerMoveInputSignal>().CrossContext();
             injectionBinder.Bind<PlayerLookInputSignal>().CrossContext();
             injectionBinder.Bind<PlayerJumpInputSignal>().CrossContext();
+            injectionBinder.Bind<PlayerFireInputSignal>().CrossContext();
             injectionBinder.Bind<PlayerSprintInputSignal>().CrossContext();
             injectionBinder.Bind<PlayerEscMenuInputSignal>().CrossContext();
 
-            injectionBinder.Bind<PlayerIdMapModel>().ToSingleton().CrossContext();
-
+            mediationBinder.Bind<GameSceneView>().To<GameSceneMediator>();
             mediationBinder.Bind<OwnPlayerView>().To<OwnPlayerMediator>();
             mediationBinder.Bind<PlayerView>().To<PlayerMediator>();
             mediationBinder.Bind<OwnPlayerInputHandlerView>().To<OwnPlayerInputHandlerMediator>();
 
+            commandBinder.Bind<ReceiveSpawnSignal>().To<PlayerSpawnCommand>();
             commandBinder.Bind<ReceivePositionUpdateSignal>().To<PlayerPositionUpdateCommand>();
             commandBinder.Bind<ReceiveRotationUpdateSignal>().To<PlayerRotationUpdateCommand>();
             commandBinder.Bind<ReceiveHealthUpdateSignal>().To<PlayerHealthUpdateCommand>();
+
+            Debug.Log("UUU BindGameSceneManager ended");
         }
     }
 }

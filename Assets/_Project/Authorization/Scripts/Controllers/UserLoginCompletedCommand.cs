@@ -9,34 +9,11 @@ namespace _Project.Authorization.Scripts.Controllers
 {
     public class UserLoginCompletedCommand : Command
     {
-        [Inject]
-        public CBSLoginResult Result
-        {
-            get;
-            set;
-        }
-        [Inject]
-        public ChangeSceneGroupSignal ChangeSceneGroupSignal
-        {
-            private get;
-            set;
-        }
-        private ConnectDenariaServerSignal _connectDenariaServerSignal;
+        [Inject] public CBSLoginResult Result { get; set; }
+        [Inject] public ChangeSceneGroupSignal ChangeSceneGroupSignal { private get; set; }
 
         [Inject]
-        public ConnectDenariaServerSignal ConnectDenariaServerSignal
-        {
-            get
-            {
-                Debug.Log("UUU Get ConnectDenariaServerSignal");
-                return _connectDenariaServerSignal;
-            }
-            set
-            {
-                Debug.Log("UUU Set ConnectDenariaServerSignal");
-                _connectDenariaServerSignal = value;
-            }
-        }
+        public ConnectDenariaServerSignal ConnectDenariaServerSignal { get; set; }
 
         public override void Execute()
         {
@@ -52,9 +29,9 @@ namespace _Project.Authorization.Scripts.Controllers
                 // TODO add session ticket to signal
                 Debug.Log("UUU Connecting to denaria server");
                 var connectDenariaServerCommandData = new ConnectDenariaServerCommandData("asdasd");
-                ConnectDenariaServerSignal.Dispatch();
+                ConnectDenariaServerSignal.Dispatch(connectDenariaServerCommandData);
                 Debug.Log("UUU Connected to denaria server");
-                ChangeSceneGroupSignal.Dispatch(SceneGroupType.TownSquare, new LoadingOptions());
+                // ChangeSceneGroupSignal.Dispatch(SceneGroupType.TownSquare, new LoadingOptions());
 
             }
             else

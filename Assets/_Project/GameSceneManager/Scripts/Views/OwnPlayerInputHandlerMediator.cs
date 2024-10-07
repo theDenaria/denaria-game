@@ -36,6 +36,7 @@ namespace _Project.GameSceneManager.Scripts.Views
 
         private void OnMove(Vector2 input)
         {
+            Debug.Log("UUUY OnMove " + input);
             PlayerMoveSignal.Dispatch(input);
         }
 

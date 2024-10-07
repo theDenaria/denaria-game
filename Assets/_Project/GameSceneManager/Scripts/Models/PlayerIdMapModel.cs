@@ -5,60 +5,66 @@ using _Project.GameSceneManager.Scripts.Views;
 using UnityEngine;
 namespace _Project.GameSceneManager.Scripts.Models
 {
-    public class PlayerIdMapModel
+    public class PlayerIdMapModel : IPlayerIdMapModel
     {
         public Dictionary<string, PlayerView> PlayerIdMap { get; set; }
 
-        public OwnPlayerView OwnPlayer { get; set; }
+        public string OwnPlayerId { get; set; }
+        public OwnPlayerView OwnPlayerView { get; set; }
 
         public GameObject OwnPlayerPrefab { get; set; }
         public GameObject EnemyPlayerPrefab { get; set; }
 
-        public PlayerIdMapModel()
+        public void Init(string ownPlayerId, GameObject ownPlayerPrefab, GameObject enemyPlayerPrefab)
         {
+            OwnPlayerId = ownPlayerId;
             PlayerIdMap = new Dictionary<string, PlayerView>();
-            OwnPlayer = null;
-            OwnPlayerPrefab = null;
-            EnemyPlayerPrefab = null;
-        }
-
-        public void SetOwnPlayerPrefab(GameObject ownPlayerPrefab)
-        {
+            OwnPlayerView = null;
             OwnPlayerPrefab = ownPlayerPrefab;
-        }
-
-        public void SetEnemyPlayerPrefab(GameObject enemyPlayerPrefab)
-        {
             EnemyPlayerPrefab = enemyPlayerPrefab;
         }
 
-        public void SetOwnPlayer(OwnPlayerView ownPlayer)
+        public void SetOwnPlayerView(OwnPlayerView ownPlayerView)
         {
-            OwnPlayer = ownPlayer;
+            OwnPlayerView = ownPlayerView;
         }
 
-        public OwnPlayerView GetOwnPlayer()
+        public OwnPlayerView GetOwnPlayerView()
         {
-            return OwnPlayer;
+            if (OwnPlayerView == null)
+            {
+                return null;
+            }
+            return OwnPlayerView;
+        }
+
+        public bool IsOwnPlayerInitialized()
+        {
+            return OwnPlayerView != null;
         }
 
         public bool IsOwnPlayer(string playerId)
         {
-            return OwnPlayer.PlayerId == playerId;
+            return OwnPlayerId == playerId;
         }
 
-        public void AddPlayer(string playerId, PlayerView player)
+        public void AddPlayerView(string playerId, PlayerView playerView)
         {
-            PlayerIdMap.Add(playerId, player);
+            PlayerIdMap.Add(playerId, playerView);
         }
 
-        public PlayerView GetPlayer(string playerId)
+        public PlayerView GetPlayerView(string playerId)
         {
-            if (PlayerIdMap.TryGetValue(playerId, out PlayerView player))
+            if (PlayerIdMap.TryGetValue(playerId, out PlayerView playerView))
             {
-                return player;
+                return playerView;
             }
             return null;
+        }
+
+        public bool IsPlayerInitialized(string playerId)
+        {
+            return PlayerIdMap.ContainsKey(playerId);
         }
     }
 }

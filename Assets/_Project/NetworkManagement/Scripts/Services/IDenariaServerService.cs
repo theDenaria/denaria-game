@@ -1,24 +1,18 @@
-using _Project.NetworkManagement.Scripts.Models;
-using _Project.NetworkManagement.Scripts.Signals;
-
 using UnityEngine;
 using Unity.Collections;
-using Unity.Networking.Transport;
-using System.Text;
-using _Project.GameSceneManager.Scripts.Controller;
-using _Project.NetworkManagement.Scripts.Enums;
-using System;
-using _Project.StrangeIOCUtility.Models;
-using System.Collections;
+
 namespace _Project.NetworkManagement.Scripts.Services
 {
     public interface IDenariaServerService
     {
-        public void ConnectToDenariaServer(string playerId);
+        public string PlayerId { get; set; }
+        public void Init(string playerId);
+        public void ConnectToDenariaServer();
         public void DisconnectFromDenariaServer();
 
         // --- SEND
-        public void SendConnectMessage();
+        public void StartSendingConnectMessage();
+        public void StopSendingConnectMessage();
         public void SendMove(Vector2 moveInput);
         public void SendRotation(Vector4 axisAngles);
         public void SendJump();

@@ -1,4 +1,3 @@
-using _Project.NetworkManagement.Scripts.Models;
 using _Project.NetworkManagement.Scripts.Signals;
 
 using UnityEngine;
@@ -10,11 +9,15 @@ using _Project.NetworkManagement.Scripts.Enums;
 using System;
 using _Project.StrangeIOCUtility.Models;
 using System.Collections;
+using _Project.SceneManagementUtilities.Signals;
+using _Project.SceneManagementUtilities.Utilities;
 namespace _Project.NetworkManagement.Scripts.Services
 {
     public class DenariaServerService : IDenariaServerService
     {
-        [Inject] public INetworkManagerModel NetworkManagerModel { get; set; }
+        [Inject] public ChangeSceneGroupSignal ChangeSceneGroupSignal { get; set; }
+
+        [Inject] public ReceiveSpawnSignal ReceiveSpawnSignal { get; set; }
         [Inject] public ReceivePositionUpdateSignal ReceivePositionUpdateSignal { get; set; }
         [Inject] public ReceiveRotationUpdateSignal ReceiveRotationUpdateSignal { get; set; }
         [Inject] public ReceiveFireSignal ReceiveFireSignal { get; set; }
@@ -24,33 +27,81 @@ namespace _Project.NetworkManagement.Scripts.Services
 
         [Inject] public IRoutineRunner RoutineRunner { get; set; }
 
+        public NetworkDriver NetworkDriver { get; set; }
+        public NetworkConnection NetworkConnection { get; set; }
+        public NetworkPipeline ReliablePipeline { get; set; }
+
+        public bool IsConnectionAccepted { get; set; }
+
+        public string PlayerId { get; set; }
+
         private bool _isListeningDenariaServer = false;
 
-        private float interval = 1.0f / 30f; // 30 times per second
+        private float interval = 1.0f / 30.0f; // 30 times per second
         private float nextExecutionTime;
 
-        public void ConnectToDenariaServer(string playerId)
+        public NetworkEndpoint _denariaEndpoint = NetworkEndpoint.Parse("127.0.0.1", 5000);
+
+        private Coroutine _listenCoroutine;
+
+        private bool _isSendingConnectMessage = false;
+
+        public void Init(string playerId)
         {
-            NetworkManagerModel.PlayerId = playerId;
-            NetworkManagerModel.ConnectToDenariaServer();
+            PlayerId = playerId;
+            IsConnectionAccepted = false;
+            NetworkDriver = NetworkDriver.Create();
+            ReliablePipeline = NetworkDriver.CreatePipeline(typeof(ReliableSequencedPipelineStage));
             StartListeningDenariaServer();
-            SendConnectMessage();
+        }
+
+        public void StartSendingConnectMessage()
+        {
+            _isSendingConnectMessage = true;
+            RoutineRunner.StartCoroutine(SendConnectMessageCoroutine());
+        }
+
+        public void StopSendingConnectMessage()
+        {
+            _isSendingConnectMessage = false;
+        }
+
+        IEnumerator SendConnectMessageCoroutine()
+        {
+            while (_isSendingConnectMessage)
+            {
+                SendConnectMessage();
+                yield return new WaitForSeconds(0.5f);
+            }
+        }
+
+
+        public void ConnectToDenariaServer()
+        {
+            NetworkConnection = NetworkDriver.Connect(_denariaEndpoint);
         }
 
         public void DisconnectFromDenariaServer()
         {
-            NetworkManagerModel.DisconnectFromDenariaServer();
+            NetworkConnection.Disconnect(NetworkDriver);
+            IsConnectionAccepted = false;
+            _isListeningDenariaServer = false;
+            StopListeningDenariaServer();
         }
 
         private void StartListeningDenariaServer()
         {
-            RoutineRunner.StartCoroutine(StartListeningDenariaServerCoroutine());
+            _listenCoroutine = RoutineRunner.StartCoroutine(StartListeningDenariaServerCoroutine());
+        }
+
+        private void StopListeningDenariaServer()
+        {
+            RoutineRunner.StopCoroutine(_listenCoroutine);
         }
 
         // Run on every tick (1/30 seconds for DenariaServer)
         private IEnumerator StartListeningDenariaServerCoroutine()
         {
-            Debug.Log("UUU StartListeningDenariaServer");
             _isListeningDenariaServer = true;
             while (_isListeningDenariaServer)
             {
@@ -62,7 +113,7 @@ namespace _Project.NetworkManagement.Scripts.Services
                     yield return new WaitForSecondsRealtime(waitTime);
                 }
 
-                yield return new WaitForSeconds(interval);
+                // yield return new WaitForSeconds(interval);
             }
         }
 
@@ -72,6 +123,7 @@ namespace _Project.NetworkManagement.Scripts.Services
         {
             NativeArray<byte>[] messages = new NativeArray<byte>[1];
             messages[0] = CreatePlayerConnectMessage();
+
             SendUnreliableMessages(messages);
         }
 
@@ -104,19 +156,20 @@ namespace _Project.NetworkManagement.Scripts.Services
 
         public void SendUnreliableMessages(NativeArray<byte>[] messages)
         {
-            NetworkManagerModel.NetworkDriver.BeginSend(NetworkManagerModel.DenariaServerConnection.NetworkConnection, out var writer);
+            NetworkDriver.BeginSend(NetworkConnection, out var writer);
             writer.WriteUShort((ushort)messages.Length);
             foreach (var message in messages)
             {
                 writer.WriteUShort((ushort)message.Length);
                 writer.WriteBytes(message);
             }
+            NetworkDriver.EndSend(writer);
         }
         public void SendReliableMessages(NativeArray<byte>[] messages)
         {
-            NetworkManagerModel.NetworkDriver.BeginSend(
-                NetworkManagerModel.DenariaServerConnection.ReliablePipeline,
-                NetworkManagerModel.DenariaServerConnection.NetworkConnection,
+            NetworkDriver.BeginSend(
+                ReliablePipeline,
+                NetworkConnection,
                 out var writer);
             writer.WriteUShort((ushort)messages.Length);
             foreach (var message in messages)
@@ -124,6 +177,7 @@ namespace _Project.NetworkManagement.Scripts.Services
                 writer.WriteUShort((ushort)message.Length);
                 writer.WriteBytes(message);
             }
+            NetworkDriver.EndSend(writer);
         }
 
 
@@ -135,18 +189,18 @@ namespace _Project.NetworkManagement.Scripts.Services
 
         private void ReceiveMessages()
         {
-            NetworkManagerModel.NetworkDriver.ScheduleUpdate().Complete();
-
+            NetworkDriver.ScheduleUpdate().Complete();
             NetworkEvent.Type cmd;
-            while ((cmd = NetworkManagerModel.DenariaServerConnection.NetworkConnection.PopEvent(NetworkManagerModel.NetworkDriver, out DataStreamReader stream, out var receivePipeline)) != NetworkEvent.Type.Empty)
+            while ((cmd = NetworkConnection.PopEvent(NetworkDriver, out DataStreamReader stream, out var receivePipeline)) != NetworkEvent.Type.Empty)
             {
-                if (cmd == NetworkEvent.Type.Connect && !NetworkManagerModel.DenariaServerConnection.IsConnectionAccepted)
+                if (cmd == NetworkEvent.Type.Connect && !IsConnectionAccepted)
                 {
-                    NetworkManagerModel.DenariaServerConnection.IsConnectionAccepted = true;
+                    IsConnectionAccepted = true;
+                    ChangeSceneGroupSignal.Dispatch(SceneGroupType.TownSquare, new LoadingOptions());
                 }
                 else if (cmd == NetworkEvent.Type.Data)
                 {
-                    if (receivePipeline.Equals(NetworkManagerModel.DenariaServerConnection.ReliablePipeline))
+                    if (receivePipeline.Equals(ReliablePipeline))
                     {
                         ProcessReliableData(ref stream);
                     }
@@ -157,8 +211,8 @@ namespace _Project.NetworkManagement.Scripts.Services
                 }
                 else if (cmd == NetworkEvent.Type.Disconnect)
                 {
-                    NetworkManagerModel.DenariaServerConnection.IsConnectionAccepted = false;
-                    NetworkManagerModel.DenariaServerConnection.NetworkConnection = default;
+                    IsConnectionAccepted = false;
+                    NetworkConnection = default;
                 }
             }
         }
@@ -200,6 +254,9 @@ namespace _Project.NetworkManagement.Scripts.Services
                             break;
                         case 6: // Health Update
                             ProcessHealthUpdate(ref messageStream);
+                            break;
+                        case 0: // Spawn Update
+                            ProcessSpawnUpdate(ref messageStream);
                             break;
                         case 10:
                             ProcessDisconnectUpdate(ref messageStream);
@@ -251,6 +308,7 @@ namespace _Project.NetworkManagement.Scripts.Services
 
         private void ProcessPositionMessage(ref DataStreamReader reader)
         {
+            Debug.Log("UUU Process Position Update");
             ulong playerNum = reader.ReadULong();
             for (ulong i = 0; i < playerNum; i++)
             {
@@ -265,8 +323,8 @@ namespace _Project.NetworkManagement.Scripts.Services
                 float z = reader.ReadFloat();
 
                 Vector3 newPosition = new(x, y, z);
-
                 ReceivePositionUpdateSignal.Dispatch(new PlayerPositionUpdateCommandData(playerId, newPosition));
+
             }
         }
 
@@ -291,6 +349,35 @@ namespace _Project.NetworkManagement.Scripts.Services
                 ReceiveRotationUpdateSignal.Dispatch(new PlayerRotationUpdateCommandData(playerId, newRotation));
             }
         }
+
+        private void ProcessSpawnUpdate(ref DataStreamReader reader)
+        {
+            Debug.Log("UUU ProcessSpawnUpdate");
+            ulong playerNum = reader.ReadULong();
+            for (ulong i = 0; i < playerNum; i++)
+            {
+                NativeArray<byte> stringBytes = new(16, Allocator.Temp);
+                reader.ReadBytes(stringBytes);  // Ensure this method exists or is correctly implemented
+
+                string playerId = Encoding.UTF8.GetString(stringBytes.ToArray()).TrimEnd('\0');
+                stringBytes.Dispose();
+
+                float position_x = reader.ReadFloat();
+                float position_y = reader.ReadFloat();
+                float position_z = reader.ReadFloat();
+                float rotation_x = reader.ReadFloat();
+                float rotation_y = reader.ReadFloat();
+                float rotation_z = reader.ReadFloat();
+                float rotation_w = reader.ReadFloat();
+
+                Vector3 position = new(position_x, position_y, position_z);
+                Vector4 rotation = new(rotation_x, rotation_y, rotation_z, rotation_w);
+
+                ReceiveSpawnSignal.Dispatch(new PlayerSpawnCommandData(playerId, position, rotation));
+            }
+        }
+
+
 
         private void ProcessFireUpdate(ref DataStreamReader reader)
         {
@@ -424,7 +511,7 @@ namespace _Project.NetworkManagement.Scripts.Services
         {
             byte messageType = (byte)SendOpCode.Connect;
 
-            byte[] tempBytes = Encoding.UTF8.GetBytes(NetworkManagerModel.PlayerId);
+            byte[] tempBytes = Encoding.UTF8.GetBytes(PlayerId);
             byte[] playerIdBytes = new byte[16];
 
             Buffer.BlockCopy(tempBytes, 0, playerIdBytes, 0, tempBytes.Length);

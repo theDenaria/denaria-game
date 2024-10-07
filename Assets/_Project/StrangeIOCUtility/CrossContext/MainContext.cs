@@ -4,7 +4,6 @@ using UnityEngine;
 using _Project.LoadingScreen.Scripts;
 using _Project.LoggingAndDebugging;
 using _Project.NetworkManagement.Scripts.Controllers;
-using _Project.NetworkManagement.Scripts.Models;
 using _Project.NetworkManagement.Scripts.Services;
 using _Project.NetworkManagement.Scripts.Signals;
 using _Project.SceneManagementUtilities.Controllers;
@@ -21,6 +20,7 @@ using _Project.SettingsManager.Scripts.Models;
 using _Project.SettingsManager.Scripts.Signals;
 using _Project.SettingsManager.Scripts.Views;
 using _Project.SettingsManager;
+using _Project.GameSceneManager.Scripts.Signals;
 
 
 /*using _Project.ABTesting.Scripts.Commands;
@@ -433,23 +433,26 @@ namespace _Project.StrangeIOCUtility.CrossContext
 
 		private void NetworkManagementBindings()
 		{
-			// injectionBinder.Bind<ChangeSceneGroupSignal>().CrossContext();
-
-			injectionBinder.Bind<INetworkManagerModel>().To<NetworkManagerModel>().ToSingleton();
-			injectionBinder.Bind<IDenariaServerService>().To<DenariaServerService>().ToSingleton();
+			injectionBinder.Bind<IDenariaServerService>().To<DenariaServerService>().ToSingleton().CrossContext();
 
 			injectionBinder.Bind<ConnectDenariaServerSignal>().ToSingleton().CrossContext();
 
 			commandBinder.Bind<ConnectDenariaServerSignal>().To<ConnectDenariaServerCommand>();
 			Debug.Log("UUU Injected ConnectDenariaServerSignal and command");
 
+			injectionBinder.Bind<TownSquareLoadedSignal>().ToSingleton().CrossContext();
+			commandBinder.Bind<TownSquareLoadedSignal>().To<SendConnectCommand>();
 
-			injectionBinder.Bind<ReceivePositionUpdateSignal>().CrossContext();
-			injectionBinder.Bind<ReceiveRotationUpdateSignal>().CrossContext();
-			injectionBinder.Bind<ReceiveHealthUpdateSignal>().CrossContext();
-			injectionBinder.Bind<ReceiveFireSignal>().CrossContext();
-			injectionBinder.Bind<ReceiveHitSignal>().CrossContext();
-			injectionBinder.Bind<ReceiveDisconnectSignal>().CrossContext();
+			injectionBinder.Bind<OwnPlayerSpawnedSignal>().ToSingleton().CrossContext();
+			commandBinder.Bind<OwnPlayerSpawnedSignal>().To<OwnPlayerSpawnedCommand>();
+
+			injectionBinder.Bind<ReceiveSpawnSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<ReceivePositionUpdateSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<ReceiveRotationUpdateSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<ReceiveHealthUpdateSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<ReceiveFireSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<ReceiveHitSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<ReceiveDisconnectSignal>().ToSingleton().CrossContext();
 
 			injectionBinder.Bind<SendMoveSignal>().CrossContext();
 			injectionBinder.Bind<SendLookSignal>().CrossContext();

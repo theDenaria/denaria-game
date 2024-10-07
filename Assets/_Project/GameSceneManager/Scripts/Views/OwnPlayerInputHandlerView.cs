@@ -71,6 +71,7 @@ namespace _Project.GameSceneManager.Scripts.Views
             sprintAction.canceled += context => onSprintInput.Dispatch(0f);
 
             escMenuAction.performed += context => onEscMenuInput.Dispatch();
+            Debug.Log("UUUY InitializeInputActions");
         }
 
         private void OnEnable()

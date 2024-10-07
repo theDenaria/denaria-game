@@ -9,18 +9,18 @@ namespace _Project.GameSceneManager.Scripts.Controller
     public class PlayerHealthUpdateCommand : Command
     {
         [Inject] public PlayerHealthUpdateCommandData PlayerHealthUpdateCommandData { get; set; }
-        [Inject] public PlayerIdMapModel PlayerIdMapModel { get; set; }
+        [Inject] public IPlayerIdMapModel PlayerIdMapModel { get; set; }
 
         public override void Execute()
         {
             if (PlayerIdMapModel.IsOwnPlayer(PlayerHealthUpdateCommandData.PlayerId))
             {
-                PlayerIdMapModel.GetOwnPlayer().Health = PlayerHealthUpdateCommandData.Health;
+                PlayerIdMapModel.GetOwnPlayerView().Health = PlayerHealthUpdateCommandData.Health;
             }
             else
             {
-                PlayerView player = PlayerIdMapModel.GetPlayer(PlayerHealthUpdateCommandData.PlayerId);
-                player.Health = PlayerHealthUpdateCommandData.Health;
+                PlayerView playerView = PlayerIdMapModel.GetPlayerView(PlayerHealthUpdateCommandData.PlayerId);
+                playerView.Health = PlayerHealthUpdateCommandData.Health;
             }
         }
     }

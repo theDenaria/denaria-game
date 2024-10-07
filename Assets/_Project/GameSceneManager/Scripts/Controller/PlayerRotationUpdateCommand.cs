@@ -9,7 +9,7 @@ namespace _Project.GameSceneManager.Scripts.Controller
     public class PlayerRotationUpdateCommand : Command
     {
         [Inject] public PlayerRotationUpdateCommandData PlayerRotationUpdateCommandData { get; set; }
-        [Inject] public PlayerIdMapModel PlayerIdMapModel { get; set; }
+        [Inject] public IPlayerIdMapModel PlayerIdMapModel { get; set; }
 
         public override void Execute()
         {
@@ -20,17 +20,10 @@ namespace _Project.GameSceneManager.Scripts.Controller
             }
             else
             {
-                PlayerView player = PlayerIdMapModel.GetPlayer(PlayerRotationUpdateCommandData.PlayerId);
+                PlayerView player = PlayerIdMapModel.GetPlayerView(PlayerRotationUpdateCommandData.PlayerId);
                 if (player != null)
                 {
                     player.transform.rotation = new Quaternion(PlayerRotationUpdateCommandData.Rotation.x, PlayerRotationUpdateCommandData.Rotation.y, PlayerRotationUpdateCommandData.Rotation.z, PlayerRotationUpdateCommandData.Rotation.w);
-                }
-                else
-                {
-                    GameObject newPlayerObj = Object.Instantiate(PlayerIdMapModel.EnemyPlayerPrefab, Vector3.zero, Quaternion.Euler(0f, 0f, 0f));
-                    PlayerView newPlayer = newPlayerObj.GetComponent<PlayerView>();
-                    newPlayer.SetPlayerId(PlayerRotationUpdateCommandData.PlayerId);
-                    PlayerIdMapModel.AddPlayer(PlayerRotationUpdateCommandData.PlayerId, newPlayer);
                 }
             }
         }

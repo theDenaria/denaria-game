@@ -1,10 +1,19 @@
 using _Project.StrangeIOCUtility;
+using Cinemachine;
 using strange.extensions.signal.impl;
 using UnityEngine;
 namespace _Project.GameSceneManager.Scripts.Views
 {
-    public class OwnPlayerView : PlayerView
+    public class OwnPlayerView : ViewZeitnot
     {
+        public string PlayerId { get; private set; }
+
+        public float Health { get; set; }
+
+        [SerializeField] protected Transform shoulderTransform;
+
+        [SerializeField] protected Transform barrelPosition;
+
         private Camera mainCamera;
         private Quaternion lastSentRotation;
         public float xAxis, yAxis = 0f;
@@ -13,19 +22,27 @@ namespace _Project.GameSceneManager.Scripts.Views
 
         internal Signal<Vector2> onMoveInputToSend = new Signal<Vector2>();
         internal Signal<Vector4> onLookToSend = new Signal<Vector4>();
-        public Signal<Vector3, Vector3, Vector3> onFire = new Signal<Vector3, Vector3, Vector3>();
-        protected override void Awake()
+        internal Signal<Vector3, Vector3, Vector3> onFire = new Signal<Vector3, Vector3, Vector3>();
+
+        private void OnEnable()
         {
-            base.Awake();
             mainCamera = Camera.main;
-        }
-
-        protected override void Start()
-        {
-            base.Start();
             lastSentRotation = transform.rotation;
+
+            var cinemachineVirtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
+            // Set the Cinemachine camera's follow and look at targets
+
+            Transform childTransform = transform.Find("PlayerLookAt");
+            cinemachineVirtualCamera.Follow = childTransform;
+
+            // Optionally, enable the Cinemachine Brain if it was disabled
+            Camera.main.GetComponent<CinemachineBrain>().enabled = true;
         }
 
+        public void SetPlayerId(string playerId)
+        {
+            PlayerId = playerId;
+        }
         public void SetPlayerLook(Vector2 lookInput)
         {
             xAxis += lookInput.x * mouseSensitivity;
