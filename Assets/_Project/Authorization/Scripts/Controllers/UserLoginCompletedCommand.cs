@@ -27,10 +27,10 @@ namespace _Project.Authorization.Scripts.Controllers
                 Debug.Log($"SessionTicket: {sessionTicket}, PlayFabId: {playfabId}");
 
                 // TODO add session ticket to signal
-                Debug.Log("UUU Connecting to denaria server");
-                var connectDenariaServerCommandData = new ConnectDenariaServerCommandData("asdasd");
+                // Concat playfabid to be maximum 16 characters
+                var playfabIdShort = playfabId[..16];
+                var connectDenariaServerCommandData = new ConnectDenariaServerCommandData(playfabIdShort);
                 ConnectDenariaServerSignal.Dispatch(connectDenariaServerCommandData);
-                Debug.Log("UUU Connected to denaria server");
                 // ChangeSceneGroupSignal.Dispatch(SceneGroupType.TownSquare, new LoadingOptions());
 
             }

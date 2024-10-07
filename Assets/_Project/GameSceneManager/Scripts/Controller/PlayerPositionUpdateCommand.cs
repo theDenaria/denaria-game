@@ -18,7 +18,8 @@ namespace _Project.GameSceneManager.Scripts.Controller
                 OwnPlayerView ownPlayerView = PlayerIdMapModel.GetOwnPlayerView();
                 if (ownPlayerView != null)
                 {
-                    ownPlayerView.transform.position = PlayerPositionUpdateCommandData.Position;
+
+                    ownPlayerView.OnServerStateUpdate(PlayerPositionUpdateCommandData.Position);
                 }
             }
             else
@@ -26,7 +27,7 @@ namespace _Project.GameSceneManager.Scripts.Controller
                 PlayerView playerView = PlayerIdMapModel.GetPlayerView(PlayerPositionUpdateCommandData.PlayerId);
                 if (playerView != null)
                 {
-                    playerView.transform.position = PlayerPositionUpdateCommandData.Position;
+                    playerView.OnServerStateUpdate(PlayerPositionUpdateCommandData.Position);
                 }
             }
         }
