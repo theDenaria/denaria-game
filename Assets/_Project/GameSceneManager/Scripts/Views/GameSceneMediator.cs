@@ -29,10 +29,8 @@ namespace _Project.GameSceneManager.Scripts.Views
 
         public void HandleSceneLoaded()
         {
-            Debug.Log("SceneChangedMediator: HandleSceneLoaded");
             if (View.SceneName == "TownSquare")
             {
-                Debug.Log("SceneChangedMediator: TownSquareLoadedSignal.Dispatch");
                 PlayerIdMapModel.Init(DenariaServerService.PlayerId, View.OwnPlayerPrefab, View.EnemyPlayerPrefab);
                 TownSquareLoadedSignal.Dispatch();
             }

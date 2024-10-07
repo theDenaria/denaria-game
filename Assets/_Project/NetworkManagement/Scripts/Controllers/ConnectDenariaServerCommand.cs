@@ -15,7 +15,6 @@ namespace _Project.NetworkManagement.Scripts.Controllers
 
         public override void Execute()
         {
-            Debug.Log("UUU ConnectDenariaServerCommand Execute");
             DenariaServerService.Init("asdas");
             DenariaServerService.ConnectToDenariaServer();
 

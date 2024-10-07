@@ -149,7 +149,6 @@ namespace _Project.StrangeIOCUtility.CrossContext
 		{
 			if (Context.firstContext == this)
 			{
-				Debug.Log("YYY MainContext IS THE FIRST CONTEXT");
 				/*
 				BindAnalyticsInjections();
 				BindForceUpdatePopup();
@@ -172,9 +171,7 @@ namespace _Project.StrangeIOCUtility.CrossContext
 				BindLogReportInjections();
 				BindLoadingInjections();
 				ShowLoadingBindings();
-				Debug.Log("YYY NetworkManagementBindings in mapbindings");
 				NetworkManagementBindings();
-				Debug.Log("SettingsManagerBindings entered 1");
 				SettingsManagerBindings();
 			}
 		}
@@ -438,7 +435,6 @@ namespace _Project.StrangeIOCUtility.CrossContext
 			injectionBinder.Bind<ConnectDenariaServerSignal>().ToSingleton().CrossContext();
 
 			commandBinder.Bind<ConnectDenariaServerSignal>().To<ConnectDenariaServerCommand>();
-			Debug.Log("UUU Injected ConnectDenariaServerSignal and command");
 
 			injectionBinder.Bind<TownSquareLoadedSignal>().ToSingleton().CrossContext();
 			commandBinder.Bind<TownSquareLoadedSignal>().To<SendConnectCommand>();
@@ -454,10 +450,10 @@ namespace _Project.StrangeIOCUtility.CrossContext
 			injectionBinder.Bind<ReceiveHitSignal>().ToSingleton().CrossContext();
 			injectionBinder.Bind<ReceiveDisconnectSignal>().ToSingleton().CrossContext();
 
-			injectionBinder.Bind<SendMoveSignal>().CrossContext();
-			injectionBinder.Bind<SendLookSignal>().CrossContext();
-			injectionBinder.Bind<SendFireSignal>().CrossContext();
-			injectionBinder.Bind<SendJumpSignal>().CrossContext();
+			injectionBinder.Bind<SendMoveSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<SendLookSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<SendFireSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<SendJumpSignal>().ToSingleton().CrossContext();
 
 			// Will be dispatched from GameSceneManager
 			commandBinder.Bind<SendMoveSignal>().To<SendMoveCommand>();

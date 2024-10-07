@@ -107,6 +107,7 @@ namespace _Project.NetworkManagement.Scripts.Services
             {
                 nextExecutionTime = Time.realtimeSinceStartup + interval;
                 ReceiveMessages();
+
                 float waitTime = nextExecutionTime - Time.realtimeSinceStartup;
                 if (waitTime > 0)
                 {
@@ -308,7 +309,6 @@ namespace _Project.NetworkManagement.Scripts.Services
 
         private void ProcessPositionMessage(ref DataStreamReader reader)
         {
-            Debug.Log("UUU Process Position Update");
             ulong playerNum = reader.ReadULong();
             for (ulong i = 0; i < playerNum; i++)
             {
@@ -352,7 +352,6 @@ namespace _Project.NetworkManagement.Scripts.Services
 
         private void ProcessSpawnUpdate(ref DataStreamReader reader)
         {
-            Debug.Log("UUU ProcessSpawnUpdate");
             ulong playerNum = reader.ReadULong();
             for (ulong i = 0; i < playerNum; i++)
             {

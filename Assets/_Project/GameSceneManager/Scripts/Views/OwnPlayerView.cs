@@ -24,6 +24,8 @@ namespace _Project.GameSceneManager.Scripts.Views
         internal Signal<Vector4> onLookToSend = new Signal<Vector4>();
         internal Signal<Vector3, Vector3, Vector3> onFire = new Signal<Vector3, Vector3, Vector3>();
 
+        private Vector2 _moveInput;
+
         private void OnEnable()
         {
             mainCamera = Camera.main;
@@ -49,18 +51,17 @@ namespace _Project.GameSceneManager.Scripts.Views
             yAxis -= lookInput.y * mouseSensitivity;
             yAxis = Mathf.Clamp(yAxis, -80, 80);
 
-            camFollowPos.localEulerAngles = new Vector3(yAxis, camFollowPos.localEulerAngles.y, camFollowPos.localEulerAngles.z);
-            transform.eulerAngles = new Vector3(transform.eulerAngles.x, xAxis, transform.eulerAngles.z);
-
             float yRotation = mainCamera.transform.eulerAngles.y;
             float xRotation = mainCamera.transform.eulerAngles.x;
             transform.rotation = Quaternion.Euler(0f, yRotation, 0f);
             shoulderTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
-            SendRotationToServer();
+            camFollowPos.localEulerAngles = new Vector3(yAxis, camFollowPos.localEulerAngles.y, camFollowPos.localEulerAngles.z);
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x, xAxis, transform.eulerAngles.z);
+
         }
 
-        void SendRotationToServer()
+        public void SendRotationToServer()
         {
             Quaternion currentRotation = transform.rotation;
             float angleDifference = Quaternion.Angle(lastSentRotation, currentRotation);
@@ -73,17 +74,28 @@ namespace _Project.GameSceneManager.Scripts.Views
             }
         }
 
-        public void SendRotatedMoveInput(Vector2 normalizedInput)
+        public void SetRotatedMoveInput(Vector2 normalizedInput)
         {
+            _moveInput = normalizedInput;
+
+        }
+
+        public void SendMoveInputToServer()
+        {
+            if (_moveInput == Vector2.zero)
+            {
+                return;
+            }
             float angleDegrees = transform.eulerAngles.y;
             float angleRadians = angleDegrees * Mathf.Deg2Rad; // Convert degrees to radians
             float cosAngle = Mathf.Cos(angleRadians);
             float sinAngle = Mathf.Sin(angleRadians);
 
-            float rotatedX = normalizedInput.x * cosAngle + normalizedInput.y * sinAngle;
-            float rotatedY = -normalizedInput.x * sinAngle + normalizedInput.y * cosAngle;
+            float rotatedX = _moveInput.x * cosAngle + _moveInput.y * sinAngle;
+            float rotatedY = -_moveInput.x * sinAngle + _moveInput.y * cosAngle;
 
-            onMoveInputToSend.Dispatch(new Vector2(rotatedX, rotatedY));
+            var rotatedMoveInput = new Vector2(rotatedX, rotatedY);
+            onMoveInputToSend.Dispatch(rotatedMoveInput);
         }
 
         public (Vector3, Vector3, Vector3) GetFireInput()

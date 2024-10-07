@@ -9,7 +9,6 @@ namespace _Project.NetworkManagement.Scripts.Controllers
 
         public override void Execute()
         {
-            Debug.Log("UUUU OwnPlayerSpawnedCommand !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             DenariaServerService.StopSendingConnectMessage();
         }
     }

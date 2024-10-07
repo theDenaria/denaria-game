@@ -15,27 +15,19 @@ namespace _Project.GameSceneManager.Scripts.Controller
         public override void Execute()
         {
             GameObject contextObject = GameObject.Find("GameSceneManagerContext");
-            Debug.Log("UUU RECEIVED SPAWN SIGNAL");
             if (PlayerIdMapModel.IsOwnPlayer(PlayerSpawnCommandData.PlayerId))
             {
                 if (PlayerIdMapModel.IsOwnPlayerInitialized())
                 {
                     return;
                 }
-                Debug.Log("UUU SPAWNING OWN PLAYER");
                 GameObject newPlayerObj = Object.Instantiate(PlayerIdMapModel.OwnPlayerPrefab, PlayerSpawnCommandData.Position,
                     new Quaternion(PlayerSpawnCommandData.Rotation.x, PlayerSpawnCommandData.Rotation.y, PlayerSpawnCommandData.Rotation.z, PlayerSpawnCommandData.Rotation.w),
                     contextObject.transform);
 
-                Debug.Log("UUU AFTER SPAWNING");
-
                 OwnPlayerView newPlayer = newPlayerObj.GetComponent<OwnPlayerView>();
 
-                Debug.Log("UUU SETTING PLAYER ID");
-
                 newPlayer.SetPlayerId(PlayerSpawnCommandData.PlayerId);
-
-                Debug.Log("UUU SETTING OWN PLAYER VIEW");
 
                 PlayerIdMapModel.SetOwnPlayerView(newPlayer);
             }

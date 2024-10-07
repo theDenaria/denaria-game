@@ -28,12 +28,12 @@ namespace _Project.GameSceneManager.Scripts.Context
         {
             injectionBinder.Bind<IPlayerIdMapModel>().To<PlayerIdMapModel>().ToSingleton();
 
-            injectionBinder.Bind<PlayerMoveInputSignal>().CrossContext();
-            injectionBinder.Bind<PlayerLookInputSignal>().CrossContext();
-            injectionBinder.Bind<PlayerJumpInputSignal>().CrossContext();
-            injectionBinder.Bind<PlayerFireInputSignal>().CrossContext();
-            injectionBinder.Bind<PlayerSprintInputSignal>().CrossContext();
-            injectionBinder.Bind<PlayerEscMenuInputSignal>().CrossContext();
+            injectionBinder.Bind<PlayerMoveInputSignal>().ToSingleton();
+            injectionBinder.Bind<PlayerLookInputSignal>().ToSingleton();
+            injectionBinder.Bind<PlayerJumpInputSignal>().ToSingleton();
+            injectionBinder.Bind<PlayerFireInputSignal>().ToSingleton();
+            injectionBinder.Bind<PlayerSprintInputSignal>().ToSingleton();
+            injectionBinder.Bind<PlayerEscMenuInputSignal>().ToSingleton();
 
             mediationBinder.Bind<GameSceneView>().To<GameSceneMediator>();
             mediationBinder.Bind<OwnPlayerView>().To<OwnPlayerMediator>();
@@ -44,8 +44,6 @@ namespace _Project.GameSceneManager.Scripts.Context
             commandBinder.Bind<ReceivePositionUpdateSignal>().To<PlayerPositionUpdateCommand>();
             commandBinder.Bind<ReceiveRotationUpdateSignal>().To<PlayerRotationUpdateCommand>();
             commandBinder.Bind<ReceiveHealthUpdateSignal>().To<PlayerHealthUpdateCommand>();
-
-            Debug.Log("UUU BindGameSceneManager ended");
         }
     }
 }
