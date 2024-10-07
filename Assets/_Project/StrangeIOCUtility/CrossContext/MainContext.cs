@@ -3,6 +3,9 @@ using UnityEngine;
 
 using _Project.LoadingScreen.Scripts;
 using _Project.LoggingAndDebugging;
+using _Project.NetworkManagement.Scripts.Controllers;
+using _Project.NetworkManagement.Scripts.Services;
+using _Project.NetworkManagement.Scripts.Signals;
 using _Project.SceneManagementUtilities.Controllers;
 using _Project.SceneManagementUtilities.Models;
 using _Project.SceneManagementUtilities.Services;
@@ -17,6 +20,7 @@ using _Project.SettingsManager.Scripts.Models;
 using _Project.SettingsManager.Scripts.Signals;
 using _Project.SettingsManager.Scripts.Views;
 using _Project.SettingsManager;
+using _Project.GameSceneManager.Scripts.Signals;
 
 
 /*using _Project.ABTesting.Scripts.Commands;
@@ -145,7 +149,7 @@ namespace _Project.StrangeIOCUtility.CrossContext
 		{
 			if (Context.firstContext == this)
 			{
-				/*BindRoutineRunnerInjections();
+				/*
 				BindAnalyticsInjections();
 				BindForceUpdatePopup();
 				BindFacebookSDKInjections();
@@ -161,14 +165,20 @@ namespace _Project.StrangeIOCUtility.CrossContext
 				BindApplicationMemoryTrackingInjections();
 				
 				BindApplicationLifecycleInjections();*/
+				BindRoutineRunnerInjections();
 				BindWaitingCanvasInjections();
 				//BindLoginInjections(); //TODO: Uncomment 21 August
 				BindLogReportInjections();
 				BindLoadingInjections();
 				ShowLoadingBindings();
-				Debug.Log("SettingsManagerBindings entered 1");
+				NetworkManagementBindings();
 				SettingsManagerBindings();
 			}
+		}
+
+		private void BindRoutineRunnerInjections()
+		{
+			injectionBinder.Bind<IRoutineRunner>().To<RoutineRunner>().CrossContext().ToSingleton();
 		}
 
 		/*
@@ -193,10 +203,7 @@ namespace _Project.StrangeIOCUtility.CrossContext
 #endif
 		}
 
-        private void BindRoutineRunnerInjections()
-        {
-            injectionBinder.Bind<IRoutineRunner>().To<RoutineRunner>().CrossContext().ToSingleton();
-        }
+      
         
 		private void BindLoginInjections()
 		{
@@ -419,6 +426,40 @@ namespace _Project.StrangeIOCUtility.CrossContext
 			injectionBinder.Bind<IFileOperationService>().To<FileOperationService>().ToSingleton().CrossContext();
 			injectionBinder.Bind<INativeShareService>().To<NativeShareService>().ToSingleton().CrossContext();
 			injectionBinder.Bind<ILogRecordService>().To<LogRecordService>().ToSingleton().CrossContext();
+		}
+
+		private void NetworkManagementBindings()
+		{
+			injectionBinder.Bind<IDenariaServerService>().To<DenariaServerService>().ToSingleton().CrossContext();
+
+			injectionBinder.Bind<ConnectDenariaServerSignal>().ToSingleton().CrossContext();
+
+			commandBinder.Bind<ConnectDenariaServerSignal>().To<ConnectDenariaServerCommand>();
+
+			injectionBinder.Bind<TownSquareLoadedSignal>().ToSingleton().CrossContext();
+			commandBinder.Bind<TownSquareLoadedSignal>().To<SendConnectCommand>();
+
+			injectionBinder.Bind<OwnPlayerSpawnedSignal>().ToSingleton().CrossContext();
+			commandBinder.Bind<OwnPlayerSpawnedSignal>().To<OwnPlayerSpawnedCommand>();
+
+			injectionBinder.Bind<ReceiveSpawnSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<ReceivePositionUpdateSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<ReceiveRotationUpdateSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<ReceiveHealthUpdateSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<ReceiveFireSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<ReceiveHitSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<ReceiveDisconnectSignal>().ToSingleton().CrossContext();
+
+			injectionBinder.Bind<SendMoveSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<SendLookSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<SendFireSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<SendJumpSignal>().ToSingleton().CrossContext();
+
+			// Will be dispatched from GameSceneManager
+			commandBinder.Bind<SendMoveSignal>().To<SendMoveCommand>();
+			commandBinder.Bind<SendLookSignal>().To<SendLookCommand>();
+			commandBinder.Bind<SendFireSignal>().To<SendFireCommand>();
+			commandBinder.Bind<SendJumpSignal>().To<SendJumpCommand>();
 		}
 
 		private void SettingsManagerBindings()

@@ -36,23 +36,7 @@ namespace _Project.Login.Services
 
         private void OnLoginResponseReceived(CBSLoginResult result)
         {
-            if (result.IsSuccess)
-            {
-                var isNew = result.IsNew;
-                var profileID = result.ProfileID;
-                var playfabLoginResult = result.Result;
-                var sessionTicket = playfabLoginResult.SessionTicket;
-                var playfabId = playfabLoginResult.PlayFabId;
-                Debug.Log($"SessionTicket: {sessionTicket}, PlayFabId: {playfabId}");
-            }
-            else
-            {
-                Debug.Log(result.Error.Message);
-            }
-
             UserLoginCompletedSignal.Dispatch(result);
-
-            ChangeSceneGroupSignal.Dispatch(SceneGroupType.TownSquare, new LoadingOptions());
         }
     }
 }
