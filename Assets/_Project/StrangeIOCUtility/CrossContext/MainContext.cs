@@ -1,3 +1,7 @@
+using _Project.Analytics.Commands;
+using _Project.Analytics.Services;
+using _Project.Analytics.Signals;
+using _Project.Analytics.Views;
 using strange.extensions.context.impl;
 using UnityEngine;
 
@@ -146,7 +150,9 @@ namespace _Project.StrangeIOCUtility.CrossContext
 			if (Context.firstContext == this)
 			{
 				/*BindRoutineRunnerInjections();
+				 */
 				BindAnalyticsInjections();
+				/*
 				BindForceUpdatePopup();
 				BindFacebookSDKInjections();
 				BindSceneManagementInjections();
@@ -208,25 +214,26 @@ namespace _Project.StrangeIOCUtility.CrossContext
 		{
 			mediationBinder.Bind<CameraManagerView>().To<CameraManagerMediator>();
 		}
-		
+		*/
 		private void BindAnalyticsInjections()
 		{
-			injectionBinder.Bind<IAnalyticsService>().To<FirebaseAnalyticsService>().ToSingleton().CrossContext();
+			injectionBinder.Bind<IAnalyticsService>().To<UnityAnalyticsService>().ToSingleton().CrossContext();
 			injectionBinder.Bind<SendAnalyticsEventSignal>().ToSingleton().CrossContext();
 			commandBinder.Bind<SendAnalyticsEventSignal>().To<SendAnalyticsEventCommand>();
 			
 			injectionBinder.Bind<SendCachedAnalyticEventsSignal>().ToSingleton().CrossContext();
 			commandBinder.Bind<SendCachedAnalyticEventsSignal>()
 				.To<SendCachedScreenTrackingEventCommand>()
-				.To<SendCachedLeaveEpisodeEventCommand>()
 				.To<SendCachedNotificationPopupQuitEventCommand>()
-				.To<SendCachedOutOfProfileTrackingEventCommand>()
 				.To<SendCachedNotEnoughCoinsEventCommand>()
 				.To<SendCachedAnalyticEventsCompletedCommand>()
 				.To<SendCachedForceUpdatePopupEventCommand>()
 				.InSequence();
+			
+			mediationBinder.Bind<AnalyticsTesterView>().To<AnalyticsTesterMediator> ();
 		}
 
+		/*
 		private void BindFacebookSDKInjections()
 		{
 			injectionBinder.Bind<IFacebookSDKService>().To<FacebookSDKService>().ToSingleton().CrossContext();
