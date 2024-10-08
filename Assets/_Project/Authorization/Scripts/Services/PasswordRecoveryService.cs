@@ -1,7 +1,7 @@
-using _Project.Login.Controllers;
+using _Project.Authorization.Scripts.Commands;
 using CBS;
 
-namespace _Project.Login.Services
+namespace _Project.Authorization.Scripts.Services
 {
     public class PasswordRecoveryService : IPasswordRecoveryService
     {

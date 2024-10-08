@@ -1,5 +1,5 @@
-﻿using _Project.PlayerProfile.Scripts.Controllers;
-using _Project.ShowLoading.Signals;
+﻿using _Project.PlayerProfile.Scripts.Commands;
+using _Project.ShowLoading.Scripts.Signals;
 using strange.extensions.mediation.impl;
 
 namespace _Project.PlayerProfile.Scripts.Views

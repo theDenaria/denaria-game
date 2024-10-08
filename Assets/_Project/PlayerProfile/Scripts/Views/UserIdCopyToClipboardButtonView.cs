@@ -3,6 +3,7 @@ using _Project.UIZeitnot.ButtonZeitnot.Scripts;
 using _Project.UIZeitnot.TextMeshProZeitnot;
 using strange.extensions.signal.impl;
 using System.Collections;
+using _Project.StrangeIOCUtility.Scripts.Views;
 using UnityEngine;
 
 namespace _Project.PlayerProfile.Scripts.Views

@@ -1,4 +1,4 @@
-﻿using _Project.PlayerProfile.Scripts.Controllers;
+﻿using _Project.PlayerProfile.Scripts.Commands;
 using strange.extensions.mediation.impl;
 
 namespace _Project.PlayerProfile.Scripts.Views

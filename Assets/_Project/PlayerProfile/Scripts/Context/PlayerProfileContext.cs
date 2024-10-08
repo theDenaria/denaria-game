@@ -1,7 +1,7 @@
-﻿using _Project.PlayerProfile.Scripts.Controllers;
+﻿using _Project.PlayerProfile.Scripts.Commands;
 using _Project.PlayerProfile.Scripts.Views;
-using _Project.SceneManagementUtilities.Views;
-using _Project.StrangeIOCUtility.CrossContext;
+using _Project.SceneManagementUtilities.Scripts.Views;
+using _Project.StrangeIOCUtility.Scripts.Context;
 using UnityEngine;
 
 namespace _Project.PlayerProfile.Scripts.Context

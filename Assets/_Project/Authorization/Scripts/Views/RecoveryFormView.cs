@@ -1,15 +1,13 @@
-using _Project.StrangeIOCUtility;
+using _Project.StrangeIOCUtility.Scripts.Views;
 using _Project.UIZeitnot.ButtonZeitnot.Scripts;
-using CBS;
 using CBS.Models;
-using CBS.Scriptable;
 using CBS.UI;
 using CBS.Utils;
 using strange.extensions.signal.impl;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Project.Login.Scripts.Views
+namespace _Project.Authorization.Scripts.Views
 {
     public class RecoveryFormView : ViewZeitnot
     {

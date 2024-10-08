@@ -5,7 +5,7 @@ using _Project.ABTesting.Scripts.Signals;
 //using _Project.CBSUtility.Models;
 //using _Project.CBSUtility.Signals;
 using _Project.LoggingAndDebugging;
-using _Project.PlayerProfile.Scripts.Model;
+using _Project.PlayerProfile.Scripts.Models;
 using _Project.Utilities;
 using Sirenix.Utilities;
 

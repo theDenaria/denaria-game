@@ -1,35 +1,38 @@
-using _Project.StrangeIOCUtility;
+using _Project.StrangeIOCUtility.Scripts.Views;
 using _Project.UIZeitnot.ButtonZeitnot.Scripts;
 using strange.extensions.signal.impl;
 using UnityEngine;
 
-public class FooterView : ViewZeitnot
+namespace _Project.SettingsManager.Scripts.Views
 {
-    [field: SerializeField] private ButtonZeitnot ApplyButton { get; set; }
-    [field: SerializeField] private ButtonZeitnot RestoreButton { get; set; }
-
-    internal Signal onApplyButtonClicked = new Signal();
-    internal Signal onRestoreButtonClicked = new Signal();
-
-    private void OnEnable()
+    public class FooterView : ViewZeitnot
     {
-        ApplyButton.onClick.AddListener(ApplyButtonClicked);
-        RestoreButton.onClick.AddListener(RestoreButtonClicked);
-    }
+        [field: SerializeField] private ButtonZeitnot ApplyButton { get; set; }
+        [field: SerializeField] private ButtonZeitnot RestoreButton { get; set; }
 
-    private void OnDisable()
-    {
-        ApplyButton.onClick.RemoveListener(ApplyButtonClicked);
-        RestoreButton.onClick.RemoveListener(RestoreButtonClicked);
-    }
+        internal Signal onApplyButtonClicked = new Signal();
+        internal Signal onRestoreButtonClicked = new Signal();
 
-    public void ApplyButtonClicked()
-    {
-        onApplyButtonClicked.Dispatch();
-    }
+        private void OnEnable()
+        {
+            ApplyButton.onClick.AddListener(ApplyButtonClicked);
+            RestoreButton.onClick.AddListener(RestoreButtonClicked);
+        }
 
-    public void RestoreButtonClicked()
-    {
-        onRestoreButtonClicked.Dispatch();
+        private void OnDisable()
+        {
+            ApplyButton.onClick.RemoveListener(ApplyButtonClicked);
+            RestoreButton.onClick.RemoveListener(RestoreButtonClicked);
+        }
+
+        public void ApplyButtonClicked()
+        {
+            onApplyButtonClicked.Dispatch();
+        }
+
+        public void RestoreButtonClicked()
+        {
+            onRestoreButtonClicked.Dispatch();
+        }
     }
 }

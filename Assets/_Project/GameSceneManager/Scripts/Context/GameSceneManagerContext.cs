@@ -1,9 +1,9 @@
-using _Project.GameSceneManager.Scripts.Controller;
+using _Project.GameSceneManager.Scripts.Commands;
 using _Project.GameSceneManager.Scripts.Models;
 using _Project.GameSceneManager.Scripts.Signals;
 using _Project.GameSceneManager.Scripts.Views;
 using _Project.NetworkManagement.Scripts.Signals;
-using _Project.StrangeIOCUtility.CrossContext;
+using _Project.StrangeIOCUtility.Scripts.Context;
 using strange.extensions.context.api;
 using UnityEngine;
 using UnityEngine.UIElements;

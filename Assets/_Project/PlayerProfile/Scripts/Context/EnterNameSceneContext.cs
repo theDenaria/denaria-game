@@ -1,4 +1,4 @@
-﻿using _Project.StrangeIOCUtility.CrossContext;
+﻿using _Project.StrangeIOCUtility.Scripts.Context;
 using UnityEngine;
 
 namespace _Project.PlayerProfile.Scripts.Context
