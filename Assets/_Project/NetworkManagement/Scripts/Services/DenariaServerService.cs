@@ -24,7 +24,6 @@ namespace _Project.NetworkManagement.Scripts.Services
         [Inject] public ReceiveHitSignal ReceiveHitSignal { get; set; }
         [Inject] public ReceiveHealthUpdateSignal ReceiveHealthUpdateSignal { get; set; }
         [Inject] public ReceiveDisconnectSignal ReceiveDisconnectSignal { get; set; }
-
         [Inject] public IRoutineRunner RoutineRunner { get; set; }
 
         public NetworkDriver NetworkDriver { get; set; }
@@ -41,14 +40,18 @@ namespace _Project.NetworkManagement.Scripts.Services
         private float nextExecutionTime;
 
         public NetworkEndpoint _denariaEndpoint = NetworkEndpoint.Parse("127.0.0.1", 5000);
+        // public NetworkEndpoint _denariaEndpoint = NetworkEndpoint.Parse("176.40.120.89", 5000);
 
         private Coroutine _listenCoroutine;
 
         private bool _isSendingConnectMessage = false;
 
-        public void Init(string playerId)
+        private string _sessionTicket;
+
+        public void Init(string playerId, string sessionTicket)
         {
             PlayerId = playerId;
+            _sessionTicket = sessionTicket;
             IsConnectionAccepted = false;
             NetworkDriver = NetworkDriver.Create();
             ReliablePipeline = NetworkDriver.CreatePipeline(typeof(ReliableSequencedPipelineStage));
@@ -124,7 +127,6 @@ namespace _Project.NetworkManagement.Scripts.Services
         {
             NativeArray<byte>[] messages = new NativeArray<byte>[1];
             messages[0] = CreatePlayerConnectMessage();
-
             SendUnreliableMessages(messages);
         }
 
@@ -510,12 +512,16 @@ namespace _Project.NetworkManagement.Scripts.Services
         {
             byte messageType = (byte)SendOpCode.Connect;
 
-            byte[] tempBytes = Encoding.UTF8.GetBytes(PlayerId);
-            byte[] playerIdBytes = new byte[16];
+            byte[] playerIdBytes = Encoding.UTF8.GetBytes(PlayerId);
+            byte[] sessionTicketBytes = Encoding.UTF8.GetBytes(_sessionTicket);
 
-            Buffer.BlockCopy(tempBytes, 0, playerIdBytes, 0, tempBytes.Length);
 
-            NativeArray<byte> messagePacket = AddEventHeader(messageType, playerIdBytes);
+            byte[] connectMessageBodyBytes = new byte[16 + _sessionTicket.Length];
+
+            Buffer.BlockCopy(playerIdBytes, 0, connectMessageBodyBytes, 0, playerIdBytes.Length);
+            Buffer.BlockCopy(sessionTicketBytes, 0, connectMessageBodyBytes, 16, sessionTicketBytes.Length);
+
+            NativeArray<byte> messagePacket = AddEventHeader(messageType, connectMessageBodyBytes);
             return messagePacket;
         }
 
