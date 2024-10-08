@@ -57,7 +57,6 @@ namespace _Project.MainMenu.Scripts.Views
             Debug.Log("MainMenuMediator: HandleSettingsButton");
             View.MainMenuPanel.SetActive(false);
             View.SettingsPanel.SetActive(true);
-
         }
 
         public void HandleLogoutButton()
