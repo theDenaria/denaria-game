@@ -1,3 +1,4 @@
+using _Project.Authorization.Scripts.Controllers;
 using _Project.LoadingScreen.Scripts;
 using _Project.Login.Controllers;
 using _Project.Login.Scripts.Signals;
@@ -32,6 +33,7 @@ namespace _Project.Login.Scripts.Context
             commandBinder.Bind<LoginWithDeviceIdSignal>().To<LoginWithDeviceIdCommand>();
             commandBinder.Bind<LoginWithCustomIdSignal>().To<LoginWithCustomIdCommand>();
 
+            commandBinder.Bind<UserLoginCompletedSignal>().To<UserLoginCompletedCommand>();
             injectionBinder.Bind<IPasswordRecoveryService>().To<PasswordRecoveryService>().ToSingleton();
             mediationBinder.Bind<RecoveryFormView>().To<RecoveryFormMediator>();
             commandBinder.Bind<RequestPasswordRecoverySignal>().To<RequestPasswordRecoveryCommand>();

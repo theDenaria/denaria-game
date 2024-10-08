@@ -1,14 +1,19 @@
+using _Project.NetworkManagement.Scripts.Controllers;
+using _Project.NetworkManagement.Scripts.Signals;
 using _Project.SceneManagementUtilities.Signals;
 using _Project.SceneManagementUtilities.Utilities;
-using strange.extensions.command.impl;
 using CBS.Models;
+using strange.extensions.command.impl;
 
-namespace _Project.Login.Controllers
+namespace _Project.Authorization.Scripts.Controllers
 {
     public class UserLoginCompletedCommand : Command
     {
         [Inject] public CBSLoginResult Result { get; set; }
         [Inject] public ChangeSceneGroupSignal ChangeSceneGroupSignal { private get; set; }
+
+        [Inject]
+        public ConnectDenariaServerSignal ConnectDenariaServerSignal { get; set; }
 
         public override void Execute()
         {
@@ -20,7 +25,13 @@ namespace _Project.Login.Controllers
                 var sessionTicket = playfabLoginResult.SessionTicket;
                 var playfabId = playfabLoginResult.PlayFabId;
                 Debug.Log($"SessionTicket: {sessionTicket}, PlayFabId: {playfabId}");
-                ChangeSceneGroupSignal.Dispatch(SceneGroupType.TownSquare, new LoadingOptions());
+
+                // TODO add session ticket to signal
+                // Concat playfabid to be maximum 16 characters
+                var playfabIdShort = playfabId[..16];
+                var connectDenariaServerCommandData = new ConnectDenariaServerCommandData(playfabIdShort);
+                ConnectDenariaServerSignal.Dispatch(connectDenariaServerCommandData);
+                // ChangeSceneGroupSignal.Dispatch(SceneGroupType.TownSquare, new LoadingOptions());
 
             }
             else
