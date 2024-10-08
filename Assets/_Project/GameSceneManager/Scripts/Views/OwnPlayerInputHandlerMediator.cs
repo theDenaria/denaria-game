@@ -1,6 +1,7 @@
 using strange.extensions.mediation.impl;
 using _Project.GameSceneManager.Scripts.Signals;
 using UnityEngine;
+using _Project.MainMenu.Scripts.Signals;
 
 namespace _Project.GameSceneManager.Scripts.Views
 {
@@ -62,6 +63,28 @@ namespace _Project.GameSceneManager.Scripts.Views
         private void OnEscMenu()
         {
             PlayerEscMenuSignal.Dispatch();
+        }
+
+        [ListensTo(typeof(MainMenuOpenedSignal))]
+        public void OnMainMenuOpened()
+        {
+            // generate code to stop listening to player movement signals from the input handler
+            View.onMoveInput.RemoveListener(OnMove);
+            View.onLookInput.RemoveListener(OnLook);
+            View.onFireInput.RemoveListener(OnFire);
+            View.onJumpInput.RemoveListener(OnJump);
+            View.onSprintInput.RemoveListener(OnSprint);
+        }
+
+        [ListensTo(typeof(MainMenuClosedSignal))]
+        public void OnMainMenuClosed()
+        {
+            // generate code to enable listening to player movement signals from the input handler
+            View.onMoveInput.AddListener(OnMove);
+            View.onLookInput.AddListener(OnLook);
+            View.onFireInput.AddListener(OnFire);
+            View.onJumpInput.AddListener(OnJump);
+            View.onSprintInput.AddListener(OnSprint);
         }
     }
 }

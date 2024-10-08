@@ -3,31 +3,47 @@ using _Project.StrangeIOCUtility;
 using strange.extensions.mediation.impl;
 using strange.extensions.signal.impl;
 
-public class FooterMediator : Mediator
+namespace _Project.SettingsManager.Scripts.Views
 {
-    [Inject] public FooterView View { get; set; }
-    [Inject] public ApplySettingsSignal ApplySettingsSignal { get; set; }
-    [Inject] public RestoreDefaultSettingsSignal RestoreDefaultSettingsSignal { get; set; }
-
-    public override void OnRegister()
+    public class FooterMediator : Mediator
     {
-        View.onApplyButtonClicked.AddListener(ApplySettings);
-        View.onRestoreButtonClicked.AddListener(RestoreDefaultSettings);
-    }
-    public override void OnRemove()
-    {
-        View.onApplyButtonClicked.RemoveListener(ApplySettings);
-        View.onRestoreButtonClicked.RemoveListener(RestoreDefaultSettings);
-    }
+        [Inject] public FooterView View { get; set; }
+        [Inject] public ApplySettingsSignal ApplySettingsSignal { get; set; }
+        [Inject] public RestoreDefaultSettingsSignal RestoreDefaultSettingsSignal { get; set; }
+        //[Inject] public SettingsMenuClosedSignal SettingsMenuClosedSignal { get; set; }
 
-    private void ApplySettings()
-    {
-        ApplySettingsSignal.Dispatch();
-    }
+        public override void OnRegister()
+        {
+            View.onApplyButtonClicked.AddListener(HandleApplySettings);
+            View.onRestoreButtonClicked.AddListener(HandleRestoreDefaultSettings);
+            Debug.Log("UUU onRegister Before onBackButton");
+            View.onBackButtonClicked.AddListener(HandleBackButtonClicked);
+            Debug.Log("UUU onRegister After onBackButton");
+        }
+        public override void OnRemove()
+        {
+            View.onApplyButtonClicked.RemoveListener(HandleApplySettings);
+            View.onRestoreButtonClicked.RemoveListener(HandleRestoreDefaultSettings);
+            View.onBackButtonClicked.RemoveListener(HandleBackButtonClicked);
+        }
 
-    private void RestoreDefaultSettings()
-    {
-        RestoreDefaultSettingsSignal.Dispatch();
-    }
+        private void HandleApplySettings()
+        {
+            ApplySettingsSignal.Dispatch();
+        }
 
+        private void HandleRestoreDefaultSettings()
+        {
+            RestoreDefaultSettingsSignal.Dispatch();
+        }
+
+        private void HandleBackButtonClicked()
+        {
+            Debug.Log("HandleBackButtonClicked MEDIATOR");
+            View.SettingsPanel.SetActive(false);
+            View.MainMenuPanel.SetActive(true);
+            Debug.Log("SettingsMenuClosedSignal dispatch");
+        }
+
+    }
 }

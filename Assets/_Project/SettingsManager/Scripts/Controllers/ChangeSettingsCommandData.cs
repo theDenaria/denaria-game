@@ -1,6 +1,6 @@
 using _Project.SettingsManager.Scripts.Enums;
 
-namespace _Project.SettingsManager
+namespace _Project.SettingsManager.Scripts.Controllers
 {
     public class ChangeSettingsCommandData
     {
