@@ -1,3 +1,4 @@
+using _Project.SettingsManager.Scripts.Controllers;
 using strange.extensions.signal.impl;
 namespace _Project.SettingsManager.Scripts.Signals
 {

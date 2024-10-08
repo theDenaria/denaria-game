@@ -5,6 +5,10 @@ using _Project.GameSceneManager.Scripts.Views;
 using _Project.MainMenu.Scripts.Signals;
 using _Project.MainMenu.Scripts.Views;
 using _Project.NetworkManagement.Scripts.Signals;
+using _Project.SettingsManager.Scripts.Controllers;
+using _Project.SettingsManager.Scripts.Models;
+using _Project.SettingsManager.Scripts.Signals;
+using _Project.SettingsManager.Scripts.Views;
 using _Project.StrangeIOCUtility.CrossContext;
 using strange.extensions.context.api;
 using UnityEngine;
@@ -24,6 +28,7 @@ namespace _Project.GameSceneManager.Scripts.Context
 
             BindGameSceneManager();
             BindMainMenu();
+            SettingsManagerBindings();
         }
 
 
@@ -60,6 +65,26 @@ namespace _Project.GameSceneManager.Scripts.Context
 
             //commandBinder.Bind<LogoutButtonSignal>().To<LogoutButtonCommand>();
             //commandBinder.Bind<ExitButtonSignal>().To<ExitButtonCommand>();
+        }
+
+        private void SettingsManagerBindings()
+        {
+            injectionBinder.Bind<ApplySettingsSignal>().ToSingleton();
+            injectionBinder.Bind<RestoreDefaultSettingsSignal>().ToSingleton();
+            injectionBinder.Bind<ChangeSettingsSignal>().ToSingleton();
+            //injectionBinder.Bind<SettingsMenuClosedSignal>().ToSingleton();
+
+            injectionBinder.Bind<ISettingsModel>().To<SettingsModel>().ToSingleton().CrossContext();
+
+            mediationBinder.Bind<VideoSettingsView>().To<VideoSettingsMediator>();
+            mediationBinder.Bind<AudioSettingsView>().To<AudioSettingsMediator>();
+            mediationBinder.Bind<HotkeySettingsView>().To<HotkeySettingsMediator>();
+            mediationBinder.Bind<FooterView>().To<FooterMediator>();
+
+            commandBinder.Bind<ApplySettingsSignal>().To<ApplySettingsCommand>();
+            commandBinder.Bind<RestoreDefaultSettingsSignal>().To<RestoreDefaultSettingsCommand>();
+            commandBinder.Bind<ChangeSettingsSignal>().To<ChangeSettingsCommand>();
+            //commandBinder.Bind<SettingsMenuClosedSignal>().To<SettingsMenuClosedCommand>();
         }
     }
 }
