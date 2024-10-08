@@ -52,8 +52,14 @@ namespace _Project.GameSceneManager.Scripts.Context
         private void BindMainMenu()
         {
             mediationBinder.Bind<MainMenuView>().To<MainMenuMediator>();
+
             injectionBinder.Bind<MainMenuOpenedSignal>().ToSingleton();
             injectionBinder.Bind<MainMenuClosedSignal>().ToSingleton();
+            injectionBinder.Bind<LogoutButtonSignal>().ToSingleton();
+            injectionBinder.Bind<ExitButtonSignal>().ToSingleton();
+
+            //commandBinder.Bind<LogoutButtonSignal>().To<LogoutButtonCommand>();
+            //commandBinder.Bind<ExitButtonSignal>().To<ExitButtonCommand>();
         }
     }
 }
