@@ -15,9 +15,8 @@ namespace _Project.NetworkManagement.Scripts.Controllers
 
         public override void Execute()
         {
-            DenariaServerService.Init("asdas");
+            DenariaServerService.Init(ConnectDenariaServerCommandData.PlayerId, ConnectDenariaServerCommandData.SessionTicket);
             DenariaServerService.ConnectToDenariaServer();
-
         }
     }
 }
