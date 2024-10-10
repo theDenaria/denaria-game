@@ -4,6 +4,6 @@ namespace _Project.Analytics.UnityAnalytics.Scripts.Models
 {
     public abstract class UnityAnalyticsEvent : BaseAnalyticsEvent<UnityAnalyticsEventParameter>
     {
-
+        
     }
 }

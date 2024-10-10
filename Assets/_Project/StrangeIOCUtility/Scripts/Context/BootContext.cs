@@ -1,3 +1,4 @@
+using _Project.Analytics.UnityAnalytics.Scripts.Commands;
 using _Project.LoadingScreen.Scripts.Signals;
 using _Project.LoggingAndDebugging;
 using _Project.SceneManagementUtilities.Scripts.Commands;
@@ -59,6 +60,7 @@ namespace _Project.StrangeIOCUtility.Scripts.Context
                 //.To<LimitDeviceFrameRateCommand>()//TODO: Uncomment after adding classes - 14 August 2024
                 .To<InitializeSRDebuggerCommand>()
                 .To<InitializeInjectedObjectFactoryCommand>()
+                .To<InitializeUnityServicesCommand>()
                 .InSequence().Once();
             
             //TODO: Uncomment after adding Classes. -14 August 2024

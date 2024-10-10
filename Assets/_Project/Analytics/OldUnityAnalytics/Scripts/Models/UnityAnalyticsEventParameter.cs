@@ -20,6 +20,11 @@ namespace _Project.Analytics.UnityAnalytics.Scripts.Models
         public UnityAnalyticsEventParameter(float floatParameter)
         {
             Value = floatParameter;
+        }        
+        
+        public UnityAnalyticsEventParameter(bool boolParameter)
+        {
+            Value = boolParameter;
         }
         
     }

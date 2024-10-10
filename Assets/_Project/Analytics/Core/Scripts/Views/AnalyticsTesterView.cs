@@ -23,11 +23,6 @@ namespace _Project.Analytics.Core.Scripts.Views
         {
             //ButtonPressedSignal.Dispatch();
         }
-
-        protected override void Start()
-        {
-            //base.Awake();
-            ButtonPressedSignal.Dispatch();
-        }
+        
     }
 }

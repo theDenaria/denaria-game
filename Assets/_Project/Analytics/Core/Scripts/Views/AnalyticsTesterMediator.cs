@@ -1,4 +1,6 @@
-﻿using _Project.Analytics.Core.Scripts.Models;
+﻿using System;
+using System.Threading.Tasks;
+using _Project.Analytics.Core.Scripts.Models;
 using _Project.Analytics.Core.Scripts.Signals;
 using _Project.StrangeIOCUtility.Scripts.Utilities;
 using strange.extensions.mediation.impl;
@@ -26,8 +28,35 @@ namespace _Project.Analytics.Core.Scripts.Views
 
         private void HandleButtonPressed()
         {
+            Debug.Log("xxx HandleButtonPressed entered");
             SendAnalyticsEventSignal.Dispatch(InjectedObjectFactory.GetInjectedInstance<TestAnalyticsEvent>()
-                    .SetParametersAndReturn(0.5f, 14124214214124, "dummy TEST string"));
+                    .SetParametersAndReturn("dummyParameterString", 242, 0.5f, true));
+            Debug.Log("xxx HandleButtonPressed exited");
+        }
+
+        private void Start()
+        {
+            Debug.Log("xxx Start entered");
+            SendAnalyticsEvent();
+            Debug.Log("xxx Start exited");
+        }
+        
+        
+        async void SendAnalyticsEvent()
+        {
+            Debug.Log("xxx SendAnalyticsEvent enter");
+
+            try
+            {
+                await Task.Delay(10000); // 1 second delay
+                SendAnalyticsEventSignal.Dispatch(InjectedObjectFactory.GetInjectedInstance<TestAnalyticsEvent>()
+                    .SetParametersAndReturn("dummyParameterString", 242, 0.5f, true));
+
+                Debug.Log("xxx SendAnalyticsEvent exit");
+            }
+            catch (Exception exception)
+            {
+            }
         }
     }
 }
