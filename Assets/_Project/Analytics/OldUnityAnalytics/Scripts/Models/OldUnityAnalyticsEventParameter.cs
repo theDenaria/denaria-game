@@ -3,26 +3,26 @@
 namespace _Project.Analytics.UnityAnalytics.Scripts.Models
 {
     //This class makes sure that only supported types get passed into respective Analytics Service.
-    public class UnityAnalyticsEventParameter : IAnalyticsEventParameter
+    public class OldUnityAnalyticsEventParameter : IAnalyticsEventParameter
     {
         public object Value { get; set; }
 
-        public UnityAnalyticsEventParameter(string stringParameter)
+        public OldUnityAnalyticsEventParameter(string stringParameter)
         {
             Value = stringParameter;
         }
         
-        public UnityAnalyticsEventParameter(int integerParameter)
+        public OldUnityAnalyticsEventParameter(int integerParameter)
         {
             Value = integerParameter;
         }
         
-        public UnityAnalyticsEventParameter(float floatParameter)
+        public OldUnityAnalyticsEventParameter(float floatParameter)
         {
             Value = floatParameter;
         }        
         
-        public UnityAnalyticsEventParameter(bool boolParameter)
+        public OldUnityAnalyticsEventParameter(bool boolParameter)
         {
             Value = boolParameter;
         }

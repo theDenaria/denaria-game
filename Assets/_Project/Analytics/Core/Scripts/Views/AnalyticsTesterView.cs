@@ -6,9 +6,9 @@ namespace _Project.Analytics.Core.Scripts.Views
 {
     public class AnalyticsTesterView : ViewZeitnot
     {
-        public ButtonZeitnot buttonPrefab;
+        //public ButtonZeitnot buttonPrefab;
 
-        internal Signal ButtonPressedSignal = new Signal();
+        internal Signal buttonPressedSignal = new Signal();
 
         internal void init()
         {
@@ -21,7 +21,7 @@ namespace _Project.Analytics.Core.Scripts.Views
         
         public void HandleButtonPressed()
         {
-            //ButtonPressedSignal.Dispatch();
+            buttonPressedSignal.Dispatch();
         }
         
     }

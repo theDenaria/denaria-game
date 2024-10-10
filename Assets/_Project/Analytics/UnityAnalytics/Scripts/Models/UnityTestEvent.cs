@@ -3,7 +3,7 @@ using _Project.SceneManagementUtilities.Scripts.Models;
 namespace _Project.Analytics.Core.Scripts.Models
 {
     //Combination of TestAnalyticsEvent and UnityTestEvent. This is the example to be followed.
-    public class NewUnityTestEvent : Unity.Services.Analytics.Event, IAnalyticsEvent
+    public class UnityTestEvent : Unity.Services.Analytics.Event, IAnalyticsEvent
     {
         [Inject] public ICurrentSceneModel CurrentSceneModel { get; set; } //Get as much parameters as you can from injectable models and services. 
         public string EventName { get; set; }
@@ -16,26 +16,17 @@ namespace _Project.Analytics.Core.Scripts.Models
         public bool DummyBoolParameter { set { SetParameter("dummyBoolParameter", value); } }
         //
 
-        public NewUnityTestEvent() : base("zzzNewTestEvent")//Empty constructor is needed for Injection Factory to work properly.
+        public UnityTestEvent() : base("zzzNewTestEvent")//Empty constructor is needed for Injection Factory to work properly.
         {
             
         }
         
         //Get the specific parameters, for example the ones that are updated at playtime, via calling SetParametersAndReturn method from the class that holds relevant data.
-        public NewUnityTestEvent SetParametersAndReturn(string dummyStringParameter, int dummyIntegerParameter, float dummyFloatParameter,  bool dummyBoolParameter)
+        public UnityTestEvent SetParametersAndReturn(string dummyStringParameter, int dummyIntegerParameter, float dummyFloatParameter,  bool dummyBoolParameter)
         {
             EventName = "zzzNewTestEvent"; //Should be same with the name in constructor. Repetition, but needed to conform to interface and work with the system.
             
             string currentSceneId = CurrentSceneModel.CurrentSceneId;
-            
-            //Works with the older version of Unity Analytics
-            /*EventParameters.Add(nameof(currentSceneId), new UnityAnalyticsEventParameter(currentSceneId));
-            EventParameters.Add(nameof(dummyStringParameter), new UnityAnalyticsEventParameter(dummyStringParameter));
-            EventParameters.Add(nameof(dummyIntegerParameter), new UnityAnalyticsEventParameter(dummyIntegerParameter));
-            EventParameters.Add(nameof(dummyFloatParameter), new UnityAnalyticsEventParameter(dummyFloatParameter));
-            //EventParameters.Add(nameof(dummyLongParameter), new UnityAnalyticsEventParameter(dummyLongParameter));
-            EventParameters.Add(nameof(dummyBoolParameter), new UnityAnalyticsEventParameter(dummyBoolParameter));
-            */
             
             CurrentSceneIdParameter = currentSceneId;
             DummyStringParameter = dummyStringParameter;
@@ -43,7 +34,7 @@ namespace _Project.Analytics.Core.Scripts.Models
             DummyFloatParameter = dummyFloatParameter;
             DummyBoolParameter = dummyBoolParameter;
             
-            Debug.Log("xxx NewUnityTestEvent created");
+            Debug.Log("xxx UnityTestEvent created");
             
             return this;
         }

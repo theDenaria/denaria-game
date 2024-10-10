@@ -24,30 +24,19 @@ namespace _Project.Analytics.UnityAnalytics.Scripts.Commands
 
             try
             {
-                var options = new InitializationOptions()
-                    .SetEnvironmentName(environment);
+                InitializationOptions options = new InitializationOptions().SetEnvironmentName(environment);
 
                 await UnityServices.InitializeAsync(options);
-                Debug.Log($"Started UGS Analytics Sample with user ID: {AnalyticsService.Instance.GetAnalyticsUserID()}");
-
-                await Task.Delay(5000); // 1 second delay
-
-                GiveConsent();
+                Debug.Log($"xxx Started UGS Analytics Sample with user ID: {AnalyticsService.Instance.GetAnalyticsUserID()}");
+                
                 Debug.Log("xxx InitializeUnityServicesCommand finising");
                 Release();
             }
             catch (Exception exception)
             {
+                Debug.Log("xxx exception occurred: " + exception.Message);
                 Fail();
             }
-        }
-        
-        
-        public void GiveConsent()
-        {
-            AnalyticsService.Instance.StartDataCollection();
-
-            Debug.Log($"Consent has been provided. The SDK is now collecting data!");
         }
     }
 }

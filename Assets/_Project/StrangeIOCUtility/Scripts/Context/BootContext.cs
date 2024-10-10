@@ -61,6 +61,7 @@ namespace _Project.StrangeIOCUtility.Scripts.Context
                 .To<InitializeSRDebuggerCommand>()
                 .To<InitializeInjectedObjectFactoryCommand>()
                 .To<InitializeUnityServicesCommand>()
+                .To<GiveConsentForCollectingDataCommand>()
                 .InSequence().Once();
             
             //TODO: Uncomment after adding Classes. -14 August 2024

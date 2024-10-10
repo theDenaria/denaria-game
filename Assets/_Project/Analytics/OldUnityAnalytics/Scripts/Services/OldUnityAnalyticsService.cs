@@ -7,22 +7,20 @@ using _Project.LoggingAndDebugging;
 using Unity.Services.Analytics;
 using Unity.VisualScripting;
 using UnityEngine.Analytics;
-using Models_UnityAnalyticsEventParameter = _Project.Analytics.UnityAnalytics.Scripts.Models.UnityAnalyticsEventParameter;
-using UnityAnalyticsEventParameter = _Project.Analytics.UnityAnalytics.Scripts.Models.UnityAnalyticsEventParameter;
 
 namespace _Project.Analytics.UnityAnalytics.Scripts.Services
 {
-    public class UnityAnalyticsService : BaseAnalyticsService<UnityAnalyticsEvent,Models_UnityAnalyticsEventParameter>
+    public class OldUnityAnalyticsService : BaseAnalyticsService<OldUnityAnalyticsEvent,OldUnityAnalyticsEventParameter>
     {
         public override void ValidateAnalyticsEventType(IAnalyticsEvent analyticsEvent)
         {
-            if (analyticsEvent is not UnityAnalyticsEvent)
+            if (analyticsEvent is not OldUnityAnalyticsEvent)
             { 
                 DebugLoggerMuteable.Log("Please provide UnityAnalyticsEvent");
                 return;
             }
     
-            UnityAnalyticsEvent unityAnalyticsEvent = (UnityAnalyticsEvent) analyticsEvent;
+            OldUnityAnalyticsEvent oldUnityAnalyticsEvent = (OldUnityAnalyticsEvent) analyticsEvent;
         }
         
         public override AnalyticsResultWrapper SendEventViaAPI(IAnalyticsEvent analyticsEvent)
@@ -31,30 +29,30 @@ namespace _Project.Analytics.UnityAnalytics.Scripts.Services
             AnalyticsResult analyticsResult;
             Dictionary<string, object> eventParameterDictionary = new FlexibleDictionary<string, object>();
             
-            UnityAnalyticsEvent unityAnalyticsEvent = (UnityAnalyticsEvent)analyticsEvent;
+            OldUnityAnalyticsEvent oldUnityAnalyticsEvent = (OldUnityAnalyticsEvent)analyticsEvent;
             
             
-            foreach (KeyValuePair<string, UnityAnalyticsEventParameter> eventParameter in unityAnalyticsEvent.EventParameters)
+            foreach (KeyValuePair<string, OldUnityAnalyticsEventParameter> eventParameter in oldUnityAnalyticsEvent.EventParameters)
             {
-                UnityAnalyticsEventParameter parameter;
+                OldUnityAnalyticsEventParameter parameter;
                 
                 if (eventParameter.Value.Value is float floatValue)
                 {
-                    parameter = new UnityAnalyticsEventParameter(floatValue);
+                    parameter = new OldUnityAnalyticsEventParameter(floatValue);
                     //eventParameterDictionary.Add(eventParameter.Key, parameter);
                     
                     eventParameterDictionary.Add(eventParameter.Key, floatValue);
 
                 }else if (eventParameter.Value.Value is int intValue)
                 {
-                    parameter = new UnityAnalyticsEventParameter(intValue);
+                    parameter = new OldUnityAnalyticsEventParameter(intValue);
                     //eventParameterDictionary.Add(eventParameter.Key, parameter);
                     
                     eventParameterDictionary.Add(eventParameter.Key, intValue);
 
                 }else if (eventParameter.Value.Value is string stringValue)
                 {
-                    parameter = new UnityAnalyticsEventParameter(stringValue);
+                    parameter = new OldUnityAnalyticsEventParameter(stringValue);
                     //eventParameterDictionary.Add(eventParameter.Key, parameter);
                     eventParameterDictionary.Add(eventParameter.Key, stringValue);
                 }
@@ -75,7 +73,7 @@ namespace _Project.Analytics.UnityAnalytics.Scripts.Services
             string resultMessage;
             foreach (KeyValuePair<string, IAnalyticsEventParameter> unityAnalyticsEventParameter in analyticsEvent.EventParameters)
             {
-                UnityAnalyticsEventParameter unityAnalyticsEventParameterValueCasted = (UnityAnalyticsEventParameter)unityAnalyticsEventParameter.Value;
+                OldUnityAnalyticsEventParameter unityAnalyticsEventParameterValueCasted = (OldUnityAnalyticsEventParameter)unityAnalyticsEventParameter.Value;
                 resultMessage += $"\n{unityAnalyticsEventParameter.Key}: {unityAnalyticsEventParameterValueCasted.Value}";
             }
 

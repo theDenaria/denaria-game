@@ -2,7 +2,7 @@
 
 namespace _Project.Analytics.UnityAnalytics.Scripts.Models
 {
-    public abstract class UnityAnalyticsEvent : BaseAnalyticsEvent<UnityAnalyticsEventParameter>
+    public abstract class OldUnityAnalyticsEvent : BaseAnalyticsEvent<OldUnityAnalyticsEventParameter>
     {
         
     }

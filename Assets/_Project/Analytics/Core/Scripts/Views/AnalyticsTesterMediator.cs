@@ -16,47 +16,49 @@ namespace _Project.Analytics.Core.Scripts.Views
         public override void OnRegister()
         {
             base.OnRegister();
-            View.ButtonPressedSignal.AddListener(HandleButtonPressed);
+            View.buttonPressedSignal.AddListener(HandleButtonPressed);
             View.init();
         }
 
         public override void OnRemove()
         {
             base.OnRemove();
-            View.ButtonPressedSignal.RemoveListener(HandleButtonPressed);
+            View.buttonPressedSignal.RemoveListener(HandleButtonPressed);
+        }
+        
+        private void Start()
+        {
+            Debug.Log("xxx Start entered");
+            WaitAndSendAnalyticsEvent();
+            Debug.Log("xxx Start exited");
         }
 
         private void HandleButtonPressed()
         {
             Debug.Log("xxx HandleButtonPressed entered");
-            SendAnalyticsEventSignal.Dispatch(InjectedObjectFactory.GetInjectedInstance<TestAnalyticsEvent>()
-                    .SetParametersAndReturn("dummyParameterString", 242, 0.5f, true));
+            SendDummyEvent();
             Debug.Log("xxx HandleButtonPressed exited");
         }
-
-        private void Start()
-        {
-            Debug.Log("xxx Start entered");
-            SendAnalyticsEvent();
-            Debug.Log("xxx Start exited");
-        }
         
-        
-        async void SendAnalyticsEvent()
+        async void WaitAndSendAnalyticsEvent()
         {
             Debug.Log("xxx SendAnalyticsEvent enter");
 
             try
             {
-                await Task.Delay(10000); // 1 second delay
-                SendAnalyticsEventSignal.Dispatch(InjectedObjectFactory.GetInjectedInstance<TestAnalyticsEvent>()
-                    .SetParametersAndReturn("dummyParameterString", 242, 0.5f, true));
-
+                await Task.Delay(10000); //1 second delay to ensure analytics system is initialized and permission given.
+                SendDummyEvent();
                 Debug.Log("xxx SendAnalyticsEvent exit");
             }
             catch (Exception exception)
             {
             }
+        }
+
+        private void SendDummyEvent()
+        {
+            SendAnalyticsEventSignal.Dispatch(InjectedObjectFactory.GetInjectedInstance<UnityTestEvent>()
+                .SetParametersAndReturn("dummyParameterString", 242, 0.5f, true));
         }
     }
 }
