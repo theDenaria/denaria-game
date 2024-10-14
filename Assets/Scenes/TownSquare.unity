@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 4304189}
   m_Layer: 0
   m_Name: Tree_02(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -294,7 +294,7 @@ GameObject:
   - component: {fileID: 14424369}
   m_Layer: 0
   m_Name: Rock_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -400,7 +400,7 @@ GameObject:
   - component: {fileID: 17417693}
   m_Layer: 0
   m_Name: Plant_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -637,7 +637,7 @@ GameObject:
   - component: {fileID: 27633491}
   m_Layer: 0
   m_Name: Tree_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1052,7 +1052,7 @@ GameObject:
   - component: {fileID: 32098513}
   m_Layer: 0
   m_Name: Rock_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1158,7 +1158,7 @@ GameObject:
   - component: {fileID: 32884828}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1264,7 +1264,7 @@ GameObject:
   - component: {fileID: 48929608}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1370,7 +1370,7 @@ GameObject:
   - component: {fileID: 53487305}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1476,7 +1476,7 @@ GameObject:
   - component: {fileID: 54230638}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1716,7 +1716,7 @@ GameObject:
   - component: {fileID: 56918394}
   m_Layer: 0
   m_Name: Tree_02(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2090,7 +2090,7 @@ GameObject:
   - component: {fileID: 77938387}
   m_Layer: 0
   m_Name: Rock_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2330,7 +2330,7 @@ GameObject:
   - component: {fileID: 85965646}
   m_Layer: 0
   m_Name: Tree_02(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2436,7 +2436,7 @@ GameObject:
   - component: {fileID: 87658222}
   m_Layer: 0
   m_Name: Tree_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2597,7 +2597,7 @@ GameObject:
   - component: {fileID: 92017608}
   m_Layer: 0
   m_Name: Rock_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2703,7 +2703,7 @@ GameObject:
   - component: {fileID: 100144055}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3161,7 +3161,7 @@ GameObject:
   - component: {fileID: 125587010}
   m_Layer: 0
   m_Name: Tree_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3476,7 +3476,7 @@ GameObject:
   - component: {fileID: 138013219}
   m_Layer: 0
   m_Name: Plant_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3582,7 +3582,7 @@ GameObject:
   - component: {fileID: 144243452}
   m_Layer: 0
   m_Name: Tree_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3688,7 +3688,7 @@ GameObject:
   - component: {fileID: 150432582}
   m_Layer: 0
   m_Name: Tree_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3794,7 +3794,7 @@ GameObject:
   - component: {fileID: 161203736}
   m_Layer: 0
   m_Name: Tree_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3900,7 +3900,7 @@ GameObject:
   - component: {fileID: 163753819}
   m_Layer: 0
   m_Name: Tree_02(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4006,7 +4006,7 @@ GameObject:
   - component: {fileID: 168016668}
   m_Layer: 0
   m_Name: Plant_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4246,7 +4246,7 @@ GameObject:
   - component: {fileID: 171046469}
   m_Layer: 0
   m_Name: Rock_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4352,7 +4352,7 @@ GameObject:
   - component: {fileID: 172914449}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4458,7 +4458,7 @@ GameObject:
   - component: {fileID: 182992151}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4564,7 +4564,7 @@ GameObject:
   - component: {fileID: 185364772}
   m_Layer: 0
   m_Name: Rock_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4670,7 +4670,7 @@ GameObject:
   - component: {fileID: 188307197}
   m_Layer: 0
   m_Name: Plant_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4814,7 +4814,7 @@ GameObject:
   - component: {fileID: 205507442}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4920,7 +4920,7 @@ GameObject:
   - component: {fileID: 207657376}
   m_Layer: 0
   m_Name: Plant_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5147,7 +5147,7 @@ GameObject:
   - component: {fileID: 212637818}
   m_Layer: 0
   m_Name: Tree_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5248,9 +5248,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 212835673}
+  - component: {fileID: 212835674}
   m_Layer: 0
   m_Name: OtherGameGround
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5279,6 +5280,26 @@ Transform:
   - {fileID: 1111093552}
   m_Father: {fileID: 493407085}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!154 &212835674
+TerrainCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 212835672}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_TerrainData: {fileID: 0}
+  m_EnableTreeColliders: 1
 --- !u!1 &217892341
 GameObject:
   m_ObjectHideFlags: 0
@@ -5293,7 +5314,7 @@ GameObject:
   - component: {fileID: 217892343}
   m_Layer: 0
   m_Name: Rock_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5399,7 +5420,7 @@ GameObject:
   - component: {fileID: 220127057}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5505,7 +5526,7 @@ GameObject:
   - component: {fileID: 226379348}
   m_Layer: 0
   m_Name: Plant_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5611,7 +5632,7 @@ GameObject:
   - component: {fileID: 226476557}
   m_Layer: 0
   m_Name: Tree_02(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5792,7 +5813,7 @@ GameObject:
   - component: {fileID: 229650934}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5935,7 +5956,7 @@ GameObject:
   - component: {fileID: 241609402}
   m_Layer: 0
   m_Name: Plant_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6041,7 +6062,7 @@ GameObject:
   - component: {fileID: 243510740}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6147,7 +6168,7 @@ GameObject:
   - component: {fileID: 285300202}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6253,7 +6274,7 @@ GameObject:
   - component: {fileID: 287727722}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6359,7 +6380,7 @@ GameObject:
   - component: {fileID: 297109097}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6465,7 +6486,7 @@ GameObject:
   - component: {fileID: 303452357}
   m_Layer: 0
   m_Name: Tree_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6571,7 +6592,7 @@ GameObject:
   - component: {fileID: 311720070}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6677,7 +6698,7 @@ GameObject:
   - component: {fileID: 320769056}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6783,7 +6804,7 @@ GameObject:
   - component: {fileID: 323828084}
   m_Layer: 0
   m_Name: Tree_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6889,7 +6910,7 @@ GameObject:
   - component: {fileID: 325793068}
   m_Layer: 0
   m_Name: Tree_02(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7225,7 +7246,7 @@ GameObject:
   - component: {fileID: 331424807}
   m_Layer: 0
   m_Name: Rock_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7331,7 +7352,7 @@ GameObject:
   - component: {fileID: 338570937}
   m_Layer: 0
   m_Name: Tree_02(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7437,7 +7458,7 @@ GameObject:
   - component: {fileID: 341534483}
   m_Layer: 0
   m_Name: Tree_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7543,7 +7564,7 @@ GameObject:
   - component: {fileID: 342721040}
   m_Layer: 0
   m_Name: Tree_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7649,7 +7670,7 @@ GameObject:
   - component: {fileID: 345855993}
   m_Layer: 0
   m_Name: Tree_02(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7755,7 +7776,7 @@ GameObject:
   - component: {fileID: 360337896}
   m_Layer: 0
   m_Name: Plant_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7861,7 +7882,7 @@ GameObject:
   - component: {fileID: 360871185}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7967,7 +7988,7 @@ GameObject:
   - component: {fileID: 370250412}
   m_Layer: 0
   m_Name: Tree_02(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8073,7 +8094,7 @@ GameObject:
   - component: {fileID: 373971933}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8217,6 +8238,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BG_01
       objectReference: {fileID: 0}
+    - target: {fileID: 5173047274225622461, guid: 3883eb798fef6794080cab0237ec66f9, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8352,7 +8377,7 @@ GameObject:
   - component: {fileID: 403137525}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8458,7 +8483,7 @@ GameObject:
   - component: {fileID: 403757257}
   m_Layer: 0
   m_Name: Tree_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8602,6 +8627,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BG_02 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6209514086558611543, guid: 9f29a52bd29863446b21d972d128685e, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8626,7 +8655,7 @@ GameObject:
   - component: {fileID: 406366000}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8844,7 +8873,7 @@ GameObject:
   - component: {fileID: 427306022}
   m_Layer: 0
   m_Name: Rock_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9084,7 +9113,7 @@ GameObject:
   - component: {fileID: 435093709}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9190,7 +9219,7 @@ GameObject:
   - component: {fileID: 437052392}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9296,7 +9325,7 @@ GameObject:
   - component: {fileID: 438965117}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9402,7 +9431,7 @@ GameObject:
   - component: {fileID: 444842424}
   m_Layer: 0
   m_Name: Rock_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9583,7 +9612,7 @@ GameObject:
   - component: {fileID: 450389745}
   m_Layer: 0
   m_Name: Tree_02(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9689,7 +9718,7 @@ GameObject:
   - component: {fileID: 452591482}
   m_Layer: 0
   m_Name: Rock_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9795,7 +9824,7 @@ GameObject:
   - component: {fileID: 454200582}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9901,7 +9930,7 @@ GameObject:
   - component: {fileID: 463121237}
   m_Layer: 0
   m_Name: Tree_02(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10007,7 +10036,7 @@ GameObject:
   - component: {fileID: 476373805}
   m_Layer: 0
   m_Name: Tree_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10113,7 +10142,7 @@ GameObject:
   - component: {fileID: 477216105}
   m_Layer: 0
   m_Name: Plant_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10219,7 +10248,7 @@ GameObject:
   - component: {fileID: 479037243}
   m_Layer: 0
   m_Name: Rock_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10325,7 +10354,7 @@ GameObject:
   - component: {fileID: 481744416}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10431,7 +10460,7 @@ GameObject:
   - component: {fileID: 483138712}
   m_Layer: 0
   m_Name: Rock_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10671,7 +10700,7 @@ GameObject:
   - component: {fileID: 489722629}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10819,6 +10848,7 @@ Transform:
   - {fileID: 1348771108}
   - {fileID: 1469864505}
   - {fileID: 18067685}
+  - {fileID: 1100356398}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &493750520
@@ -10835,7 +10865,7 @@ GameObject:
   - component: {fileID: 493750521}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11062,7 +11092,7 @@ GameObject:
   - component: {fileID: 504566128}
   m_Layer: 0
   m_Name: Plant_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11168,7 +11198,7 @@ GameObject:
   - component: {fileID: 507850850}
   m_Layer: 0
   m_Name: Rock_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11311,7 +11341,7 @@ GameObject:
   - component: {fileID: 510527847}
   m_Layer: 0
   m_Name: Rock_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11417,7 +11447,7 @@ GameObject:
   - component: {fileID: 518284226}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11523,7 +11553,7 @@ GameObject:
   - component: {fileID: 524321539}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11629,7 +11659,7 @@ GameObject:
   - component: {fileID: 524738438}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11890,7 +11920,7 @@ GameObject:
   - component: {fileID: 542137446}
   m_Layer: 0
   m_Name: Rock_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11996,7 +12026,7 @@ GameObject:
   - component: {fileID: 544546120}
   m_Layer: 0
   m_Name: Tree_02(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12236,7 +12266,7 @@ GameObject:
   - component: {fileID: 546207210}
   m_Layer: 0
   m_Name: Tree_02(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12432,7 +12462,7 @@ GameObject:
   - component: {fileID: 558944041}
   m_Layer: 0
   m_Name: Tree_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12538,7 +12568,7 @@ GameObject:
   - component: {fileID: 566074438}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12814,7 +12844,7 @@ GameObject:
   - component: {fileID: 578486941}
   m_Layer: 0
   m_Name: Tree_02(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12920,7 +12950,7 @@ GameObject:
   - component: {fileID: 581596610}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13026,7 +13056,7 @@ GameObject:
   - component: {fileID: 589395787}
   m_Layer: 0
   m_Name: Plant_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13387,7 +13417,7 @@ GameObject:
   - component: {fileID: 594703993}
   m_Layer: 0
   m_Name: Tree_02(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13767,7 +13797,7 @@ GameObject:
   - component: {fileID: 609464527}
   m_Layer: 0
   m_Name: Plant_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13873,7 +13903,7 @@ GameObject:
   - component: {fileID: 612315031}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13979,7 +14009,7 @@ GameObject:
   - component: {fileID: 612853485}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14443,6 +14473,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BG_02 (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 6209514086558611543, guid: 9f29a52bd29863446b21d972d128685e, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14467,7 +14501,7 @@ GameObject:
   - component: {fileID: 629276409}
   m_Layer: 0
   m_Name: Tree_02(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14573,7 +14607,7 @@ GameObject:
   - component: {fileID: 631829373}
   m_Layer: 0
   m_Name: Tree_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14679,7 +14713,7 @@ GameObject:
   - component: {fileID: 638963377}
   m_Layer: 0
   m_Name: Tree_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14918,7 +14952,7 @@ GameObject:
   - component: {fileID: 641205021}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15114,7 +15148,7 @@ GameObject:
   - component: {fileID: 643883434}
   m_Layer: 0
   m_Name: Rock_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15220,7 +15254,7 @@ GameObject:
   - component: {fileID: 646075774}
   m_Layer: 0
   m_Name: Rock_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15363,7 +15397,7 @@ GameObject:
   - component: {fileID: 651269886}
   m_Layer: 0
   m_Name: Tree_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15469,7 +15503,7 @@ GameObject:
   - component: {fileID: 652810266}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15575,7 +15609,7 @@ GameObject:
   - component: {fileID: 654945840}
   m_Layer: 0
   m_Name: Plant_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15681,7 +15715,7 @@ GameObject:
   - component: {fileID: 662062145}
   m_Layer: 0
   m_Name: Tree_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15921,7 +15955,7 @@ GameObject:
   - component: {fileID: 666168464}
   m_Layer: 0
   m_Name: Tree_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16027,7 +16061,7 @@ GameObject:
   - component: {fileID: 677466942}
   m_Layer: 0
   m_Name: Rock_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16406,7 +16440,7 @@ GameObject:
   - component: {fileID: 698502557}
   m_Layer: 0
   m_Name: Rock_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16512,7 +16546,7 @@ GameObject:
   - component: {fileID: 701015270}
   m_Layer: 0
   m_Name: Rock_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16618,7 +16652,7 @@ GameObject:
   - component: {fileID: 701953871}
   m_Layer: 0
   m_Name: Plant_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16724,7 +16758,7 @@ GameObject:
   - component: {fileID: 702497603}
   m_Layer: 0
   m_Name: Rock_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16899,7 +16933,7 @@ GameObject:
   - component: {fileID: 714079947}
   m_Layer: 0
   m_Name: Tree_02(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17005,7 +17039,7 @@ GameObject:
   - component: {fileID: 717578659}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17147,7 +17181,7 @@ GameObject:
   - component: {fileID: 721800842}
   m_Layer: 0
   m_Name: Rock_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17521,7 +17555,7 @@ GameObject:
   - component: {fileID: 731734699}
   m_Layer: 0
   m_Name: Tree_02(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17627,7 +17661,7 @@ GameObject:
   - component: {fileID: 740784509}
   m_Layer: 0
   m_Name: Rock_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18341,7 +18375,7 @@ GameObject:
   - component: {fileID: 770479231}
   m_Layer: 0
   m_Name: Rock_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18522,7 +18556,7 @@ GameObject:
   - component: {fileID: 781063241}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18628,7 +18662,7 @@ GameObject:
   - component: {fileID: 781843862}
   m_Layer: 0
   m_Name: Tree_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18770,7 +18804,7 @@ GameObject:
   - component: {fileID: 803992233}
   m_Layer: 0
   m_Name: Rock_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18876,7 +18910,7 @@ GameObject:
   - component: {fileID: 811573115}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18982,7 +19016,7 @@ GameObject:
   - component: {fileID: 815910107}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19088,7 +19122,7 @@ GameObject:
   - component: {fileID: 815948662}
   m_Layer: 0
   m_Name: Tree_02(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19194,7 +19228,7 @@ GameObject:
   - component: {fileID: 816839866}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19375,7 +19409,7 @@ GameObject:
   - component: {fileID: 837036582}
   m_Layer: 0
   m_Name: Tree_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19481,7 +19515,7 @@ GameObject:
   - component: {fileID: 840141192}
   m_Layer: 0
   m_Name: Plant_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19698,7 +19732,7 @@ GameObject:
   - component: {fileID: 863573368}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19842,6 +19876,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BG_02 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6209514086558611543, guid: 9f29a52bd29863446b21d972d128685e, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19866,7 +19904,7 @@ GameObject:
   - component: {fileID: 866497100}
   m_Layer: 0
   m_Name: Tree_02(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20024,7 +20062,7 @@ GameObject:
   - component: {fileID: 881145953}
   m_Layer: 0
   m_Name: Tree_02(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20243,6 +20281,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BG_02
       objectReference: {fileID: 0}
+    - target: {fileID: 6209514086558611543, guid: 9f29a52bd29863446b21d972d128685e, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -20267,7 +20309,7 @@ GameObject:
   - component: {fileID: 894628462}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20425,7 +20467,7 @@ GameObject:
   - component: {fileID: 925203394}
   m_Layer: 0
   m_Name: Rock_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20567,7 +20609,7 @@ GameObject:
   - component: {fileID: 932655648}
   m_Layer: 0
   m_Name: Rock_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20673,7 +20715,7 @@ GameObject:
   - component: {fileID: 952241581}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20779,7 +20821,7 @@ GameObject:
   - component: {fileID: 954262210}
   m_Layer: 0
   m_Name: Rock_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20921,7 +20963,7 @@ GameObject:
   - component: {fileID: 968010514}
   m_Layer: 0
   m_Name: Tree_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21027,7 +21069,7 @@ GameObject:
   - component: {fileID: 973986568}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21254,7 +21296,7 @@ GameObject:
   - component: {fileID: 987507638}
   m_Layer: 0
   m_Name: Tree_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21360,7 +21402,7 @@ GameObject:
   - component: {fileID: 994653960}
   m_Layer: 0
   m_Name: Tree_02(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21600,7 +21642,7 @@ GameObject:
   - component: {fileID: 1000462927}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21706,7 +21748,7 @@ GameObject:
   - component: {fileID: 1011641795}
   m_Layer: 0
   m_Name: Plant_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21940,7 +21982,7 @@ GameObject:
   - component: {fileID: 1020571014}
   m_Layer: 0
   m_Name: Rock_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22046,7 +22088,7 @@ GameObject:
   - component: {fileID: 1047587624}
   m_Layer: 0
   m_Name: Rock_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22190,6 +22232,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BG_02 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 6209514086558611543, guid: 9f29a52bd29863446b21d972d128685e, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -22301,7 +22347,7 @@ GameObject:
   - component: {fileID: 1062899546}
   m_Layer: 0
   m_Name: Tree_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22407,7 +22453,7 @@ GameObject:
   - component: {fileID: 1063652574}
   m_Layer: 0
   m_Name: Plant_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22549,7 +22595,7 @@ GameObject:
   - component: {fileID: 1066557027}
   m_Layer: 0
   m_Name: Rock_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22655,7 +22701,7 @@ GameObject:
   - component: {fileID: 1069112603}
   m_Layer: 0
   m_Name: Plant_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22761,7 +22807,7 @@ GameObject:
   - component: {fileID: 1073380674}
   m_Layer: 0
   m_Name: Plant_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23036,7 +23082,7 @@ GameObject:
   - component: {fileID: 1089252793}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23128,6 +23174,59 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1089252791}
   m_Mesh: {fileID: 4300000, guid: 04ec0a28fe6da074c850a552635fed6e, type: 3}
+--- !u!1 &1100356397
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1100356398}
+  - component: {fileID: 1100356399}
+  m_Layer: 0
+  m_Name: AnimationManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1100356398
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1100356397}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 24.325764, y: 1.4123207, z: -9.913317}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 493407085}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1100356399
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1100356397}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: eeebdeb8be91e0e43ae9170c2d8e4279, type: 3}
+  m_Controller: {fileID: 9100000, guid: 3645b473b5508db41b63e28840f3d0ae, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1101794130
 GameObject:
   m_ObjectHideFlags: 0
@@ -23142,7 +23241,7 @@ GameObject:
   - component: {fileID: 1101794132}
   m_Layer: 0
   m_Name: Rock_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23248,7 +23347,7 @@ GameObject:
   - component: {fileID: 1102707973}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23354,7 +23453,7 @@ GameObject:
   - component: {fileID: 1103932007}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23460,7 +23559,7 @@ GameObject:
   - component: {fileID: 1109339608}
   m_Layer: 0
   m_Name: Tree_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23603,6 +23702,10 @@ PrefabInstance:
     - target: {fileID: 6209514086558611543, guid: 9f29a52bd29863446b21d972d128685e, type: 3}
       propertyPath: m_Name
       value: BG_02 (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6209514086558611543, guid: 9f29a52bd29863446b21d972d128685e, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -23837,7 +23940,7 @@ GameObject:
   - component: {fileID: 1134194140}
   m_Layer: 0
   m_Name: Rock_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23943,7 +24046,7 @@ GameObject:
   - component: {fileID: 1142970081}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24049,7 +24152,7 @@ GameObject:
   - component: {fileID: 1143878000}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24155,7 +24258,7 @@ GameObject:
   - component: {fileID: 1144238408}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24382,7 +24485,7 @@ GameObject:
   - component: {fileID: 1145367070}
   m_Layer: 0
   m_Name: Tree_02(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24574,7 +24677,7 @@ GameObject:
   - component: {fileID: 1151831420}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24732,7 +24835,7 @@ GameObject:
   - component: {fileID: 1154811500}
   m_Layer: 0
   m_Name: Rock_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24875,7 +24978,7 @@ GameObject:
   - component: {fileID: 1160724291}
   m_Layer: 0
   m_Name: Rock_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24981,7 +25084,7 @@ GameObject:
   - component: {fileID: 1163723352}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25221,7 +25324,7 @@ GameObject:
   - component: {fileID: 1171985878}
   m_Layer: 0
   m_Name: Tree_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25327,7 +25430,7 @@ GameObject:
   - component: {fileID: 1173934455}
   m_Layer: 0
   m_Name: Plant_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25433,7 +25536,7 @@ GameObject:
   - component: {fileID: 1187063650}
   m_Layer: 0
   m_Name: Tree_02(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25539,7 +25642,7 @@ GameObject:
   - component: {fileID: 1187385883}
   m_Layer: 0
   m_Name: Rock_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25645,7 +25748,7 @@ GameObject:
   - component: {fileID: 1187642977}
   m_Layer: 0
   m_Name: Plant_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25751,7 +25854,7 @@ GameObject:
   - component: {fileID: 1192062512}
   m_Layer: 0
   m_Name: Plant_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25978,7 +26081,7 @@ GameObject:
   - component: {fileID: 1199870253}
   m_Layer: 0
   m_Name: Rock_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26084,7 +26187,7 @@ GameObject:
   - component: {fileID: 1202768444}
   m_Layer: 0
   m_Name: Rock_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26228,6 +26331,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BG_02 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6209514086558611543, guid: 9f29a52bd29863446b21d972d128685e, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -26327,7 +26434,7 @@ GameObject:
   - component: {fileID: 1219986836}
   m_Layer: 0
   m_Name: Tree_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26433,7 +26540,7 @@ GameObject:
   - component: {fileID: 1222594483}
   m_Layer: 0
   m_Name: Tree_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26539,7 +26646,7 @@ GameObject:
   - component: {fileID: 1223847411}
   m_Layer: 0
   m_Name: Tree_02(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26645,7 +26752,7 @@ GameObject:
   - component: {fileID: 1226430715}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26751,7 +26858,7 @@ GameObject:
   - component: {fileID: 1230174354}
   m_Layer: 0
   m_Name: Rock_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26857,7 +26964,7 @@ GameObject:
   - component: {fileID: 1231083627}
   m_Layer: 0
   m_Name: Tree_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26963,7 +27070,7 @@ GameObject:
   - component: {fileID: 1244926584}
   m_Layer: 0
   m_Name: Tree_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27069,7 +27176,7 @@ GameObject:
   - component: {fileID: 1254325286}
   m_Layer: 0
   m_Name: Tree_02(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27175,7 +27282,7 @@ GameObject:
   - component: {fileID: 1254827964}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27360,7 +27467,7 @@ GameObject:
   - component: {fileID: 1256849541}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27466,7 +27573,7 @@ GameObject:
   - component: {fileID: 1259729978}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27572,7 +27679,7 @@ GameObject:
   - component: {fileID: 1270039892}
   m_Layer: 0
   m_Name: Tree_02(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27850,7 +27957,7 @@ GameObject:
   - component: {fileID: 1281486745}
   m_Layer: 0
   m_Name: Tree_02(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27956,7 +28063,7 @@ GameObject:
   - component: {fileID: 1282579759}
   m_Layer: 0
   m_Name: Tree_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28062,7 +28169,7 @@ GameObject:
   - component: {fileID: 1282862426}
   m_Layer: 0
   m_Name: Tree_02(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28168,7 +28275,7 @@ GameObject:
   - component: {fileID: 1285620098}
   m_Layer: 0
   m_Name: Plant_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28274,7 +28381,7 @@ GameObject:
   - component: {fileID: 1299505641}
   m_Layer: 0
   m_Name: Tree_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28380,7 +28487,7 @@ GameObject:
   - component: {fileID: 1304118883}
   m_Layer: 0
   m_Name: Tree_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28612,7 +28719,7 @@ GameObject:
   - component: {fileID: 1316743250}
   m_Layer: 0
   m_Name: Plant_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28888,7 +28995,7 @@ GameObject:
   - component: {fileID: 1330107776}
   m_Layer: 0
   m_Name: Plant_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28994,7 +29101,7 @@ GameObject:
   - component: {fileID: 1331375645}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29100,7 +29207,7 @@ GameObject:
   - component: {fileID: 1333223027}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29361,7 +29468,7 @@ GameObject:
   - component: {fileID: 1335684608}
   m_Layer: 0
   m_Name: Tree_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29467,7 +29574,7 @@ GameObject:
   - component: {fileID: 1336521530}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29611,6 +29718,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BG_02 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6209514086558611543, guid: 9f29a52bd29863446b21d972d128685e, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -29635,7 +29746,7 @@ GameObject:
   - component: {fileID: 1343985964}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29875,7 +29986,7 @@ GameObject:
   - component: {fileID: 1348415725}
   m_Layer: 0
   m_Name: Rock_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30195,6 +30306,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BG_02
       objectReference: {fileID: 0}
+    - target: {fileID: 6209514086558611543, guid: 9f29a52bd29863446b21d972d128685e, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -30421,7 +30536,7 @@ GameObject:
   - component: {fileID: 1374367857}
   m_Layer: 0
   m_Name: Tree_02(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30870,7 +30985,7 @@ GameObject:
   - component: {fileID: 1387328314}
   m_Layer: 0
   m_Name: Plant_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31066,7 +31181,7 @@ GameObject:
   - component: {fileID: 1397528002}
   m_Layer: 0
   m_Name: Tree_02(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31208,7 +31323,7 @@ GameObject:
   - component: {fileID: 1403447315}
   m_Layer: 0
   m_Name: Rock_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31314,7 +31429,7 @@ GameObject:
   - component: {fileID: 1404364701}
   m_Layer: 0
   m_Name: Rock_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31458,6 +31573,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BG_02 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 6209514086558611543, guid: 9f29a52bd29863446b21d972d128685e, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -31574,7 +31693,7 @@ GameObject:
   - component: {fileID: 1415229519}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31680,7 +31799,7 @@ GameObject:
   - component: {fileID: 1420507187}
   m_Layer: 0
   m_Name: Tree_02(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31786,7 +31905,7 @@ GameObject:
   - component: {fileID: 1424986717}
   m_Layer: 0
   m_Name: Tree_02(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31892,7 +32011,7 @@ GameObject:
   - component: {fileID: 1428342597}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31998,7 +32117,7 @@ GameObject:
   - component: {fileID: 1429420559}
   m_Layer: 0
   m_Name: Plant_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32141,6 +32260,10 @@ PrefabInstance:
     - target: {fileID: 6209514086558611543, guid: 9f29a52bd29863446b21d972d128685e, type: 3}
       propertyPath: m_Name
       value: BG_02 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6209514086558611543, guid: 9f29a52bd29863446b21d972d128685e, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -32341,7 +32464,7 @@ GameObject:
   - component: {fileID: 1455858369}
   m_Layer: 0
   m_Name: Tree_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32447,7 +32570,7 @@ GameObject:
   - component: {fileID: 1455896802}
   m_Layer: 0
   m_Name: Tree_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32924,7 +33047,7 @@ GameObject:
   - component: {fileID: 1470547264}
   m_Layer: 0
   m_Name: Tree_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33030,7 +33153,7 @@ GameObject:
   - component: {fileID: 1471394358}
   m_Layer: 0
   m_Name: Tree_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33329,6 +33452,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BG_01
       objectReference: {fileID: 0}
+    - target: {fileID: 5173047274225622461, guid: 3883eb798fef6794080cab0237ec66f9, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -33353,7 +33480,7 @@ GameObject:
   - component: {fileID: 1477114605}
   m_Layer: 0
   m_Name: Tree_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33459,7 +33586,7 @@ GameObject:
   - component: {fileID: 1484624342}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33724,6 +33851,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BG_02 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 6209514086558611543, guid: 9f29a52bd29863446b21d972d128685e, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -33748,7 +33879,7 @@ GameObject:
   - component: {fileID: 1503275762}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33854,7 +33985,7 @@ GameObject:
   - component: {fileID: 1507212890}
   m_Layer: 0
   m_Name: Plant_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34035,7 +34166,7 @@ GameObject:
   - component: {fileID: 1512233885}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34141,7 +34272,7 @@ GameObject:
   - component: {fileID: 1513379809}
   m_Layer: 0
   m_Name: Tree_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34247,7 +34378,7 @@ GameObject:
   - component: {fileID: 1521388079}
   m_Layer: 0
   m_Name: Rock_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34353,7 +34484,7 @@ GameObject:
   - component: {fileID: 1527388353}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34459,7 +34590,7 @@ GameObject:
   - component: {fileID: 1528515131}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34565,7 +34696,7 @@ GameObject:
   - component: {fileID: 1529036695}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34671,7 +34802,7 @@ GameObject:
   - component: {fileID: 1534217206}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34777,7 +34908,7 @@ GameObject:
   - component: {fileID: 1538248843}
   m_Layer: 0
   m_Name: Rock_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35058,7 +35189,7 @@ GameObject:
   - component: {fileID: 1541463104}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35164,7 +35295,7 @@ GameObject:
   - component: {fileID: 1547527915}
   m_Layer: 0
   m_Name: Tree_02(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35270,7 +35401,7 @@ GameObject:
   - component: {fileID: 1555069049}
   m_Layer: 0
   m_Name: Plant_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35510,7 +35641,7 @@ GameObject:
   - component: {fileID: 1555635720}
   m_Layer: 0
   m_Name: Plant_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35616,7 +35747,7 @@ GameObject:
   - component: {fileID: 1556898701}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35722,7 +35853,7 @@ GameObject:
   - component: {fileID: 1559681841}
   m_Layer: 0
   m_Name: Tree_02(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35904,7 +36035,7 @@ GameObject:
   - component: {fileID: 1570533858}
   m_Layer: 0
   m_Name: Rock_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36010,7 +36141,7 @@ GameObject:
   - component: {fileID: 1574204331}
   m_Layer: 0
   m_Name: Tree_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36275,6 +36406,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BG_02 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 6209514086558611543, guid: 9f29a52bd29863446b21d972d128685e, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -36299,7 +36434,7 @@ GameObject:
   - component: {fileID: 1595379173}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36405,7 +36540,7 @@ GameObject:
   - component: {fileID: 1608787595}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36511,7 +36646,7 @@ GameObject:
   - component: {fileID: 1612355090}
   m_Layer: 0
   m_Name: Tree_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36617,7 +36752,7 @@ GameObject:
   - component: {fileID: 1614678255}
   m_Layer: 0
   m_Name: Tree_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36813,7 +36948,7 @@ GameObject:
   - component: {fileID: 1617662604}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36919,7 +37054,7 @@ GameObject:
   - component: {fileID: 1625410289}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37020,9 +37155,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1629105504}
+  - component: {fileID: 1629105505}
   m_Layer: 0
   m_Name: TPSGround
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37051,6 +37187,26 @@ Transform:
   - {fileID: 628612966}
   m_Father: {fileID: 493407085}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!154 &1629105505
+TerrainCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1629105503}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_TerrainData: {fileID: 0}
+  m_EnableTreeColliders: 1
 --- !u!1 &1635419515
 GameObject:
   m_ObjectHideFlags: 0
@@ -37065,7 +37221,7 @@ GameObject:
   - component: {fileID: 1635419517}
   m_Layer: 0
   m_Name: Plant_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37171,7 +37327,7 @@ GameObject:
   - component: {fileID: 1644787540}
   m_Layer: 0
   m_Name: Tree_02(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37277,7 +37433,7 @@ GameObject:
   - component: {fileID: 1650108154}
   m_Layer: 0
   m_Name: Rock_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37473,7 +37629,7 @@ GameObject:
   - component: {fileID: 1663962276}
   m_Layer: 0
   m_Name: Tree_02(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37579,7 +37735,7 @@ GameObject:
   - component: {fileID: 1673183384}
   m_Layer: 0
   m_Name: Tree_02(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37685,7 +37841,7 @@ GameObject:
   - component: {fileID: 1678364983}
   m_Layer: 0
   m_Name: Tree_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38067,7 +38223,7 @@ GameObject:
   - component: {fileID: 1682553182}
   m_Layer: 0
   m_Name: Rock_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38173,7 +38329,7 @@ GameObject:
   - component: {fileID: 1686387070}
   m_Layer: 0
   m_Name: Tree_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38279,7 +38435,7 @@ GameObject:
   - component: {fileID: 1689039865}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38694,7 +38850,7 @@ GameObject:
   - component: {fileID: 1713408797}
   m_Layer: 0
   m_Name: Rock_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38800,7 +38956,7 @@ GameObject:
   - component: {fileID: 1715412631}
   m_Layer: 0
   m_Name: Tree_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38906,7 +39062,7 @@ GameObject:
   - component: {fileID: 1719617837}
   m_Layer: 0
   m_Name: Plant_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39123,7 +39279,7 @@ GameObject:
   - component: {fileID: 1766509600}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39266,7 +39422,7 @@ GameObject:
   - component: {fileID: 1776426718}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39372,7 +39528,7 @@ GameObject:
   - component: {fileID: 1776902348}
   m_Layer: 0
   m_Name: Rock_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39478,7 +39634,7 @@ GameObject:
   - component: {fileID: 1781806833}
   m_Layer: 0
   m_Name: Tree_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39584,7 +39740,7 @@ GameObject:
   - component: {fileID: 1782606273}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39824,7 +39980,7 @@ GameObject:
   - component: {fileID: 1799992205}
   m_Layer: 0
   m_Name: Tree_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39930,7 +40086,7 @@ GameObject:
   - component: {fileID: 1810371122}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40036,7 +40192,7 @@ GameObject:
   - component: {fileID: 1815624775}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40142,7 +40298,7 @@ GameObject:
   - component: {fileID: 1833663934}
   m_Layer: 0
   m_Name: Rock_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40382,7 +40538,7 @@ GameObject:
   - component: {fileID: 1847666382}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40488,7 +40644,7 @@ GameObject:
   - component: {fileID: 1850380390}
   m_Layer: 0
   m_Name: Tree_02(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40669,7 +40825,7 @@ GameObject:
   - component: {fileID: 1863244793}
   m_Layer: 0
   m_Name: Rock_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40775,7 +40931,7 @@ GameObject:
   - component: {fileID: 1864431942}
   m_Layer: 0
   m_Name: Rock_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40956,7 +41112,7 @@ GameObject:
   - component: {fileID: 1894820770}
   m_Layer: 0
   m_Name: Tree_02(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41216,7 +41372,7 @@ GameObject:
   - component: {fileID: 1907430104}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41322,7 +41478,7 @@ GameObject:
   - component: {fileID: 1911501092}
   m_Layer: 0
   m_Name: Plant_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41466,6 +41622,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BG_02 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6209514086558611543, guid: 9f29a52bd29863446b21d972d128685e, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -41490,7 +41650,7 @@ GameObject:
   - component: {fileID: 1927993830}
   m_Layer: 0
   m_Name: Tree_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41596,7 +41756,7 @@ GameObject:
   - component: {fileID: 1930757523}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41702,7 +41862,7 @@ GameObject:
   - component: {fileID: 1931381648}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41983,7 +42143,7 @@ GameObject:
   - component: {fileID: 1933756300}
   m_Layer: 0
   m_Name: Plant_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42089,7 +42249,7 @@ GameObject:
   - component: {fileID: 1941006796}
   m_Layer: 0
   m_Name: Tree_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42195,7 +42355,7 @@ GameObject:
   - component: {fileID: 1941111078}
   m_Layer: 0
   m_Name: ThirdPersonShooterPlatform
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42302,7 +42462,7 @@ GameObject:
   - component: {fileID: 1944049991}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42408,7 +42568,7 @@ GameObject:
   - component: {fileID: 1949786447}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42589,7 +42749,7 @@ GameObject:
   - component: {fileID: 1967464681}
   m_Layer: 0
   m_Name: Tree_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42733,6 +42893,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BG_02 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 6209514086558611543, guid: 9f29a52bd29863446b21d972d128685e, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -42757,7 +42921,7 @@ GameObject:
   - component: {fileID: 1971421648}
   m_Layer: 0
   m_Name: Tree_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42901,6 +43065,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BG_02 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6209514086558611543, guid: 9f29a52bd29863446b21d972d128685e, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -42925,7 +43093,7 @@ GameObject:
   - component: {fileID: 1990619041}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43121,7 +43289,7 @@ GameObject:
   - component: {fileID: 1994744590}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43227,7 +43395,7 @@ GameObject:
   - component: {fileID: 1995235867}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43333,7 +43501,7 @@ GameObject:
   - component: {fileID: 2001941868}
   m_Layer: 0
   m_Name: Rock_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43439,7 +43607,7 @@ GameObject:
   - component: {fileID: 2014342244}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43679,7 +43847,7 @@ GameObject:
   - component: {fileID: 2028359142}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43785,7 +43953,7 @@ GameObject:
   - component: {fileID: 2029085651}
   m_Layer: 0
   m_Name: Tree_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43963,7 +44131,7 @@ GameObject:
   - component: {fileID: 2036130132}
   m_Layer: 0
   m_Name: Tree_02(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44147,7 +44315,7 @@ GameObject:
   - component: {fileID: 2039417100}
   m_Layer: 0
   m_Name: Plant_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44253,7 +44421,7 @@ GameObject:
   - component: {fileID: 2041707581}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44359,7 +44527,7 @@ GameObject:
   - component: {fileID: 2045232716}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44774,7 +44942,7 @@ GameObject:
   - component: {fileID: 2058332396}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44880,7 +45048,7 @@ GameObject:
   - component: {fileID: 2062607549}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45149,7 +45317,7 @@ GameObject:
   - component: {fileID: 2064903292}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45255,7 +45423,7 @@ GameObject:
   - component: {fileID: 2073539919}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45361,7 +45529,7 @@ GameObject:
   - component: {fileID: 2076191996}
   m_Layer: 0
   m_Name: Tree_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45601,7 +45769,7 @@ GameObject:
   - component: {fileID: 2082722414}
   m_Layer: 0
   m_Name: PlatformerGamePlatform
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45708,7 +45876,7 @@ GameObject:
   - component: {fileID: 2090082375}
   m_Layer: 0
   m_Name: Tree_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45814,7 +45982,7 @@ GameObject:
   - component: {fileID: 2090152200}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45920,7 +46088,7 @@ GameObject:
   - component: {fileID: 2090648387}
   m_Layer: 0
   m_Name: Rock_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46099,7 +46267,7 @@ GameObject:
   - component: {fileID: 2108595291}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46205,7 +46373,7 @@ GameObject:
   - component: {fileID: 2111381115}
   m_Layer: 0
   m_Name: Plant_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46311,7 +46479,7 @@ GameObject:
   - component: {fileID: 2113500870}
   m_Layer: 0
   m_Name: Rock_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46417,7 +46585,7 @@ GameObject:
   - component: {fileID: 2115863314}
   m_Layer: 0
   m_Name: Tree_01(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46523,7 +46691,7 @@ GameObject:
   - component: {fileID: 2116861503}
   m_Layer: 0
   m_Name: Tree_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46629,7 +46797,7 @@ GameObject:
   - component: {fileID: 2119525336}
   m_Layer: 0
   m_Name: Rock_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46735,7 +46903,7 @@ GameObject:
   - component: {fileID: 2123506372}
   m_Layer: 0
   m_Name: Tree_02(Clone)(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46996,7 +47164,7 @@ GameObject:
   - component: {fileID: 2142967168}
   m_Layer: 0
   m_Name: Plant_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47102,7 +47270,7 @@ GameObject:
   - component: {fileID: 2147427818}
   m_Layer: 0
   m_Name: Tree_01(Clone)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

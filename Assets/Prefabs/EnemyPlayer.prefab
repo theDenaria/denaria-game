@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 712963595148073936, guid: 6deff98d240af4159966afeb075dd147, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f5fb83cc0815eec429d8e3c27094e525, type: 2}
     - target: {fileID: 4996511955620764568, guid: 6deff98d240af4159966afeb075dd147, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -91,10 +95,12 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  shoulderTransform: {fileID: 8511866137511586494}
+  shoulderTransform: {fileID: 7287560780705855199}
   barrelPosition: {fileID: 1386896971094497452}
---- !u!4 &8511866137511586494 stripped
+  interpolationBackTime: 0.5
+  smoothingFactor: 0.5
+--- !u!4 &7287560780705855199 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 5626136078069800717, guid: 6deff98d240af4159966afeb075dd147, type: 3}
+  m_CorrespondingSourceObject: {fileID: 6707733653828109164, guid: 6deff98d240af4159966afeb075dd147, type: 3}
   m_PrefabInstance: {fileID: 4049921145960527283}
   m_PrefabAsset: {fileID: 0}
