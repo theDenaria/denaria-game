@@ -54,26 +54,21 @@ namespace _Project.WaitingCanvas.Scripts.Views
             if (ActiveWaitHandlers.Count < 1)
             {
                 Panel.Hide();
-            
             }
         }
-
-        private void ShowWaitingIndicator()
+        
+        private void OnPanelVisibilityChangedEvent(PanelZeitnotVisibilityTypes panelVisibilityType)
         {
-           // WaitingIndicatorRotationTweenAnimation.DORestart();
-           // WaitingIndicatorParticleSystem.Play(true);
-           SpinAnimation.SetActive(true);
-           
+            if (panelVisibilityType == PanelZeitnotVisibilityTypes.Showing)
+            {
+                ShowWaitingIndicator();
+            }
+            else if (panelVisibilityType == PanelZeitnotVisibilityTypes.Hiding)
+            {
+                HideWaitingIndicator();
+            }
         }
-
-        private void HideWaitingIndicator()
-        {
-            //WaitingIndicatorRotationTweenAnimation.DORewind();
-          //  WaitingIndicatorParticleSystem.Stop(true, ParticleSystemStopBehavior.StopEmitting);
-          SpinAnimation.SetActive(false);
-         
-        }
-
+        
         private void UpdateMessageText()
         {
             if (ActiveWaitHandlers.Count < 1)
@@ -91,19 +86,20 @@ namespace _Project.WaitingCanvas.Scripts.Views
                 }
             }
             MessageText.text = stringBuilder.ToString();
-            
         }
 
-        private void OnPanelVisibilityChangedEvent(PanelZeitnotVisibilityTypes panelVisibilityType)
+        private void ShowWaitingIndicator()
         {
-            if (panelVisibilityType == PanelZeitnotVisibilityTypes.Showing)
-            {
-                ShowWaitingIndicator();
-            }
-            else if (panelVisibilityType == PanelZeitnotVisibilityTypes.Hiding)
-            {
-                HideWaitingIndicator();
-            }
+           // WaitingIndicatorRotationTweenAnimation.DORestart();
+           // WaitingIndicatorParticleSystem.Play(true);
+           SpinAnimation.SetActive(true);
+        }
+
+        private void HideWaitingIndicator()
+        { 
+            //WaitingIndicatorRotationTweenAnimation.DORewind();
+            ////WaitingIndicatorParticleSystem.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+            SpinAnimation.SetActive(false);
         }
 
     }

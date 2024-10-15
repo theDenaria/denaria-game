@@ -11,8 +11,7 @@ namespace _Project.Authorization.Scripts.Commands
         [Inject] public CBSLoginResult Result { get; set; }
         [Inject] public ChangeSceneGroupSignal ChangeSceneGroupSignal { private get; set; }
 
-        [Inject]
-        public ConnectDenariaServerSignal ConnectDenariaServerSignal { get; set; }
+        [Inject] public ConnectDenariaServerSignal ConnectDenariaServerSignal { get; set; }
 
         public override void Execute()
         {
@@ -30,8 +29,6 @@ namespace _Project.Authorization.Scripts.Commands
                 var playfabIdShort = playfabId[..16];
                 var connectDenariaServerCommandData = new ConnectDenariaServerCommandData(playfabIdShort, sessionTicket);
                 ConnectDenariaServerSignal.Dispatch(connectDenariaServerCommandData);
-                // ChangeSceneGroupSignal.Dispatch(SceneGroupType.TownSquare, new LoadingOptions());
-
             }
             else
             {

@@ -65,11 +65,6 @@ namespace _Project.NetworkManagement.Scripts.Services
             RoutineRunner.StartCoroutine(SendConnectMessageCoroutine());
         }
 
-        public void StopSendingConnectMessage()
-        {
-            _isSendingConnectMessage = false;
-        }
-
         IEnumerator SendConnectMessageCoroutine()
         {
             while (_isSendingConnectMessage)
@@ -78,8 +73,12 @@ namespace _Project.NetworkManagement.Scripts.Services
                 yield return new WaitForSeconds(0.5f);
             }
         }
-
-
+        
+        public void StopSendingConnectMessage()
+        {
+            _isSendingConnectMessage = false;
+        }
+        
         public void ConnectToDenariaServer()
         {
             NetworkConnection = NetworkDriver.Connect(_denariaEndpoint);
@@ -200,7 +199,7 @@ namespace _Project.NetworkManagement.Scripts.Services
                 if (cmd == NetworkEvent.Type.Connect && !IsConnectionAccepted)
                 {
                     IsConnectionAccepted = true;
-                    ChangeSceneGroupSignal.Dispatch(SceneGroupType.TownSquare, new LoadingOptions());
+                    ChangeSceneGroupSignal.Dispatch(SceneGroupType.TownSquare, new LoadingOptions(SceneGroupType.TownSquareLoadingScene));
                 }
                 else if (cmd == NetworkEvent.Type.Data)
                 {

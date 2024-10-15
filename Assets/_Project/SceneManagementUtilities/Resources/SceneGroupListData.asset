@@ -115,6 +115,8 @@ MonoBehaviour:
   - {fileID: -1451969734007659253}
   - {fileID: -6358354841876961806}
   - {fileID: -6277756158190497964}
+  - {fileID: 7459789154012991090}
+  - {fileID: 7766132330681030297}
 --- !u!114 &2374537051703283264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,6 +151,44 @@ MonoBehaviour:
   <SceneGroupType>k__BackingField: 4
   <Scenes>k__BackingField:
   - SceneName: DefaultLoadingScene
+  <WillReloadExistingScenes>k__BackingField: 0
+  <WillUseLoadingScreen>k__BackingField: 0
+  <FocusedScene>k__BackingField:
+    SceneName: 
+--- !u!114 &7459789154012991090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74ad6abaf5b8f45b9a35adba70a2f2ff, type: 3}
+  m_Name: _SceneGroupData
+  m_EditorClassIdentifier: 
+  <SceneGroupType>k__BackingField: 16448
+  <Scenes>k__BackingField:
+  - SceneName: TPSGameLoadingScene
+  <WillReloadExistingScenes>k__BackingField: 0
+  <WillUseLoadingScreen>k__BackingField: 0
+  <FocusedScene>k__BackingField:
+    SceneName: 
+--- !u!114 &7766132330681030297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74ad6abaf5b8f45b9a35adba70a2f2ff, type: 3}
+  m_Name: _SceneGroupData
+  m_EditorClassIdentifier: 
+  <SceneGroupType>k__BackingField: 32896
+  <Scenes>k__BackingField:
+  - SceneName: TownSquareLoadingScene
   <WillReloadExistingScenes>k__BackingField: 0
   <WillUseLoadingScreen>k__BackingField: 0
   <FocusedScene>k__BackingField:

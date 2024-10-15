@@ -91,6 +91,7 @@ namespace _Project.StrangeIOCUtility.Scripts.Context
             injectionBinder.Bind<ISceneGroupModel>().To<SceneGroupListData>().ToSingleton().CrossContext();
             injectionBinder.Bind<ICurrentSceneModel>().To<CurrentSceneModel>().ToSingleton().CrossContext();
             injectionBinder.Bind<SceneChangedSignal>().ToSingleton().CrossContext();
+            injectionBinder.Bind<OnSceneLoadAndUnloadAreCompletedSignal>().ToSingleton().CrossContext();
 
             commandBinder.Bind<ChangeSceneGroupSignal>().To<ChangeSceneGroupCommand>();
             commandBinder.Bind<LoadAdditiveSceneGroupSignal>().To<LoadAdditiveSceneGroupCommand>();
