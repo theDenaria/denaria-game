@@ -1,6 +1,7 @@
 using _Project.StrangeIOCUtility;
 using System.Collections;
 using System.Collections.Generic;
+using _Project.StrangeIOCUtility.Scripts.Views;
 using UnityEngine;
 
 namespace _Project.UIZeitnot.ButtonZeitnot.Scripts

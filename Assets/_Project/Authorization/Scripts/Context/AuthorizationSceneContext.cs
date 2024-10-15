@@ -1,14 +1,11 @@
-using _Project.Authorization.Scripts.Controllers;
-using _Project.LoadingScreen.Scripts;
-using _Project.Login.Controllers;
-using _Project.Login.Scripts.Signals;
-using _Project.Login.Scripts.Views;
-using _Project.Login.Services;
-using _Project.StrangeIOCUtility.CrossContext;
-using strange.extensions.context.api;
+using _Project.Authorization.Scripts.Commands;
+using _Project.Authorization.Scripts.Services;
+using _Project.Authorization.Scripts.Signals;
+using _Project.Authorization.Scripts.Views;
+using _Project.StrangeIOCUtility.Scripts.Context;
 using UnityEngine;
 
-namespace _Project.Login.Scripts.Context
+namespace _Project.Authorization.Scripts.Context
 {
     public class AuthorizationSceneContext : SignalContext
     {

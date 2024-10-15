@@ -1,7 +1,7 @@
-using _Project.Login.Controllers;
+using _Project.Authorization.Scripts.Commands;
 using strange.extensions.signal.impl;
 
-namespace _Project.Login.Scripts.Signals
+namespace _Project.Authorization.Scripts.Signals
 {
     public class RegisterWithMailAndPasswordSignal : Signal<RegisterWithMailAndPasswordCommandData>
     {

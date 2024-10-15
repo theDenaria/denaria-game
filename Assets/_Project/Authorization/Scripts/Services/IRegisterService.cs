@@ -1,6 +1,6 @@
-using _Project.Login.Controllers;
+using _Project.Authorization.Scripts.Commands;
 
-namespace _Project.Login.Services
+namespace _Project.Authorization.Scripts.Services
 {
     public interface IRegisterService
     {

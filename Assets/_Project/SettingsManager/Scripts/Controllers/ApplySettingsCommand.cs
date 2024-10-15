@@ -1,5 +1,5 @@
-using strange.extensions.command.impl;
 using _Project.SettingsManager.Scripts.Models;
+using strange.extensions.command.impl;
 using UnityEngine;
 
 namespace _Project.SettingsManager.Scripts.Controllers

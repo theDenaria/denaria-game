@@ -1,4 +1,4 @@
-using _Project.NetworkManagement.Scripts.Controllers;
+using _Project.NetworkManagement.Scripts.Commands;
 using strange.extensions.signal.impl;
 
 namespace _Project.NetworkManagement.Scripts.Signals

@@ -1,6 +1,9 @@
-public enum SettingsTabEnum
+namespace _Project.SettingsManager.Scripts.Enums
 {
-    Video,
-    Audio,
-    Hotkeys
+    public enum SettingsTabEnum
+    {
+        Video,
+        Audio,
+        Hotkeys
+    }
 }

@@ -1,5 +1,4 @@
-using _Project.StrangeIOCUtility;
-using strange.extensions.mediation.impl;
+using _Project.StrangeIOCUtility.Scripts.Views;
 using strange.extensions.signal.impl;
 
 namespace _Project.SettingsManager.Scripts.Views
