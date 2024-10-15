@@ -40,6 +40,7 @@ namespace _Project.GameSceneManager.Scripts.Views
 
             // Optionally, enable the Cinemachine Brain if it was disabled
             Camera.main.GetComponent<CinemachineBrain>().enabled = true;
+            //ALL READY
         }
 
         public void SetPlayerId(string playerId)

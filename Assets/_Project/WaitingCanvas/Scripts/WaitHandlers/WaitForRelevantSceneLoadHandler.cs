@@ -49,7 +49,7 @@ namespace _Project.WaitingCanvas.Scripts.WaitHandlers
 
             await UniTask.WaitUntil(() => IsRelevantSceneReady || WaitHandlerState == WaitHandlerStateTypes.Canceled);
             
-            UnsubscribeToEventsToWait();
+            UnsubscribeFromEventsToWait();
             
             if (WaitHandlerState != WaitHandlerStateTypes.Canceled)
             {
@@ -61,7 +61,7 @@ namespace _Project.WaitingCanvas.Scripts.WaitHandlers
         {
         }
 
-        private void UnsubscribeToEventsToWait()
+        private void UnsubscribeFromEventsToWait()
         {
         }
         
@@ -79,7 +79,7 @@ namespace _Project.WaitingCanvas.Scripts.WaitHandlers
             IsCustomGameLoadFinished = true;
         }
         
-        private void OnCustomOoerationInitializationFinished()
+        private void OnCustomOperationInitializationFinished()
         {
             IsCustomInitializationFinished = true;
         }

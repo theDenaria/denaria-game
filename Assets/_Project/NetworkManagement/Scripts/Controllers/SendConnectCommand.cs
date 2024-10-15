@@ -9,7 +9,8 @@ namespace _Project.NetworkManagement.Scripts.Controllers
 
         public override void Execute()
         {
-            DenariaServerService.StartSendingConnectMessage();
+            DenariaServerService.StartSendingConnectMessage();//
+            
         }
     }
 }

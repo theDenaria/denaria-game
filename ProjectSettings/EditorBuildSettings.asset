@@ -26,4 +26,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TownSquare.unity
     guid: 3cd5febb3d62b49b5ae7c9f092cc9f6b
+  - enabled: 1
+    path: Assets/_Project/TPSGameLoadingScreen/Scenes/TPSGameLoadingScene.unity
+    guid: 02add201cd67a4dd1a7821ef20bba3cb
+  - enabled: 1
+    path: Assets/_Project/TownSquareLoadingScreen/Scenes/TownSquareLoadingScene.unity
+    guid: 96ab2e43a70e5435088af3c6efb4be76
   m_configObjects: {}

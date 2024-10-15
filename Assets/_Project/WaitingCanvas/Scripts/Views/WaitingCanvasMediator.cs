@@ -37,7 +37,7 @@ namespace _Project.WaitingCanvas.Scripts.Views
         {
             ActiveWaitHandlers = null;
         }
-
+        
         private void OnAddWaitHandler(IWaitHandler waitHandler)
         {
             PlayAndWaitForWaitHandler(waitHandler);

@@ -22,7 +22,7 @@ namespace _Project.GameSceneManager.Scripts.Views
         // called second
         void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            SceneName = scene.name;
+            SceneName = scene.name;//
             onSceneLoaded.Dispatch();
         }
 

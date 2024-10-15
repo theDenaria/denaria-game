@@ -25,9 +25,11 @@ namespace _Project.SceneManagementUtilities.Controllers
 {
     public class ChangeSceneGroupCommand : Command
     {
+        public SceneGroupType temporaryLoadingSceneGroup;
         [Inject] public ISceneChangeService SceneChangeService { get; set; }
         [Inject] public SceneGroupType SceneGroupType { get; set; }
         [Inject] public LoadingOptions LoadingOptions { get; set; }
+        [Inject] public OnSceneLoadAndUnloadAreCompletedSignal OnSceneLoadAndUnloadAreCompletedSignal { get; set; }
         //public LoadingOptions LoadingOptions { get; set; } = new(false,true);
         public bool HasUnloadStarted { get; set; }
         public bool FirstNewSceneLoaded { get; set; }
@@ -90,7 +92,7 @@ namespace _Project.SceneManagementUtilities.Controllers
         
         private void ChangeScenes(SceneGroupType oldSceneGroupType, SceneGroupType newSceneGroupType, LoadingOptions loadingOptions)
         {
-            LoadLoadingScene(loadingOptions.WillUseLoadingScreen);
+            LoadLoadingScene(loadingOptions.CustomLoadingScreen);
             
             List<SceneObject> scenesToUnload = GetScenesToUnload(newSceneGroupType, LoadingOptions.WillReloadExistingScenes);
             List<SceneObject> scenesToLoad = GetScenesToLoad(oldSceneGroupType, newSceneGroupType, LoadingOptions.WillReloadExistingScenes);
@@ -104,12 +106,19 @@ namespace _Project.SceneManagementUtilities.Controllers
             }
         }
         
-        private void LoadLoadingScene(bool willUseLoadingScreen)
+        private void LoadLoadingScene(SceneGroupType customLoadingSceneGroupType)
         {
-            if (willUseLoadingScreen)
+            temporaryLoadingSceneGroup = customLoadingSceneGroupType;
+            if (customLoadingSceneGroupType == SceneGroupType.None)
             {
-                SceneManager.LoadSceneAsync("DefaultLoadingScene", LoadSceneMode.Additive);
+                Debug.Log("yyy LoadLoadingScene customLoadingSceneGroupType == SceneGroupType.None");
+                return;
             }
+            //WARNING: Multiple scenes in loading scene group is not currently supported,
+            //so we only take the first scene in the list.
+            SceneObject loadingScene = SceneChangeService.GetScenesByGroup(customLoadingSceneGroupType)[0];
+
+            SceneManager.LoadSceneAsync(loadingScene, LoadSceneMode.Additive);
         }
         
         private List<SceneObject> GetScenesToUnload(SceneGroupType newSceneGroupType, bool loadingChoicesWillReloadExistingScenes)
@@ -245,7 +254,8 @@ namespace _Project.SceneManagementUtilities.Controllers
         {
             if (UnloadOperationCount == 0 && LoadOperationCount == 0)
             {
-                UnloadLoadingScene();
+                OnSceneLoadAndUnloadAreCompletedSignal.Dispatch();
+                UnloadLoadingScene();//TODO: Remove it after DefaultLoadingScene listens to OnSceneLoadAndUnloadAreCompletedSignal as well.
                 SceneChangeService.IsLoading = false;
             }
         }
@@ -254,6 +264,15 @@ namespace _Project.SceneManagementUtilities.Controllers
         {
             if (!SceneManager.GetSceneByName("DefaultLoadingScene").IsValid()) { return; }
             SceneManager.UnloadSceneAsync("DefaultLoadingScene");
+            
+            /*if (temporaryLoadingSceneGroup == SceneGroupType.None)
+            {
+                Debug.Log("yyy UNLoadLoadingScene customLoadingSceneGroupType == SceneGroupType.None");
+                return;
+            }
+            SceneObject loadingScene = SceneChangeService.GetScenesByGroup(temporaryLoadingSceneGroup)[0];
+            if (!SceneManager.GetSceneByName(loadingScene).IsValid()) { return; }
+            SceneManager.UnloadSceneAsync(loadingScene);*/
         }
         
         /*private void UnloadScenes(List<string> sceneNames)

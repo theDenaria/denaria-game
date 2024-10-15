@@ -31,8 +31,6 @@ namespace _Project.Authorization.Scripts.Controllers
                 var playfabIdShort = playfabId[..16];
                 var connectDenariaServerCommandData = new ConnectDenariaServerCommandData(playfabIdShort, sessionTicket);
                 ConnectDenariaServerSignal.Dispatch(connectDenariaServerCommandData);
-                // ChangeSceneGroupSignal.Dispatch(SceneGroupType.TownSquare, new LoadingOptions());
-
             }
             else
             {

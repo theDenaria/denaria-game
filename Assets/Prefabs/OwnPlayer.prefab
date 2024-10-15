@@ -52,7 +52,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: OwnPlayer
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8493625117460801133, guid: 6deff98d240af4159966afeb075dd147, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -95,20 +96,15 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes:
-    - Name: onFire
-      Entry: 7
-      Data: 0|strange.extensions.signal.impl.Signal`3[[UnityEngine.Vector3, UnityEngine.CoreModule],[UnityEngine.Vector3,
-        UnityEngine.CoreModule],[UnityEngine.Vector3, UnityEngine.CoreModule]], StrangeIoC
-    - Name: 
-      Entry: 8
-      Data: 
+    SerializationNodes: []
   shoulderTransform: {fileID: 7617069900307300146}
   barrelPosition: {fileID: 912615415828974880}
   xAxis: 0
   yAxis: 0
   camFollowPos: {fileID: 5477938399139087305}
   mouseSensitivity: 0.2
+  interpolationBackTime: 0.5
+  smoothingFactor: 0.5
 --- !u!4 &7617069900307300146 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5626136078069800717, guid: 6deff98d240af4159966afeb075dd147, type: 3}
