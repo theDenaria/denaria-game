@@ -1,11 +1,10 @@
-using _Project.Login.Controllers;
-using _Project.Login.Scripts.Signals;
-using _Project.SceneManagementUtilities.Signals;
-using _Project.SceneManagementUtilities.Utilities;
+using _Project.Authorization.Scripts.Commands;
+using _Project.Authorization.Scripts.Signals;
+using _Project.SceneManagementUtilities.Scripts.Signals;
 using CBS;
 using CBS.Models;
 
-namespace _Project.Login.Services
+namespace _Project.Authorization.Scripts.Services
 {
     public class LoginService : ILoginService
     {

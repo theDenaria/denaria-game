@@ -1,5 +1,5 @@
-using _Project.SceneManagementUtilities.Signals;
 using _Project.StrangeIOCUtility;
+using _Project.StrangeIOCUtility.Scripts.Views;
 using _Project.WaitingCanvas.Scripts.Enums;
 using _Project.WaitingCanvas.Scripts.WaitHandlers;
 using Cysharp.Threading.Tasks;

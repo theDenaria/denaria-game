@@ -1,4 +1,4 @@
-using _Project.GameSceneManager.Scripts.Controller;
+using _Project.GameSceneManager.Scripts.Commands;
 using strange.extensions.signal.impl;
 using UnityEngine;
 namespace _Project.NetworkManagement.Scripts.Signals

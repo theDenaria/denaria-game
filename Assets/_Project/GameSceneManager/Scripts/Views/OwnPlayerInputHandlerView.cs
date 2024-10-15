@@ -2,6 +2,7 @@ using strange.extensions.mediation.impl;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using _Project.StrangeIOCUtility;
+using _Project.StrangeIOCUtility.Scripts.Views;
 using strange.extensions.signal.impl;
 
 namespace _Project.GameSceneManager.Scripts.Views

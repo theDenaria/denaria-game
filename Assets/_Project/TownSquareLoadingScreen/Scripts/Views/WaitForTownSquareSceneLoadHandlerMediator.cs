@@ -1,5 +1,5 @@
 using _Project.NetworkManagement.Scripts.Signals;
-using _Project.SceneManagementUtilities.Signals;
+using _Project.SceneManagementUtilities.Scripts.Signals;
 using strange.extensions.mediation.impl;
 using UnityEngine.SceneManagement;
 

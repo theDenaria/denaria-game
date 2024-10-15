@@ -1,7 +1,6 @@
-using strange.extensions.command.impl;
-using _Project.SettingsManager.Scripts.Models;
-using _Project.SettingsManager;
 using _Project.SettingsManager.Scripts.Enums;
+using _Project.SettingsManager.Scripts.Models;
+using strange.extensions.command.impl;
 
 namespace _Project.SettingsManager.Scripts.Controllers
 {

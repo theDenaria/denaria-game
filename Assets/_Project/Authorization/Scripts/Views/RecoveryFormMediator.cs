@@ -1,8 +1,8 @@
-using _Project.Login.Controllers;
-using _Project.Login.Scripts.Signals;
+using _Project.Authorization.Scripts.Commands;
+using _Project.Authorization.Scripts.Signals;
 using strange.extensions.mediation.impl;
 
-namespace _Project.Login.Scripts.Views
+namespace _Project.Authorization.Scripts.Views
 {
     public class RecoveryFormMediator : Mediator
     {
