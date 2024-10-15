@@ -11,6 +11,8 @@ namespace _Project.Utilities
 		public static readonly string DEVICE_ID_KEY = "deviceUid";
 		//public static readonly string INTRODUCTION_SCENE_NAME = "IntroductionScene";
 
+		public static readonly string STRING_CONVERTER_ELEMENT_DIVIDER = "|^|";
+
 		public const string MISCELLANEOUS_CONFIG = "MiscellaneousConfig";
 
 		#region LOGS
@@ -88,7 +90,7 @@ namespace _Project.Utilities
 		public const string FORCE_UPDATE_NEEDED = "force_update_needed";
 
 		#endregion
-
+		
 		#region TransactionAnalytics
 
 		public const string TRANSACTION_TYPE_GEM = "gem";

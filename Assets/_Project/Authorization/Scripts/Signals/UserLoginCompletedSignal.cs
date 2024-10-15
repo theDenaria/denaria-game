@@ -1,7 +1,7 @@
 using CBS.Models;
 using strange.extensions.signal.impl;
 
-namespace _Project.Login.Scripts.Signals
+namespace _Project.Authorization.Scripts.Signals
 {
     public class UserLoginCompletedSignal : Signal<CBSLoginResult>
     {

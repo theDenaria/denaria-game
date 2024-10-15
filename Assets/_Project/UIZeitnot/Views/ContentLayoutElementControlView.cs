@@ -1,4 +1,5 @@
 ﻿using _Project.StrangeIOCUtility;
+using _Project.StrangeIOCUtility.Scripts.Views;
 using UnityEngine;
 using UnityEngine.UI;
 

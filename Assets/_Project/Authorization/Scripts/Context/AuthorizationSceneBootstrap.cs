@@ -1,6 +1,6 @@
 using strange.extensions.context.impl;
 
-namespace _Project.Login.Scripts.Context
+namespace _Project.Authorization.Scripts.Context
 {
     public class AuthorizationSceneBootstrap : ContextView
     {

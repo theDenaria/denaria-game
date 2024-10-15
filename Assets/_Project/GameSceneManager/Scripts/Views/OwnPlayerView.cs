@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using _Project.StrangeIOCUtility;
+using _Project.StrangeIOCUtility.Scripts.Views;
 using Cinemachine;
 using strange.extensions.signal.impl;
 using UnityEngine;
@@ -27,6 +28,7 @@ namespace _Project.GameSceneManager.Scripts.Views
 
         private Vector2 _moveInput;
 
+        //TODO: Put it inside Init
         private void OnEnable()
         {
             mainCamera = Camera.main;

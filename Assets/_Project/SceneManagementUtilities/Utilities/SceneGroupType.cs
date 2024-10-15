@@ -20,6 +20,8 @@ namespace _Project.SceneManagementUtilities.Utilities
         AvatarSelection = 2056,
         Authorization = 4112,
         TownSquare = 8224,
+        TPSGameLoadingScene = 16448,
+        TownSquareLoadingScene = 32896,
     }
 
 }

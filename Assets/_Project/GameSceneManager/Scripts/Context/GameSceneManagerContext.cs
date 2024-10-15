@@ -1,5 +1,6 @@
 using _Project.Animation.Scripts.Views;
 using _Project.GameSceneManager.Scripts.Controller;
+using _Project.GameSceneManager.Scripts.Commands;
 using _Project.GameSceneManager.Scripts.Models;
 using _Project.GameSceneManager.Scripts.Signals;
 using _Project.GameSceneManager.Scripts.Views;
@@ -7,14 +8,12 @@ using _Project.Login.Scripts.Signals;
 using _Project.MainMenu.Scripts.Signals;
 using _Project.MainMenu.Scripts.Views;
 using _Project.NetworkManagement.Scripts.Signals;
+using _Project.StrangeIOCUtility.Scripts.Context;
 using _Project.SettingsManager.Scripts.Controllers;
 using _Project.SettingsManager.Scripts.Models;
 using _Project.SettingsManager.Scripts.Signals;
 using _Project.SettingsManager.Scripts.Views;
-using _Project.StrangeIOCUtility.CrossContext;
-using strange.extensions.context.api;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace _Project.GameSceneManager.Scripts.Context
 {

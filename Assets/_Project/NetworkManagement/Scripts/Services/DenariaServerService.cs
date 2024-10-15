@@ -4,13 +4,14 @@ using UnityEngine;
 using Unity.Collections;
 using Unity.Networking.Transport;
 using System.Text;
-using _Project.GameSceneManager.Scripts.Controller;
 using _Project.NetworkManagement.Scripts.Enums;
 using System;
-using _Project.StrangeIOCUtility.Models;
 using System.Collections;
-using _Project.SceneManagementUtilities.Signals;
+using _Project.GameSceneManager.Scripts.Commands;
+using _Project.SceneManagementUtilities.Scripts.Signals;
 using _Project.SceneManagementUtilities.Utilities;
+using _Project.StrangeIOCUtility.Scripts.Utilities;
+
 namespace _Project.NetworkManagement.Scripts.Services
 {
     public class DenariaServerService : IDenariaServerService
@@ -64,11 +65,6 @@ namespace _Project.NetworkManagement.Scripts.Services
             RoutineRunner.StartCoroutine(SendConnectMessageCoroutine());
         }
 
-        public void StopSendingConnectMessage()
-        {
-            _isSendingConnectMessage = false;
-        }
-
         IEnumerator SendConnectMessageCoroutine()
         {
             while (_isSendingConnectMessage)
@@ -77,8 +73,12 @@ namespace _Project.NetworkManagement.Scripts.Services
                 yield return new WaitForSeconds(0.5f);
             }
         }
-
-
+        
+        public void StopSendingConnectMessage()
+        {
+            _isSendingConnectMessage = false;
+        }
+        
         public void ConnectToDenariaServer()
         {
             NetworkConnection = NetworkDriver.Connect(_denariaEndpoint);
@@ -199,7 +199,7 @@ namespace _Project.NetworkManagement.Scripts.Services
                 if (cmd == NetworkEvent.Type.Connect && !IsConnectionAccepted)
                 {
                     IsConnectionAccepted = true;
-                    ChangeSceneGroupSignal.Dispatch(SceneGroupType.TownSquare, new LoadingOptions());
+                    ChangeSceneGroupSignal.Dispatch(SceneGroupType.TownSquare, new LoadingOptions(SceneGroupType.TownSquareLoadingScene));
                 }
                 else if (cmd == NetworkEvent.Type.Data)
                 {

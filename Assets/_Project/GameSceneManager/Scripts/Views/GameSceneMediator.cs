@@ -32,7 +32,7 @@ namespace _Project.GameSceneManager.Scripts.Views
             if (View.SceneName == "TownSquare")
             {
                 PlayerIdMapModel.Init(DenariaServerService.PlayerId, View.OwnPlayerPrefab, View.EnemyPlayerPrefab);
-                TownSquareLoadedSignal.Dispatch();
+                //TownSquareLoadedSignal.Dispatch();
             }
         }
 

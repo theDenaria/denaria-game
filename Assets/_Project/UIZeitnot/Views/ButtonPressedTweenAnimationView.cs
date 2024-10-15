@@ -1,4 +1,5 @@
 ﻿using _Project.StrangeIOCUtility;
+using _Project.StrangeIOCUtility.Scripts.Views;
 using ButtonZeit = _Project.UIZeitnot.ButtonZeitnot.Scripts.ButtonZeitnot;
 using DG.Tweening;
 using UnityEngine;

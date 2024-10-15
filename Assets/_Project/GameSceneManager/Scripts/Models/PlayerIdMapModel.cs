@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using _Project.GameSceneManager.Scripts.Controller;
 using _Project.GameSceneManager.Scripts.Views;
 using UnityEngine;
 namespace _Project.GameSceneManager.Scripts.Models
