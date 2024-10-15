@@ -30,9 +30,7 @@ namespace _Project.TPSGameLoadingScreen.Scripts.Context
         
         private void BindTPSGameLoadingSceneInjections()
         {
-            injectionBinder.Bind<ChangeSceneGroupSignal>().ToSingleton().CrossContext();
-
-            commandBinder.Bind<ChangeSceneGroupSignal>().To<ChangeSceneGroupCommand>();
+            
         }
 
     }

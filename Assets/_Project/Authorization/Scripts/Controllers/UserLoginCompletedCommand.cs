@@ -1,7 +1,6 @@
 using _Project.NetworkManagement.Scripts.Controllers;
 using _Project.NetworkManagement.Scripts.Signals;
 using _Project.SceneManagementUtilities.Signals;
-using _Project.SceneManagementUtilities.Utilities;
 using CBS.Models;
 using strange.extensions.command.impl;
 
@@ -12,8 +11,7 @@ namespace _Project.Authorization.Scripts.Controllers
         [Inject] public CBSLoginResult Result { get; set; }
         [Inject] public ChangeSceneGroupSignal ChangeSceneGroupSignal { private get; set; }
 
-        [Inject]
-        public ConnectDenariaServerSignal ConnectDenariaServerSignal { get; set; }
+        [Inject] public ConnectDenariaServerSignal ConnectDenariaServerSignal { get; set; }
 
         public override void Execute()
         {

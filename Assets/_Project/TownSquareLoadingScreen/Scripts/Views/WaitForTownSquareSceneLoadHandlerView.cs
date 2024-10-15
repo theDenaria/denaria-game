@@ -3,6 +3,7 @@ using _Project.StrangeIOCUtility;
 using _Project.WaitingCanvas.Scripts.Enums;
 using _Project.WaitingCanvas.Scripts.WaitHandlers;
 using Cysharp.Threading.Tasks;
+using strange.extensions.signal.impl;
 using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
 

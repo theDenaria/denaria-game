@@ -25,7 +25,6 @@ namespace _Project.SceneManagementUtilities.Controllers
 {
     public class ChangeSceneGroupCommand : Command
     {
-        public SceneGroupType temporaryLoadingSceneGroup;
         [Inject] public ISceneChangeService SceneChangeService { get; set; }
         [Inject] public SceneGroupType SceneGroupType { get; set; }
         [Inject] public LoadingOptions LoadingOptions { get; set; }
@@ -43,7 +42,7 @@ namespace _Project.SceneManagementUtilities.Controllers
                 if (_loadOperationCount > value && value == 0)
                 {
                     _loadOperationCount = value;
-                    DebugLoggerMuteable.Log("ooo _loadOperationCount hit 0");
+                    DebugLoggerMuteable.Log("_loadOperationCount hit 0");
                     CheckIfSceneLoadAndUnloadAreCompleted();
                 }
                 else
@@ -108,10 +107,9 @@ namespace _Project.SceneManagementUtilities.Controllers
         
         private void LoadLoadingScene(SceneGroupType customLoadingSceneGroupType)
         {
-            temporaryLoadingSceneGroup = customLoadingSceneGroupType;
             if (customLoadingSceneGroupType == SceneGroupType.None)
             {
-                Debug.Log("yyy LoadLoadingScene customLoadingSceneGroupType == SceneGroupType.None");
+                Debug.Log("LoadLoadingScene customLoadingSceneGroupType == SceneGroupType.None");
                 return;
             }
             //WARNING: Multiple scenes in loading scene group is not currently supported,
@@ -255,7 +253,8 @@ namespace _Project.SceneManagementUtilities.Controllers
             if (UnloadOperationCount == 0 && LoadOperationCount == 0)
             {
                 OnSceneLoadAndUnloadAreCompletedSignal.Dispatch();
-                UnloadLoadingScene();//TODO: Remove it after DefaultLoadingScene listens to OnSceneLoadAndUnloadAreCompletedSignal as well.
+                //TODO: Remove it after DefaultLoadingScene listens to OnSceneLoadAndUnloadAreCompletedSignal as well.
+                UnloadLoadingScene();
                 SceneChangeService.IsLoading = false;
             }
         }
@@ -267,7 +266,6 @@ namespace _Project.SceneManagementUtilities.Controllers
             
             /*if (temporaryLoadingSceneGroup == SceneGroupType.None)
             {
-                Debug.Log("yyy UNLoadLoadingScene customLoadingSceneGroupType == SceneGroupType.None");
                 return;
             }
             SceneObject loadingScene = SceneChangeService.GetScenesByGroup(temporaryLoadingSceneGroup)[0];

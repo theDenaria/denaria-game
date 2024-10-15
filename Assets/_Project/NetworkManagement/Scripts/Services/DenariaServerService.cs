@@ -39,7 +39,7 @@ namespace _Project.NetworkManagement.Scripts.Services
         private float interval = 1.0f / 30.0f; // 30 times per second
         private float nextExecutionTime;
 
-        public NetworkEndpoint _denariaEndpoint = NetworkEndpoint.Parse("127.0.0.1", 5000);//
+        public NetworkEndpoint _denariaEndpoint = NetworkEndpoint.Parse("127.0.0.1", 5000);
         // public NetworkEndpoint _denariaEndpoint = NetworkEndpoint.Parse("176.40.120.89", 5000);
 
         private Coroutine _listenCoroutine;
@@ -64,11 +64,6 @@ namespace _Project.NetworkManagement.Scripts.Services
             RoutineRunner.StartCoroutine(SendConnectMessageCoroutine());
         }
 
-        public void StopSendingConnectMessage()
-        {
-            _isSendingConnectMessage = false;
-        }
-
         IEnumerator SendConnectMessageCoroutine()
         {
             while (_isSendingConnectMessage)
@@ -77,8 +72,12 @@ namespace _Project.NetworkManagement.Scripts.Services
                 yield return new WaitForSeconds(0.5f);
             }
         }
-
-
+        
+        public void StopSendingConnectMessage()
+        {
+            _isSendingConnectMessage = false;
+        }
+        
         public void ConnectToDenariaServer()
         {
             NetworkConnection = NetworkDriver.Connect(_denariaEndpoint);
@@ -199,8 +198,6 @@ namespace _Project.NetworkManagement.Scripts.Services
                 if (cmd == NetworkEvent.Type.Connect && !IsConnectionAccepted)
                 {
                     IsConnectionAccepted = true;
-                    //Debug.Log("yyy in ReceiveMessages, ChangeSceneGroupSignal triggered");
-                    //ChangeSceneGroupSignal.Dispatch(SceneGroupType.TownSquare, new LoadingOptions());
                     ChangeSceneGroupSignal.Dispatch(SceneGroupType.TownSquare, new LoadingOptions(SceneGroupType.TownSquareLoadingScene));
                 }
                 else if (cmd == NetworkEvent.Type.Data)

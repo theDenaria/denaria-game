@@ -1,5 +1,5 @@
+using _Project.NetworkManagement.Scripts.Signals;
 using _Project.SceneManagementUtilities.Signals;
-using _Project.TownSquareLoadingScreen.Scripts.Signals;
 using strange.extensions.mediation.impl;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +9,7 @@ namespace _Project.TownSquareLoadingScreen.Scripts.Views
     {
         [Inject] public WaitForTownSquareSceneLoadHandlerView View { get; set; }
         [Inject] public OnSceneLoadAndUnloadAreCompletedSignal OnSceneLoadAndUnloadAreCompletedSignal { get; set; }
+        [Inject] public TownSquareLoadedSignal TownSquareLoadedSignal { get; set; }
 
         public override void OnRegister()
         {
@@ -25,21 +26,19 @@ namespace _Project.TownSquareLoadingScreen.Scripts.Views
 
         private void HandleOnNextScreenReady()
         {
-            UnityEngine.Debug.Log("yyy HandleOnNextScreenReady");
             SceneManager.UnloadSceneAsync(gameObject.scene);
         }
 
         [ListensTo(typeof(OnSceneLoadAndUnloadAreCompletedSignal))]
         public void OnSceneLoadAndUnloadAreCompleted()
         {
-            UnityEngine.Debug.Log("yyy OnSceneLoadAndUnloadAreCompleted");
             View.IsSceneLoadUnloadCompleted = true;
+            TownSquareLoadedSignal.Dispatch();
         }
         
-        [ListensTo(typeof(OnPlayerSpawnCompletedSignal))]
+        [ListensTo(typeof(OwnPlayerSpawnedSignal))]
         public void OnPlayerSpawnCompleted()
         {
-            UnityEngine.Debug.Log("yyy OnPlayerSpawnCompleted");
             View.IsPlayerSpawnCompleted = true;
         }
     }
