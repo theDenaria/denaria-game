@@ -9,19 +9,28 @@ using _Project.LoggingAndDebugging;
 using _Project.NetworkManagement.Scripts.Commands;
 using _Project.NetworkManagement.Scripts.Services;
 using _Project.NetworkManagement.Scripts.Signals;
+	
 using _Project.SettingsManager.Scripts.Controllers;
 using _Project.SettingsManager.Scripts.Models;
 using _Project.SettingsManager.Scripts.Signals;
 using _Project.SettingsManager.Scripts.Views;
+
+using _Project.SceneManagementUtilities.Scripts;
+
 using _Project.ShowLoading.Scripts.Signals;
 using _Project.ShowLoading.Scripts.Views;
 using _Project.StrangeIOCUtility.Scripts.Utilities;
+
 using _Project.WaitingCanvas.Scripts.Commands;
 using _Project.WaitingCanvas.Scripts.Signals;
 using _Project.WaitingCanvas.Scripts.Views;
+
+using _Project.StrangeIOCUtility.Scripts;
+
+using _Project.GameSceneManager.Scripts.Signals;
+
 using UnityEngine;
-
-
+	
 /*using _Project.ABTesting.Scripts.Commands;
 using _Project.ABTesting.Scripts.Models;
 using _Project.ABTesting.Scripts.Signals;
@@ -171,7 +180,6 @@ namespace _Project.StrangeIOCUtility.Scripts.Context
 				BindWaitingCanvasInjections();
 				//BindLoginInjections(); //TODO: Uncomment 21 August
 				NetworkManagementBindings();
-				SettingsManagerBindings();
 			}
 		}
 
@@ -462,24 +470,6 @@ namespace _Project.StrangeIOCUtility.Scripts.Context
 			commandBinder.Bind<SendJumpSignal>().To<SendJumpCommand>();
 		}
 
-		private void SettingsManagerBindings()
-		{
-			injectionBinder.Bind<ApplySettingsCommand>().ToSingleton();
-			injectionBinder.Bind<RestoreDefaultSettingsCommand>().ToSingleton();
-			injectionBinder.Bind<ChangeSettingsCommand>().ToSingleton();
 
-			injectionBinder.Bind<ISettingsModel>().To<SettingsModel>().ToSingleton().CrossContext();
-
-			mediationBinder.Bind<VideoSettingsView>().ToMediator<VideoSettingsMediator>();
-			mediationBinder.Bind<AudioSettingsView>().ToMediator<AudioSettingsMediator>();
-			mediationBinder.Bind<HotkeySettingsView>().ToMediator<HotkeySettingsMediator>();
-			mediationBinder.Bind<FooterView>().ToMediator<FooterMediator>();
-
-			commandBinder.Bind<ApplySettingsSignal>().To<ApplySettingsCommand>();
-			commandBinder.Bind<RestoreDefaultSettingsSignal>().To<RestoreDefaultSettingsCommand>();
-			commandBinder.Bind<ChangeSettingsSignal>().To<ChangeSettingsCommand>();
-
-
-		}
 	}
 }

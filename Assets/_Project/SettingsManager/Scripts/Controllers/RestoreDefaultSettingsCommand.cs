@@ -47,4 +47,3 @@ namespace _Project.SettingsManager.Scripts.Controllers
         }
     }
 }
-

@@ -6,7 +6,7 @@ namespace _Project.NetworkManagement.Scripts.Services
     public interface IDenariaServerService
     {
         public string PlayerId { get; set; }
-        public void Init(string playerId);
+        public void Init(string playerId, string sessionTicket);
         public void ConnectToDenariaServer();
         public void DisconnectFromDenariaServer();
 

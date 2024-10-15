@@ -4,9 +4,12 @@ namespace _Project.NetworkManagement.Scripts.Commands
     {
         public string PlayerId { get; set; }
 
-        public ConnectDenariaServerCommandData(string playerId)
+        public string SessionTicket { get; set; }
+
+        public ConnectDenariaServerCommandData(string playerId, string sessionTicket)
         {
             PlayerId = playerId;
+            SessionTicket = sessionTicket;
         }
     }
 }

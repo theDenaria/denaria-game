@@ -28,7 +28,7 @@ namespace _Project.Authorization.Scripts.Commands
                 // TODO add session ticket to signal
                 // Concat playfabid to be maximum 16 characters
                 var playfabIdShort = playfabId[..16];
-                var connectDenariaServerCommandData = new ConnectDenariaServerCommandData(playfabIdShort);
+                var connectDenariaServerCommandData = new ConnectDenariaServerCommandData(playfabIdShort, sessionTicket);
                 ConnectDenariaServerSignal.Dispatch(connectDenariaServerCommandData);
                 // ChangeSceneGroupSignal.Dispatch(SceneGroupType.TownSquare, new LoadingOptions());
 
