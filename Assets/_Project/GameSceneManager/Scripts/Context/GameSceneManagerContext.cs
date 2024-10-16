@@ -1,5 +1,4 @@
 using _Project.Animation.Scripts.Views;
-using _Project.GameSceneManager.Scripts.Controller;
 using _Project.GameSceneManager.Scripts.Commands;
 using _Project.GameSceneManager.Scripts.Models;
 using _Project.GameSceneManager.Scripts.Signals;
