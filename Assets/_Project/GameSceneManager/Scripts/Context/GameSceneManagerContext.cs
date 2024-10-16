@@ -1,7 +1,10 @@
+using _Project.Animation.Scripts.Views;
+using _Project.GameSceneManager.Scripts.Controller;
 using _Project.GameSceneManager.Scripts.Commands;
 using _Project.GameSceneManager.Scripts.Models;
 using _Project.GameSceneManager.Scripts.Signals;
 using _Project.GameSceneManager.Scripts.Views;
+using _Project.Login.Scripts.Signals;
 using _Project.MainMenu.Scripts.Signals;
 using _Project.MainMenu.Scripts.Views;
 using _Project.NetworkManagement.Scripts.Signals;
@@ -27,6 +30,7 @@ namespace _Project.GameSceneManager.Scripts.Context
             BindGameSceneManager();
             BindMainMenu();
             SettingsManagerBindings();
+            BindAnimation();
         }
 
 
@@ -83,6 +87,15 @@ namespace _Project.GameSceneManager.Scripts.Context
             commandBinder.Bind<RestoreDefaultSettingsSignal>().To<RestoreDefaultSettingsCommand>();
             commandBinder.Bind<ChangeSettingsSignal>().To<ChangeSettingsCommand>();
             //commandBinder.Bind<SettingsMenuClosedSignal>().To<SettingsMenuClosedCommand>();
+        }
+
+        private void BindAnimation()
+        {
+            mediationBinder.Bind<PlayerAnimationView>().To<PlayerAnimationMediator>();
+            mediationBinder.Bind<GroundColliderView>().To<GroundColliderMediator>();
+
+            injectionBinder.Bind<OnLandColliderEnterSignal>().ToSingleton();
+            injectionBinder.Bind<OnLandColliderExitSignal>().ToSingleton();
         }
     }
 }

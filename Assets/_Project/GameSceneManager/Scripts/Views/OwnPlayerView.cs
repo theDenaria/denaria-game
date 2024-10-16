@@ -37,8 +37,8 @@ namespace _Project.GameSceneManager.Scripts.Views
             var cinemachineVirtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
             // Set the Cinemachine camera's follow and look at targets
 
-            Transform childTransform = transform.Find("PlayerLookAt");
-            cinemachineVirtualCamera.Follow = childTransform;
+            //Transform childTransform = transform.Find("PlayerLookAt");
+            cinemachineVirtualCamera.Follow = camFollowPos;
 
             // Optionally, enable the Cinemachine Brain if it was disabled
             Camera.main.GetComponent<CinemachineBrain>().enabled = true;
