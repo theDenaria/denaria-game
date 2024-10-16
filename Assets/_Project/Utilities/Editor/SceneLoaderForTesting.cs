@@ -44,7 +44,7 @@ namespace _Project.SceneManagementUtilities.Editor
 		private static void ConductRegularBoot()
 		{
 			PlayerPrefs.SetString("SceneToTest", string.Empty);
-			PlayerPrefs.SetString("SceneGroupToChange", string.Empty);
+			PlayerPrefs.SetString("SceneGroupToChange", string.Empty);//TODO: Use scene group type None?
 			PlayerPrefs.SetInt("IsTesting", 0);
 
 			EditorApplication.isPlaying = true;
@@ -52,10 +52,11 @@ namespace _Project.SceneManagementUtilities.Editor
 		
 		private static void ConductJumpstartBootTo(string activeSceneNames)
 		{
+			Debug.Log("ConductJumpstartBootTo method started. Will try to start from a scene other than BootScene.");
 			PlayerPrefs.SetString("SceneToTest", activeSceneNames);
 			PlayerPrefs.SetInt("IsTesting", 1);
 
-			EditorSceneManager.OpenScene("Assets/_Project/StrangeIOCUtility/CrossContext/BootScene.unity");
+			EditorSceneManager.OpenScene("Assets/_Project/StrangeIOCUtility/Scenes/BootScene.unity");
 			EditorApplication.isPlaying = true;
 		}
 
