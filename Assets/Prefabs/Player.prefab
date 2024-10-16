@@ -136,7 +136,6 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  groundCollider: {fileID: 3402966590913124079}
 --- !u!1 &7225546300402836617
 GameObject:
   m_ObjectHideFlags: 0
@@ -283,10 +282,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4996511955620764568}
-  - component: {fileID: 622840907959356779}
   - component: {fileID: 2593075003599395593}
   - component: {fileID: -1978569038055273337}
-  - component: {fileID: 2057457764160909550}
+  - component: {fileID: 7334542393475241559}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -311,19 +309,6 @@ Transform:
   - {fileID: 3495700079675961194}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &622840907959356779
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7639841990387085010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f58beff7fd44042cc8e9bd5a24a9accf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 5438301734316203762, guid: f3a773730c51048078dcb321ef3e3fdf, type: 3}
 --- !u!136 &2593075003599395593
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -368,7 +353,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2057457764160909550
+--- !u!114 &7334542393475241559
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -390,7 +375,6 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   playerAnimator: {fileID: -1978569038055273337}
-  landCollider: {fileID: 3402966590913124079}
 --- !u!1001 &8553965774469867857
 PrefabInstance:
   m_ObjectHideFlags: 0
