@@ -36,6 +36,7 @@ namespace _Project.NetworkManagement.DenariaServer.Scripts.Services
         private float nextExecutionTime;
 
         public NetworkEndpoint _denariaEndpoint = NetworkEndpoint.Parse("127.0.0.1", 5000);
+        // public NetworkEndpoint _denariaEndpoint = NetworkEndpoint.Parse("192.168.1.152", 5000);
         // public NetworkEndpoint _denariaEndpoint = NetworkEndpoint.Parse("176.40.120.89", 5000);
 
         private Coroutine _listenCoroutine;

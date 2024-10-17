@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3813039528896754812, guid: 6deff98d240af4159966afeb075dd147, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 3813039528896754812, guid: 6deff98d240af4159966afeb075dd147, type: 3}
     - target: {fileID: 4996511955620764568, guid: 6deff98d240af4159966afeb075dd147, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -48,6 +52,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7334542393475241559, guid: 6deff98d240af4159966afeb075dd147, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 7334542393475241559, guid: 6deff98d240af4159966afeb075dd147, type: 3}
     - target: {fileID: 7639841990387085010, guid: 6deff98d240af4159966afeb075dd147, type: 3}
       propertyPath: m_Name
       value: TPSOwnPlayer
@@ -127,7 +135,7 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  shoulderTransform: {fileID: 7617069900307300146}
+  shoulderTransform: {fileID: 8842783216112067411}
   barrelPosition: {fileID: 912615415828974880}
   xAxis: 0
   yAxis: 0
@@ -135,8 +143,8 @@ MonoBehaviour:
   mouseSensitivity: 0.2
   interpolationBackTime: 0.5
   smoothingFactor: 0.5
---- !u!4 &7617069900307300146 stripped
+--- !u!4 &8842783216112067411 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 5626136078069800717, guid: 6deff98d240af4159966afeb075dd147, type: 3}
+  m_CorrespondingSourceObject: {fileID: 6707733653828109164, guid: 6deff98d240af4159966afeb075dd147, type: 3}
   m_PrefabInstance: {fileID: 2855643095398015039}
   m_PrefabAsset: {fileID: 0}

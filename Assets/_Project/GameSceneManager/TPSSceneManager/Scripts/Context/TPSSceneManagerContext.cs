@@ -1,13 +1,8 @@
 using _Project.GameSceneManager.TPSSceneManager.Scripts.Controller;
 using _Project.GameSceneManager.TPSSceneManager.Scripts.Models;
-using _Project.InputManager.Scripts.Signals;
 using _Project.GameSceneManager.TPSSceneManager.Scripts.Views;
 using _Project.MainMenu.Scripts.Signals;
 using _Project.MainMenu.Scripts.Views;
-using _Project.Matchmaking.Scripts.Commands;
-using _Project.Matchmaking.Scripts.Services;
-using _Project.Matchmaking.Scripts.Signals;
-using _Project.Matchmaking.Scripts.Views;
 using _Project.NetworkManagement.TPSServer.Scripts.Signals;
 using _Project.SettingsManager.Scripts.Controllers;
 using _Project.SettingsManager.Scripts.Models;
@@ -15,6 +10,8 @@ using _Project.SettingsManager.Scripts.Signals;
 using _Project.SettingsManager.Scripts.Views;
 using _Project.StrangeIOCUtility.Scripts.Context;
 using UnityEngine;
+using _Project.Animation.Scripts.Views;
+using _Project.Login.Scripts.Signals;
 
 namespace _Project.GameSceneManager.TPSSceneManager.Scripts.Context
 {
@@ -31,6 +28,7 @@ namespace _Project.GameSceneManager.TPSSceneManager.Scripts.Context
             BindGameSceneManager();
             BindMainMenu();
             SettingsManagerBindings();
+            BindAnimation();
         }
 
 
@@ -77,6 +75,15 @@ namespace _Project.GameSceneManager.TPSSceneManager.Scripts.Context
             commandBinder.Bind<RestoreDefaultSettingsSignal>().To<RestoreDefaultSettingsCommand>();
             commandBinder.Bind<ChangeSettingsSignal>().To<ChangeSettingsCommand>();
             //commandBinder.Bind<SettingsMenuClosedSignal>().To<SettingsMenuClosedCommand>();
+        }
+
+        private void BindAnimation()
+        {
+            mediationBinder.Bind<PlayerAnimationView>().To<PlayerAnimationMediator>();
+            mediationBinder.Bind<GroundColliderView>().To<GroundColliderMediator>();
+
+            injectionBinder.Bind<OnLandColliderEnterSignal>().ToSingleton();
+            injectionBinder.Bind<OnLandColliderExitSignal>().ToSingleton();
         }
 
     }

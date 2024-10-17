@@ -25,6 +25,8 @@ namespace _Project.Matchmaking.Scripts.Services
 
         private MatchmakingPlatformEnum _platform = MatchmakingPlatformEnum.None;
 
+        // private string _websocketUrl = "ws://127.0.0.1:3000/queue";
+        private string _websocketUrl = "ws://192.168.1.152:3000/queue";
 
         private int _matchSessionId;
 
@@ -38,7 +40,7 @@ namespace _Project.Matchmaking.Scripts.Services
         public void StartMatchmaking(MatchmakingPlatformEnum platform, MatchmakingServiceQueueMode queueMode)
         {
             _platform = platform;
-            _websocket = new WebSocket("ws://127.0.0.1:3000/queue");
+            _websocket = new WebSocket(_websocketUrl);
 
             _websocket.OnOpen += (sender, e) =>
             {

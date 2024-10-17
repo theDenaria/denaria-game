@@ -41,8 +41,7 @@ namespace _Project.NetworkManagement.TPSServer.Scripts.Services
         private float interval = 1.0f / 30.0f; // 30 times per second
         private float nextExecutionTime;
 
-        // private NetworkEndpoint _tpsEndpoint;
-        private NetworkEndpoint _tpsEndpoint = NetworkEndpoint.Parse("192.168.1.111", 5001);
+        private NetworkEndpoint _tpsEndpoint;
 
         private int _sessionId;
 
@@ -53,7 +52,7 @@ namespace _Project.NetworkManagement.TPSServer.Scripts.Services
         public void Init(int sessionId, string serverEndPoint, ushort serverPort)
         {
             _sessionId = sessionId;
-            // _tpsEndpoint = NetworkEndpoint.Parse(serverEndPoint, serverPort);
+            _tpsEndpoint = NetworkEndpoint.Parse(serverEndPoint, serverPort);
             IsConnectionAccepted = false;
             NetworkDriver = NetworkDriver.Create();
             ReliablePipeline = NetworkDriver.CreatePipeline(typeof(ReliableSequencedPipelineStage));
