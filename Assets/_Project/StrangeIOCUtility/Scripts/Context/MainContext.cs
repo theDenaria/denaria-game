@@ -28,7 +28,9 @@ using _Project.WaitingCanvas.Scripts.Views;
 using _Project.StrangeIOCUtility.Scripts;
 
 using _Project.GameSceneManager.Scripts.Signals;
-
+using _Project.Shooting.Scripts.Commands;
+using _Project.Shooting.Scripts.Services;
+using _Project.Shooting.Scripts.Signals;
 using UnityEngine;
 	
 /*using _Project.ABTesting.Scripts.Commands;
@@ -178,6 +180,7 @@ namespace _Project.StrangeIOCUtility.Scripts.Context
 				BindAnalyticsInjections();
 				BindRoutineRunnerInjections();
 				BindWaitingCanvasInjections();
+				BindShootingMechanicInjections(); //TODO: Move it into TPS Context
 				//BindLoginInjections(); //TODO: Uncomment 21 August
 				NetworkManagementBindings();
 			}
@@ -468,6 +471,13 @@ namespace _Project.StrangeIOCUtility.Scripts.Context
 			commandBinder.Bind<SendLookSignal>().To<SendLookCommand>();
 			commandBinder.Bind<SendFireSignal>().To<SendFireCommand>();
 			commandBinder.Bind<SendJumpSignal>().To<SendJumpCommand>();
+		}
+		
+		private void BindShootingMechanicInjections()
+		{
+			injectionBinder.Bind<IShootingMechanicService>().To<ShootingMechanicService>().ToSingleton().CrossContext();
+
+			commandBinder.Bind<PlayerFireInputSignal>().To<FireWithRaycastCommand>();
 		}
 
 

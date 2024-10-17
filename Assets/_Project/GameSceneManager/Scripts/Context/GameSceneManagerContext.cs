@@ -12,6 +12,7 @@ using _Project.SettingsManager.Scripts.Controllers;
 using _Project.SettingsManager.Scripts.Models;
 using _Project.SettingsManager.Scripts.Signals;
 using _Project.SettingsManager.Scripts.Views;
+using _Project.Shooting.Scripts.Signals;
 using UnityEngine;
 
 namespace _Project.GameSceneManager.Scripts.Context

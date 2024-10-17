@@ -5,6 +5,7 @@ using _Project.NetworkManagement.Scripts.Signals;
 using Unity.VisualScripting;
 using System.Collections;
 using _Project.NetworkManagement.Scripts.Commands;
+using _Project.Shooting.Scripts.Signals;
 using _Project.StrangeIOCUtility.Scripts.Utilities;
 
 namespace _Project.GameSceneManager.Scripts.Views

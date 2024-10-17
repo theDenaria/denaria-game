@@ -1,6 +1,6 @@
 using strange.extensions.signal.impl;
-using UnityEngine;
-namespace _Project.GameSceneManager.Scripts.Signals
+
+namespace _Project.Shooting.Scripts.Signals
 {
     public class PlayerFireInputSignal : Signal { }
 }
