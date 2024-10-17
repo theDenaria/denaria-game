@@ -1,5 +1,5 @@
-using _Project.NetworkManagement.Scripts.Commands;
-using _Project.NetworkManagement.Scripts.Signals;
+using _Project.NetworkManagement.DenariaServer.Scripts.Signals;
+using _Project.PlayerSessionInfo.Scripts.Models;
 using _Project.SceneManagementUtilities.Scripts.Signals;
 using CBS.Models;
 using strange.extensions.command.impl;
@@ -11,7 +11,9 @@ namespace _Project.Authorization.Scripts.Commands
         [Inject] public CBSLoginResult Result { get; set; }
         [Inject] public ChangeSceneGroupSignal ChangeSceneGroupSignal { private get; set; }
 
-        [Inject] public ConnectDenariaServerSignal ConnectDenariaServerSignal { get; set; }
+        [Inject] public IPlayerSessionInfoModel PlayerSessionInfoModel { get; set; }
+
+        [Inject] public DenariaServerConnectSignal DenariaServerConnectSignal { get; set; }
 
         public override void Execute()
         {
@@ -27,8 +29,10 @@ namespace _Project.Authorization.Scripts.Commands
                 // TODO add session ticket to signal
                 // Concat playfabid to be maximum 16 characters
                 var playfabIdShort = playfabId[..16];
-                var connectDenariaServerCommandData = new ConnectDenariaServerCommandData(playfabIdShort, sessionTicket);
-                ConnectDenariaServerSignal.Dispatch(connectDenariaServerCommandData);
+                PlayerSessionInfoModel.Init(playfabIdShort, sessionTicket);
+                DenariaServerConnectSignal.Dispatch();
+                // ChangeSceneGroupSignal.Dispatch(SceneGroupType.TownSquare, new LoadingOptions());
+
             }
             else
             {

@@ -33,7 +33,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <SceneGroupType>k__BackingField: 16
   <Scenes>k__BackingField:
-  - SceneName: GameScene
+  - SceneName: ThirdPersonShooter
   <WillReloadExistingScenes>k__BackingField: 0
   <WillUseLoadingScreen>k__BackingField: 0
   <FocusedScene>k__BackingField:
