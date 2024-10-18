@@ -1,4 +1,4 @@
-using _Project.NetworkManagement.Scripts.Signals;
+using _Project.NetworkManagement.DenariaServer.Scripts.Signals;
 using _Project.SceneManagementUtilities.Scripts.Signals;
 using strange.extensions.mediation.impl;
 using UnityEngine.SceneManagement;
@@ -35,8 +35,8 @@ namespace _Project.TownSquareLoadingScreen.Scripts.Views
             View.IsSceneLoadUnloadCompleted = true;
             TownSquareLoadedSignal.Dispatch();
         }
-        
-        [ListensTo(typeof(OwnPlayerSpawnedSignal))]
+
+        [ListensTo(typeof(DenariaServerOwnPlayerSpawnedSignal))]
         public void OnPlayerSpawnCompleted()
         {
             View.IsPlayerSpawnCompleted = true;

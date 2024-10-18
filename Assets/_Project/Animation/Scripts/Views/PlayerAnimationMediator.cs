@@ -1,7 +1,6 @@
-using _Project.GameSceneManager.Scripts.Signals;
+using _Project.InputManager.Scripts.Signals;
 using _Project.Login.Scripts.Signals;
 using strange.extensions.mediation.impl;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace _Project.Animation.Scripts.Views
