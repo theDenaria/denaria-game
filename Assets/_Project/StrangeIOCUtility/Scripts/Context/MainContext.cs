@@ -6,33 +6,28 @@ using _Project.Analytics.CustomEvents.Scripts.Commands;
 using _Project.Analytics.UnityAnalytics.Scripts.Services;
 using _Project.LoadingScreen.Scripts.Signals;
 using _Project.LoggingAndDebugging;
-using _Project.NetworkManagement.Scripts.Commands;
-using _Project.NetworkManagement.Scripts.Services;
-using _Project.NetworkManagement.Scripts.Signals;
-	
-using _Project.SettingsManager.Scripts.Controllers;
-using _Project.SettingsManager.Scripts.Models;
-using _Project.SettingsManager.Scripts.Signals;
-using _Project.SettingsManager.Scripts.Views;
-
-using _Project.SceneManagementUtilities.Scripts;
+using _Project.NetworkManagement.DenariaServer.Scripts.Commands;
+using _Project.NetworkManagement.DenariaServer.Scripts.Services;
+using _Project.NetworkManagement.DenariaServer.Scripts.Signals;
 
 using _Project.ShowLoading.Scripts.Signals;
-using _Project.ShowLoading.Scripts.Views;
 using _Project.StrangeIOCUtility.Scripts.Utilities;
-
-using _Project.WaitingCanvas.Scripts.Commands;
 using _Project.WaitingCanvas.Scripts.Signals;
 using _Project.WaitingCanvas.Scripts.Views;
-
-using _Project.StrangeIOCUtility.Scripts;
-
-using _Project.GameSceneManager.Scripts.Signals;
 using _Project.Shooting.Scripts.Commands;
 using _Project.Shooting.Scripts.Services;
 using _Project.Shooting.Scripts.Signals;
+using _Project.PlayerSessionInfo.Scripts.Models;
+using _Project.InputManager.Scripts.Views;
+using _Project.InputManager.Scripts.Signals;
+using _Project.NetworkManagement.TPSServer.Scripts.Signals;
+using _Project.NetworkManagement.TPSServer.Scripts.Services;
+using _Project.NetworkManagement.TPSServer.Scripts.Commands;
+using _Project.Matchmaking.Scripts.Commands;
 using UnityEngine;
-	
+using _Project.WaitingCanvas.Scripts.Commands;
+using _Project.ShowLoading.Scripts.Views;
+
 /*using _Project.ABTesting.Scripts.Commands;
 using _Project.ABTesting.Scripts.Models;
 using _Project.ABTesting.Scripts.Signals;
@@ -180,9 +175,12 @@ namespace _Project.StrangeIOCUtility.Scripts.Context
 				BindAnalyticsInjections();
 				BindRoutineRunnerInjections();
 				BindWaitingCanvasInjections();
-				BindShootingMechanicInjections(); //TODO: Move it into TPS Context
 				//BindLoginInjections(); //TODO: Uncomment 21 August
-				NetworkManagementBindings();
+				TPSServerBindings();
+				BindPlayerSessionInfoInjections();
+				InputManagerBindings();
+				BindShootingMechanicInjections(); //TODO: Move it into TPS Context
+				DenariaServerBindings();
 			}
 		}
 
@@ -231,7 +229,7 @@ namespace _Project.StrangeIOCUtility.Scripts.Context
 			injectionBinder.Bind<IAnalyticsService>().To<UnityAnalyticsService>().ToSingleton().CrossContext();
 			injectionBinder.Bind<SendAnalyticsEventSignal>().ToSingleton().CrossContext();
 			commandBinder.Bind<SendAnalyticsEventSignal>().To<SendAnalyticsEventCommand>();
-			
+
 			injectionBinder.Bind<SendCachedAnalyticEventsSignal>().ToSingleton().CrossContext();
 			commandBinder.Bind<SendCachedAnalyticEventsSignal>()
 				.To<SendCachedScreenTrackingEventCommand>()
@@ -240,8 +238,8 @@ namespace _Project.StrangeIOCUtility.Scripts.Context
 				.To<SendCachedAnalyticEventsCompletedCommand>()
 				.To<SendCachedForceUpdatePopupEventCommand>()
 				.InSequence();
-			
-			mediationBinder.Bind<AnalyticsTesterView>().To<AnalyticsTesterMediator> ();
+
+			mediationBinder.Bind<AnalyticsTesterView>().To<AnalyticsTesterMediator>();
 		}
 
 		/*
@@ -439,38 +437,92 @@ namespace _Project.StrangeIOCUtility.Scripts.Context
 			injectionBinder.Bind<ILogRecordService>().To<LogRecordService>().ToSingleton().CrossContext();
 		}
 
-		private void NetworkManagementBindings()
+		private void BindPlayerSessionInfoInjections()
+		{
+			injectionBinder.Bind<IPlayerSessionInfoModel>().To<PlayerSessionInfoModel>().ToSingleton().CrossContext();
+		}
+
+		private void InputManagerBindings()
+		{
+			injectionBinder.Bind<PlayerMoveInputSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<PlayerLookInputSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<PlayerJumpInputSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<PlayerFireInputSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<PlayerSprintInputSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<PlayerEscMenuInputSignal>().ToSingleton().CrossContext();
+
+			injectionBinder.Bind<EnablePlayerInputSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<DisablePlayerInputSignal>().ToSingleton().CrossContext();
+
+			mediationBinder.Bind<InputHandlerView>().To<InputHandlerMediator>();
+		}
+
+		private void DenariaServerBindings()
 		{
 			injectionBinder.Bind<IDenariaServerService>().To<DenariaServerService>().ToSingleton().CrossContext();
 
-			injectionBinder.Bind<ConnectDenariaServerSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<DenariaServerConnectSignal>().ToSingleton().CrossContext();
 
-			commandBinder.Bind<ConnectDenariaServerSignal>().To<ConnectDenariaServerCommand>();
+			commandBinder.Bind<DenariaServerConnectSignal>().To<DenariaServerConnectCommand>();
 
 			injectionBinder.Bind<TownSquareLoadedSignal>().ToSingleton().CrossContext();
-			commandBinder.Bind<TownSquareLoadedSignal>().To<SendConnectCommand>();
+			commandBinder.Bind<TownSquareLoadedSignal>().To<DenariaServerSendConnectCommand>();
 
-			injectionBinder.Bind<OwnPlayerSpawnedSignal>().ToSingleton().CrossContext();
-			commandBinder.Bind<OwnPlayerSpawnedSignal>().To<OwnPlayerSpawnedCommand>();
+			injectionBinder.Bind<DenariaServerOwnPlayerSpawnedSignal>().ToSingleton().CrossContext();
+			commandBinder.Bind<DenariaServerOwnPlayerSpawnedSignal>().To<DenariaServerOwnPlayerSpawnedCommand>();
 
-			injectionBinder.Bind<ReceiveSpawnSignal>().ToSingleton().CrossContext();
-			injectionBinder.Bind<ReceivePositionUpdateSignal>().ToSingleton().CrossContext();
-			injectionBinder.Bind<ReceiveRotationUpdateSignal>().ToSingleton().CrossContext();
-			injectionBinder.Bind<ReceiveHealthUpdateSignal>().ToSingleton().CrossContext();
-			injectionBinder.Bind<ReceiveFireSignal>().ToSingleton().CrossContext();
-			injectionBinder.Bind<ReceiveHitSignal>().ToSingleton().CrossContext();
-			injectionBinder.Bind<ReceiveDisconnectSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<DenariaServerReceiveSpawnSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<DenariaServerReceivePositionUpdateSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<DenariaServerReceiveRotationUpdateSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<DenariaServerReceiveDisconnectSignal>().ToSingleton().CrossContext();
 
-			injectionBinder.Bind<SendMoveSignal>().ToSingleton().CrossContext();
-			injectionBinder.Bind<SendLookSignal>().ToSingleton().CrossContext();
-			injectionBinder.Bind<SendFireSignal>().ToSingleton().CrossContext();
-			injectionBinder.Bind<SendJumpSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<DenariaServerSendMoveSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<DenariaServerSendLookSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<DenariaServerSendJumpSignal>().ToSingleton().CrossContext();
 
 			// Will be dispatched from GameSceneManager
-			commandBinder.Bind<SendMoveSignal>().To<SendMoveCommand>();
-			commandBinder.Bind<SendLookSignal>().To<SendLookCommand>();
-			commandBinder.Bind<SendFireSignal>().To<SendFireCommand>();
-			commandBinder.Bind<SendJumpSignal>().To<SendJumpCommand>();
+			commandBinder.Bind<DenariaServerSendMoveSignal>().To<DenariaServerSendMoveCommand>();
+			commandBinder.Bind<DenariaServerSendLookSignal>().To<DenariaServerSendLookCommand>();
+			commandBinder.Bind<DenariaServerSendJumpSignal>().To<DenariaServerSendJumpCommand>();
+
+		}
+
+		private void TPSServerBindings()
+		{
+			injectionBinder.Bind<ITPSServerService>().To<TPSServerService>().ToSingleton().CrossContext();
+
+			injectionBinder.Bind<TPSServerConnectSignal>().ToSingleton().CrossContext();
+
+			commandBinder.Bind<TPSServerConnectSignal>().To<TPSServerConnectCommand>();
+
+			injectionBinder.Bind<TPSServerConnectSuccessSignal>().ToSingleton();
+
+			commandBinder.Bind<TPSServerConnectSuccessSignal>().To<MatchmakingDisconnectCommand>().To<DenariaServerDisonnectCommand>().To<LoadTPSGameSceneCommand>().InSequence();
+
+			injectionBinder.Bind<TPSLoadedSignal>().ToSingleton().CrossContext();
+			commandBinder.Bind<TPSLoadedSignal>().To<TPSServerSendConnectCommand>();
+
+			injectionBinder.Bind<TPSServerOwnPlayerSpawnedSignal>().ToSingleton().CrossContext();
+			commandBinder.Bind<TPSServerOwnPlayerSpawnedSignal>().To<TPSServerOwnPlayerSpawnedCommand>();
+
+
+			injectionBinder.Bind<TPSServerReceiveSpawnSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<TPSServerReceivePositionUpdateSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<TPSServerReceiveRotationUpdateSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<TPSServerReceiveFireSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<TPSServerReceiveHitSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<TPSServerReceiveHealthUpdateSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<TPSServerReceiveDisconnectSignal>().ToSingleton().CrossContext();
+
+			injectionBinder.Bind<TPSServerSendMoveSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<TPSServerSendLookSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<TPSServerSendFireSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<TPSServerSendJumpSignal>().ToSingleton().CrossContext();
+
+			commandBinder.Bind<TPSServerSendMoveSignal>().To<TPSServerSendMoveCommand>();
+			commandBinder.Bind<TPSServerSendLookSignal>().To<TPSServerSendLookCommand>();
+			commandBinder.Bind<TPSServerSendFireSignal>().To<TPSServerSendFireCommand>();
+			commandBinder.Bind<TPSServerSendJumpSignal>().To<TPSServerSendJumpCommand>();
 		}
 		
 		private void BindShootingMechanicInjections()

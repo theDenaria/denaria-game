@@ -1,4 +1,4 @@
-using _Project.GameSceneManager.Scripts.Signals;
+using _Project.InputManager.Scripts.Signals;
 using _Project.MainMenu.Scripts.Signals;
 using _Project.MainMenu.Scripts.Views;
 using strange.extensions.mediation.impl;
@@ -9,8 +9,9 @@ namespace _Project.MainMenu.Scripts.Views
     public class MainMenuMediator : Mediator
     {
         [Inject] public MainMenuView View { get; set; }
-        [Inject] public MainMenuOpenedSignal MainMenuOpenedSignal { get; set; }
-        [Inject] public MainMenuClosedSignal MainMenuClosedSignal { get; set; }
+
+        [Inject] public DisablePlayerInputSignal DisablePlayerInputSignal { get; set; }
+        [Inject] public EnablePlayerInputSignal EnablePlayerInputSignal { get; set; }
         //[Inject] public PlayerEscMenuInputSignal PlayerEscMenuInputSignal { get; set; }
 
         public override void OnRegister()
@@ -35,12 +36,12 @@ namespace _Project.MainMenu.Scripts.Views
             if (View.MainMenuPanel.gameObject.activeSelf)
             {
                 View.MainMenuPanel.gameObject.SetActive(false);
-                MainMenuClosedSignal.Dispatch();
+                EnablePlayerInputSignal.Dispatch();
             }
             else
             {
                 View.MainMenuPanel.gameObject.SetActive(true);
-                MainMenuOpenedSignal.Dispatch();
+                DisablePlayerInputSignal.Dispatch();
             }
             Debug.Log("MainMenuMediator: HandlePlayerEscMenuInput");
         }
@@ -49,7 +50,7 @@ namespace _Project.MainMenu.Scripts.Views
         {
             Debug.Log("MainMenuMediator: HandleResumeButton");
             View.MainMenuPanel.SetActive(false);
-            MainMenuClosedSignal.Dispatch();
+            EnablePlayerInputSignal.Dispatch();
         }
 
         public void HandleSettingsButton()

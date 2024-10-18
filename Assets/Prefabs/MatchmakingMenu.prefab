@@ -925,7 +925,7 @@ GameObject:
   - component: {fileID: 7847020856316556504}
   - component: {fileID: 2900730453519529744}
   - component: {fileID: 5959432210147238975}
-  - component: {fileID: 8038289786584817646}
+  - component: {fileID: 8914072881180846880}
   m_Layer: 5
   m_Name: MatchmakingMenu
   m_TagString: Untagged
@@ -942,7 +942,7 @@ RectTransform:
   m_GameObject: {fileID: 5459302737127658909}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1845592126373987888}
@@ -952,7 +952,7 @@ RectTransform:
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &7847020856316556504
 Canvas:
   m_ObjectHideFlags: 0
@@ -1015,8 +1015,8 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
---- !u!114 &8038289786584817646
+    m_Bits: 63
+--- !u!114 &8914072881180846880
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1025,12 +1025,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 5459302737127658909}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f585b78eacb744fa5bb17fcf8d508e19, type: 3}
+  m_Script: {fileID: 11500000, guid: e258357b461fe4238944a2e6973a2139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  canvas: {fileID: 7847020856316556504}
   normalGameToggle: {fileID: 7933241266604059490}
   rankedGameToggle: {fileID: 6711366245307076570}
-  playButton: {fileID: 5673501434758815925}
+  playButton: {fileID: 0}
   playButtonText: {fileID: 1467357014834668016}
   queueTimerText: {fileID: 7586832272876775404}
 --- !u!1 &5968465048761954594
