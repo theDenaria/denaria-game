@@ -285,6 +285,8 @@ GameObject:
   - component: {fileID: 2593075003599395593}
   - component: {fileID: -1978569038055273337}
   - component: {fileID: 7334542393475241559}
+  - component: {fileID: 1513484142988634052}
+  - component: {fileID: 4089272669139358910}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -375,6 +377,149 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   playerAnimator: {fileID: -1978569038055273337}
+--- !u!114 &1513484142988634052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7639841990387085010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5037e039557b404c95a9604594c87250, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 5927143799183506602}
+    - {fileID: 11400000, guid: e61328d56837048b494d3ad8be22013e, type: 2}
+    - {fileID: 11400000, guid: cf492713c8dc943babcd72cfd5a4b180, type: 2}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: Gun
+      Entry: 3
+      Data: 0
+    - Name: GunParent
+      Entry: 10
+      Data: 0
+    - Name: Guns
+      Entry: 7
+      Data: 0|Unity.Plastic.Antlr3.Runtime.Misc.ListStack`1[[_Project.Shooting.Scripts.ScriptableObjects.GunScriptableObject,
+        Assembly-CSharp]], Unity.Plastic.Antlr3.Runtime
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ActiveGun
+      Entry: 6
+      Data: 
+--- !u!114 &4089272669139358910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7639841990387085010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 532e18d873a54ad6a84a4d47ecb1e7fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  GunSelector: {fileID: 1513484142988634052}
+  playerControls: {fileID: -944628639613478452, guid: 7f67c8e2d88a84074afbf19023b630ad, type: 3}
+  playerActionMapName: Player
+  fire: Fire
+--- !u!1001 &2914891173149348062
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5927143799183506602}
+    m_Modifications:
+    - target: {fileID: 3825128213177765226, guid: 86da3c8763b994d248838f89ae42e83f, type: 3}
+      propertyPath: m_Name
+      value: Weapon_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 3825128213177765226, guid: 86da3c8763b994d248838f89ae42e83f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4494105874699737040, guid: 86da3c8763b994d248838f89ae42e83f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 4494105874699737040, guid: 86da3c8763b994d248838f89ae42e83f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.018
+      objectReference: {fileID: 0}
+    - target: {fileID: 4494105874699737040, guid: 86da3c8763b994d248838f89ae42e83f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.003
+      objectReference: {fileID: 0}
+    - target: {fileID: 4494105874699737040, guid: 86da3c8763b994d248838f89ae42e83f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4494105874699737040, guid: 86da3c8763b994d248838f89ae42e83f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4494105874699737040, guid: 86da3c8763b994d248838f89ae42e83f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7144727
+      objectReference: {fileID: 0}
+    - target: {fileID: 4494105874699737040, guid: 86da3c8763b994d248838f89ae42e83f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.6996633
+      objectReference: {fileID: 0}
+    - target: {fileID: 4494105874699737040, guid: 86da3c8763b994d248838f89ae42e83f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -88.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4494105874699737040, guid: 86da3c8763b994d248838f89ae42e83f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 4494105874699737040, guid: 86da3c8763b994d248838f89ae42e83f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 86da3c8763b994d248838f89ae42e83f, type: 3}
+--- !u!4 &1598077957463885582 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4494105874699737040, guid: 86da3c8763b994d248838f89ae42e83f, type: 3}
+  m_PrefabInstance: {fileID: 2914891173149348062}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8553965774469867857
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -436,6 +581,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2662959355885639163, guid: 5a989a7cc4395b7478be8a4e1a90d9f3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3004101985341284584}
+    - targetCorrespondingSourceObject: {fileID: 2662959355885639163, guid: 5a989a7cc4395b7478be8a4e1a90d9f3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1598077957463885582}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a989a7cc4395b7478be8a4e1a90d9f3, type: 3}
 --- !u!4 &769890395515145077 stripped

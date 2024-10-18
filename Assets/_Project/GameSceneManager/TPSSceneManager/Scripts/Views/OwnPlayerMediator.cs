@@ -1,8 +1,9 @@
 using strange.extensions.mediation.impl;
 using UnityEngine;
+using System.Collections;
+using _Project.Shooting.Scripts.Signals;
 using _Project.NetworkManagement.TPSServer.Scripts.Signals;
 using _Project.StrangeIOCUtility.Scripts.Utilities;
-using System.Collections;
 using _Project.NetworkManagement.TPSServer.Scripts.Commands;
 using _Project.InputManager.Scripts.Signals;
 

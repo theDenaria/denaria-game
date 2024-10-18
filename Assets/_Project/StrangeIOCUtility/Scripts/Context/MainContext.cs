@@ -14,6 +14,9 @@ using _Project.ShowLoading.Scripts.Signals;
 using _Project.StrangeIOCUtility.Scripts.Utilities;
 using _Project.WaitingCanvas.Scripts.Signals;
 using _Project.WaitingCanvas.Scripts.Views;
+using _Project.Shooting.Scripts.Commands;
+using _Project.Shooting.Scripts.Services;
+using _Project.Shooting.Scripts.Signals;
 using _Project.PlayerSessionInfo.Scripts.Models;
 using _Project.InputManager.Scripts.Views;
 using _Project.InputManager.Scripts.Signals;
@@ -21,7 +24,6 @@ using _Project.NetworkManagement.TPSServer.Scripts.Signals;
 using _Project.NetworkManagement.TPSServer.Scripts.Services;
 using _Project.NetworkManagement.TPSServer.Scripts.Commands;
 using _Project.Matchmaking.Scripts.Commands;
-
 using UnityEngine;
 using _Project.WaitingCanvas.Scripts.Commands;
 using _Project.ShowLoading.Scripts.Views;
@@ -177,6 +179,7 @@ namespace _Project.StrangeIOCUtility.Scripts.Context
 				TPSServerBindings();
 				BindPlayerSessionInfoInjections();
 				InputManagerBindings();
+				BindShootingMechanicInjections(); //TODO: Move it into TPS Context
 				DenariaServerBindings();
 			}
 		}
@@ -441,7 +444,6 @@ namespace _Project.StrangeIOCUtility.Scripts.Context
 
 		private void InputManagerBindings()
 		{
-
 			injectionBinder.Bind<PlayerMoveInputSignal>().ToSingleton().CrossContext();
 			injectionBinder.Bind<PlayerLookInputSignal>().ToSingleton().CrossContext();
 			injectionBinder.Bind<PlayerJumpInputSignal>().ToSingleton().CrossContext();
@@ -451,7 +453,6 @@ namespace _Project.StrangeIOCUtility.Scripts.Context
 
 			injectionBinder.Bind<EnablePlayerInputSignal>().ToSingleton().CrossContext();
 			injectionBinder.Bind<DisablePlayerInputSignal>().ToSingleton().CrossContext();
-
 
 			mediationBinder.Bind<InputHandlerView>().To<InputHandlerMediator>();
 		}
@@ -522,6 +523,13 @@ namespace _Project.StrangeIOCUtility.Scripts.Context
 			commandBinder.Bind<TPSServerSendLookSignal>().To<TPSServerSendLookCommand>();
 			commandBinder.Bind<TPSServerSendFireSignal>().To<TPSServerSendFireCommand>();
 			commandBinder.Bind<TPSServerSendJumpSignal>().To<TPSServerSendJumpCommand>();
+		}
+		
+		private void BindShootingMechanicInjections()
+		{
+			injectionBinder.Bind<IShootingMechanicService>().To<ShootingMechanicService>().ToSingleton().CrossContext();
+
+			commandBinder.Bind<PlayerFireInputSignal>().To<FireWithRaycastCommand>();
 		}
 
 

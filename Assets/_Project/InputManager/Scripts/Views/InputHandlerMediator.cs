@@ -2,6 +2,7 @@ using strange.extensions.mediation.impl;
 using _Project.InputManager.Scripts.Signals;
 using UnityEngine;
 using _Project.MainMenu.Scripts.Signals;
+using _Project.Shooting.Scripts.Signals;
 
 namespace _Project.InputManager.Scripts.Views
 {

@@ -21,7 +21,7 @@ namespace _Project.Analytics.Core.Scripts.Views
         
         public void HandleButtonPressed()
         {
-            buttonPressedSignal.Dispatch();
+            //buttonPressedSignal.Dispatch();
         }
         
     }
