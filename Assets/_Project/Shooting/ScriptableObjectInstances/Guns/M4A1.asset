@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 1
   Name: AssaultRifle
-  ModelPrefab: {fileID: 5786097810451525583, guid: 260ff1508afea5241b6511d8fbe92201, type: 3}
+  ModelPrefab: {fileID: 5786097810451525583, guid: c4d5c071b2e0847cc8d461640e00e4c7, type: 3}
   SpawnPoint: {x: 0.14, y: -0.018, z: -0.003}
   SpawnRotation: {x: -88.8, y: 180, z: 0}
   SpawnScale: {x: 5, y: 5, z: 5}

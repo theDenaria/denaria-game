@@ -9,7 +9,7 @@ namespace _Project.Shooting.Scripts.Views
     [DisallowMultipleComponent]
     public class PlayerAction : ViewZeitnot
     {
-        [SerializeField] private PlayerGunSelectorView GunSelector;
+        [SerializeField] private PlayerGunSelectorView GunSelector { get; set; }
 
         [SerializeField] private InputActionAsset playerControls;
         [SerializeField] private string playerActionMapName = "Player";
@@ -40,9 +40,16 @@ namespace _Project.Shooting.Scripts.Views
         private void Update()
         {
             //if (Mouse.current.leftButton.isPressed && GunSelector.ActiveGun!= null)
-            if (fireAction.WasPressedThisFrame() && GunSelector.ActiveGun!= null)
+            if (fireAction.IsPressed() && GunSelector.ActiveGun!= null)
             {
+                UnityEngine.Debug.Log("xxx fireAction.WasPressedThisFrame()");
                 GunSelector.ActiveGun.Shoot();
+            }
+       
+            if (fireAction.WasReleasedThisFrame() && GunSelector.ActiveGun!= null)
+            {
+                UnityEngine.Debug.Log("xxx fireAction.WasReleasedThisFrame()");
+                GunSelector.ActiveGun.StopShooting();
             }
         }
     }

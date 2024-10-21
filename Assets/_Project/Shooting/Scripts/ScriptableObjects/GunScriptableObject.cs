@@ -27,12 +27,30 @@ namespace _Project.Shooting.Scripts.ScriptableObjects
         private ParticleSystem ShootSystem;
         private UnityEngine.Pool.ObjectPool<TrailRenderer> TrailPool;
 
+        public void Spawn(Transform Parent, MonoBehaviour ActiveMonoBehaviour)
+        {
+            Debug.Log("uuu entered spawn");
+
+            this.ActiveMonoBehaviour = ActiveMonoBehaviour;
+            LastShootTime = 0; //In Editor, this will not be properly reset, in build it is fine.
+            TrailPool = new UnityEngine.Pool.ObjectPool<TrailRenderer>(CreateTrail); //Or use UnityEngine.Pool.Rendering.ObjectPool?
+            Model = Instantiate(ModelPrefab, Parent, false);
+            //Model.transform.SetParent(Parent, false);
+            Model.transform.localPosition = SpawnPoint;
+            Model.transform.localRotation = Quaternion.Euler(SpawnRotation);
+
+            ShootSystem = Model.GetComponentInChildren<ParticleSystem>();
+            Debug.Log("uuu exiting spawn");
+        }
+        
         public void Shoot()
         {
             if (Time.time > ShootConfiguration.FireRate + LastShootTime)
             {
                 LastShootTime = Time.time;
                 ShootSystem.Play();
+                
+                //TODO: Calculate the needed rotation and apply to the gun. Needs further animating work for arm.
                 Vector3 shootDirection = ShootSystem.transform.forward +
                                          new Vector3(
                                              Random.Range(-ShootConfiguration.Spread.x, ShootConfiguration.Spread.x), 
@@ -61,6 +79,15 @@ namespace _Project.Shooting.Scripts.ScriptableObjects
                             ShootSystem.transform.position + (shootDirection * TrailConfiguration.MissDistance), 
                             new RaycastHit()));
                 }
+            }
+        }
+
+
+        public void StopShooting()
+        {
+            if (ShootSystem != null)
+            {
+                ShootSystem.Stop();
             }
         }
 
@@ -107,27 +134,12 @@ namespace _Project.Shooting.Scripts.ScriptableObjects
             TrailPool.Release(instance);
         }
 
-        public void Spawn(Transform Parent, MonoBehaviour ActiveMonoBehaviour)
-        {
-            Debug.Log("uuu entered spawn");
-
-            this.ActiveMonoBehaviour = ActiveMonoBehaviour;
-            LastShootTime = 0; //In Editor, this will not be properly reset, in build it is fine.
-            TrailPool = new UnityEngine.Pool.ObjectPool<TrailRenderer>(CreateTrail); //Or use UnityEngine.Pool.Rendering.ObjectPool?
-            Model = Instantiate(ModelPrefab, Parent, false);
-            //Model.transform.SetParent(Parent, false);
-            Model.transform.localPosition = SpawnPoint;
-            Model.transform.localRotation = Quaternion.Euler(SpawnRotation);
-
-            ShootSystem = Model.GetComponentInChildren<ParticleSystem>();
-            Debug.Log("uuu exiting spawn");
-        }
-
         private TrailRenderer CreateTrail()
         {
             GameObject instance = new GameObject("BulletTrail");
             TrailRenderer trail = instance.AddComponent<TrailRenderer>();
             trail.colorGradient = TrailConfiguration.Color;
+            UnityEngine.Debug.Log("xxx TrailConfiguration.Material: " + TrailConfiguration.Material.name);
             trail.material = TrailConfiguration.Material;
             trail.widthCurve = TrailConfiguration.WidthCurve;
             trail.time = TrailConfiguration.Duration;
@@ -138,5 +150,6 @@ namespace _Project.Shooting.Scripts.ScriptableObjects
 
             return trail;
         }
+
     }
 }
