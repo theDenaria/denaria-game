@@ -145,8 +145,9 @@ namespace _Project.GameSceneManager.TownSquareSceneManager.Scripts.Views
 
         public void OnServerStateUpdate(Vector3 position)
         {
-            State newState = new() { position = position, timestamp = Time.time };
-            stateBuffer.Add(newState);
+            // State newState = new() { position = position, timestamp = Time.time };
+            //stateBuffer.Add(newState);
+            transform.position = position;
         }
 
 

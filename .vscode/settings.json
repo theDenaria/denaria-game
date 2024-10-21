@@ -1,4 +1,8 @@
 {
+  "workbench.colorCustomizations": {
+    "titleBar.activeBackground": "#dd9b4a",
+    "titleBar.activeForeground": "#fcfcfc"
+  },
   "files.exclude": {
     "**/.DS_Store": true,
     "**/.git": true,
@@ -34,7 +38,7 @@
     "**/*.MA": true,
     "**/*.obj": true,
     "**/*.OBJ": true,
-    "**/*.asset": true,
+    "**/*.asset": false,
     "**/*.cubemap": true,
     "**/*.flare": true,
     "**/*.mat": true,
@@ -51,5 +55,6 @@
     "temp/": true,
     "Temp/": true
   },
-  "dotnet.defaultSolution": "denaria-game.sln"
+  "dotnet.defaultSolution": "denaria-game.sln",
+  "editor.formatOnSave": true
 }
