@@ -25,7 +25,7 @@ namespace _Project.Shooting.Scripts.ScriptableObjects
         private GameObject Model;
         private float LastShootTime;
         private ParticleSystem ShootSystem;
-        private ObjectPool<TrailRenderer> TrailPool;
+        private UnityEngine.Pool.ObjectPool<TrailRenderer> TrailPool;
 
         public void Shoot()
         {
@@ -113,7 +113,7 @@ namespace _Project.Shooting.Scripts.ScriptableObjects
 
             this.ActiveMonoBehaviour = ActiveMonoBehaviour;
             LastShootTime = 0; //In Editor, this will not be properly reset, in build it is fine.
-            TrailPool = new ObjectPool<TrailRenderer>(CreateTrail);
+            TrailPool = new UnityEngine.Pool.ObjectPool<TrailRenderer>(CreateTrail); //Or use UnityEngine.Pool.Rendering.ObjectPool?
             Model = Instantiate(ModelPrefab, Parent, false);
             //Model.transform.SetParent(Parent, false);
             Model.transform.localPosition = SpawnPoint;
