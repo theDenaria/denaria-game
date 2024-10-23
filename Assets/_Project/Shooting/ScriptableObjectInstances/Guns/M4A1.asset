@@ -20,3 +20,4 @@ MonoBehaviour:
   SpawnScale: {x: 5, y: 5, z: 5}
   ShootConfiguration: {fileID: 11400000, guid: a9ba72d36d2154144883947aec87c235, type: 2}
   TrailConfiguration: {fileID: 11400000, guid: 233003b99e1e54b2baaa89d2d1392827, type: 2}
+  DamageConfiguration: {fileID: 11400000, guid: 6a6a17c38a78f4bd0885e5fd7e411e88, type: 2}

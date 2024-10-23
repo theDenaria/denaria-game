@@ -1,5 +1,6 @@
 using System.Collections;
 using DefaultNamespace;
+using LlamAcademy.Guns;
 using UnityEngine;
 using UnityEngine.Pool;
 using UnityEngine.Rendering;
@@ -21,6 +22,8 @@ namespace _Project.Shooting.Scripts.ScriptableObjects
         public ShootConfigurationScriptableObject ShootConfiguration;
         public TrailConfigurationScriptableObject TrailConfiguration;
 
+        public DamageConfigurationScriptableObject DamageConfiguration;
+        
         private MonoBehaviour ActiveMonoBehaviour;
         private GameObject Model;
         private float LastShootTime;
@@ -115,6 +118,18 @@ namespace _Project.Shooting.Scripts.ScriptableObjects
             }
 
             instance.transform.position = EndPoint;
+
+            if (Hit.collider != null)
+            {
+                UnityEngine.Debug.Log("COLLIDER!!!");
+
+                if (Hit.collider.TryGetComponent(out IDamageable damageable))
+                {
+                    UnityEngine.Debug.Log("HIT!!!");
+                    damageable.TakeDamage(DamageConfiguration.GetDamage(distance));
+                }
+            }
+            
 
             //TODO: Use after you add SurfaceManager
             /*if (Hit.collider != null)
