@@ -24,6 +24,7 @@ using _Project.NetworkManagement.TPSServer.Scripts.Signals;
 using _Project.NetworkManagement.TPSServer.Scripts.Services;
 using _Project.NetworkManagement.TPSServer.Scripts.Commands;
 using _Project.Matchmaking.Scripts.Commands;
+using _Project.Shooting.Scripts.Views;
 using UnityEngine;
 using _Project.WaitingCanvas.Scripts.Commands;
 using _Project.ShowLoading.Scripts.Views;
@@ -528,7 +529,11 @@ namespace _Project.StrangeIOCUtility.Scripts.Context
 		private void BindShootingMechanicInjections()
 		{
 			injectionBinder.Bind<IShootingMechanicService>().To<ShootingMechanicService>().ToSingleton().CrossContext();
+			
+			injectionBinder.Bind<OnTargetHitSignal>().ToSingleton().CrossContext();
 
+			mediationBinder.Bind<CrosshairView>().To<CrosshairMediator>();
+			
 			commandBinder.Bind<PlayerFireInputSignal>().To<FireWithRaycastCommand>();
 		}
 

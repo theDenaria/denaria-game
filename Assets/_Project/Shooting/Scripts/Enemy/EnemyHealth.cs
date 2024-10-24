@@ -27,6 +27,7 @@ namespace _Project.Shooting.Scripts.Enemy
 
             CurrentHealth -= damageTaken;
 
+            //TODO: Aytaç buradan HUD'u güncelleyecek sinyali atabilir.
             if (damageTaken != 0)
             {
                 OnTakeDamage?.Invoke(damageTaken);

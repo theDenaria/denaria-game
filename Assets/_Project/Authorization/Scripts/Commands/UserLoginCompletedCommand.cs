@@ -36,6 +36,10 @@ namespace _Project.Authorization.Scripts.Commands
             }
             else
             {
+                var playfabIdShort = "siyahbeyaz";
+                var sessionTicket = "sessionTicketOnat";
+                PlayerSessionInfoModel.Init(playfabIdShort, sessionTicket);
+                DenariaServerConnectSignal.Dispatch();
                 Debug.Log(Result.Error.Message);
             }
 
