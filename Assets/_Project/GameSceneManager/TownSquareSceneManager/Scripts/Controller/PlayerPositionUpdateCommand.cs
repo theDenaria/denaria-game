@@ -19,7 +19,7 @@ namespace _Project.GameSceneManager.TownSquareSceneManager.Scripts.Controller
                 if (ownPlayerView != null)
                 {
 
-                    ownPlayerView.OnServerStateUpdate(PlayerPositionUpdateCommandData.Position);
+                    ownPlayerView.NewUpdate(PlayerPositionUpdateCommandData.Tick, PlayerPositionUpdateCommandData.IsTeleport, PlayerPositionUpdateCommandData.Position);
                 }
             }
             else

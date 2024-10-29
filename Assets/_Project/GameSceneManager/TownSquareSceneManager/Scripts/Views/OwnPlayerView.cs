@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using _Project.NetworkManagement.DenariaServer.Scripts.Services;
 using _Project.StrangeIOCUtility.Scripts.Views;
 using Cinemachine;
 using strange.extensions.signal.impl;
@@ -27,6 +28,21 @@ namespace _Project.GameSceneManager.TownSquareSceneManager.Scripts.Views
 
         private Vector2 _moveInput;
 
+        [SerializeField] private float timeElapsed = 0f;
+        [SerializeField] private float timeToReachTarget = 0.05f;
+        [SerializeField] private float movementThreshold = 0.1f;
+
+        private readonly List<TransformUpdate> futureTransformUpdates = new List<TransformUpdate>();
+
+        private float squareMovementThreshold;
+        private TransformUpdate to;
+        private TransformUpdate from;
+        private TransformUpdate previous;
+
+        // internal float tickRate = 0.03f;
+
+        [Inject] public IDenariaServerService DenariaServerService { get; set; }
+
         private void OnEnable()
         {
             mainCamera = Camera.main;
@@ -35,11 +51,16 @@ namespace _Project.GameSceneManager.TownSquareSceneManager.Scripts.Views
             var cinemachineVirtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
             // Set the Cinemachine camera's follow and look at targets
 
-            // Transform childTransform = transform.Find("PlayerLookAt");
+            //Transform childTransform = transform.Find("PlayerLookAt");
             cinemachineVirtualCamera.Follow = camFollowPos;
 
             // Optionally, enable the Cinemachine Brain if it was disabled
             Camera.main.GetComponent<CinemachineBrain>().enabled = true;
+
+            squareMovementThreshold = movementThreshold * movementThreshold;
+            to = new TransformUpdate(DenariaServerService.ServerTick, false, transform.position);
+            from = new TransformUpdate(DenariaServerService.InterpolationTick, false, transform.position);
+            previous = new TransformUpdate(DenariaServerService.InterpolationTick, false, transform.position);
         }
 
         public void SetPlayerId(string playerId)
@@ -110,46 +131,111 @@ namespace _Project.GameSceneManager.TownSquareSceneManager.Scripts.Views
         }
 
 
-        // Position update interpolation
-
-
-        private struct State
-        {
-            public Vector3 position;
-            public float timestamp;
-        }
-
-        private List<State> stateBuffer = new List<State>();
-        public float interpolationBackTime = 0.5f; // Time to interpolate back in seconds
-        public float smoothingFactor = 0.5f; // Smoothing factor for position updates
-
         void Update()
         {
-            float interpolationTime = Time.time - interpolationBackTime;
-            stateBuffer.RemoveAll(state => state.timestamp < interpolationTime);
+            for (int i = 0; i < futureTransformUpdates.Count; i++)
+            {
+                if (DenariaServerService.ServerTick >= futureTransformUpdates[i].Tick)
+                {
+                    if (futureTransformUpdates[i].IsTeleport)
+                    {
+                        to = futureTransformUpdates[i];
+                        from = to;
+                        previous = to;
+                        transform.position = to.Position;
+                    }
+                    else
+                    {
+                        previous = to;
+                        to = futureTransformUpdates[i];
+                        from = new TransformUpdate(DenariaServerService.InterpolationTick, false, transform.position);
+                    }
 
-            if (stateBuffer.Count >= 2)
-            {
-                State latestState = stateBuffer[stateBuffer.Count - 1];
-                State previousState = stateBuffer[stateBuffer.Count - 2];
-                float t = (interpolationTime - previousState.timestamp) / (latestState.timestamp - previousState.timestamp);
-                t = Mathf.Clamp(t, 0f, 1f);
-                Vector3 interpolatedPosition = Vector3.Lerp(previousState.position, latestState.position, t);
-                transform.position = Vector3.Lerp(transform.position, interpolatedPosition, smoothingFactor);
+                    futureTransformUpdates.RemoveAt(i);
+                    i--;
+                    timeElapsed = 0f;
+                    timeToReachTarget = (to.Tick - from.Tick) * DenariaServerService.TickRate;
+
+                    Debug.Log($"TIME TO REACH TARGET: {timeToReachTarget}");
+                    Debug.Log($"TARGET DISTANCE: {(to.Position - from.Position).magnitude}");
+                    Debug.Log($"DISTANCE PER TICK: {(to.Position - from.Position).magnitude / (to.Tick - from.Tick)}");
+                    Debug.Log($"EFFECTIVE SPEED: {(to.Position - from.Position).magnitude / timeToReachTarget}");
+                }
             }
-            else if (stateBuffer.Count == 1)
-            {
-                transform.position = Vector3.Lerp(transform.position, stateBuffer[0].position, smoothingFactor);
-            }
+
+            timeElapsed += Time.deltaTime;
+            InterpolatePosition(timeElapsed / timeToReachTarget);
         }
 
-        public void OnServerStateUpdate(Vector3 position)
+        private void InterpolatePosition(float lerpAmount)
         {
-            // State newState = new() { position = position, timestamp = Time.time };
-            //stateBuffer.Add(newState);
-            transform.position = position;
+            if ((to.Position - previous.Position).sqrMagnitude < squareMovementThreshold)
+            {
+                if (to.Position != from.Position)
+                    transform.position = Vector3.Lerp(from.Position, to.Position, lerpAmount);
+
+                return;
+            }
+            if (lerpAmount <= 1f)
+            {
+                transform.position = Vector3.LerpUnclamped(from.Position, to.Position, lerpAmount);
+            }
+            else
+            {
+                transform.position = Vector3.Lerp(from.Position, to.Position, lerpAmount);
+                Debug.Log("LERP AMOUNT: " + lerpAmount);
+            }
         }
 
+        public void NewUpdate(ushort tick, bool isTeleport, Vector3 position)
+        {
+            if (tick <= DenariaServerService.InterpolationTick && !isTeleport)
+            {
+                Debug.Log("TICK IS LESS THAN INTERPOLATION TICK");
+                return;
+            }
+            for (int i = 0; i < futureTransformUpdates.Count; i++)
+            {
+                if (tick < futureTransformUpdates[i].Tick)
+                {
+                    futureTransformUpdates.Insert(i, new TransformUpdate(tick, isTeleport, position));
+                    return;
+                }
+            }
+            futureTransformUpdates.Add(new TransformUpdate(tick, isTeleport, position));
+        }
 
+        // public void OnServerStateUpdate(Vector3 position)
+        // {
+        //     // bTime = aTime;
+        //     // aTime = Time.time;
+        //     if (t < 1f)
+        //     {
+        //         Debug.Log("t entered " + t);
+        //         State latestState = stateBuffer[stateBuffer.Count - 1];
+        //         State previousState = stateBuffer[stateBuffer.Count - 2];
+
+        //         float newPreviousTime = previousState.timestamp + ((latestState.timestamp - previousState.timestamp) * t);
+        //         State newPreviousState = new() { position = transform.position, timestamp = newPreviousTime };
+        //         stateBuffer.Add(newPreviousState);
+        //     }
+
+        //     State newState = new() { position = position, timestamp = Time.time };
+        //     stateBuffer.Add(newState);
+        // }
+    }
+
+    public class TransformUpdate
+    {
+        public ushort Tick { get; private set; }
+        public bool IsTeleport { get; private set; }
+        public Vector3 Position { get; private set; }
+
+        public TransformUpdate(ushort tick, bool isTeleport, Vector3 position)
+        {
+            Tick = tick;
+            IsTeleport = isTeleport;
+            Position = position;
+        }
     }
 }

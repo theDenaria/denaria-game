@@ -5,10 +5,13 @@ namespace _Project.NetworkManagement.DenariaServer.Scripts.Services
 {
     public interface IDenariaServerService
     {
+        public float TickRate { get; }
         public void Init();
         public void ConnectToDenariaServer();
         public void DisconnectFromDenariaServer();
 
+        public ushort ServerTick { get; }
+        public ushort InterpolationTick { get; }
         // --- SEND
         public void StartSendingConnectMessage();
         public void StopSendingConnectMessage();

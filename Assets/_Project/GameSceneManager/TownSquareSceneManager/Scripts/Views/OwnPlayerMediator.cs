@@ -3,8 +3,8 @@ using UnityEngine;
 using _Project.NetworkManagement.DenariaServer.Scripts.Signals;
 using _Project.StrangeIOCUtility.Scripts.Utilities;
 using System.Collections;
-using _Project.NetworkManagement.DenariaServer.Scripts.Commands;
 using _Project.InputManager.Scripts.Signals;
+using _Project.NetworkManagement.DenariaServer.Scripts.Services;
 
 namespace _Project.GameSceneManager.TownSquareSceneManager.Scripts.Views
 {
@@ -17,9 +17,10 @@ namespace _Project.GameSceneManager.TownSquareSceneManager.Scripts.Views
         [Inject] public DenariaServerSendMoveSignal DenariaServerSendMoveSignal { get; set; }
         [Inject] public DenariaServerSendLookSignal DenariaServerSendLookSignal { get; set; }
         [Inject] public DenariaServerSendJumpSignal DenariaServerSendJumpSignal { get; set; }
+
+        [Inject] public IDenariaServerService DenariaServerService { get; set; }
         [Inject] public IRoutineRunner RoutineRunner { get; set; }
 
-        private float interval = 1.0f / 30.0f; // 30 times per second
         private float nextExecutionTime;
 
         private Coroutine _sendInputsToServerCoroutine;
@@ -47,7 +48,7 @@ namespace _Project.GameSceneManager.TownSquareSceneManager.Scripts.Views
 
             while (true)
             {
-                nextExecutionTime = Time.realtimeSinceStartup + interval;
+                nextExecutionTime = Time.realtimeSinceStartup + DenariaServerService.TickRate;
                 View.SendMoveInputToServer();
                 View.SendRotationToServer();
                 float waitTime = nextExecutionTime - Time.realtimeSinceStartup;

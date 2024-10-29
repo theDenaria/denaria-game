@@ -32,7 +32,7 @@ namespace _Project.NetworkManagement.DenariaServer.Scripts.Services
 
         private bool _isListeningDenariaServer = false;
 
-        private float interval = 1.0f / 30.0f; // 30 times per second
+        public const float TICK_RATE = 1.0f / 30.0f; // 30 times per second
         private float nextExecutionTime;
 
         public NetworkEndpoint _denariaEndpoint = NetworkEndpoint.Parse("127.0.0.1", 5000);
@@ -42,6 +42,32 @@ namespace _Project.NetworkManagement.DenariaServer.Scripts.Services
         private Coroutine _listenCoroutine;
 
         private bool _isSendingConnectMessage = false;
+
+        public float TickRate => TICK_RATE;
+
+        [SerializeField] private ushort _tickDivergenceTolerance = 1;
+
+        private ushort _serverTick = 2;
+        public ushort ServerTick
+        {
+            get => _serverTick;
+            private set
+            {
+                _serverTick = value;
+                InterpolationTick = (ushort)(value - TicksBetweenPositionUpdates);
+            }
+        }
+        public ushort InterpolationTick { get; private set; }
+        private ushort _ticksBetweenPositionUpdates = 2;
+        public ushort TicksBetweenPositionUpdates
+        {
+            get => _ticksBetweenPositionUpdates;
+            private set
+            {
+                _ticksBetweenPositionUpdates = value;
+                InterpolationTick = (ushort)(ServerTick - value);
+            }
+        }
 
         public void Init()
         {
@@ -99,18 +125,33 @@ namespace _Project.NetworkManagement.DenariaServer.Scripts.Services
         private IEnumerator StartListeningDenariaServerCoroutine()
         {
             _isListeningDenariaServer = true;
+            float nextTickTime = Time.realtimeSinceStartup;
+
             while (_isListeningDenariaServer)
             {
-                nextExecutionTime = Time.realtimeSinceStartup + interval;
+                // Calculate next tick before processing
+                nextTickTime += TICK_RATE;
+
                 ReceiveMessages();
 
-                float waitTime = nextExecutionTime - Time.realtimeSinceStartup;
+                // Wait precisely until the next tick
+                float waitTime = nextTickTime - Time.realtimeSinceStartup;
                 if (waitTime > 0)
                 {
                     yield return new WaitForSecondsRealtime(waitTime);
                 }
-
-                // yield return new WaitForSeconds(interval);
+                else
+                {
+                    // If we're behind schedule, log it and reset timing
+                    Debug.LogWarning($"Server tick falling behind by {-waitTime:F4} seconds");
+                    nextTickTime = Time.realtimeSinceStartup + TICK_RATE;
+                }
+                if (ServerTick < ushort.MaxValue)
+                    ServerTick++;
+                else
+                {
+                    ServerTick = 2;
+                }
             }
         }
 
@@ -291,19 +332,34 @@ namespace _Project.NetworkManagement.DenariaServer.Scripts.Services
                         case 2: // Location Update
                             ProcessRotationMessage(ref messageStream);
                             break;
+                        case 11: // TickSync
+                            ProcessTickSyncMessage(ref messageStream);
+                            break;
                         case 0: // Spawn Update
                             Debug.Log("WARNING! Spawn message sent in unreliable channel!");
                             break;
                         case 10: // Disconnect
                             Debug.Log("WARNING! Disconnect message sent in unreliable channel!");
                             break;
+
                     }
                 }
             }
         }
 
+        private void ProcessTickSyncMessage(ref DataStreamReader reader)
+        {
+            var serverTick = reader.ReadUShort();
+            if (Mathf.Abs(ServerTick - serverTick) > _tickDivergenceTolerance)
+            {
+                Debug.Log($"Client tick: {ServerTick} -> {serverTick}");
+                ServerTick = serverTick;
+            }
+        }
+
         private void ProcessPositionMessage(ref DataStreamReader reader)
         {
+            ushort tick = reader.ReadUShort();
             ulong playerNum = reader.ReadULong();
             for (ulong i = 0; i < playerNum; i++)
             {
@@ -318,7 +374,7 @@ namespace _Project.NetworkManagement.DenariaServer.Scripts.Services
                 float z = reader.ReadFloat();
 
                 Vector3 newPosition = new(x, y, z);
-                ReceivePositionUpdateSignal.Dispatch(new PlayerPositionUpdateCommandData(playerId, newPosition));
+                ReceivePositionUpdateSignal.Dispatch(new PlayerPositionUpdateCommandData(playerId, tick, false, newPosition));
 
             }
         }
