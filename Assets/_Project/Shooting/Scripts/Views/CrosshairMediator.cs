@@ -1,38 +1,28 @@
+using _Project.Shooting.Scripts.Models;
 using _Project.Shooting.Scripts.ScriptableObjects;
 using _Project.Shooting.Scripts.Signals;
 using strange.extensions.mediation.impl;
+using UnityEngine;
 
 namespace _Project.Shooting.Scripts.Views
 {
     public class CrosshairMediator : Mediator
     {
         [Inject] public CrosshairView View { get; set; }
-        [Inject] public OnTargetHitSignal OnTargetHitSignal { get; set; }
-
+        private GunScriptableObject gunScriptableObject;
+        
         public override void OnRegister()
         {
             base.OnRegister();
             View.Init();
+
         }
 
-        /*[ListensTo(typeof(OnTargetHitSignal))]
-        public void OpenForceUpdatePopUp()
+        [ListensTo(typeof(OnTargetHitSignal))]
+        public void PaintAndToggleImages()
         {
             UnityEngine.Debug.Log("OnTargetHitSignal");
             View.PaintAndToggleImages();
-        }*/
-        
-        
-        public GunScriptableObject myEventSO;
-
-        private void OnEnable()
-        {
-            myEventSO.OnTargetHitOccurred += RespondToEvent;
-        }
-
-        private void OnDisable()
-        {
-            myEventSO.OnTargetHitOccurred -= RespondToEvent;
         }
 
         private void RespondToEvent()

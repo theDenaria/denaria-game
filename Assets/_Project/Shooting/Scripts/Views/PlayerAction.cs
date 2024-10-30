@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using _Project.StrangeIOCUtility.Scripts.Views;
+using strange.extensions.signal.impl;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,12 +16,19 @@ namespace _Project.Shooting.Scripts.Views
         [SerializeField] private string playerActionMapName = "Player";
         [SerializeField] private string fire = "Fire";
         private InputAction fireAction;
+        
+        internal Signal onFireButtonIsPressedSignal = new Signal();
+        internal Signal onFireButtonReleasedSignal = new Signal();
+        
+        internal void Init()
+        {
+        }
 
         private void OnEnable()
         {
             fireAction.Enable();
-        }
-
+        }        
+        
         private void OnDisable()
         {
             fireAction.Disable();
@@ -40,16 +48,18 @@ namespace _Project.Shooting.Scripts.Views
         private void Update()
         {
             //if (Mouse.current.leftButton.isPressed && GunSelector.ActiveGun!= null)
-            if (fireAction.IsPressed() && GunSelector.ActiveGun!= null)
+            if (fireAction.IsPressed())// && GunSelector.ActiveGun!= null // INCLUDE
             {
                 UnityEngine.Debug.Log("xxx fireAction.WasPressedThisFrame()");
-                GunSelector.ActiveGun.Shoot();
+                onFireButtonIsPressedSignal.Dispatch();
+                //GunSelector.ActiveGun.Shoot();
             }
        
-            if (fireAction.WasReleasedThisFrame() && GunSelector.ActiveGun!= null)
+            if (fireAction.WasReleasedThisFrame())// && GunSelector.ActiveGun!= null // INCLUDE
             {
                 UnityEngine.Debug.Log("xxx fireAction.WasReleasedThisFrame()");
-                GunSelector.ActiveGun.StopShooting();
+                onFireButtonReleasedSignal.Dispatch();
+                //GunSelector.ActiveGun.StopShooting();
             }
         }
     }

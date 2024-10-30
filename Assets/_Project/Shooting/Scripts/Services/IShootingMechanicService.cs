@@ -4,6 +4,6 @@ namespace _Project.Shooting.Scripts.Services
 {
     public interface IShootingMechanicService
     {
-        
+        //public void Shoot();
     }
 }

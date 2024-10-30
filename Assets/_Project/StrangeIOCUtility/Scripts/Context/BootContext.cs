@@ -5,6 +5,8 @@ using _Project.SceneManagementUtilities.Scripts.Commands;
 using _Project.SceneManagementUtilities.Scripts.Models;
 using _Project.SceneManagementUtilities.Scripts.Services;
 using _Project.SceneManagementUtilities.Scripts.Signals;
+using _Project.Shooting.Scripts.Commands;
+using _Project.Shooting.Scripts.Signals;
 using _Project.StrangeIOCUtility.Scripts.Commands;
 using _Project.StrangeIOCUtility.Scripts.Signals;
 using UnityEngine;
@@ -48,7 +50,7 @@ namespace _Project.StrangeIOCUtility.Scripts.Context
             base.mapBindings();
             
             BindSceneManagementInjections();
-            
+
             commandBinder.Bind<StartGameSignal>()
                 .To<SetSceneGroupsCommand>()
                 .To<StartGameCommand>() // Starts loading screen
@@ -62,6 +64,7 @@ namespace _Project.StrangeIOCUtility.Scripts.Context
                 .To<InitializeInjectedObjectFactoryCommand>()
                 .To<InitializeUnityServicesCommand>()
                 .To<GiveConsentForCollectingDataCommand>()
+                .To<FillGunsModelCommand>()
                 .InSequence().Once();
             
             //TODO: Uncomment after adding Classes. -14 August 2024

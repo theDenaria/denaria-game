@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
+using _Project.Shooting.Scripts.Signals;
 using DefaultNamespace;
 using LlamAcademy.Guns;
+using strange.extensions.injector.impl;
 using UnityEngine;
 using UnityEngine.Pool;
 using UnityEngine.Rendering;
@@ -10,10 +13,8 @@ namespace _Project.Shooting.Scripts.ScriptableObjects
     [CreateAssetMenu(fileName = "GunConfiguration", menuName = "Denaria/Guns/Gun Configuration", order = 0)]
     public class GunScriptableObject : ScriptableObject
     {
-        public delegate void OnTargetHit();
-        public event OnTargetHit OnTargetHitOccurred;//TODO: Make this a signal
-        
-        
+        //[Inject] public OnTargetHitSignal OnTargetHitSignal { get; set; }
+
         //public ImpactType ImpactType; //TODO: Enable
         
         public GunType Type;
@@ -25,7 +26,6 @@ namespace _Project.Shooting.Scripts.ScriptableObjects
 
         public ShootConfigurationScriptableObject ShootConfiguration;
         public TrailConfigurationScriptableObject TrailConfiguration;
-
         public DamageConfigurationScriptableObject DamageConfiguration;
         
         private MonoBehaviour ActiveMonoBehaviour;
@@ -69,7 +69,6 @@ namespace _Project.Shooting.Scripts.ScriptableObjects
                 {
                     DoProjectileShoot(shootDirection);
                 }
-
             }
         }
 
@@ -170,11 +169,6 @@ namespace _Project.Shooting.Scripts.ScriptableObjects
                 
                 //GunModelInstance.transform.forward = ShootDirection;
                 //OnTargetHitSignal.Dispatch();
-                
-                if (OnTargetHitOccurred != null)
-                {
-                    OnTargetHitOccurred.Invoke(); // Raise the event
-                }
             }
             else
             {
