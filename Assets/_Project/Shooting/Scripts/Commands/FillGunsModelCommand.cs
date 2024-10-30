@@ -21,12 +21,12 @@ namespace _Project.Shooting.Scripts.Commands
 
             GunsModel.FillGunsModel(gunScriptableObjectList);
 
-            var injector = new InjectionBinder();  // Or retrieve the main injector if available
+            /*var injector = new InjectionBinder();  // Or retrieve the main injector if available
 
             foreach (GunScriptableObject gunScriptableObject in gunScriptableObjectList)
             {
                 injector.injector.Inject(gunScriptableObject);
-            }
+            }*/
         }
     }
 }

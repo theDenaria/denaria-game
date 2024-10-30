@@ -35,7 +35,7 @@ namespace _Project.Shooting.Scripts.ScriptableObjects
         private ParticleSystem ShootSystem;
         private UnityEngine.Pool.ObjectPool<TrailRenderer> TrailPool;
         
-        public void Spawn(Transform Parent, MonoBehaviour ActiveMonoBehaviour, Camera ActiveCamera = null)
+        public GameObject Spawn(Transform Parent, MonoBehaviour ActiveMonoBehaviour, Camera ActiveCamera = null)
         {
             this.ActiveMonoBehaviour = ActiveMonoBehaviour;
 
@@ -43,8 +43,10 @@ namespace _Project.Shooting.Scripts.ScriptableObjects
             
             LastShootTime = 0; //In Editor, this will not be properly reset, in build it is fine.
             TrailPool = new UnityEngine.Pool.ObjectPool<TrailRenderer>(CreateTrail); //Or use UnityEngine.Pool.Rendering.ObjectPool?
+
+            GameObject gunModelInstance = SetUpGunModel(Parent);
             
-            SetUpGunModel(Parent);
+            return gunModelInstance;
         }
         
         public void Shoot()
@@ -101,12 +103,14 @@ namespace _Project.Shooting.Scripts.ScriptableObjects
             return trail;
         }
         
-        private void SetUpGunModel(Transform Parent)
+        private GameObject SetUpGunModel(Transform Parent)
         {
             GunModelInstance = Instantiate(GunModelPrefab, Parent, false);
             GunModelInstance.transform.localPosition = SpawnPoint;
             GunModelInstance.transform.localRotation = Quaternion.Euler(SpawnRotation);
             ShootSystem = GunModelInstance.GetComponentInChildren<ParticleSystem>();
+
+            return GunModelInstance;
         }
                 
         /// <summary>

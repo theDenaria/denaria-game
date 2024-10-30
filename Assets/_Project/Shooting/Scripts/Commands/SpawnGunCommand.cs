@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using _Project.Shooting.Scripts.Models;
 using _Project.Shooting.Scripts.ScriptableObjects;
+using _Project.Shooting.Scripts.Services;
 using DefaultNamespace;
 using strange.extensions.command.impl;
 
@@ -10,6 +11,8 @@ namespace _Project.Shooting.Scripts.Commands
     {
         [Inject] public IGunsModel GunsModel { get; set; }
         [Inject] public SpawnGunCommandData SpawnGunCommandData { get; set; }
+        
+        [Inject] public IShootingMechanicService ShootingMechanicService { get; set; }
 
         private GunType Gun { get; set; }
         private List<GunScriptableObject> Guns { get; set; }
@@ -18,7 +21,6 @@ namespace _Project.Shooting.Scripts.Commands
         public GunScriptableObject ActiveGun { get; private set; }
         public override void Execute()
         {
-            Debug.Log("xxx SpawnGunCommand");
             //GunScriptableObject gun = Guns.Find(gun => gun.Type == Gun);
 
             GunScriptableObject gun = GunsModel.GetGunList()[0];
@@ -29,10 +31,8 @@ namespace _Project.Shooting.Scripts.Commands
             }
 
             ActiveGun = gun;
-            gun.Spawn(SpawnGunCommandData.GunParent, SpawnGunCommandData.ActiveMonoBehaviour);
-            
-            Debug.Log("uuu after spawn");
-            
+            ShootingMechanicService.SetGunModel(gun.Spawn(SpawnGunCommandData.GunParent, SpawnGunCommandData.ActiveMonoBehaviour));
+
             //TODO: Enable for IK
             /*Transform[] allChildren = GunParent.GetComponentsInChildren<Transform>();
             InverseKinematics.LeftElbowIKTarget = allChildren.FirstOrDefault(child => child.name == "LeftElbow");

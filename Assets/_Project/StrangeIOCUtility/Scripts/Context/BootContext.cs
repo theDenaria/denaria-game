@@ -65,6 +65,7 @@ namespace _Project.StrangeIOCUtility.Scripts.Context
                 .To<InitializeUnityServicesCommand>()
                 .To<GiveConsentForCollectingDataCommand>()
                 .To<FillGunsModelCommand>()
+                .To<SetUpShootingMechanicServiceCommand>()
                 .InSequence().Once();
             
             //TODO: Uncomment after adding Classes. -14 August 2024

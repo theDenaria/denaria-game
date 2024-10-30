@@ -20,8 +20,6 @@ namespace _Project.Shooting.Scripts.Views
         internal void Init()
         {
             onPlayerGunSelectorReady.Dispatch();
-            
-            Debug.Log("uuu after spawn");
         }
     }
 }

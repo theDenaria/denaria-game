@@ -1,6 +1,11 @@
+using System.Collections;
+using _Project.Shooting.Scripts.Models;
+using _Project.Shooting.Scripts.ScriptableObjects;
 using _Project.Shooting.Scripts.Signals;
+using _Project.StrangeIOCUtility.Scripts.Utilities;
 using DefaultNamespace;
 using LlamAcademy.Guns;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -9,43 +14,61 @@ namespace _Project.Shooting.Scripts.Services
     public class ShootingMechanicService : IShootingMechanicService
     {
         [Inject] public OnTargetHitSignal OnTargetHitSignal { get; set; }
+        [Inject] public PlayShootingParticleSystemSignal PlayShootingParticleSystemSignal { get; set; }
+        [Inject] public StopPlayingShootingParticleSystemSignal StopPlayingShootingParticleSystemSignal { get; set; }
+        [Inject] public IGunsModel GunsModel { get; set; }
+        public GunScriptableObject ActiveGun { get; set; }
         
         private MonoBehaviour ActiveMonoBehaviour;
         private GameObject GunModelInstance;
         private Camera ActiveCamera;
         private float LastShootTime;
-        private ParticleSystem ShootSystem;
+        //private ParticleSystem ShootSystem;
         private UnityEngine.Pool.ObjectPool<TrailRenderer> TrailPool;
-        
-        
-        
-        /*public void Spawn(Transform Parent, MonoBehaviour ActiveMonoBehaviour, Camera ActiveCamera = null)
-        {
-            this.ActiveMonoBehaviour = ActiveMonoBehaviour;
 
-            GetCameraReference(ActiveCamera);
-            
-            LastShootTime = 0; //In Editor, this will not be properly reset, in build it is fine.
-            TrailPool = new UnityEngine.Pool.ObjectPool<TrailRenderer>(CreateTrail); //Or use UnityEngine.Pool.Rendering.ObjectPool?
-            
-            SetUpGunModel(Parent);
-        }
+        Vector3 shootDirection;
+        private ParticleSystem ShootSystem;
         
+        [Inject] public IRoutineRunner RoutineRunner { get; set; }
+
+        public void SetUpShootingMechanicService()
+        {
+            if (!ActiveGun)
+            {
+                ActiveGun = GunsModel.GetGunList()[0];
+            }
+            
+            //ShootSystem = GunModelInstance.GetComponentInChildren<ParticleSystem>(); //TODO: Do it once
+            TrailPool = new UnityEngine.Pool.ObjectPool<TrailRenderer>(CreateTrail); //Or use UnityEngine.Pool.Rendering.ObjectPool?
+        }
+
+        public void SetGunModel(GameObject spawnedGunModelInstance)
+        {
+            GunModelInstance = spawnedGunModelInstance;
+        }
+
         public void Shoot()
         {
-            if (Time.time > ShootConfiguration.FireRate + LastShootTime)
+            if (!ShootSystem)
+            {
+                ShootSystem = GunModelInstance.GetComponentInChildren<ParticleSystem>();//TODO: Do it once
+            }
+            
+            if (Time.time > ActiveGun.ShootConfiguration.FireRate + LastShootTime)
             {
                 LastShootTime = Time.time;
-                ShootSystem.Play();
 
-                Vector3 spreadAmount = ShootConfiguration.GetSpread();
+                //ShootSystem.Play();
+                PlayShootingParticleSystemSignal.Dispatch();
+
+                Vector3 spreadAmount = ActiveGun.ShootConfiguration.GetSpread();
                 //GunModelInstance.transform.forward += GunModelInstance.transform.TransformDirection(spreadAmount);
 
                 //TODO: Calculate the needed rotation and apply to the gun. Needs further animating work for arm.
                 //Vector3 shootDirection = ShootSystem.transform.forward;
-                Vector3 shootDirection = ShootSystem.transform.forward;
+                shootDirection = ShootSystem.transform.forward;
 
-                if (ShootConfiguration.IsHitscan)
+                if (ActiveGun.ShootConfiguration.IsHitscan)
                 {
                     DoHitscanShoot(shootDirection, GetRaycastOrigin(), ShootSystem.transform.position);
                 }
@@ -72,12 +95,12 @@ namespace _Project.Shooting.Scripts.Services
         {
             GameObject instance = new GameObject("BulletTrail");
             TrailRenderer trail = instance.AddComponent<TrailRenderer>();
-            trail.colorGradient = TrailConfiguration.Color;
-            UnityEngine.Debug.Log("xxx TrailConfiguration.Material: " + TrailConfiguration.Material.name);
-            trail.material = TrailConfiguration.Material;
-            trail.widthCurve = TrailConfiguration.WidthCurve;
-            trail.time = TrailConfiguration.Duration;
-            trail.minVertexDistance = TrailConfiguration.MinimumVertexDistance;
+            trail.colorGradient = ActiveGun.TrailConfiguration.Color;
+            UnityEngine.Debug.Log("xxx TrailConfiguration.Material: " + ActiveGun.TrailConfiguration.Material.name);
+            trail.material = ActiveGun.TrailConfiguration.Material;
+            trail.widthCurve = ActiveGun.TrailConfiguration.WidthCurve;
+            trail.time = ActiveGun.TrailConfiguration.Duration;
+            trail.minVertexDistance = ActiveGun.TrailConfiguration.MinimumVertexDistance;
             
             trail.emitting = false;
             trail.shadowCastingMode = ShadowCastingMode.Off;
@@ -85,14 +108,6 @@ namespace _Project.Shooting.Scripts.Services
             return trail;
         }
         
-        private void SetUpGunModel(Transform Parent)
-        {
-            GunModelInstance = Instantiate(GunModelPrefab, Parent, false);
-            GunModelInstance.transform.localPosition = SpawnPoint;
-            GunModelInstance.transform.localRotation = Quaternion.Euler(SpawnRotation);
-            ShootSystem = GunModelInstance.GetComponentInChildren<ParticleSystem>();
-        }
-                
         /// <summary>
         /// Returns the proper Origin point for raycasting based on <see cref="ShootConfigScriptableObject.ShootType"/>
         /// </summary>
@@ -106,7 +121,7 @@ namespace _Project.Shooting.Scripts.Services
             
             Vector3 origin = ShootSystem.transform.position;
 
-            if (ShootConfiguration.ShootingType == ShootingType.FromCamera)
+            if (ActiveGun.ShootConfiguration.ShootingType == ShootingType.FromCamera)
             {
                 origin = ActiveCamera.transform.position
                          + ActiveCamera.transform.forward * Vector3.Distance(
@@ -144,7 +159,7 @@ namespace _Project.Shooting.Scripts.Services
                 ray.direction,
                 out hitOfCrosshair,
                 float.MaxValue,
-                ShootConfiguration.HitMask);
+                ActiveGun.ShootConfiguration.HitMask);
 
             if (x)
             {
@@ -152,8 +167,6 @@ namespace _Project.Shooting.Scripts.Services
                 //GunModelInstance.transform.forward += Model.transform.TransformDirection(spreadAmount);
                 
                 //GunModelInstance.transform.forward = ShootDirection;
-                //OnTargetHitSignal.Dispatch();
-                
                 OnTargetHitSignal.Dispatch();
             }
             else
@@ -167,10 +180,10 @@ namespace _Project.Shooting.Scripts.Services
                     ShootDirection,
                     out RaycastHit hit,
                     float.MaxValue,
-                    ShootConfiguration.HitMask
+                    ActiveGun.ShootConfiguration.HitMask
                 ))
             {
-                ActiveMonoBehaviour.StartCoroutine(
+                RoutineRunner.StartCoroutine(
                     PlayTrail(
                         TrailOrigin,
                         hit.point,
@@ -182,7 +195,7 @@ namespace _Project.Shooting.Scripts.Services
             }
             else
             {
-                ActiveMonoBehaviour.StartCoroutine(
+                RoutineRunner.StartCoroutine(
                     PlayTrail(
                         TrailOrigin,
                         ShootDirection,//TrailOrigin + (ShootDirection * TrailConfiguration.MissDistance),
@@ -235,15 +248,16 @@ namespace _Project.Shooting.Scripts.Services
                 trail.emitting = true;
                 trail.gameObject.SetActive(true);
             }
-            #1#
+            */
         }
 
         public void StopShooting()
         {
-            if (ShootSystem != null)
+            StopPlayingShootingParticleSystemSignal.Dispatch();
+            /*if (ShootSystem != null)
             {
                 ShootSystem.Stop();
-            }
+            }*/
         }
         
 
@@ -266,7 +280,7 @@ namespace _Project.Shooting.Scripts.Services
                     EndPoint,
                     Mathf.Clamp01(1 - (remainingDistance / distance)));
 
-                remainingDistance -= TrailConfiguration.SimulationSpeed * Time.deltaTime;
+                remainingDistance -= ActiveGun.TrailConfiguration.SimulationSpeed * Time.deltaTime;
                 yield return null;
             }
 
@@ -279,13 +293,13 @@ namespace _Project.Shooting.Scripts.Services
                 if (Hit.collider.TryGetComponent(out IDamageable damageable))
                 {
                     UnityEngine.Debug.Log("HIT!!!");
-                    damageable.TakeDamage(DamageConfiguration.GetDamage(distance));
+                    damageable.TakeDamage(ActiveGun.DamageConfiguration.GetDamage(distance));
                 }
             }
 
             HandleSurfaceImpact();
             
-            yield return new WaitForSeconds(TrailConfiguration.Duration);
+            yield return new WaitForSeconds(ActiveGun.TrailConfiguration.Duration);
             yield return null;
             instance.emitting = false;
             instance.gameObject.SetActive(false);
@@ -303,13 +317,13 @@ namespace _Project.Shooting.Scripts.Services
                     Hit.normal,
                     ImpactType,
                     0);
-            }#1#
+            }*/
         }
 
         private void UpdateCamera(Camera ActiveCamera)
         {
             this.ActiveCamera = ActiveCamera;
-        }*/
+        }
         
     }
 }

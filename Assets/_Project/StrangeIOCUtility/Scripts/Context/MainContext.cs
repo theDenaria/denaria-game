@@ -531,12 +531,18 @@ namespace _Project.StrangeIOCUtility.Scripts.Context
 		{
 			injectionBinder.Bind<IGunsModel>().To<GunsModel>().ToSingleton().CrossContext();//CrossContext should not be needed in the future
 
-			injectionBinder.Bind<IShootingMechanicService>().To<ShootingMechanicService>().ToSingleton().CrossContext();
-			
 			injectionBinder.Bind<OnTargetHitSignal>().ToSingleton().CrossContext();
 			commandBinder.Bind<OnTargetHitSignal>().To<OnTargetHitCommand>();
 			
-			commandBinder.Bind<PlayerFireInputSignal>().To<FireWithRaycastCommand>();
+			
+			injectionBinder.Bind<PlayShootingParticleSystemSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<StopPlayingShootingParticleSystemSignal>().ToSingleton().CrossContext();
+			
+			
+			
+			injectionBinder.Bind<IShootingMechanicService>().To<ShootingMechanicService>().ToSingleton().CrossContext();
+			
+			mediationBinder.Bind<WeaponView>().To<WeaponMediator>();
 		}
 
 

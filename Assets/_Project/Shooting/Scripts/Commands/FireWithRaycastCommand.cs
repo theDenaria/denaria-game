@@ -9,10 +9,8 @@ namespace _Project.Shooting.Scripts.Commands
         [Inject] public IShootingMechanicService ShootingMechanicService { get; set; }
         public override void Execute()
         {
-            //ShootingMechanicService.Shoot();
+            ShootingMechanicService.Shoot();
         }
         
-        
-
     }
 }

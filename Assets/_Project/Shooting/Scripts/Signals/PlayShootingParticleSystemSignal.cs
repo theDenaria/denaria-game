@@ -1,6 +1,8 @@
+using strange.extensions.signal.impl;
+
 namespace _Project.Shooting.Scripts.Signals
 {
-    public class PlayShootingParticleSystemSignal
+    public class PlayShootingParticleSystemSignal : Signal
     {
         
     }
