@@ -19,12 +19,12 @@ namespace _Project.Shooting.Scripts.Views
         public override void OnRemove()
         {
             base.OnRemove();
-
             View.onPlayerGunSelectorReady.RemoveListener(HandleOnPlayerGunSelectorReady);
         }
 
         private void HandleOnPlayerGunSelectorReady()
         {
+            Debug.Log("vvv SpawnGunSignal.Dispatch");
             SpawnGunSignal.Dispatch(new SpawnGunCommandData(View.GunParent, View));
         }
 

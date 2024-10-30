@@ -542,7 +542,8 @@ namespace _Project.StrangeIOCUtility.Scripts.Context
 			
 			injectionBinder.Bind<IShootingMechanicService>().To<ShootingMechanicService>().ToSingleton().CrossContext();
 			
-			mediationBinder.Bind<WeaponView>().To<WeaponMediator>();
+			injectionBinder.Bind<SetUpGunViewSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<PlayTrailEffectSignal>().ToSingleton().CrossContext();
 		}
 
 

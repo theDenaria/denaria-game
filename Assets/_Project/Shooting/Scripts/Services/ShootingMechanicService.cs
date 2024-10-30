@@ -1,4 +1,5 @@
 using System.Collections;
+using _Project.Shooting.Scripts.Commands;
 using _Project.Shooting.Scripts.Models;
 using _Project.Shooting.Scripts.ScriptableObjects;
 using _Project.Shooting.Scripts.Signals;
@@ -15,6 +16,7 @@ namespace _Project.Shooting.Scripts.Services
     {
         [Inject] public OnTargetHitSignal OnTargetHitSignal { get; set; }
         [Inject] public PlayShootingParticleSystemSignal PlayShootingParticleSystemSignal { get; set; }
+        [Inject] public PlayTrailEffectSignal PlayTrailEffectSignal { get; set; }
         [Inject] public StopPlayingShootingParticleSystemSignal StopPlayingShootingParticleSystemSignal { get; set; }
         [Inject] public IGunsModel GunsModel { get; set; }
         public GunScriptableObject ActiveGun { get; set; }
@@ -24,7 +26,6 @@ namespace _Project.Shooting.Scripts.Services
         private Camera ActiveCamera;
         private float LastShootTime;
         //private ParticleSystem ShootSystem;
-        private UnityEngine.Pool.ObjectPool<TrailRenderer> TrailPool;
 
         Vector3 shootDirection;
         private ParticleSystem ShootSystem;
@@ -39,7 +40,6 @@ namespace _Project.Shooting.Scripts.Services
             }
             
             //ShootSystem = GunModelInstance.GetComponentInChildren<ParticleSystem>(); //TODO: Do it once
-            TrailPool = new UnityEngine.Pool.ObjectPool<TrailRenderer>(CreateTrail); //Or use UnityEngine.Pool.Rendering.ObjectPool?
         }
 
         public void SetGunModel(GameObject spawnedGunModelInstance)
@@ -91,22 +91,6 @@ namespace _Project.Shooting.Scripts.Services
             }
         }
         
-        private TrailRenderer CreateTrail()
-        {
-            GameObject instance = new GameObject("BulletTrail");
-            TrailRenderer trail = instance.AddComponent<TrailRenderer>();
-            trail.colorGradient = ActiveGun.TrailConfiguration.Color;
-            UnityEngine.Debug.Log("xxx TrailConfiguration.Material: " + ActiveGun.TrailConfiguration.Material.name);
-            trail.material = ActiveGun.TrailConfiguration.Material;
-            trail.widthCurve = ActiveGun.TrailConfiguration.WidthCurve;
-            trail.time = ActiveGun.TrailConfiguration.Duration;
-            trail.minVertexDistance = ActiveGun.TrailConfiguration.MinimumVertexDistance;
-            
-            trail.emitting = false;
-            trail.shadowCastingMode = ShadowCastingMode.Off;
-
-            return trail;
-        }
         
         /// <summary>
         /// Returns the proper Origin point for raycasting based on <see cref="ShootConfigScriptableObject.ShootType"/>
@@ -183,27 +167,11 @@ namespace _Project.Shooting.Scripts.Services
                     ActiveGun.ShootConfiguration.HitMask
                 ))
             {
-                RoutineRunner.StartCoroutine(
-                    PlayTrail(
-                        TrailOrigin,
-                        hit.point,
-                        hit
-                        //,
-                        //Iteration
-                    )
-                );
+                PlayTrailEffectSignal.Dispatch(new PlayTrailEffectCommandData(TrailOrigin, hit.point, hit));//,Iteration
             }
             else
             {
-                RoutineRunner.StartCoroutine(
-                    PlayTrail(
-                        TrailOrigin,
-                        ShootDirection,//TrailOrigin + (ShootDirection * TrailConfiguration.MissDistance),
-                        new RaycastHit()
-                        //,
-                        //Iteration
-                    )
-                );
+                PlayTrailEffectSignal.Dispatch(new PlayTrailEffectCommandData(TrailOrigin, ShootDirection, new RaycastHit()));//,Iteration
             }
         }
         
@@ -260,65 +228,6 @@ namespace _Project.Shooting.Scripts.Services
             }*/
         }
         
-
-        private IEnumerator PlayTrail(Vector3 StartPoint, Vector3 EndPoint, RaycastHit Hit)
-        {
-            TrailRenderer instance = TrailPool.Get();
-            instance.gameObject.SetActive(true);
-            instance.transform.position = StartPoint;
-
-            instance.emitting = true;
-
-            float distance = Vector3.Distance(StartPoint, EndPoint);
-            float remainingDistance = distance;
-
-            while (remainingDistance > 0)
-            {
-                
-                instance.transform.position = Vector3.Lerp(
-                    StartPoint,
-                    EndPoint,
-                    Mathf.Clamp01(1 - (remainingDistance / distance)));
-
-                remainingDistance -= ActiveGun.TrailConfiguration.SimulationSpeed * Time.deltaTime;
-                yield return null;
-            }
-
-            instance.transform.position = EndPoint;
-
-            if (Hit.collider != null)
-            {
-                UnityEngine.Debug.Log("COLLIDER!!!");
-
-                if (Hit.collider.TryGetComponent(out IDamageable damageable))
-                {
-                    UnityEngine.Debug.Log("HIT!!!");
-                    damageable.TakeDamage(ActiveGun.DamageConfiguration.GetDamage(distance));
-                }
-            }
-
-            HandleSurfaceImpact();
-            
-            yield return new WaitForSeconds(ActiveGun.TrailConfiguration.Duration);
-            yield return null;
-            instance.emitting = false;
-            instance.gameObject.SetActive(false);
-            TrailPool.Release(instance);
-        }
-
-        private void HandleSurfaceImpact()
-        {
-            //TODO: Use after you add SurfaceManager
-            /*if (Hit.collider != null)
-            {
-                SurfaceManager.Instance.HandleImpact(
-                    Hit.transform.gameObject,
-                    EndPoint,
-                    Hit.normal,
-                    ImpactType,
-                    0);
-            }*/
-        }
 
         private void UpdateCamera(Camera ActiveCamera)
         {

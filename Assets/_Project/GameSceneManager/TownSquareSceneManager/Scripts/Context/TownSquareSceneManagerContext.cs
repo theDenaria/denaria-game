@@ -62,6 +62,9 @@ namespace _Project.GameSceneManager.TownSquareSceneManager.Scripts.Context
             commandBinder.Bind<ShootSignal>().To<FireWithRaycastCommand>();//TODO: Move into TPS Context
             commandBinder.Bind<StopShootingSignal>().To<StopShootingCommand>();//TODO: Move into TPS Context
             commandBinder.Bind<SpawnGunSignal>().To<SpawnGunCommand>();//TODO: Move into TPS Context
+            
+            mediationBinder.Bind<WeaponView>().To<WeaponMediator>();//TODO: Move into TPS Context
+
         }
 
         private void BindMainMenu()
