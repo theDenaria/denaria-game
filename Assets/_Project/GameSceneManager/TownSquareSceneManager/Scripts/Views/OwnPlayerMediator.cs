@@ -45,16 +45,22 @@ namespace _Project.GameSceneManager.TownSquareSceneManager.Scripts.Views
 
         private IEnumerator SendInputsToServer()
         {
-
+            float nextTickTime = Time.realtimeSinceStartup;
             while (true)
             {
-                nextExecutionTime = Time.realtimeSinceStartup + DenariaServerService.TickRate;
+                nextTickTime += DenariaServerService.TickRate;
+
                 View.SendMoveInputToServer();
                 View.SendRotationToServer();
-                float waitTime = nextExecutionTime - Time.realtimeSinceStartup;
+                float waitTime = nextTickTime - Time.realtimeSinceStartup;
                 if (waitTime > 0)
                 {
                     yield return new WaitForSecondsRealtime(waitTime);
+                }
+                else
+                {
+                    Debug.LogWarning($"SendInputsToServer tick falling behind by {-waitTime:F4} seconds");
+                    nextTickTime = Time.realtimeSinceStartup + DenariaServerService.TickRate;
                 }
             }
         }

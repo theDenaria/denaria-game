@@ -58,7 +58,7 @@ namespace _Project.NetworkManagement.DenariaServer.Scripts.Services
             }
         }
         public ushort InterpolationTick { get; private set; }
-        private ushort _ticksBetweenPositionUpdates = 2;
+        private ushort _ticksBetweenPositionUpdates = 1;
         public ushort TicksBetweenPositionUpdates
         {
             get => _ticksBetweenPositionUpdates;
