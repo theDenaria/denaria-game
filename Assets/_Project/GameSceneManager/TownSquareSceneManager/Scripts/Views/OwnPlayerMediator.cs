@@ -44,7 +44,6 @@ namespace _Project.GameSceneManager.TownSquareSceneManager.Scripts.Views
 
         private IEnumerator SendInputsToServer()
         {
-
             while (true)
             {
                 nextExecutionTime = Time.realtimeSinceStartup + interval;

@@ -1,0 +1,181 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2583394862488790285
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4161883644625372674}
+    m_Modifications:
+    - target: {fileID: 413846452696270036, guid: bc32e4c75478c4cf389f13ca64718a92, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 413846452696270036, guid: bc32e4c75478c4cf389f13ca64718a92, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 413846452696270036, guid: bc32e4c75478c4cf389f13ca64718a92, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 413846452696270036, guid: bc32e4c75478c4cf389f13ca64718a92, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 413846452696270036, guid: bc32e4c75478c4cf389f13ca64718a92, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 413846452696270036, guid: bc32e4c75478c4cf389f13ca64718a92, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 413846452696270036, guid: bc32e4c75478c4cf389f13ca64718a92, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 413846452696270036, guid: bc32e4c75478c4cf389f13ca64718a92, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 413846452696270036, guid: bc32e4c75478c4cf389f13ca64718a92, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 413846452696270036, guid: bc32e4c75478c4cf389f13ca64718a92, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1077934310930259566, guid: bc32e4c75478c4cf389f13ca64718a92, type: 3}
+      propertyPath: m_Name
+      value: TownSquareOwnPlayerLookVariant
+      objectReference: {fileID: 0}
+    - target: {fileID: 1972447403205749318, guid: bc32e4c75478c4cf389f13ca64718a92, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 1972447403205749318, guid: bc32e4c75478c4cf389f13ca64718a92, type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bc32e4c75478c4cf389f13ca64718a92, type: 3}
+--- !u!4 &2766416160738173401 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 413846452696270036, guid: bc32e4c75478c4cf389f13ca64718a92, type: 3}
+  m_PrefabInstance: {fileID: 2583394862488790285}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6995596085896285802
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2983965250014685068, guid: 8543375cfd6df4b45a73f609c6633f2b, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 2983965250014685068, guid: 8543375cfd6df4b45a73f609c6633f2b, type: 3}
+    - target: {fileID: 5146023649419715910, guid: 8543375cfd6df4b45a73f609c6633f2b, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 5146023649419715910, guid: 8543375cfd6df4b45a73f609c6633f2b, type: 3}
+    - target: {fileID: 5333621813807636628, guid: 8543375cfd6df4b45a73f609c6633f2b, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 5333621813807636628, guid: 8543375cfd6df4b45a73f609c6633f2b, type: 3}
+    - target: {fileID: 6206603898755790319, guid: 8543375cfd6df4b45a73f609c6633f2b, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 6206603898755790319, guid: 8543375cfd6df4b45a73f609c6633f2b, type: 3}
+    - target: {fileID: 6400919695290091624, guid: 8543375cfd6df4b45a73f609c6633f2b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6400919695290091624, guid: 8543375cfd6df4b45a73f609c6633f2b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6400919695290091624, guid: 8543375cfd6df4b45a73f609c6633f2b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6400919695290091624, guid: 8543375cfd6df4b45a73f609c6633f2b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6400919695290091624, guid: 8543375cfd6df4b45a73f609c6633f2b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6400919695290091624, guid: 8543375cfd6df4b45a73f609c6633f2b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6400919695290091624, guid: 8543375cfd6df4b45a73f609c6633f2b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6400919695290091624, guid: 8543375cfd6df4b45a73f609c6633f2b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6400919695290091624, guid: 8543375cfd6df4b45a73f609c6633f2b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6400919695290091624, guid: 8543375cfd6df4b45a73f609c6633f2b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8612470706551618850, guid: 8543375cfd6df4b45a73f609c6633f2b, type: 3}
+      propertyPath: m_Name
+      value: TownSquareOwnPlayerVariant
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 5333621813807636628, guid: 8543375cfd6df4b45a73f609c6633f2b, type: 3}
+    - {fileID: 5146023649419715910, guid: 8543375cfd6df4b45a73f609c6633f2b, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 4439865694481721095, guid: 8543375cfd6df4b45a73f609c6633f2b, type: 3}
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6400919695290091624, guid: 8543375cfd6df4b45a73f609c6633f2b, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 2766416160738173401}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8612470706551618850, guid: 8543375cfd6df4b45a73f609c6633f2b, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 4534231106728271067}
+  m_SourcePrefab: {fileID: 100100000, guid: 8543375cfd6df4b45a73f609c6633f2b, type: 3}
+--- !u!1 &1626078644352938824 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8612470706551618850, guid: 8543375cfd6df4b45a73f609c6633f2b, type: 3}
+  m_PrefabInstance: {fileID: 6995596085896285802}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4534231106728271067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626078644352938824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8da3a7faaa2d45b5b5b00ebf0426137c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+--- !u!4 &4161883644625372674 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6400919695290091624, guid: 8543375cfd6df4b45a73f609c6633f2b, type: 3}
+  m_PrefabInstance: {fileID: 6995596085896285802}
+  m_PrefabAsset: {fileID: 0}

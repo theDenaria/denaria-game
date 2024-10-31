@@ -91,7 +91,7 @@ namespace _Project.Shooting.Scripts.Views
                 if (Hit.collider.TryGetComponent(out IDamageable damageable))
                 {
                     UnityEngine.Debug.Log("HIT!!!");
-                    damageable.TakeDamage(DamageConfiguration.GetDamage(distance));
+                    damageable.TakeDamage(DamageConfiguration.GetDamage(distance)); //TODO: MOVE INTO COMMAND
                 }
             }
 

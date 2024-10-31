@@ -14,30 +14,18 @@ PrefabInstance:
       objectReference: {fileID: 1513484142988634052, guid: 6deff98d240af4159966afeb075dd147, type: 3}
     - target: {fileID: 1513484142988634052, guid: 6deff98d240af4159966afeb075dd147, type: 3}
       propertyPath: serializationData.PrefabModifications.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1513484142988634052, guid: 6deff98d240af4159966afeb075dd147, type: 3}
       propertyPath: serializationData.PrefabModifications.Array.data[0]
-      value: '"path":"ActiveGun","value":$eref:0'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1513484142988634052, guid: 6deff98d240af4159966afeb075dd147, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[1]
-      value: '"path":"Gun","value":{"$id":0,"$type":"DefaultNamespace.GunType, Assembly-CSharp",0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1513484142988634052, guid: 6deff98d240af4159966afeb075dd147, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[2]
-      value: '"path":"GunParent","value":$eref:1'
+      value: '"path":"GunParent","value":$eref:0'
       objectReference: {fileID: 0}
     - target: {fileID: 1513484142988634052, guid: 6deff98d240af4159966afeb075dd147, type: 3}
       propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1513484142988634052, guid: 6deff98d240af4159966afeb075dd147, type: 3}
       propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: e61328d56837048b494d3ad8be22013e, type: 2}
-    - target: {fileID: 1513484142988634052, guid: 6deff98d240af4159966afeb075dd147, type: 3}
-      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[1]
       value: 
       objectReference: {fileID: 8493852266116357269}
     - target: {fileID: 3813039528896754812, guid: 6deff98d240af4159966afeb075dd147, type: 3}

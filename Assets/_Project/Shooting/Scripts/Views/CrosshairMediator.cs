@@ -15,7 +15,6 @@ namespace _Project.Shooting.Scripts.Views
         {
             base.OnRegister();
             View.Init();
-
         }
 
         [ListensTo(typeof(OnTargetHitSignal))]
