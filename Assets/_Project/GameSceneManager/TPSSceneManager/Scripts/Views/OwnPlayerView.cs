@@ -11,6 +11,10 @@ namespace _Project.GameSceneManager.TPSSceneManager.Scripts.Views
 
         public float Health { get; set; }
 
+        public float CurrentAmmo { get; set; }
+
+        public float TotalAmmo { get; set; }
+
         [SerializeField] protected Transform shoulderTransform;
 
         [SerializeField] protected Transform barrelPosition;
@@ -108,7 +112,6 @@ namespace _Project.GameSceneManager.TPSSceneManager.Scripts.Views
 
             return (ray.origin, ray.direction, barrelPosition.position);
         }
-
 
         // Position update interpolation
 

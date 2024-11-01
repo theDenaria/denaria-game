@@ -8,6 +8,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1513484142988634052, guid: 6deff98d240af4159966afeb075dd147, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 1513484142988634052, guid: 6deff98d240af4159966afeb075dd147, type: 3}
+    - target: {fileID: 1513484142988634052, guid: 6deff98d240af4159966afeb075dd147, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1513484142988634052, guid: 6deff98d240af4159966afeb075dd147, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.data[0]
+      value: '"path":"GunParent","value":$eref:0'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1513484142988634052, guid: 6deff98d240af4159966afeb075dd147, type: 3}
+      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1513484142988634052, guid: 6deff98d240af4159966afeb075dd147, type: 3}
+      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 7671112525654264089}
     - target: {fileID: 3813039528896754812, guid: 6deff98d240af4159966afeb075dd147, type: 3}
       propertyPath: serializationData.Prefab
       value: 
@@ -106,5 +126,10 @@ MonoBehaviour:
 --- !u!4 &7287560780705855199 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6707733653828109164, guid: 6deff98d240af4159966afeb075dd147, type: 3}
+  m_PrefabInstance: {fileID: 4049921145960527283}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7671112525654264089 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5927143799183506602, guid: 6deff98d240af4159966afeb075dd147, type: 3}
   m_PrefabInstance: {fileID: 4049921145960527283}
   m_PrefabAsset: {fileID: 0}
