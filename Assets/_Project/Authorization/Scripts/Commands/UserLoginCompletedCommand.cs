@@ -19,6 +19,7 @@ namespace _Project.Authorization.Scripts.Commands
         {
             if (Result.IsSuccess)
             {
+                UnityEngine.Debug.Log("xxx 1");
                 var isNew = Result.IsNew;
                 var profileID = Result.ProfileID;
                 var playfabLoginResult = Result.Result;
@@ -33,10 +34,21 @@ namespace _Project.Authorization.Scripts.Commands
                 DenariaServerConnectSignal.Dispatch();
                 // ChangeSceneGroupSignal.Dispatch(SceneGroupType.TownSquare, new LoadingOptions());
 
+                UnityEngine.Debug.Log("xxx 2");
+
             }
             else
             {
+                UnityEngine.Debug.Log("xxx 3");
+
+                var playfabIdShort = "siyahbeyaz";
+                var sessionTicket = "sessionTicketOnat";
+                PlayerSessionInfoModel.Init(playfabIdShort, sessionTicket);
+                DenariaServerConnectSignal.Dispatch();
+                UnityEngine.Debug.Log("xxx 4");
                 Debug.Log(Result.Error.Message);
+                UnityEngine.Debug.Log("xxx 5");
+
             }
 
 

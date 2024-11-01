@@ -18,6 +18,9 @@ using UnityEngine;
 using _Project.InputManager.Scripts.Views;
 using _Project.Animation.Scripts.Views;
 using _Project.Login.Scripts.Signals;
+using _Project.Shooting.Scripts.Commands;
+using _Project.Shooting.Scripts.Signals;
+using _Project.Shooting.Scripts.Views;
 
 namespace _Project.GameSceneManager.TownSquareSceneManager.Scripts.Context
 {
@@ -36,6 +39,8 @@ namespace _Project.GameSceneManager.TownSquareSceneManager.Scripts.Context
             SettingsManagerBindings();
             BindMatchmaking();
             BindAnimation();
+            
+            mediationBinder.Bind<CrosshairView>().To<CrosshairMediator>(); //TODO: Move them to battle scene
         }
 
 
@@ -50,6 +55,16 @@ namespace _Project.GameSceneManager.TownSquareSceneManager.Scripts.Context
             commandBinder.Bind<DenariaServerReceiveSpawnSignal>().To<PlayerSpawnCommand>();
             commandBinder.Bind<DenariaServerReceivePositionUpdateSignal>().To<PlayerPositionUpdateCommand>();
             commandBinder.Bind<DenariaServerReceiveRotationUpdateSignal>().To<PlayerRotationUpdateCommand>();
+            
+            mediationBinder.Bind<PlayerGunSelectorView>().To<PlayerGunSelectorMediator>();//TODO: Move into TPS Context
+            mediationBinder.Bind<PlayerAction>().To<PlayerActionMediator>();//TODO: Move into TPS Context
+
+            commandBinder.Bind<ShootSignal>().To<FireWithRaycastCommand>();//TODO: Move into TPS Context
+            commandBinder.Bind<StopShootingSignal>().To<StopShootingCommand>();//TODO: Move into TPS Context
+            commandBinder.Bind<SpawnGunSignal>().To<SpawnGunCommand>();//TODO: Move into TPS Context
+            
+            mediationBinder.Bind<WeaponView>().To<WeaponMediator>();//TODO: Move into TPS Context
+
         }
 
         private void BindMainMenu()
