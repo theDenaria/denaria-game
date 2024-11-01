@@ -1,3 +1,4 @@
+using _Project.Shooting.Scripts.Views;
 using _Project.StrangeIOCUtility.Scripts.Context;
 using _Project.TownSquareLoadingScreen.Scripts.Views;
 using UnityEngine;

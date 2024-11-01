@@ -1,23 +1,16 @@
+using _Project.Shooting.Scripts.Services;
 using strange.extensions.command.impl;
+using UnityEngine;
 
 namespace _Project.Shooting.Scripts.Commands
 {
     public class FireWithRaycastCommand : Command
     {
-        
+        [Inject] public IShootingMechanicService ShootingMechanicService { get; set; }
         public override void Execute()
         {
-            
+            ShootingMechanicService.Shoot();
         }
         
-        /*public (Vector3, Vector3, Vector3) GetFireInput()
-        {
-            Vector3 screenPoint = new(Screen.width / 2, Screen.height / 2, 0);
-
-            // Create a ray from the camera to the screen point
-            Ray ray = mainCamera.ScreenPointToRay(screenPoint);
-
-            return (ray.origin, ray.direction, barrelPosition.position);
-        }*/
     }
 }

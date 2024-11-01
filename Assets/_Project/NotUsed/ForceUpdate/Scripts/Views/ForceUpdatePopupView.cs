@@ -1,4 +1,5 @@
 using _Project.StrangeIOCUtility;
+using _Project.StrangeIOCUtility.Scripts.Views;
 using _Project.UIZeitnot.ButtonZeitnot.Scripts;
 using strange.extensions.mediation.impl;
 using strange.extensions.signal.impl;
@@ -6,7 +7,7 @@ using UnityEngine;
 
 namespace _Project.ForceUpdate.Scripts.Views
 {
-    public class ForceUpdatePopupView : View
+    public class ForceUpdatePopupView : ViewZeitnot
     {
         [field: SerializeField] private ButtonZeitnot OpenStoreButton { get; set; }
 

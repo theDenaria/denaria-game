@@ -74,6 +74,12 @@ using UnityEngine;
     }
     
     [Category("Utilities")]
+    public void ReduceOwnPlayerHealth()
+    {
+        //Signal Dispatch
+    }
+    
+    [Category("Utilities")]
     public void ClearPlayerPrefsAndQuitGame()
     {
         Debug.Log("Clearing PlayerPrefs and quitting");

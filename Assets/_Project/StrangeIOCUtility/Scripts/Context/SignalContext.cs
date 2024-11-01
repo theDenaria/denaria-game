@@ -1,3 +1,4 @@
+using _Project.Shooting.Scripts.Models;
 using strange.extensions.command.api;
 using strange.extensions.command.impl;
 using strange.extensions.context.api;
@@ -28,7 +29,6 @@ namespace _Project.StrangeIOCUtility.Scripts.Context
 
 		protected override void mapBindings()
 		{
-
 		}
 	}
 

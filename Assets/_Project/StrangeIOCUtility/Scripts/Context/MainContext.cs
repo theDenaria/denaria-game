@@ -24,6 +24,8 @@ using _Project.NetworkManagement.TPSServer.Scripts.Signals;
 using _Project.NetworkManagement.TPSServer.Scripts.Services;
 using _Project.NetworkManagement.TPSServer.Scripts.Commands;
 using _Project.Matchmaking.Scripts.Commands;
+using _Project.Shooting.Scripts.Models;
+using _Project.Shooting.Scripts.Views;
 using UnityEngine;
 using _Project.WaitingCanvas.Scripts.Commands;
 using _Project.ShowLoading.Scripts.Views;
@@ -527,9 +529,21 @@ namespace _Project.StrangeIOCUtility.Scripts.Context
 		
 		private void BindShootingMechanicInjections()
 		{
-			injectionBinder.Bind<IShootingMechanicService>().To<ShootingMechanicService>().ToSingleton().CrossContext();
+			injectionBinder.Bind<IGunsModel>().To<GunsModel>().ToSingleton().CrossContext();//CrossContext should not be needed in the future
 
-			commandBinder.Bind<PlayerFireInputSignal>().To<FireWithRaycastCommand>();
+			injectionBinder.Bind<OnTargetHitSignal>().ToSingleton().CrossContext();
+			commandBinder.Bind<OnTargetHitSignal>().To<OnTargetHitCommand>();
+			
+			
+			injectionBinder.Bind<PlayShootingParticleSystemSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<StopPlayingShootingParticleSystemSignal>().ToSingleton().CrossContext();
+			
+			
+			
+			injectionBinder.Bind<IShootingMechanicService>().To<ShootingMechanicService>().ToSingleton().CrossContext();
+			
+			injectionBinder.Bind<SetUpGunViewSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<PlayTrailEffectSignal>().ToSingleton().CrossContext();
 		}
 
 

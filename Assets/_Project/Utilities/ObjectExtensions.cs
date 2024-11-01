@@ -67,6 +67,15 @@ namespace System
         {
             return (T)Copy((Object)original);
         }
+        
+        public static void CopyValues<T>(T Base, T Copy)
+        {
+            Type type = Base.GetType();
+            foreach(FieldInfo field in type.GetFields())
+            {
+                field.SetValue(Copy, field.GetValue(Base));
+            }
+        }
     }
 
     public class ReferenceEqualityComparer : EqualityComparer<Object>
