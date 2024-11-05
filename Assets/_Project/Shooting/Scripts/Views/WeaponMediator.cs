@@ -39,7 +39,7 @@ namespace _Project.Shooting.Scripts.Views
         [ListensTo(typeof(PlayTrailEffectSignal))]
         public void PlayTrailEffect(PlayTrailEffectCommandData playTrailEffectCommandData)
         {
-            /*StartCoroutine(
+            StartCoroutine(
                 View.PlayTrail(
                     playTrailEffectCommandData.TrailOrigin,
                     playTrailEffectCommandData.Hit.point,
@@ -47,7 +47,7 @@ namespace _Project.Shooting.Scripts.Views
                     //,
                     //Iteration
                 )
-            );*/
+            );
         }
     }
 }

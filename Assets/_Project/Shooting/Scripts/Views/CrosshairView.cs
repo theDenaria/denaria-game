@@ -37,7 +37,7 @@ namespace _Project.Shooting.Scripts.Views
         
         // Call this function to start or extend the process
         public void PaintAndToggleImages()
-        {
+        {  
             timer = duration; // Reset or extend the timer
             if (!isCoroutineRunning)
             {
