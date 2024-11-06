@@ -42,6 +42,11 @@ namespace _Project.Shooting.Scripts.Services
             //ShootSystem = GunModelInstance.GetComponentInChildren<ParticleSystem>(); //TODO: Do it once
         }
 
+        public DamageConfigurationScriptableObject GetDamageConfiguration()
+        {
+            return ActiveGun.DamageConfiguration;
+        }
+
         public void SetGunModel(GameObject spawnedGunModelInstance)
         {
             GunModelInstance = spawnedGunModelInstance;
@@ -58,7 +63,6 @@ namespace _Project.Shooting.Scripts.Services
             {
                 LastShootTime = Time.time;
 
-                //ShootSystem.Play();
                 PlayShootingParticleSystemSignal.Dispatch();
 
                 Vector3 spreadAmount = ActiveGun.ShootConfiguration.GetSpread();
@@ -151,7 +155,8 @@ namespace _Project.Shooting.Scripts.Services
                 //GunModelInstance.transform.forward += Model.transform.TransformDirection(spreadAmount);
                 
                 //GunModelInstance.transform.forward = ShootDirection;
-                OnTargetHitSignal.Dispatch();
+                HandleTargetHitCommandData handleTargetHitCommandData = new HandleTargetHitCommandData(hitOfCrosshair, Origin, hitOfCrosshair.point);
+                OnTargetHitSignal.Dispatch(handleTargetHitCommandData);
             }
             else
             {
@@ -167,11 +172,11 @@ namespace _Project.Shooting.Scripts.Services
                     ActiveGun.ShootConfiguration.HitMask
                 ))
             {
-                PlayTrailEffectSignal.Dispatch(new PlayTrailEffectCommandData(TrailOrigin, hit.point, hit));//,Iteration
+                PlayTrailEffectSignal.Dispatch(new PlayTrailEffectCommandData(TrailOrigin, hit.point));//hit ,Iteration
             }
             else
             {
-                PlayTrailEffectSignal.Dispatch(new PlayTrailEffectCommandData(TrailOrigin, ShootDirection, new RaycastHit()));//,Iteration
+                PlayTrailEffectSignal.Dispatch(new PlayTrailEffectCommandData(TrailOrigin, TrailOrigin + ShootDirection));// new RaycastHit() ,Iteration
             }
         }
         

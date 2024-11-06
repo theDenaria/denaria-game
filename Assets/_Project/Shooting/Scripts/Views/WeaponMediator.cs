@@ -42,10 +42,9 @@ namespace _Project.Shooting.Scripts.Views
             StartCoroutine(
                 View.PlayTrail(
                     playTrailEffectCommandData.TrailOrigin,
-                    playTrailEffectCommandData.Hit.point,
                     playTrailEffectCommandData.Hit
-                    //,
-                    //Iteration
+                    //,playTrailEffectCommandData.Hit
+                    //,Iteration
                 )
             );
         }

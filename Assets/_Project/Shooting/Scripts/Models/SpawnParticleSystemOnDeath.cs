@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace LlamAcademy.Guns.Demo
+namespace _Project.Shooting.Scripts.Models
 {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(IDamageable))]
