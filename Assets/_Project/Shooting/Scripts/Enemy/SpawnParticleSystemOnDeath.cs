@@ -1,3 +1,4 @@
+using _Project.Shooting.Scripts.Models;
 using LlamAcademy.Guns;
 using UnityEngine;
 

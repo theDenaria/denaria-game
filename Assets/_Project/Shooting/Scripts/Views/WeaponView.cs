@@ -1,4 +1,5 @@
 using System.Collections;
+using _Project.Shooting.Scripts.Models;
 using _Project.Shooting.Scripts.ScriptableObjects;
 using _Project.StrangeIOCUtility.Scripts.Views;
 using LlamAcademy.Guns;
@@ -59,7 +60,7 @@ namespace _Project.Shooting.Scripts.Views
             return trail;
         }
         
-        internal IEnumerator PlayTrail(Vector3 StartPoint, Vector3 EndPoint, RaycastHit Hit)
+        internal IEnumerator PlayTrail(Vector3 StartPoint, Vector3 EndPoint)
         {
             TrailRenderer instance = TrailPool.Get();
             instance.gameObject.SetActive(true);
@@ -68,11 +69,11 @@ namespace _Project.Shooting.Scripts.Views
             instance.emitting = true;
 
             float distance = Vector3.Distance(StartPoint, EndPoint);
+            distance = Mathf.Clamp(distance, 0, 5000);
             float remainingDistance = distance;
 
             while (remainingDistance > 0)
             {
-                
                 instance.transform.position = Vector3.Lerp(
                     StartPoint,
                     EndPoint,
@@ -83,19 +84,6 @@ namespace _Project.Shooting.Scripts.Views
             }
 
             instance.transform.position = EndPoint;
-
-            if (Hit.collider != null)
-            {
-                UnityEngine.Debug.Log("COLLIDER!!!");
-
-                if (Hit.collider.TryGetComponent(out IDamageable damageable))
-                {
-                    UnityEngine.Debug.Log("HIT!!!");
-                    damageable.TakeDamage(DamageConfiguration.GetDamage(distance)); //TODO: MOVE INTO COMMAND
-                }
-            }
-
-            HandleSurfaceImpact();
             
             yield return new WaitForSeconds(TrailConfiguration.Duration);
             yield return null;
@@ -103,21 +91,6 @@ namespace _Project.Shooting.Scripts.Views
             instance.gameObject.SetActive(false);
             TrailPool.Release(instance);
         }
-
-        private void HandleSurfaceImpact()
-        {
-            //TODO: Use after you add SurfaceManager
-            /*if (Hit.collider != null)
-            {
-                SurfaceManager.Instance.HandleImpact(
-                    Hit.transform.gameObject,
-                    EndPoint,
-                    Hit.normal,
-                    ImpactType,
-                    0);
-            }*/
-        }
-        
         
         internal void PlayParticleSystem()
         {

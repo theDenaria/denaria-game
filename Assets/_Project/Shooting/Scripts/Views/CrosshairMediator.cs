@@ -1,3 +1,4 @@
+using _Project.Shooting.Scripts.Commands;
 using _Project.Shooting.Scripts.Models;
 using _Project.Shooting.Scripts.ScriptableObjects;
 using _Project.Shooting.Scripts.Signals;
@@ -18,7 +19,7 @@ namespace _Project.Shooting.Scripts.Views
         }
 
         [ListensTo(typeof(OnTargetHitSignal))]
-        public void PaintAndToggleImages()
+        public void PaintAndToggleImages(HandleTargetHitCommandData HandleTargetHitCommandData)
         {
             UnityEngine.Debug.Log("OnTargetHitSignal");
             View.PaintAndToggleImages();

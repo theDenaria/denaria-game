@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace LlamAcademy.Guns
+namespace _Project.Shooting.Scripts.Models
 {
     public interface IDamageable
     {
