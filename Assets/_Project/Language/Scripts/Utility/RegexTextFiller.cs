@@ -27,5 +27,16 @@ namespace _Project.Language.Scripts.Utility
 
             return txt;
         }
+        
+        public static bool IsNumeric(this string str)
+        {
+            if (string.IsNullOrWhiteSpace(str))
+                return false;
+
+            // Try parsing to int, double, or decimal
+            return int.TryParse(str, out _) || 
+                   double.TryParse(str, out _) || 
+                   decimal.TryParse(str, out _);
+        }
     }
 }

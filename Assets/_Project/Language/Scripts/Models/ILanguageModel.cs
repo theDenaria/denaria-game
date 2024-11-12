@@ -3,8 +3,8 @@ using _Project.Language.Scripts.ScriptableObjects.Resources;
 
 namespace _Project.Language.Scripts.Models
 {
-    public interface ILanguagesModel
+    public interface ILanguageModel
     {
-        public void FillLanguagesModel(List<LanguageScriptableObject> guns);
+        public void FillLanguagesModel(List<LanguageScriptableObject> languages);
     }
 }

@@ -7,7 +7,7 @@ using UnityEngine;
 namespace _Project.Language.Scripts.Views
 {
     [RequireComponent(typeof(TextMeshProUGUI))]
-    public class LanguageTextController : ViewZeitnot
+    public class LanguageView : ViewZeitnot
     {
         private TextMeshProUGUI _textMeshProUGUI;
 
@@ -22,13 +22,13 @@ namespace _Project.Language.Scripts.Views
 
             if (!_textMeshProUGUI)
             {
-                DebugLoggerMuteable.LogWarning("_textMeshProUGUI is null in LanguageTextController.Set(). Word was: " + word + " gameobject was: " + gameObject);
+                DebugLoggerMuteable.LogWarning("_textMeshProUGUI is null in LanguageView.Set(). Word was: " + word + " gameobject was: " + gameObject);
                 return;
             }
 
             if (String.IsNullOrEmpty(word))
             {
-                DebugLoggerMuteable.LogWarning("word is null in LanguageTextController.Set(). _textMeshProUGUI was: " + _textMeshProUGUI + " gameobject was: " + gameObject);
+                DebugLoggerMuteable.LogWarning("word is null in LanguageView.Set(). _textMeshProUGUI was: " + _textMeshProUGUI + " gameobject was: " + gameObject);
                 return;
             }
             

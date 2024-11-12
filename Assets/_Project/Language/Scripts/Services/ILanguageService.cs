@@ -1,7 +1,7 @@
 namespace _Project.Language.Scripts.Services
 {
-    public class ILanguageService
+    public interface ILanguageService
     {
-        
+        public string GetTextBy(string key);
     }
 }

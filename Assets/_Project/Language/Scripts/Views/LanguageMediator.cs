@@ -1,14 +1,15 @@
 using System;
 using System.Collections.Generic;
+using _Project.Language.Scripts.Services;
+using _Project.Language.Scripts.Signals;
 using _Project.Language.Scripts.Utility;
 using _Project.LoggingAndDebugging;
-using strange.extensions.dispatcher.eventdispatcher.api;
 using strange.extensions.mediation.impl;
 using UnityEngine;
 
 namespace _Project.Language.Scripts.Views
 {
-    [RequireComponent(typeof(LanguageTextController))]
+    [RequireComponent(typeof(LanguageView))]
     public class LanguageMediator : Mediator
     {
         [SerializeField] private string _key;
@@ -17,17 +18,14 @@ namespace _Project.Language.Scripts.Views
         //Key of the dictionary holds special regex string parts like $(0), and value holds the string that will be shown.
         [SerializeField] private Dictionary<string, string> _wildStringDictionary;
 
-        private ILanguageTextController _languageTextController;
-        private static ILanguageService _languageService;
+        private LanguageView _languageView;
+        [Inject] private static ILanguageService LanguageService { get; set; }
 
-        private static bool _isInitialized;
+        private static bool _isInitialized;//TODO: This state should not depend on view layer
         private bool _isDependenciesCached;
 
         private void OnEnable()
         {
-            Subscribe(GameEvents.LANGUAGE_CHANGED, HandleLanguageChanged);
-            Subscribe(GameEvents.ALL_SERVICE_INIT_OK, HandleAllServicesInitialized);
-
             if (!_isInitialized)
             {
                 return;
@@ -35,14 +33,9 @@ namespace _Project.Language.Scripts.Views
 
             FillTextByKey(_key);
         }
-
-        private void OnDisable()
-        {
-            Unsubscribe(GameEvents.LANGUAGE_CHANGED, HandleLanguageChanged);
-            Unsubscribe(GameEvents.ALL_SERVICE_INIT_OK, HandleAllServicesInitialized);
-        }
-
-        private void HandleAllServicesInitialized(IEvent arg0)
+        
+        [ListensTo(typeof(LanguageServiceInitializedSignal))]
+        public void HandleAllServicesInitialized()
         {
             _isInitialized = true;
             FillTextByKey(_key);
@@ -62,17 +55,17 @@ namespace _Project.Language.Scripts.Views
 
             string filledText = FillWildStrings(rawText, wildStringDictionary);
 
-            _languageTextController?.Set(filledText);
+            _languageView?.Set(filledText);
         }
 
         private void CacheDependencies()
         {
-            _languageService ??= GetService<ILanguageService>();
+            //LanguageService ??= GetService<ILanguageService>();
 
-            _languageTextController = GetComponent<ILanguageTextController>();
-            if (_languageTextController == null)
+            _languageView = GetComponent<LanguageView>();
+            if (_languageView == null)
             {
-                DebugLoggerMuteable.LogWarning("_languageTextController is null. key was: " + _key);
+                DebugLoggerMuteable.LogWarning("LanguageView is null. key was: " + _key);
                 return;
             }
 
@@ -115,7 +108,7 @@ namespace _Project.Language.Scripts.Views
 
             //_languageService ??= GetService<ILanguageService>();
 
-            string rawText = _languageService.GetWord(key);
+            string rawText = LanguageService.GetTextBy(key);
 
             if (String.IsNullOrEmpty(rawText))
             {
@@ -153,7 +146,8 @@ namespace _Project.Language.Scripts.Views
             return filledText;
         }
 
-        private void HandleLanguageChanged(IEvent e = null)
+        [ListensTo(typeof(LanguageChangedSignal))]
+        public void HandleLanguageChanged()
         {
             FillTextByKey(_key, _wildStringDictionary);
         }
