@@ -1,8 +1,6 @@
-using System.Collections.Generic;
 using System.Linq;
 using _Project.Language.Scripts.Models;
-using _Project.Language.Scripts.ScriptableObjects.Resources;
-using _Project.Language.Scripts.Services;
+using _Project.Utilities.NestedScriptableObject.CustomNestedScriptableObjects;
 using strange.extensions.command.impl;
 using UnityEngine;
 
@@ -15,10 +13,10 @@ namespace _Project.Language.Scripts.Commands
         public override void Execute()
         {
             UnityEngine.Debug.Log("FillLanguageModelCommand");
-            List<LanguageScriptableObject> languageScriptableObjectList = Resources.LoadAll<LanguageScriptableObject>("Languages").ToList();
+            TranslatableTextListModel translatableTextListModel = Resources.LoadAll<TranslatableTextListModel>("Languages").ToList()[0];
             UnityEngine.Debug.Log("FillLanguageModelCommand Resources");
 
-            LanguageModel.FillLanguagesModel(languageScriptableObjectList);
+            LanguageModel.FillLanguagesModel(translatableTextListModel);
         }
     }
 }

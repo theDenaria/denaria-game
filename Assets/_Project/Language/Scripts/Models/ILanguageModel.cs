@@ -1,10 +1,11 @@
 using System.Collections.Generic;
-using _Project.Language.Scripts.ScriptableObjects.Resources;
+using _Project.Utilities.NestedScriptableObject.CustomNestedScriptableObjects;
 
 namespace _Project.Language.Scripts.Models
 {
     public interface ILanguageModel
     {
-        public void FillLanguagesModel(List<LanguageScriptableObject> languages);
+        public void FillLanguagesModel(TranslatableTextListModel languages);
+        public TranslatableTextListModel GetLanguagesModel();
     }
 }
