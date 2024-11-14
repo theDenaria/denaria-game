@@ -558,6 +558,8 @@ namespace _Project.StrangeIOCUtility.Scripts.Context
 			
 			injectionBinder.Bind<FillTextByKeySignal>().ToSingleton().CrossContext();
 			commandBinder.Bind<FillTextByKeySignal>().To<FillTextByKeyCommand>();
+			injectionBinder.Bind<ChangeLanguageSignal>().ToSingleton().CrossContext();
+			commandBinder.Bind<ChangeLanguageSignal>().To<ChangeLanguageCommand>();
 		}
 		
 	}

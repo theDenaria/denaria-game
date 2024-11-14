@@ -1,20 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 810b27cae3c145788bc610f4967c66c9, type: 3}
-  m_Name: TranslatableTextListModel
-  m_EditorClassIdentifier: 
-  translatableTextModelList:
-  - {fileID: 5403484008872699879}
---- !u!114 &5403484008872699879
+--- !u!114 &-9131858424875452614
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -28,14 +14,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Key>k__BackingField: LoginScreen
   <Translations>k__BackingField:
-    rid: 7481377598135861249
+    rid: 7481377599710560257
   references:
     version: 2
     RefIds:
-    - rid: 7481377598135861249
-      type: {class: TranslationsDictionary, ns: _Project.Language.Scripts.Models, asm: Utilities}
+    - rid: 7481377599710560257
+      type: {class: TranslationsDictionary, ns: _Project.Utilities, asm: Utilities}
       data:
         keys: 0000000001000000
         values:
-        - Login Screen
-        - "Giri\u015F Ekran\u0131"
+        - en
+        - tr
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 810b27cae3c145788bc610f4967c66c9, type: 3}
+  m_Name: TranslatableTextListModel
+  m_EditorClassIdentifier: 
+  translatableTextModelList:
+  - {fileID: -9131858424875452614}

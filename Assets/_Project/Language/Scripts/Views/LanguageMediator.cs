@@ -16,6 +16,8 @@ namespace _Project.Language.Scripts.Views
         [Inject] public LanguageView View { get; set; }
         [Inject] public FillTextByKeySignal FillTextByKeySignal { get; set; }
 
+        [Inject] public ChangeLanguageSignal ChangeLanguageSignal { get; set; }
+
         private void OnEnable()
         {
             //View.FillTextByKey();
@@ -26,6 +28,7 @@ namespace _Project.Language.Scripts.Views
             base.OnRegister();
             View.Init();
             FillTextByKeySignal.Dispatch(new FillTextByKeyCommandData(View, View.Key, View.WildStringDictionary));
+            View.changeLanguageViewSignal.AddListener(FireChangeLanguageSignal);
         }
         
         [ListensTo(typeof(LanguageServiceInitializedSignal))]
@@ -40,6 +43,11 @@ namespace _Project.Language.Scripts.Views
         {
             //View.FillTextByKey();
             FillTextByKeySignal.Dispatch(new FillTextByKeyCommandData(View, View.Key, View.WildStringDictionary));
+        }
+
+        public void FireChangeLanguageSignal(ChangeLanguageCommandData changeLanguageCommandData)
+        {
+            ChangeLanguageSignal.Dispatch(changeLanguageCommandData);
         }
     }
 }

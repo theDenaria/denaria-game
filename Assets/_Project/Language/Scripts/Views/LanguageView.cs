@@ -1,6 +1,10 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using _Project.Language.Scripts.Commands;
+using _Project.Language.Scripts.Enums;
 using _Project.Language.Scripts.Services;
+using _Project.Language.Scripts.Signals;
 using _Project.Language.Scripts.Utility;
 using _Project.LoggingAndDebugging;
 using _Project.StrangeIOCUtility.Scripts.Views;
@@ -23,7 +27,8 @@ namespace _Project.Language.Scripts.Views
 
         private TextMeshProUGUI _textMeshProUGUI;
         internal Signal onViewInitialized = new Signal();
-
+        internal Signal<ChangeLanguageCommandData> changeLanguageViewSignal = new Signal<ChangeLanguageCommandData>();
+        
         private void OnEnable()
         {
             _textMeshProUGUI = GetComponent<TextMeshProUGUI>();
@@ -51,6 +56,31 @@ namespace _Project.Language.Scripts.Views
         public void Init()
         {
             //FillTextByKey();
+        }
+        
+        protected void Start()
+        {
+            base.Start();
+            StartCoroutine(TestLanguageChange());
+        }
+
+        private IEnumerator TestLanguageChange()
+        {
+            Languages language = Languages.ENGLISH;
+
+            while (true)
+            {
+                yield return new WaitForSeconds(1f);
+
+                Debug.Log("xxx changeLanguageViewSignal");
+                changeLanguageViewSignal.Dispatch(new ChangeLanguageCommandData(language));
+
+                // Alternate between 1 and 2 for the next dispatch
+                language = language == Languages.ENGLISH ? Languages.TURKISH : Languages.ENGLISH;
+
+                // Wait for 3 seconds before the next dispatch
+                yield return new WaitForSeconds(2f);
+            }
         }
     }
 }
