@@ -1,4 +1,5 @@
 using _Project.Analytics.UnityAnalytics.Scripts.Commands;
+using _Project.Language.Scripts.Commands;
 using _Project.LoadingScreen.Scripts.Signals;
 using _Project.LoggingAndDebugging;
 using _Project.SceneManagementUtilities.Scripts.Commands;
@@ -64,6 +65,7 @@ namespace _Project.StrangeIOCUtility.Scripts.Context
                 .To<InitializeInjectedObjectFactoryCommand>()
                 .To<InitializeUnityServicesCommand>()
                 .To<GiveConsentForCollectingDataCommand>()
+                .To<FillLanguageModelCommand>()
                 .To<FillGunsModelCommand>()
                 .To<SetUpShootingMechanicServiceCommand>()
                 .InSequence().Once();

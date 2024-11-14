@@ -20,6 +20,11 @@ using _Project.Shooting.Scripts.Signals;
 using _Project.PlayerSessionInfo.Scripts.Models;
 using _Project.InputManager.Scripts.Views;
 using _Project.InputManager.Scripts.Signals;
+using _Project.Language.Scripts.Commands;
+using _Project.Language.Scripts.Models;
+using _Project.Language.Scripts.Services;
+using _Project.Language.Scripts.Signals;
+using _Project.Language.Scripts.Views;
 using _Project.NetworkManagement.TPSServer.Scripts.Signals;
 using _Project.NetworkManagement.TPSServer.Scripts.Services;
 using _Project.NetworkManagement.TPSServer.Scripts.Commands;
@@ -183,6 +188,7 @@ namespace _Project.StrangeIOCUtility.Scripts.Context
 				InputManagerBindings();
 				BindShootingMechanicInjections(); //TODO: Move it into TPS Context
 				DenariaServerBindings();
+				BindLanguageTranslationInjections();
 			}
 		}
 
@@ -534,18 +540,27 @@ namespace _Project.StrangeIOCUtility.Scripts.Context
 			injectionBinder.Bind<OnTargetHitSignal>().ToSingleton().CrossContext();
 			commandBinder.Bind<OnTargetHitSignal>().To<OnTargetHitCommand>();
 			
-			
 			injectionBinder.Bind<PlayShootingParticleSystemSignal>().ToSingleton().CrossContext();
 			injectionBinder.Bind<StopPlayingShootingParticleSystemSignal>().ToSingleton().CrossContext();
-			
-			
 			
 			injectionBinder.Bind<IShootingMechanicService>().To<ShootingMechanicService>().ToSingleton().CrossContext();
 			
 			injectionBinder.Bind<SetUpGunViewSignal>().ToSingleton().CrossContext();
 			injectionBinder.Bind<PlayTrailEffectSignal>().ToSingleton().CrossContext();
 		}
-
-
+		
+		private void BindLanguageTranslationInjections()
+		{
+			injectionBinder.Bind<ILanguageModel>().To<LanguageModel>().ToSingleton().CrossContext();
+			injectionBinder.Bind<LanguageChangedSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<LanguageServiceInitializedSignal>().ToSingleton().CrossContext();
+			injectionBinder.Bind<ILanguageService>().To<LanguageService>().ToSingleton().CrossContext();
+			
+			injectionBinder.Bind<FillTextByKeySignal>().ToSingleton().CrossContext();
+			commandBinder.Bind<FillTextByKeySignal>().To<FillTextByKeyCommand>();
+			injectionBinder.Bind<ChangeLanguageSignal>().ToSingleton().CrossContext();
+			commandBinder.Bind<ChangeLanguageSignal>().To<ChangeLanguageCommand>();
+		}
+		
 	}
 }

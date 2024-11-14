@@ -2,6 +2,9 @@ using _Project.Authorization.Scripts.Commands;
 using _Project.Authorization.Scripts.Services;
 using _Project.Authorization.Scripts.Signals;
 using _Project.Authorization.Scripts.Views;
+using _Project.Language.Scripts.Commands;
+using _Project.Language.Scripts.Signals;
+using _Project.Language.Scripts.Views;
 using _Project.StrangeIOCUtility.Scripts.Context;
 using UnityEngine;
 
@@ -18,6 +21,7 @@ namespace _Project.Authorization.Scripts.Context
             base.mapBindings();
 
             BindAuthorizationScene();
+            BindLanguageTranslationInjections();
         }
 
 
@@ -39,6 +43,11 @@ namespace _Project.Authorization.Scripts.Context
             injectionBinder.Bind<RegistrationCompletedSignal>().ToSingleton();
             mediationBinder.Bind<RegistrationFormView>().To<RegistrationFormMediator>();
             commandBinder.Bind<RegisterWithMailAndPasswordSignal>().To<RegisterWithMailAndPasswordCommand>();
+        }
+        
+        private void BindLanguageTranslationInjections()
+        {
+            mediationBinder.Bind<LanguageView>().To<LanguageMediator>();
         }
     }
 }
