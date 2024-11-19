@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8d1d90dbcd54304d9813bc9803a1dcc, type: 3}
+  m_Name: Theme_Sample_Light
+  m_EditorClassIdentifier: 
+  themeSharedTemplate: {fileID: 11400000, guid: 5deba57fae286c54bb84781ec65f4644, type: 2}
+  uiImages:
+  - _name: img_Sample_00
+    uiImageConfig: {fileID: 11400000, guid: 5e65530bed8c844b3ac073dd060ba6d7, type: 2}
+  uiTexts:
+  - _name: txt_Sample_00
+    uiTitleConfig: {fileID: 11400000, guid: 3e17368a5cbf94da8a85a4d7283ddeb3, type: 2}
+  uiButtons:
+  - _name: btn_Sample_00
+    uiButtonConfig: {fileID: 11400000, guid: da1d6569621574a909ef64fcadd664c0, type: 2}
+  - _name: btn_Sample_01
+    uiButtonConfig: {fileID: 11400000, guid: e47b7e276d8eb44b5ad2551979852c0c, type: 2}
+  uiInputFields:
+  - _name: if_Sample_00
+    uiInputFieldConfig: {fileID: 11400000, guid: 192b832e3f83742d79f9ed3151de646b, type: 2}
+  uiSliders:
+  - _name: sld_Sample_00
+    uiSliderConfig: {fileID: 11400000, guid: 0cadf5de93c044c30a602749e77d4c75, type: 2}
+  uiToggles:
+  - _name: tgl_Sample_00
+    uiToggleConfig: {fileID: 11400000, guid: 9b4cdf637412746588a10feda58e0132, type: 2}
+  uiDropdowns:
+  - _name: dd_Sample_00
+    uiDropdownConfig: {fileID: 11400000, guid: ad28a1ebfbfd14359ba5e5a946e1b33e, type: 2}
