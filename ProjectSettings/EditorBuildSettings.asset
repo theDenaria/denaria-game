@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Project/TownSquareLoadingScreen/Scenes/TownSquareLoadingScene.unity
     guid: 96ab2e43a70e5435088af3c6efb4be76
+  - enabled: 1
+    path: Assets/Wunderfritz Studios/UI Management/ScriptableThemeSystem/Sample/ScriptableThemeSample.unity
+    guid: 7f4ef37304d624c58bec9b6a059df21d
   m_configObjects: {}
