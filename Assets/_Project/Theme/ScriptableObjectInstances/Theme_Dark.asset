@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8d1d90dbcd54304d9813bc9803a1dcc, type: 3}
+  m_Name: Theme_Dark
+  m_EditorClassIdentifier: 
+  themeSharedTemplate: {fileID: 11400000, guid: 4c86f7fc7ef12482d93aba666fb8be17, type: 2}
+  uiImages:
+  - _name: image_default
+    uiImageConfig: {fileID: 11400000, guid: c1796729755034c3aa660d8f5cc9b62c, type: 2}
+  - _name: image_01
+    uiImageConfig: {fileID: 11400000, guid: c1796729755034c3aa660d8f5cc9b62c, type: 2}
+  - _name: image_02
+    uiImageConfig: {fileID: 0}
+  uiTexts:
+  - _name: text_default
+    uiTitleConfig: {fileID: 11400000, guid: c553be5bae30e4e74885548ccd92a160, type: 2}
+  - _name: text_01
+    uiTitleConfig: {fileID: 0}
+  - _name: text_02
+    uiTitleConfig: {fileID: 0}
+  uiButtons:
+  - _name: button_default
+    uiButtonConfig: {fileID: 11400000, guid: 955a0e1108e614970ba1c402076303ce, type: 2}
+  - _name: button_01
+    uiButtonConfig: {fileID: 11400000, guid: f9d1c8c7b4b0447b192f72953d6a3c24, type: 2}
+  uiInputFields:
+  - _name: input_field_default
+    uiInputFieldConfig: {fileID: 11400000, guid: 095deac2eee854fc487fe6a0f21f7c8f, type: 2}
+  - _name: input_field_01
+    uiInputFieldConfig: {fileID: 0}
+  uiSliders:
+  - _name: slider_default
+    uiSliderConfig: {fileID: 11400000, guid: 3489718fefa7f4ef1880b84a305832b1, type: 2}
+  - _name: slider_01
+    uiSliderConfig: {fileID: 0}
+  uiToggles:
+  - _name: toggle_default
+    uiToggleConfig: {fileID: 11400000, guid: 10605d115cbcc45098b907f92a0fd430, type: 2}
+  - _name: toggle_01
+    uiToggleConfig: {fileID: 0}
+  uiDropdowns:
+  - _name: dropdown_default
+    uiDropdownConfig: {fileID: 11400000, guid: 32484962efa184e92a59f548fba4cc60, type: 2}
+  - _name: dropdown_01
+    uiDropdownConfig: {fileID: 0}
