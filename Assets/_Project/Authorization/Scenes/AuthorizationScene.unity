@@ -677,7 +677,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -889,6 +889,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5056796140614239455, guid: c2377dc5ec68d4834a9f565dfe456294, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 5056796140614239455, guid: c2377dc5ec68d4834a9f565dfe456294, type: 3}
     - target: {fileID: 6823761664996910152, guid: c2377dc5ec68d4834a9f565dfe456294, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -909,16 +913,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: LoginForm
       objectReference: {fileID: 0}
+    - target: {fileID: 8620040720713018934, guid: c2377dc5ec68d4834a9f565dfe456294, type: 3}
+      propertyPath: m_Color.g
+      value: 0.9490196
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620040720713018934, guid: c2377dc5ec68d4834a9f565dfe456294, type: 3}
+      propertyPath: m_Color.r
+      value: 0.72156864
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3798669529932346307, guid: c2377dc5ec68d4834a9f565dfe456294, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5701650069195188137}
   m_SourcePrefab: {fileID: 100100000, guid: c2377dc5ec68d4834a9f565dfe456294, type: 3}
 --- !u!1 &5701650069195188135 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7804116458806450743, guid: c2377dc5ec68d4834a9f565dfe456294, type: 3}
   m_PrefabInstance: {fileID: 5701650069195188134}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5701650069195188136 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3798669529932346307, guid: c2377dc5ec68d4834a9f565dfe456294, type: 3}
+  m_PrefabInstance: {fileID: 5701650069195188134}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5701650069195188137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5701650069195188136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dad2070f641ee7347bff679cbb40c4b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  theme: {fileID: 11400000, guid: ff3860b49cd5447ef90a97288d7d7fc2, type: 2}
+  selectedButtonConfig: button_default
 --- !u!1001 &5853147032816906822
 PrefabInstance:
   m_ObjectHideFlags: 0
