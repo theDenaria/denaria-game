@@ -23,18 +23,26 @@ namespace WunderfritzTools.UiManagement.ScriptableThemeSystem
             GUILayout.Space(10);
 
             UITheme iuTheme = target as UITheme;
-
-            if (GUILayout.Button("Update Theme"))
+            
+            if (GUILayout.Button("Initialize Theme From Template"))
             {
-                iuTheme.UpdateTheme();
+                iuTheme.InitializeThemeFromTemplate();
                 EditorUtility.SetDirty(target);
             }
 
             GUILayout.Space(10);
-
-            if (GUILayout.Button("Initialize Theme From Template"))
+            
+            if (GUILayout.Button("Update Theme From Template"))
             {
-                iuTheme.InitializeThemeFromTemplate();
+                iuTheme.UpdateThemeFromTemplate();
+                EditorUtility.SetDirty(target);
+            }
+            
+            GUILayout.Space(10);
+            
+            if (GUILayout.Button("Update Theme In Scenes"))
+            {
+                iuTheme.UpdateTheme();
                 EditorUtility.SetDirty(target);
             }
         }

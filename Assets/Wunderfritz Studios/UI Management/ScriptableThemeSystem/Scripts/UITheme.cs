@@ -51,6 +51,42 @@ namespace WunderfritzTools.UiManagement.ScriptableThemeSystem
                 destinationList.Add(element);
             }
         }
+        
+        public void UpdateList<T>(List<T> destinationList, List<UIElementData> sourceList) where T : UIElementBase, new()
+        {
+            // Dictionary to track existing elements by name for efficient lookup.
+            var existingElementsByName = new Dictionary<string, T>();
+
+            // Populate the dictionary with existing destination list items.
+            foreach (var element in destinationList)
+            {
+                if (!string.IsNullOrEmpty(element.name))
+                {
+                    existingElementsByName[element.name] = element;
+                }
+            }
+
+            // Clear the destination list to rebuild it.
+            destinationList.Clear();
+
+            // Iterate through the source list to update the destination list.
+            foreach (var sourceItem in sourceList)
+            {
+                if (string.IsNullOrEmpty(sourceItem.name)) continue;
+
+                // Check if an existing element can be reused.
+                if (existingElementsByName.TryGetValue(sourceItem.name, out var existingElement))
+                {
+                    destinationList.Add(existingElement);
+                }
+                else
+                {
+                    // Create a new element if none exists with the given name.
+                    var newElement = new T { name = sourceItem.name };
+                    destinationList.Add(newElement);
+                }
+            }
+        }
 
         public void InitializeThemeFromTemplate()
         {
@@ -67,6 +103,23 @@ namespace WunderfritzTools.UiManagement.ScriptableThemeSystem
             InitializeList(uiSliders, themeSharedTemplate.uiSliders);
             InitializeList(uiToggles, themeSharedTemplate.uiToggles);
             InitializeList(uiDropdowns, themeSharedTemplate.uiDropdowns);
+        }
+        
+        public void UpdateThemeFromTemplate()
+        {
+            if (themeSharedTemplate == null)
+            {
+                Debug.LogWarning("No ThemeSharedTemplate assigned in the editor. Please assign one.");
+                return;
+            }
+
+            UpdateList(uiImages, themeSharedTemplate.uiImages);
+            UpdateList(uiTexts, themeSharedTemplate.uiTexts);
+            UpdateList(uiButtons, themeSharedTemplate.uiButtons);
+            UpdateList(uiInputFields, themeSharedTemplate.uiInputFields);
+            UpdateList(uiSliders, themeSharedTemplate.uiSliders);
+            UpdateList(uiToggles, themeSharedTemplate.uiToggles);
+            UpdateList(uiDropdowns, themeSharedTemplate.uiDropdowns);
         }
 
         private void UpdateThemeInjectors<T>(T[] themeInjectors) where T : IThemeInjector
